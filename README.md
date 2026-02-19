@@ -1,3 +1,5 @@
+<div align="center" dir="rtl">
+
 <p align="center">
   <img src="https://img.shields.io/badge/Cloudflare-Workers-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Cloudflare Workers">
   <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
@@ -21,7 +23,7 @@
 
 پنل پروکسی هوشمند مبتنی بر Cloudflare Workers با قابلیت‌های پیشرفته شامل روتینگ هوشمند، فیلترینگ تبلیغات، مسدودسازی سایت‌های بزرگسال و پشتیبانی کامل از IPv4 و IPv6.
 
-**آدرس پنل:** `/{password}/` پیش‌فرض: `/Nova-Proxy`
+**آدرس پنل:** `/Nova-Proxy`
 
 ---
 
@@ -121,39 +123,6 @@
 
 ---
 
-## 🚀 نصب و استقرار
-
-### 1. کلون کردن پروژه
-```bash
-git clone https://github.com/IRNova/Nova-Proxy.git
-cd Nova-Proxy
-```
-
-### 2. ایجاد KV Namespace
-```bash
-wrangler kv:namespace create NOVA_KV
-```
-
-### 3. تنظیم متغیرهای محیطی
-```bash
-# رمز عبور (اختیاری - پیش‌فرض: Nova-Proxy)
-wrangler secret put PASSWORD
-
-# آدرس پروکسی Trojan
-wrangler secret put PROXYIP
-
-# آدرس SOCKS5 (اختیاری)
-wrangler secret put HTTP
-```
-
-### 4. استقرار در Cloudflare
-```bash
-npm install
-wrangler deploy
-```
-
----
-
 ## ⚙️ متغیرهای محیطی
 
 | متغیر | توضیحات | پیش‌فرض |
@@ -202,3 +171,5 @@ wrangler deploy
 <p align="center">
   <strong>نسخه 1.0.0 - در حال توسعه | با ❤️ برای جامعه ایران</strong>
 </p>
+
+</div>
