@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova-Proxy | پنل پروکسی هوشمند</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-light: #38bdf8;
+            --primary-dark: #0284c7;
+            --secondary: #8b5cf6;
+            --secondary-light: #a78bfa;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-gray: #f1f5f9;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --text-light: #94a3b8;
+            --shadow: 0 10px 40px rgba(14, 165, 233, 0.15);
+            --shadow-lg: 0 20px 60px rgba(14, 165, 233, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        body {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(14, 165, 233, 0.05) 0%, transparent 40%);
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(14, 165, 233, 0.45);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 5% 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stats-section {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .features {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(139, 92, 246, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .colors-section {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .colors-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .color-card {
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: scale(1.05);
+        }
+
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .color-name {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .color-code {
+            font-family: monospace;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .colors-section {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .colors-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .ports-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .port-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .screenshots-section {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .info-box i {
+            color: var(--primary);
+            margin-left: 10px;
+        }
+
+        .info-box strong {
+            color: var(--primary-light);
+        }
+
+        .ports-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .info-box i {
+            color: var(--primary);
+            margin-left: 10px;
+        }
+
+        .info-box strong {
+            color: var(--primary-light);
+        }
+
+        .ports-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .port-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .screenshots-section {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .screenshot-card {
+            background: var(--bg-light);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .screenshot-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .screenshot-label {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            background: white;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 5% 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            -webkit-text-fill-color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .stats-section {
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <header>
+        <div class="header-content">
+            <a href="https://github.com/IRNova/Nova-Proxy" target="_blank" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <span class="logo-text">Nova-Proxy</span>
+            </a>
+            <nav>
+                <a href="#features">ویژگی‌ها</a>
+                <a href="#colors">رنگ‌بندی</a>
+                <a href="#domains">دامنه‌ها</a>
+            </nav>
+            <a href="https://github.com/IRNova/Nova-Proxy" target="_blank" class="btn btn-primary">
+                <i class="fab fa-github"></i>
+                گیتهاب
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <i class="fas fa-rocket"></i>
+                نسخه 1.0.0 - در حال توسعه
+            </div>
+            <h1>پنل پروکسی هوشمند<br>Nova-Proxy</h1>
+            <p>پنل مدیریت پروکسی مبتنی بر Cloudflare Workers با روتینگ هوشمند، فیلترینگ تبلیغات و مسدودسازی سایت‌های بزرگسال | پشتیبانی از IPv4 و IPv6</p>
+            <div class="hero-buttons">
+                <a href="#install" class="btn btn-primary">
+                    <i class="fas fa-download"></i>
+                    شروع سریع
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    <i class="fas fa-star"></i>
+                    ویژگی‌ها
+                </a>
+            </div>
+            
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-number">+1000</div>
+                    <div class="stat-label">محدوده IP ایران</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+100</div>
+                    <div class="stat-label">دامنه ایرانی</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+150</div>
+                    <div class="stat-label">دامنه تبلیغاتی</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">پورت Cloudflare</div>
+                </div>
+            </div>
+
+            <div class="ports-section">
+                <span class="port-badge">443</span>
+                <span class="port-badge">2053</span>
+                <span class="port-badge">2083</span>
+                <span class="port-badge">2087</span>
+                <span class="port-badge">2096</span>
+                <span class="port-badge">8443</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>✨ ویژگی‌های برجسته</h2>
+            <p>تمام آنچه برای یک پروکسی هوشمند نیاز دارید</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>روتینگ هوشمند</h3>
+                <p>اتصال مستقیم به سایت‌های ایرانی بدون نیاز به پروکسی با تشخیص خودکار IP و دامنه‌های ایرانی</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-virus"></i>
+                </div>
+                <h3>مسدودسازی تبلیغات</h3>
+                <p>فیلتر خودکار دامنه‌های تبلیغاتی برای تجربه مرور بدون تبلیغ</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>مسدودسازی بزرگسال</h3>
+                <p>فیلترینگ سایت‌های بزرگسال برای محافظت از خانواده</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>پشتیبانی IPv4 و IPv6</h3>
+                <p>پشتیبانی کامل از آدرس‌های IPv4 و IPv6</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>پورت‌های Cloudflare</h3>
+                <p>پشتیبانی از پورت‌های: 2053, 2083, 2087, 2096, 8443</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>پشتیبان‌گیری و بازیابی</h3>
+                <p>امکان پشتیبان‌گیری از تنظیمات و بازیابی آن‌ها در هر زمان</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>سرعت بالا</h3>
+                <p>استفاده از DNS over HTTPS و کش محلی برای بالاترین سرعت ممکن</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Cloudflare Workers</h3>
+                <p>اجرای بدون نیاز به سرور اختصاصی روی زیرساخت ابری Cloudflare</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h3>متن‌باز</h3>
+                <p>کاملاً رایگان و متن‌باز با امکان شخصی‌سازی و توسعه</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="colors-section" id="colors">
+        <div class="colors-container">
+            <div class="section-header">
+                <h2>🎨 طرح رنگی</h2>
+                <p>پالت رنگی استفاده شده در پروژه</p>
+            </div>
+            
+            <div class="color-grid">
+                <div class="color-card" style="background: #f0f9ff;">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);"></div>
+                    <div class="color-name">آبی فیروزه‌ای</div>
+                    <div class="color-code">#0ea5e9</div>
+                </div>
+                
+                <div class="color-card" style="background: #f5f3ff;">
+                    <div class="color-swatch" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);"></div>
+                    <div class="color-name">بنفش ملایم</div>
+                    <div class="color-code">#8b5cf6</div>
+                </div>
+                
+                <div class="color-card" style="background: #f8fafc;">
+                    <div class="color-swatch" style="background: #f8fafc; border: 1px solid #e2e8f0;"></div>
+                    <div class="color-name">خاکستری روشن</div>
+                    <div class="color-code">#f8fafc</div>
+                </div>
+                
+                <div class="color-card" style="background: #f1f5f9;">
+                    <div class="color-swatch" style="background: #1e293b;"></div>
+                    <div class="color-name">خاکستری تیره</div>
+                    <div class="color-code">#1e293b</div>
+                </div>
+                
+                <div class="color-card" style="background: #ffffff;">
+                    <div class="color-swatch" style="background: #ffffff; border: 1px solid #e2e8f0;"></div>
+                    <div class="color-name">سفید</div>
+                    <div class="color-code">#ffffff</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panel Features -->
+    <section class="features" id="panel">
+        <div class="section-header">
+            <h2>⚙️ قابلیت‌های پنل</h2>
+            <p>همه آنچه برای مدیریت پروکسی نیاز دارید</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-link"></i>
+                </div>
+                <h3>اشتراک‌های متنوع</h3>
+                <p>دریافت لینک اشتراک در فرمت‌های: Auto, Base64, Clash, SingBox, Loon, Surge</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <h3>مدیریت کانفیگ‌ها</h3>
+                <p>مشاهده لیست کامل کانفیگ‌ها با قابلیت Load Balancing و Health Check</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-ping-pong"></i>
+                </div>
+                <h3>تست پینگ</h3>
+                <p>تست پینگ همه کانفیگ‌ها برای انتخاب بهترین گزینه</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>Health Check</h3>
+                <p>بررسی سلامت کانفیگ‌ها و انتخاب بهترین کانفیگ</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>مدیریت هسته</h3>
+                <p>استفاده از کانفیگ‌های تحت دامنه Worker Cloudflare با تمام پورت‌ها</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>پروکسی DoH</h3>
+                <p>استفاده از DNS-over-HTTPS با پشتیبانی از Cloudflare, Google, Quad9, AdGuard, ControlD, Mullvad, NextDNS</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-network"></i>
+                </div>
+                <h3>تنظیمات شبکه</h3>
+                <p>پیکربندی مسیریابی، DNS و فیلترینگ با قابلیت‌های: GeoIP, GeoSite, مسدودسازی تبلیغات و بزرگسال</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-telegram"></i>
+                </div>
+                <h3>تلگرام Bot</h3>
+                <p>دارای ربات تلگرام برای مدیریت و دریافت اعلان‌ها</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <h3>اسکن IP تمیز</h3>
+                <p>اسکن IP های تمیز Cloudflare برای ساخت کانفیگ‌های Trojan با بیش از 9 منبع فعال</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>ChatGPT</h3>
+                <p>پشتیبانی از دامنه ChatGPT برای مواقعی که نت ملی است</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-save"></i>
+                </div>
+                <h3>پشتیبان‌گیری</h3>
+                <p>پشتیبان‌گیری و بازیابی تنظیمات در هر زمان</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>دسترسی به پنل</h3>
+                <p>آدرس پنل: /Nova-Proxy - ورود و مدیریت آسان</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="screenshots-section">
+        <div class="section-header">
+            <h2>📸 تصاویر پنل</h2>
+            <p>نمایی از محیط پنل مدیریت</p>
+        </div>
+        
+        <div class="screenshots-grid">
+            <div class="screenshot-card">
+                <img src="img/login.JPG" alt="صفحه ورود" class="screenshot-img">
+                <div class="screenshot-label">
+                    <i class="fas fa-sign-in-alt"></i> صفحه ورود
+                </div>
+            </div>
+            
+            <div class="screenshot-card">
+                <img src="img/dashbord.JPG" alt="داشبورد" class="screenshot-img">
+                <div class="screenshot-label">
+                    <i class="fas fa-tachometer-alt"></i> داشبورد
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text">Nova-Proxy</div>
+                <p>پنل پروکسی هوشمند مبتنی بر Cloudflare Workers با روتینگ هوشمند و فیلترینگ پیشرفته</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>لینک‌های مفید</h4>
+                <ul>
+                    <li><a href="#features">ویژگی‌ها</a></li>
+                    <li><a href="https://github.com/IRNova/Nova-Proxy" target="_blank">گیتهاب</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>منابع</h4>
+                <ul>
+                    <li><a href="#">Cloudflare Workers</a></li>
+                    <li><a href="#">Trojan Protocol</a></li>
+                    <li><a href="#">Xray-core</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>ارتباط</h4>
+                <ul>
+                    <li><a href="https://github.com/IRNova/Nova-Proxy" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>نسخه 1.0.0 - در حال توسعه | با ❤️ برای جامعه ایران</p>
+            <p style="margin-top: 0.5rem;">دنبال کنید: <a href="https://github.com/IRNova/Nova-Proxy" target="_blank" style="color: var(--primary);">گیتهاب</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.9)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .color-card, .screenshot-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
