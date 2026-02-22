@@ -103,8 +103,6 @@
 
 | نوع | آدرس |
 |-----|-------|
-| ADDAPI | `https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt` |
-| ADDCSV | `https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv` |
 | SUB | `Trojan.cmliussss.net` |
 | PROXYIP | `proxyip.cmliussss.net:443` |
 
