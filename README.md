@@ -106,7 +106,7 @@
 
 #### منابع آماده برای استفاده:
 
-**آدرس‌های آماده از پروژه epeius:**
+**آدرس‌های آماده :**
 - **ADDAPI:** `https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt`
 - **ADDCSV:** `https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv`
 - **SUB:** `Trojan.cmliussss.net`
