@@ -167,6 +167,13 @@
   <a href="https://github.com/IRNova/Nova-Proxy">
     <img src="https://img.shields.io/badge/GitHub-گیتهاب-0ea5e9?style=for-the-badge&logo=github" alt="GitHub">
   </a>
+  <a href="https://t.me/irnova_proxy">
+    <img src="https://img.shields.io/badge/Telegram-تلگرام-0ea5e9?style=for-the-badge&logo=telegram" alt="Telegram Channel">
+  </a>
+</p>
+
+<p align="center">
+  برای دیدن آخرین تغییرات و پروژه‌های بیشتر حتماً عضو کانال ما شوید
 </p>
 
 ---
@@ -174,5 +181,10 @@
 <p align="center">
   <strong>نسخه 1.0.0 - در حال توسعه | با ❤️ برای جامعه ایران</strong>
 </p>
+
+---
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/IRNova/Nova-Proxy.svg?variant=adaptive)](https://starchart.cc/IRNova/Nova-Proxy)
 
 </div>
