@@ -7,8 +7,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/نسخه-1.0.0-0ea5e9?style=for-the-badge" alt="Version">
-  <img src="https://img.shields.io/badge/آخرین_آپدیت-بهمن_1404-8b5cf6?style=for-the-badge" alt="Last Update">
+  <img src="https://img.shields.io/badge/نسخه-2.0.0-0ea5e9?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/آخرین_آپدیت-خرداد_1405-8b5cf6?style=for-the-badge" alt="Last Update">
   <a href="https://starchart.cc/IRNova/Nova-Proxy">
     <img src="https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9" alt="Stars">
   </a>
@@ -27,7 +27,7 @@
 
 ---
 
-## ⚙️ قابلیت‌های پنل
+## ⚙️ قابلیت‌های پنل - نسخه 1
 
 | دسته | قابلیت | وضعیت | توضیحات |
 |------|--------|-------|---------|
@@ -86,23 +86,130 @@
 
 ---
 
-### 🚀 تنظیمات پراکسی - جزئیات
+## 🚀 نسخه 2 - قابلیت‌های جدید
 
-این بخش برای تنظیم روش‌های مختلف اتصال پروکسی است:
+| دسته | قابلیت | وضعیت | توضیحات |
+|------|--------|-------|---------|
+| **🔌 پروتکل‌های انتقال** | VLESS + Trojan + Shadowsocks | ✅ | پشتیبانی همزمان از هر سه پروتکل |
+| | gRPC | ✅ | انتقال gRPC با استریم دوطرفه کامل |
+| | XHTTP | ✅ | انتقال XHTTP با پشتیبانی از بارگذاری |
+| | WebSocket Early Data | ✅ | داده اولیه در handshake WS برای کاهش تأخیر |
+| | mux=0 (SS) | ✅ | غیرفعال‌سازی MUX برای Shadowsocks |
+| **🔄 زنجیره پروکسی** | SOCKS5 | ✅ | پروکسی زنجیره‌ای SOCKS5 با احراز هویت |
+| | HTTP/HTTPS CONNECT | ✅ | پروکسی HTTP/HTTPS با احراز هویت Basic |
+| | TURN | ✅ | پروکسی TURN |
+| | SSTP | ✅ | پروکسی SSTP |
+| | SOCKS5 سراسری | ✅ | تمام ترافیک از SOCKS5 |
+| | HTTP سراسری | ✅ | تمام ترافیک از HTTP |
+| | HTTPS سراسری | ✅ | تمام ترافیک از HTTPS |
+| | TURN سراسری | ✅ | تمام ترافیک از TURN |
+| | SSTP سراسری | ✅ | تمام ترافیک از SSTP |
+| | لیست سفید دامنه | ✅ | تعیین دامنه‌های عبوری از پروکسی |
+| **🔐 رمزنگاری Shadowsocks** | AES-128-GCM | ✅ | رمزنگاری استاندارد AES-128-GCM |
+| | AES-256-GCM | ✅ | رمزنگاری استاندارد AES-256-GCM |
+| | تشخیص خودکار | ✅ | تشخیص خودکار روش رمزنگاری از روی داده |
+| | کلید جلسه پویا | ✅ | کلید جلسه مشتق شده از salt |
+| | سازگاری با کلاینت | ✅ | سازگاری با کلاینت‌های استاندارد SS |
+| **🔒 TLS پیشرفته** | TLS 1.3 | ✅ | TLS 1.3 با X25519 و P-256 |
+| | TLS 1.2 | ✅ | TLS 1.2 با ECDHE |
+| | ChaCha20-Poly1305 | ✅ | رمزنگاری ChaCha20-Poly1305 |
+| | AES-GCM | ✅ | رمزنگاری AES-GCM |
+| | ClientHello سفارشی | ✅ | ساخت دستی ClientHello |
+| | ALPN | ✅ | مذاکره پروتکل ALPN |
+| | sni/فراگرگمنت | ✅ | پشتیبانی از fragment برای دور زدن فیلتر |
+| | ECH (Encrypted Client Hello) | ✅ | رمزنگاری SNI با ECH |
+| | Fallback به ChaCha20 | ✅ | بازگشت خودکار در صورت عدم پشتیبانی AES |
+| **📡 اشتراک‌گذاری پیشرفته** | Local Sub Generation | ✅ | تولید اشتراک بدون API خارجی |
+| | Subscriber Userinfo | ✅ | ارسال آمار مصرف در هدر |
+| | SingBox | ✅ | فرمت SingBox/Sing-Box |
+| | Quantumult X | ✅ | فرمت Quantumult X |
+| | Loon | ✅ | فرمت Loon |
+| | Surge | ✅ | فرمت Surge با hotpatch |
+| | Clash/Meta/Mihomo | ✅ | فرمت Clash با hotpatch |
+| | Mixed Auto | ✅ | تشخیص خودکار کلاینت |
+| | Random Path | ✅ | مسیر تصادفی برای ابهام |
+| | Wildcard Host | ✅ | * در hostname برای تصادفی‌سازی |
+| | Chain Proxy در لینک | ✅ | افزودن زنجیره پروکسی به لینک مستقیم |
+| | TLS Fragment | ✅ | پشتیبانی از Shadowrocket/Happ fragment |
+| | ECH در لینک | ✅ | افزودن ECH به لینک اشتراک |
+| **🌐 مدیریت کانفیگ** | کامل پنل ادمین | ✅ | پنل مدیریت کامل راست‌چین فارسی |
+| | Simple Mode | ✅ | حالت ساده برای کاربران عادی |
+| | Advanced Mode | ✅ | حالت پیشرفته با تمام تنظیمات |
+| | Dark Mode | ✅ | تم تاریک کامل |
+| | QR Code | ✅ | تولید QR کد برای هر گره |
+| | Log Viewer | ✅ | مشاهده لاگ درخواست‌ها |
+| | JSON Config Editor | ✅ | ویرایش مستقیم JSON کانفیگ |
+| | Reset Config | ✅ | بازنشانی به تنظیمات پیش‌فرض |
+| **📊 Cloudflare Stats** | Usage Query | ✅ | مشاهده مصرف منابع |
+| | API Token/Key | ✅ | پشتیبانی از API Token و Global Key |
+| | Custom Usage API | ✅ | API سفارشی مصرف |
+| **🧹 بهینه‌سازی IP** | Online Optimize | ✅ | اسکن آنلاین IP در worker |
+| | API Optimize | ✅ | استفاده از API‌های عمومی |
+| | Custom IP List | ✅ | بارگذاری لیست IP دلخواه |
+| | Random IP Generator | ✅ | تولید IP تصادفی |
+| | Result Tabs | ✅ | دسته‌بندی نتایج (تمیز/معمولی/سریع) |
+| | Save/Override | ✅ | ذخیره و جایگزینی نتایج |
+| **🤖 Telegram Bot** | Webhook | ✅ | وب‌هوک تلگرام برای اعلان‌ها |
+| | SetWebhook | ✅ | تنظیم خودکار وب‌هوک |
+| | Bot Config | ✅ | تنظیمات ربات در پنل |
+| **⚡ بهینه‌سازی** | Concurrent TCP Dial | ✅ | اتصال همزمان TCP (۲ مسیره) |
+| | Uplink Coalescing | ✅ | تجمیع بسته‌های خروجی (16KB) |
+| | Downlink Grain | ✅ | تجمیع بسته‌های ورودی (32KB) |
+| | Upload Queue Limit | ✅ | محدودیت صف آپلود (16MB/4096) |
+| | 0-RTT | ✅ | پشتیبانی از 0-RTT |
+| | 0-RTT | ✅ | داده اولیه برای کاهش زمان اتصال |
+| | IP Load Balance | ✅ | انتخاب هوشمند پروکسی‌آی‌پی |
+| | Proxy Fallback | ✅ | بازگشت به مسیر مستقیم در صورت خطا |
+| **🔗 لینک‌های مستقیم** | VLESS | ✅ | لینک مستقیم VLESS |
+| | Trojan | ✅ | لینک مستقیم Trojan |
+| | Shadowsocks | ✅ | لینک مستقیم Shadowsocks با plugin |
+| | Subscription | ✅ | لینک اشتراک با توکن امن |
+| | Full ClipBoard | ✅ | کپی یک‌کلیک تمام لینک‌ها |
+| **📂 فضای ذخیره‌سازی** | KV Config | ✅ | ذخیره config.json در KV |
+| | KV CF Config | ✅ | ذخیره تنظیمات Cloudflare |
+| | KV TG Config | ✅ | ذخیره تنظیمات تلگرام |
+| | KV Custom IPs | ✅ | ذخیره IP‌های سفارشی |
+| | KV Logs | ✅ | ذخیره لاگ درخواست‌ها |
+| **🛡️ امنیت** | Password Login | ✅ | ورود با رمز عبور |
+| | Auth Cookie | ✅ | احراز هویت با Cookie امن |
+| | UUID Validation | ✅ | اعتبارسنجی UUID |
+| | Token Auth | ✅ | احراز هویت اشتراک با توکن MD5 |
+| | Speed Test Block | ✅ | مسدودسازی درخواست‌های speed test |
+| **🔧 متغیرهای محیطی** | ADMIN/PASSWORD | ✅ | رمز عبور اصلی پنل |
+| | UUID | ✅ | شناسه کاربری ثابت |
+| | PROXYIP | ✅ | پروکسی‌آی‌پی خروجی |
+| | SOCKS5/HTTP/HTTPS | ✅ | پروکسی زنجیره‌ای |
+| | HOST | ✅ | هاست‌های مجاز |
+| | KEY | ✅ | کلید رمزنگاری |
+| | KV | ✅ | اتصال فضای ذخیره‌سازی |
+| | DEBUG | ✅ | لاگ خطایابی |
+| | URL | ✅ | آدرس سایت مجازی |
+| | BEST_SUB | ✅ | فعال‌سازی تولیدکننده اشتراک |
+| **📱 پنل کاربری** | راست‌چین فارسی | ✅ | رابط کاربری کاملاً فارسی |
+| | واکنش‌گرا | ✅ | سازگاری با موبایل و تبلت |
+| | Leaflet Map | ✅ | نقشه تعاملی برای مکان پروکسی |
+| | QR Code | ✅ | تولید QR کد داخلی |
+| | Toast Notifications | ✅ | اعلان‌های کشویی |
+| | Modal Windows | ✅ | پنجره‌های مودال |
+| | Collapse Modules | ✅ | ماژول‌های جمع‌شونده |
+| | SVG Icons | ✅ | آیکون‌های Remix SVG |
+| | Copy to Clipboard | ✅ | کپی یک‌کلیک به کلیپ‌بورد |
+
+---
+
+### 🚀 تنظیمات پراکسی - جزئیات (نسخه 2)
 
 | آیتم | توضیح | فرمت | مثال |
 |------|-------|------|------|
-| **اشتراک برگزیده (sub)** | آدرس دامنه‌ای که اشتراک از اون سرو میشه | دامنه | `Trojan.novatest.net` |
-| **پراکسی‌آی‌پی** | آدرس IP پروکسی برای تغییر IP خروجی | `host:port` | `proxyip.novatest.net:443` |
-| **SOCKS5** | پروکسی SOCKوزر و پS5 با یسورد | `user:pass@host:port` | `user:pass@127.0.0.1:1080` |
-| **SOCKS5 سراسری** | اگه روشن کنی، تمام ترافیک از SOCKS5 میگذره | Toggle | - |
-| **HTTP** | پروکسی HTTP با یوزر و پسورد | `http://user:pass@host:port` | `http://user:pass@127.0.0.1:8080` |
-| **HTTP سراسری** | اگه روشن کنی، تمام ترافیک از HTTP میگذره | Toggle | - |
-
-
-#### ⚠️ نکات مهم:
-- اگه `SOCKS5` یا `HTTP` پر کنی، `PROXYIP` غیرفعال میشه
-- باید **یکی** رو استفاده کنی
+| **زنجیره SOCKS5** | پروکسی SOCKS5 با یوزر و پسورد | `socks5://user:pass@host:port` | `socks5://user:pass@127.0.0.1:1080` |
+| **زنجیره HTTP** | پروکسی HTTP با یوزر و پسورد | `http://user:pass@host:port` | `http://user:pass@127.0.0.1:8080` |
+| **زنجیره HTTPS** | پروکسی HTTPS با یوزر و پسورد | `https://user:pass@host:port` | `https://user:pass@127.0.0.1:3128` |
+| **زنجیره TURN** | پروکسی TURN | `turn://user:pass@host:port` | `turn://user:pass@turn.example.com:3478` |
+| **زنجیره SSTP** | پروکسی SSTP | `sstp://user:pass@host:port` | `sstp://user:pass@host:port` |
+| **زنجیره در لینک** | افزودن پروکسی به لینک گره | `$socks5://...` در انتهای IP | `1.2.3.4:443#MyNode $socks5://user:pass@5.6.7.8:1080` |
+| **TLS Fragment** | تکه‌تکه کردن ClientHello | Shadowrocket/Happ | `1,40-60,30-50,tlshello` |
+| **ECH** | رمزنگاری SNI | SNI+DNS | `ech.example.com+dns.example.com` |
+| **0-RTT Early Data** | داده اولیه در handshake | base64 در Sec-WebSocket-Protocol | Auto |
 
 ---
 
@@ -130,14 +237,22 @@
 
 | متغیر | توضیحات | پیش‌فرض |
 |-------|---------|---------|
-| `PASSWORD` | رمز عبور پنل مدیریت | `Nova-Proxy` |
-| `PROXYIP` | آدرس پروکسی Trojan | - |
-| `HTTP` | آدرس SOCKS5/HTTP | - |
-| `ENABLE_ROUTING` | فعال‌سازی روتینگ | `true` |
-| `ENABLE_ADBLOCK` | مسدودسازی تبلیغات | `true` |
-| `ENABLE_PORNBLOCK` | مسدودسازی بزرگسال | `false` |
-| `ENABLE_DOMESTIC_BYPASS` | دور زدن سایت‌های ایرانی | `true` |
-| `DOH_PROVIDER` | ارائه‌دهنده DoH | `cloudflare` |
+| `PASSWORD` | رمز عبور پنل مدیریت | (اجباری) |
+| `UUID` | شناسه کاربری ثابت (فرمت UUID v4) | خودکار از PASSWORD+KEY |
+| `PROXYIP` | آدرس پروکسی خروجی (فرمت host:port) | auto (colo proxyip) |
+| `SOCKS5` | پروکسی زنجیره‌ای SOCKS5 | - |
+| `HTTP` | پروکسی زنجیره‌ای HTTP | - |
+| `HTTPS` | پروکسی زنجیره‌ای HTTPS | - |
+| `TURN` | پروکسی زنجیره‌ای TURN | - |
+| `SSTP` | پروکسی زنجیره‌ای SSTP | - |
+| `HOST` | هاست‌های مجاز (جداسازی با ,) | hostname فعلی |
+| `KEY` | کلید رمزنگاری | `勿动此默认密钥...` |
+| `KV` | فضای ذخیره‌سازی KV | (اجباری) |
+| `GO2SOCKS5` | دامنه‌های اضافی برای SOCKS5 | - |
+| `DEBUG` | فعال‌سازی لاگ خطایابی | `false` |
+| `URL` | آدرس سایت مجاز (mask/decoy) | nginx |
+| `BEST_SUB` | فعال‌سازی تولیدکننده اشتراک | `false` |
+| `ADMIN` | رمز عبور (جایگزین PASSWORD) | - |
 
 ---
 
@@ -151,6 +266,9 @@
 | 📢 دامنه تبلیغاتی | +150 دامنه |
 | 🔞 دامنه بزرگسال | +80 دامنه |
 | 🔌 پورت‌های Cloudflare | 443, 2053, 2083, 2087, 2096, 8443 |
+| 🧩 پروتکل‌های انتقال | VLESS, Trojan, Shadowsocks, gRPC, XHTTP |
+| 🔗 زنجیره پروکسی | SOCKS5, HTTP, HTTPS, TURN, SSTP |
+| 🔐 رمزنگاری TLS | AES-GCM, ChaCha20-Poly1305, ECH |
 
 ---
 
@@ -158,6 +276,7 @@
 
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [Xray-core](https://github.com/XTLS/xray-core)
+- [@Alexandre_Kojeve](https://github.com/AlexandreKojeve) (TLSClient)
 
 ---
 
@@ -184,7 +303,7 @@ TUp48CD8kWdrHwnzH3tXArdJBG1ven62XU
 ---
 
 <p align="center">
-  <strong>نسخه 1.0.0 - در حال توسعه | با ❤️ برای جامعه ایران</strong>
+  <strong>نسخه 2.0.0 - در حال توسعه | با ❤️ برای جامعه ایران</strong>
 </p>
 
 ---
