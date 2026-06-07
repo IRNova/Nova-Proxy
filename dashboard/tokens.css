@@ -1,0 +1,309 @@
+/* =============================================================================
+   Nova Proxy — Design Tokens
+   -----------------------------------------------------------------------------
+   The single source of truth for the Nova Proxy visual language (colors,
+   gradient, typography, radii, layout, elevation), extracted from the marketing
+   site (novaproxy.online) so the in-Worker dashboard, /install wizard, /login,
+   and Telegram Mini App all share one look.
+
+   Framework-agnostic: plain CSS custom properties, no build step, no
+   dependencies. Drop this file into the bundled dashboard and reference the
+   variables (e.g. `background: var(--bg); color: var(--text);`).
+
+   USAGE
+   -----
+     <link rel="stylesheet" href="tokens.css">           (or inline the :root blocks)
+     <html data-theme="dark">  ... default, can be omitted
+     <html data-theme="light"> ... opt-in light theme
+
+   Dark is the default theme. Add `data-theme="light"` on <html> (or any
+   ancestor) to switch. To follow the OS preference automatically, see the
+   `prefers-color-scheme` block at the bottom (commented out by default).
+
+   FONTS
+   -----
+   Latin UI uses Inter; Farsi/Arabic script uses Vazirmatn. Load them however
+   you like (self-hosted, @fontsource, or a CDN), e.g.:
+     @import url('https://cdn.jsdelivr.net/npm/vazirmatn@33/Vazirmatn-font-face.css');
+   Then set the font on <body>, switching to --font-fa when lang="fa":
+     body            { font-family: var(--font-sans); }
+     html[lang=fa] body { font-family: var(--font-fa); line-height: 1.75; }
+
+   NOTE FOR THIS REPO
+   ------------------
+   The Nova Proxy dashboard is shipped as a single, bundled (obfuscated) Cloudflare
+   Worker (`Nova System.js`) that renders /setup (install wizard), /login, the
+   admin panel and the Telegram Mini App as inlined HTML strings. Because there is
+   no build step and no external stylesheet can be linked from those inlined pages,
+   the Worker inlines the contents of this file (the :root token blocks PLUS the
+   "Dashboard adoption layer" at the bottom) into every rendered page via a small
+   response post-processor. Keep this file and that inlined copy in sync — this
+   file is the human-readable source of truth.
+   ============================================================================= */
+
+:root,
+:root[data-theme='dark'] {
+  /* ---- Brand accents ---- */
+  --cyan: #22d3ee;            /* primary accent — links, eyebrows, focus */
+  --violet: #a855f7;          /* secondary accent */
+  --indigo: #818cf8;          /* gradient midpoint / featured highlights */
+  --indigo-strong: #6366f1;   /* badges, emphasis on light surfaces */
+
+  /* Signature gradient — used for primary buttons, logo, gradient text,
+     progress bars, active toggles, the brand dot, etc. */
+  --grad: linear-gradient(120deg, #22d3ee 0%, #818cf8 50%, #a855f7 100%);
+  /* Foreground placed ON TOP of the gradient (dark ink reads on the bright
+     gradient in both themes). */
+  --on-accent: #05060a;
+
+  /* ---- Backgrounds & surfaces ---- */
+  --bg: #05060a;              /* page background */
+  --bg-alt: #090b12;          /* alternating section background */
+  --surface: rgba(255, 255, 255, 0.04);   /* cards, inputs, chips */
+  --surface-2: rgba(255, 255, 255, 0.06); /* hover / raised surface */
+  --nav-bg: rgba(5, 6, 10, 0.7);          /* sticky header (with backdrop blur) */
+  --code-bg: #0b0e16;        /* code blocks, textareas, terminal output */
+
+  /* ---- Borders ---- */
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* ---- Text ---- */
+  --text: #eef1f7;           /* primary text */
+  --muted: #9aa4b8;          /* secondary / supporting text */
+  --on-pill: #cfe8ff;        /* text inside translucent accent pills/code */
+
+  /* ---- State / feedback ---- */
+  --success: #7ee0b8;
+  --success-strong: #047857;
+  --warning: #f59e0b;
+  --info: #a855f7;           /* informational notes share the violet accent */
+  --danger: #ef4444;
+  --star: #ffd479;           /* GitHub-star / amber highlight */
+
+  /* ---- Social brand colors ---- */
+  --brand-telegram-1: #2aabee;
+  --brand-telegram-2: #229ed9;
+  --brand-youtube: #ff0000;
+  --brand-x: #000000;
+
+  /* ---- Layout ---- */
+  --radius: 16px;            /* default card radius */
+  --radius-sm: 10px;         /* inputs, small chips, notes */
+  --radius-pill: 999px;      /* pills, toggles, round buttons */
+  --maxw: 1140px;            /* max content width */
+
+  /* ---- Elevation ---- */
+  --shadow-accent: 0 10px 30px -10px rgba(99, 102, 241, 0.7); /* primary buttons */
+  --shadow-pop: 0 14px 30px rgba(0, 0, 0, 0.35);             /* menus / popovers */
+
+  /* ---- Typography ---- */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-fa: 'Vazirmatn', 'Inter', system-ui, -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif;
+  --font-mono: 'SFMono-Regular', ui-monospace, Menlo, Consolas, monospace;
+
+  /* Fluid type scale (matches the marketing site's clamp()s) */
+  --fs-display: clamp(2.4rem, 6vw, 4.2rem); /* hero h1 */
+  --fs-h1: clamp(2rem, 5vw, 2.9rem);
+  --fs-h2: clamp(1.9rem, 4vw, 2.7rem);
+  --fs-h3: 1.3rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.92rem;
+  --fs-xs: 0.82rem;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  --lh-tight: 1.15;  /* headings */
+  --lh-body: 1.6;    /* latin body */
+  --lh-fa: 1.75;     /* farsi body (script needs more room) */
+  --tracking-tight: -0.02em; /* headings */
+  --tracking-eyebrow: 0.16em; /* uppercased latin eyebrows (never apply to FA) */
+}
+
+/* =============================================================================
+   Light theme — opt in with data-theme="light"
+   ============================================================================= */
+:root[data-theme='light'] {
+  --bg: #f7f8fc;
+  --bg-alt: #eef1f7;
+  --surface: rgba(15, 23, 42, 0.04);
+  --surface-2: rgba(15, 23, 42, 0.07);
+  --nav-bg: rgba(247, 248, 252, 0.8);
+
+  --border: rgba(15, 23, 42, 0.12);
+  --border-strong: rgba(15, 23, 42, 0.22);
+
+  --text: #0d1117;
+  --muted: #51607a;
+  --on-pill: #0e7490;
+
+  /* Slightly deepened accents keep contrast on the light background. */
+  --cyan: #0891b2;
+  --violet: #9333ea;
+  --success: #047857;
+  --star: #b45309;
+}
+
+/* =============================================================================
+   Dashboard adoption layer
+   -----------------------------------------------------------------------------
+   Re-skins the existing in-Worker dashboard (/setup install wizard, /login, the
+   admin panel and the Telegram Mini App) to the tokens above WITHOUT restyling
+   from scratch. The bundled pages are built on a small set of legacy CSS
+   variables (--primary, --primary-hover, --card-bg, --text-light, ...) and a few
+   hard-coded brand values (the `linear-gradient(135deg, var(--primary), #8b5cf6)`
+   logo/button gradient, light card/input/notice backgrounds). This layer:
+
+     1. re-points those legacy variables at the Nova tokens (theme-aware), and
+     2. paints the known brand surfaces with the signature gradient + dark
+        surfaces so the layout that already exists simply adopts the new look.
+
+   It is theme-aware: everything resolves through the tokens, so flipping
+   data-theme="light" on <html> switches the whole dashboard. Dark is the default.
+   ============================================================================= */
+
+:root {
+  /* Legacy → Nova remap (names that differ from the token names). The legacy
+     names that happen to match token names (--bg, --text, --border, --success,
+     --warning, --danger) are already overridden by the :root block above. */
+  --primary: var(--cyan);
+  --primary-hover: var(--indigo-strong);
+  --primary-light: var(--indigo);
+  --primary-dark: var(--indigo-strong);
+  --secondary: var(--violet);
+  --secondary-light: var(--violet);
+  --card-bg: var(--surface);
+  --bg-white: var(--bg);
+  --bg-light: var(--bg-alt);
+  --bg-gray: var(--code-bg);
+  --text-dark: var(--text);
+  --text-gray: var(--muted);
+  --text-light: var(--muted);
+  --shadow: var(--shadow-pop);
+  --shadow-lg: var(--shadow-pop);
+}
+
+/* ---- Base / typography ------------------------------------------------------ */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: var(--lh-body);
+}
+/* Farsi / Arabic script: Vazirmatn + extra line-height; never letter-space or
+   uppercase Farsi text. */
+html[lang='fa'] body,
+[dir='rtl'] body,
+html[lang='fa'],
+[dir='rtl'] {
+  font-family: var(--font-fa);
+  line-height: var(--lh-fa);
+}
+[dir='rtl'] * { letter-spacing: normal; }
+
+a { color: var(--cyan); }
+::selection { background: var(--cyan); color: var(--on-accent); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: var(--radius-pill); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---- Brand gradient surfaces (logos, primary buttons, headers, active dots) - */
+.logo,
+.logo-icon,
+.welcome-icon,
+.wizard-header,
+.btn-primary,
+.step-dot.active,
+.gradient,
+[class*='gradient-bg'] {
+  background: var(--grad) !important;
+  color: var(--on-accent) !important;
+  border-color: transparent !important;
+}
+.btn-primary { box-shadow: var(--shadow-accent) !important; }
+.btn-primary:hover { box-shadow: var(--shadow-accent) !important; filter: brightness(1.05); }
+.logo-text,
+.gradient-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---- Cards / containers / surfaces ------------------------------------------ */
+.login-container,
+.wizard-container,
+.card,
+.panel,
+[class*='-container'],
+[class*='-card'] {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-pop);
+}
+.features-list,
+.kv-status,
+.kv-info,
+.info-box,
+.note,
+[class*='-box'] {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* ---- Form controls ---------------------------------------------------------- */
+.form-input,
+input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']):not([type='button']):not([type='submit']):not([type='reset']),
+textarea,
+select {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+.form-input::placeholder,
+input::placeholder,
+textarea::placeholder { color: var(--muted); }
+.form-input:focus,
+input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']):not([type='button']):not([type='submit']):not([type='reset']):focus,
+textarea:focus,
+select:focus {
+  background: var(--surface-2) !important;
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.15) !important;
+  outline: none;
+}
+pre, code, .code, textarea[readonly] {
+  background: var(--code-bg) !important;
+  color: var(--on-pill) !important;
+  border-color: var(--border) !important;
+}
+
+/* ---- Feedback notices (re-tinted to the token palette) ---------------------- */
+.warning-box { background: rgba(245, 158, 11, 0.12) !important; border-color: rgba(245, 158, 11, 0.4) !important; }
+.warning-box p, .warning-box i { color: var(--warning) !important; }
+.error-message { background: rgba(239, 68, 68, 0.12) !important; border-color: rgba(239, 68, 68, 0.4) !important; color: #fda4af !important; }
+.error-message i { color: var(--danger) !important; }
+.success, .success-box, .kv-status.connected { color: var(--success); }
+
+/* =============================================================================
+   Follow the OS colour scheme automatically (opt-in).
+   Uncomment to let the dashboard track the visitor's system preference.
+   ============================================================================= */
+/*
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --bg: #f7f8fc; --bg-alt: #eef1f7;
+    --surface: rgba(15,23,42,0.04); --surface-2: rgba(15,23,42,0.07);
+    --nav-bg: rgba(247,248,252,0.8);
+    --border: rgba(15,23,42,0.12); --border-strong: rgba(15,23,42,0.22);
+    --text: #0d1117; --muted: #51607a; --on-pill: #0e7490;
+    --cyan: #0891b2; --violet: #9333ea; --success: #047857; --star: #b45309;
+  }
+}
+*/

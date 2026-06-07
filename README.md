@@ -276,15 +276,25 @@
 
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [Xray-core](https://github.com/XTLS/xray-core)
-- [@Alexandre_Kojeve](https://github.com/AlexandreKojeve) (TLSClient)
+- [vahid](https://github.com/iiviirv)
 
 ---
 
-## حمایت از ما 
+---
 
-TRX : 
-TUp48CD8kWdrHwnzH3tXArdJBG1ven62XU
+<div align="center">
+  <h3>حمایت از پروژه</h3>
+  <p>از اینجا مارو با دونیت کردن حمایت کنید</p>
+  <p><a href="https://daramet.com/NovaPr" target="_blank">🔗 https://daramet.com/NovaPr</a></p>
+  <hr>
+  <h4>کیف پول‌ها</h4>
+  <p><strong>BTC:</strong></p>
+  <pre><code>bc1qc54su3gz20ulq8df7k0pcskk4zz4sy0e7z7hws</code></pre>
+  <p><strong>TON:</strong></p>
+  <pre><code>UQD51lGC35rP_SbVYgbFA7CEEii4GVMFgqj4N8fiGi6m425w</code></pre>
+</div>
 
+---
 ## 📞 ارتباط
 
 <p align="center">
