@@ -70,7 +70,6 @@ Everything from earlier versions is carried forward. ✅ = included · ➖ = not
 | Telegram notifications / نوتیفیکیشن تلگرام | ✅ | ✅ | ✅ |
 | Telegram bot management / مدیریت ربات تلگرام | ✅ | ✅ | ✅ |
 | QR Code generator / تولید QR کد | ✅ | ✅ | ✅ |
-| **Common in v2,v3 / مشترک در نسخه ۲ و ۳** | | | |
 | Quantumult X | ➖ | ✅ | ✅ |
 | Mixed Auto / تشخیص خودکار کلاینت | ➖ | ✅ | ✅ |
 | Random Path / Wildcard Host | ➖ | ✅ | ✅ |
@@ -125,7 +124,6 @@ Everything from earlier versions is carried forward. ✅ = included · ➖ = not
 | Uplink coalescing / Downlink grain | ➖ | ✅ | ✅ |
 | Upload queue limit | ➖ | ✅ | ✅ |
 | IP Load Balance / Proxy Fallback | ➖ | ✅ | ✅ |
-| **New in v3 / جدید در نسخه ۳** | | | |
 | Tokenless format-named sub links | ➖ | ➖ | ✅ |
 | Permanent GitHub sub-mirror | ➖ | ➖ | ✅ |
 | Bundled dashboard (Static Assets) | ➖ | ➖ | ✅ |
