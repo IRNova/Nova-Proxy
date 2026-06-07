@@ -33,7 +33,6 @@ links, a Telegram bot, WARP, and one-click deploy. Runs on Cloudflare's **free**
 
 | Feature / قابلیت | v1 | v2 | v3 |
 |------------------|:--:|:--:|:--:|
-| **Common in v1,v2,v3 / مشترک در هر سه نسخه** | | | |
 | Auto subscription link / دریافت لینک اشتراک خودکار | ✅ | ✅ | ✅ |
 | Base64 format / فرمت Base64 | ✅ | ✅ | ✅ |
 | Clash / Mihomo | ✅ | ✅ | ✅ |
