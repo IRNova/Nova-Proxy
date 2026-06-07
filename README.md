@@ -9,7 +9,6 @@ VLESS · Trojan · Shadowsocks over WebSocket + TLS — with a self-contained
 bilingual (English + فارسی) dashboard, per-ISP clean-IP optimization, multi-user
 links, a Telegram bot, WARP, and one-click deploy. Runs on Cloudflare's **free** tier.
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/IRNova/Nova-Proxy)
 &nbsp;
 ![GitHub Repo stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=social)
 ![License](https://img.shields.io/badge/license-MIT-purple)
