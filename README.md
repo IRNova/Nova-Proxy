@@ -152,9 +152,6 @@ links, a Telegram bot, WARP, and one-click deploy. Runs on Cloudflare's **free**
 | Deploy to Cloudflare (one-click) | ➖ | ➖ | ✅ |
 | /install wizard / ویزارد نصب | ➖ | ➖ | ✅ |
 
-
-> `≈` = partial. **v3 is the current release.**
-
 ---
 ## 🎨 طرح رنگی
 
