@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Nova Proxy Setup</title>
+<link rel="icon" type="image/svg+xml" href="/logo-mark.svg" /><link rel="alternate icon" href="/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--c2:#f7f9fc;--bd:#e6eaf1;--bd2:#dde2eb;--tx:#101622;--tx2:#445066;--mu:#8a93a6;--ac:#0ea5c4;--ac2:#7c3aed;--ok:#16a34a;--dg:#e5484d;--grad:linear-gradient(120deg,#0891b2,#7c3aed);--ring:rgba(8,145,178,.2);--shadow:0 1px 2px rgba(20,40,80,.04),0 14px 34px rgba(40,60,110,.1)}
+html[data-theme=dark]{--bg:#070809;--card:#101319;--c2:#0b0d11;--bd:#1c2027;--bd2:#262b34;--tx:#e9edf4;--tx2:#aeb6c4;--mu:#6f7888;--ac:#22d3ee;--ac2:#a855f7;--ok:#34d399;--dg:#f87171;--grad:linear-gradient(120deg,#22d3ee,#7c5cff);--ring:rgba(34,211,238,.25);--shadow:0 1px 0 rgba(255,255,255,.02),0 14px 38px rgba(0,0,0,.5)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Vazirmatn','Inter',system-ui,Tahoma,sans-serif;background:radial-gradient(800px 420px at 50% -6%,color-mix(in srgb,var(--ac) 14%,transparent),transparent 60%),var(--bg);color:var(--tx);min-height:100vh;padding:32px 16px;font-size:14px}
+html[lang=en]{font-family:'Inter','Vazirmatn',system-ui,sans-serif}
+.wrap{max-width:680px;margin:0 auto}
+.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .lg{width:40px;height:40px;border-radius:11px;background:var(--c2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.brand .lg img{width:30px;height:30px;object-fit:contain;display:block}.brand h1{font-size:19px;font-weight:800}
+.tools{display:flex;gap:8px;align-items:center}
+.lang{display:flex;gap:3px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:3px}
+.lang button{border:none;background:transparent;color:var(--mu);font:inherit;font-size:12px;font-weight:600;padding:5px 12px;border-radius:7px;cursor:pointer}
+.lang button.on{background:var(--ac);color:#fff}
+.tbtn{width:38px;height:32px;background:var(--card);border:1px solid var(--bd);border-radius:10px;color:var(--tx2);cursor:pointer}
+.intro{color:var(--mu);font-size:13.5px;line-height:1.9;margin:6px 0 22px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.ch .t{font-size:15px;font-weight:700;display:flex;align-items:center;gap:9px}
+.num{width:26px;height:26px;border-radius:8px;background:var(--c2);border:1px solid var(--bd);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--ac)}
+.st{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--mu)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--mu)}
+.st.ok{color:var(--ok)}.st.ok .dot{background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 20%,transparent)}
+.st.bad{color:var(--dg)}.st.bad .dot{background:var(--dg)}
+ol{padding-inline-start:20px;color:var(--tx2);font-size:13.5px;line-height:2}ol code,.mono{background:var(--c2);border:1px solid var(--bd);border-radius:5px;padding:1px 7px;font-family:ui-monospace,monospace;font-size:12px;color:var(--ac);direction:ltr;display:inline-block}
+.desc{color:var(--tx2);font-size:13.5px;line-height:1.9;margin-bottom:12px}
+.field{margin-bottom:11px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:5px}
+.field input{width:100%;background:var(--c2);border:1px solid var(--bd2);border-radius:10px;color:var(--tx);font:inherit;font-size:14px;padding:11px 13px;outline:none;transition:.12s}
+.field input:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--ring)}
+.msg{font-size:12.5px;font-weight:600;margin-top:4px;min-height:16px}
+.msg.ok{color:var(--ok)}.msg.bad{color:var(--dg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--bd2);background:var(--c2);color:var(--tx);font:inherit;font-weight:600;font-size:13px;padding:9px 18px;border-radius:10px;cursor:pointer;transition:.12s}
+.btn:hover{border-color:var(--ac);color:var(--ac)}
+.btn.p{background:var(--ac);color:#fff;border:none}.btn.p:hover{filter:brightness(1.05);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none;border-color:var(--bd2);color:var(--mu)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}
+th{text-align:start;color:var(--mu);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;padding:7px 8px;border-bottom:1px solid var(--bd)}
+td{padding:8px;border-bottom:1px solid var(--bd);color:var(--tx2);vertical-align:top}tr:last-child td{border-bottom:none}
+.req{color:var(--dg);font-weight:700;font-size:11px}.opt{color:var(--mu);font-size:11px}
+.finish{text-align:center;margin-top:22px}
+.finish .btn{padding:13px 30px;font-size:15px}
+.foot{text-align:center;color:var(--mu);font-size:11.5px;margin-top:18px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="bar">
+<div class="brand"><span class="lg"><img src="/logo-mark.svg" alt="Nova" /></span><h1>Nova Proxy</h1></div>
+<div class="tools"><div class="lang" id="lg"><button data-l="fa" class="on">فا</button><button data-l="en">EN</button></div><button class="tbtn" id="theme">☾</button></div>
+</div>
+<p class="intro" id="intro"></p>
+
+<div class="card">
+<div class="ch"><div class="t"><span class="num">1</span><span id="s1-t">KV Database</span></div><div class="st" id="s1-st"><span class="dot"></span><span id="s1-l">…</span></div></div>
+<p class="desc" id="s1-desc"></p>
+<ol id="s1-steps" class="hidden"></ol>
+<button class="btn" id="s1-test"></button>
+</div>
+
+<div class="card">
+<div class="ch"><div class="t"><span class="num">2</span><span id="s2-t">Admin password</span></div><div class="st" id="s2-st"><span class="dot"></span><span id="s2-l">…</span></div></div>
+<p class="desc" id="s2-desc"></p>
+<div id="s2-form">
+<div class="field"><label id="pw-lbl" for="pw"></label><input id="pw" type="password" autocomplete="new-password" /></div>
+<div class="field"><label id="pw2-lbl" for="pw2"></label><input id="pw2" type="password" autocomplete="new-password" /></div>
+<button class="btn p" id="pw-btn"></button>
+<div class="msg" id="pw-msg"></div>
+</div>
+</div>
+
+<div class="card">
+<div class="t" style="font-size:15px;font-weight:700;margin-bottom:12px" id="vars-t">Worker variables</div>
+<table><thead><tr><th id="v-name">Variable</th><th id="v-need">Required</th><th id="v-desc">What it does</th></tr></thead><tbody id="vars-body"></tbody></table>
+</div>
+
+<div class="card">
+<div class="t" style="font-size:15px;font-weight:700;margin-bottom:4px">📲 Get the app · دریافت برنامه</div>
+<p style="font-size:13px;color:var(--mu,#8a94a6);margin:0 0 12px">Install a client on your device. Hiddify and Karing are recommended. · هیدیفای و کارینگ پیشنهاد می‌شوند.</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<a href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;text-decoration:none;color:inherit">Hiddify · 📱 iOS</a>
+<a href="https://play.google.com/store/apps/details?id=app.hiddify.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;text-decoration:none;color:inherit">Hiddify · 🤖 Android</a>
+<a href="https://apps.apple.com/us/app/karing/id6472431552" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;text-decoration:none;color:inherit">Karing · 📱 iOS</a>
+<a href="https://github.com/KaringX/karing/releases" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:600;text-decoration:none;color:inherit">Karing · 🤖 Android</a>
+</div>
+</div>
+
+<div class="finish"><button class="btn p" id="finish" disabled></button></div>
+<div class="foot">Nova Proxy</div>
+</div>
+<script>
+var L={
+ fa:{dir:'rtl',intro:'به نصب Nova Proxy خوش آمدید. در نصب یک‌کلیکی، دیتابیس KV به‌صورت خودکار ساخته و وصل می‌شود؛ کافی است یک رمز مدیریت بسازید و وارد پنل شوید.',
+  s1t:'دیتابیس KV',s2t:'رمز مدیریت',test:'بررسی دوباره',chk:'در حال بررسی…',ok:'متصل',bad:'متصل نیست',already:'تنظیم شده',
+  s1desc:'در نصب یک‌کلیکی این مورد خودکار وصل می‌شود. اگر «متصل نیست» بود، طبق راهنمای زیر یک KV بسازید و با نام متغیر «KV» به ورکر وصل کنید.',
+  s1:['در داشبورد Cloudflare به <b>Workers &amp; Pages → KV</b> بروید.','روی <b>Create Namespace</b> بزنید و نامی مثل <span class="mono">NOVA_KV</span> بگذارید.','به Worker خود بروید: <b>Settings → Bindings → KV Namespace</b>.','یک Binding با نام متغیر <span class="mono">KV</span> به آن Namespace اضافه و ذخیره کنید.'],
+  s2desc:'یک رمز برای ورود به پنل مدیریت انتخاب کنید. همین‌جا ذخیره می‌شود (نیازی به داشبورد Cloudflare نیست).',
+  pwlbl:'رمز جدید',pw2lbl:'تکرار رمز',pwbtn:'ساخت رمز و فعال‌سازی',
+  pwshort:'رمز باید حداقل ۶ کاراکتر باشد.',pwmismatch:'دو رمز یکسان نیستند.',pwsaved:'✅ رمز ساخته شد.',pwexists:'رمز قبلاً تنظیم شده است.',pwnokv:'ابتدا باید KV وصل باشد.',pwerr:'خطا در ذخیره رمز.',pwwait:'در حال ذخیره…',
+  varst:'متغیرهای Worker (اختیاری)',vname:'متغیر',vneed:'الزامی',vdesc:'کاربرد',
+  req:'الزامی',opt:'اختیاری',
+  vars:[['ADMIN','opt','رمز مدیریت؛ اگر اینجا بسازید نیازی نیست'],['KEY','opt','کلید رمزنگاری؛ اگر KV باشد خودکار ساخته می‌شود'],['UUID','opt','شناسه دلخواه؛ در غیر این صورت خودکار محاسبه می‌شود'],['PROXYIP','opt','آی‌پی پروکسی معکوس'],['HOST','opt','دامنه‌ی اختصاصی'],['POOL_API','opt','آدرس آی‌پی هوشمند هر اپراتور']],
+  finish:'ورود به پنل',finishw:'ابتدا رمز را بسازید'},
+ en:{dir:'ltr',intro:'Welcome to Nova Proxy setup. On a one-click deploy the KV database is created and bound automatically — just create an admin password and open the panel.',
+  s1t:'KV Database',s2t:'Admin password',test:'Re-check',chk:'Checking…',ok:'Connected',bad:'Not connected',already:'Already set',
+  s1desc:'On a one-click deploy this connects automatically. If it shows "Not connected", create a KV namespace and bind it as "KV" using the steps below.',
+  s1:['In the Cloudflare dashboard go to <b>Workers &amp; Pages → KV</b>.','Click <b>Create Namespace</b> and name it e.g. <span class="mono">NOVA_KV</span>.','Open your Worker: <b>Settings → Bindings → KV Namespace</b>.','Add a binding with variable name <span class="mono">KV</span> pointing to that namespace, and save.'],
+  s2desc:'Choose a password for the admin panel. It is stored right here — no Cloudflare dashboard needed.',
+  pwlbl:'New password',pw2lbl:'Repeat password',pwbtn:'Create password & activate',
+  pwshort:'Password must be at least 6 characters.',pwmismatch:'Passwords do not match.',pwsaved:'✅ Password created.',pwexists:'A password is already set.',pwnokv:'KV must be connected first.',pwerr:'Could not save the password.',pwwait:'Saving…',
+  varst:'Worker variables (optional)',vname:'Variable',vneed:'Required',vdesc:'What it does',
+  req:'Required',opt:'Optional',
+  vars:[['ADMIN','opt','Admin password; not needed if you create one here'],['KEY','opt','Encryption key; auto-generated if KV is present'],['UUID','opt','Custom UUID; otherwise derived automatically'],['PROXYIP','opt','Reverse-proxy IP'],['HOST','opt','Custom domain'],['POOL_API','opt','Per-ISP smart IP API URL']],
+  finish:'Open the panel',finishw:'Create a password first'}};
+var lang='fa',theme='light';
+try{var sl=localStorage.getItem('nova-lang');if(sl)lang=sl;var st=localStorage.getItem('nova-theme');if(st)theme=st;}catch(e){}
+function $(i){return document.getElementById(i)}
+function setSt(id,state,txt){var e=$(id);e.className='st'+(state?(' '+state):'');$(id.replace('-st','-l')).textContent=txt;}
+function render(){var t=L[lang];document.documentElement.dir=t.dir;document.documentElement.lang=lang;
+ $('intro').textContent=t.intro;$('s1-t').textContent=t.s1t;$('s2-t').textContent=t.s2t;
+ $('s1-test').textContent=t.test;$('s1-desc').innerHTML=t.s1desc;$('s2-desc').textContent=t.s2desc;
+ $('s1-steps').innerHTML=t.s1.map(function(x){return '<li>'+x+'</li>'}).join('');
+ $('pw-lbl').textContent=t.pwlbl;$('pw2-lbl').textContent=t.pw2lbl;$('pw-btn').textContent=t.pwbtn;
+ $('vars-t').textContent=t.varst;$('v-name').textContent=t.vname;$('v-need').textContent=t.vneed;$('v-desc').textContent=t.vdesc;
+ $('vars-body').innerHTML=t.vars.map(function(r){return '<tr><td><span class="mono">'+r[0]+'</span></td><td><span class="'+(r[1]==='req'?'req':'opt')+'">'+(r[1]==='req'?t.req:t.opt)+'</span></td><td>'+r[2]+'</td></tr>'}).join('');
+ [].forEach.call(document.querySelectorAll('#lg button'),function(b){b.classList.toggle('on',b.dataset.l===lang)});
+ paint();}
+var last={kv:false,admin:false,configured:false,_done:false};
+function paint(){var t=L[lang];
+ setSt('s1-st',last.kv?'ok':(last._done?'bad':''),last.kv?t.ok:(last._done?t.bad:t.chk));
+ setSt('s2-st',last.admin?'ok':(last._done?'bad':''),last.admin?t.already:(last._done?t.bad:t.chk));
+ // KV steps only matter when KV is missing.
+ $('s1-steps').className=last.kv?'hidden':'';
+ // Hide the password form once a password already exists.
+ $('s2-form').className=last.admin?'hidden':'';
+ $('finish').disabled=!last.configured;$('finish').textContent=last.configured?t.finish:t.finishw;}
+async function check(){try{var r=await fetch('/install/status?_t='+Date.now());var j=await r.json();last={kv:!!j.kv,admin:!!j.admin,configured:!!j.configured,_done:true};}catch(e){last={kv:false,admin:false,configured:false,_done:true};}paint();}
+async function setPw(){var t=L[lang],m=$('pw-msg');m.className='msg';
+ var p=$('pw').value||'',p2=$('pw2').value||'';
+ if(p.length<6){m.className='msg bad';m.textContent=t.pwshort;return;}
+ if(p!==p2){m.className='msg bad';m.textContent=t.pwmismatch;return;}
+ $('pw-btn').disabled=true;m.textContent=t.pwwait;
+ try{var r=await fetch('/install/set',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:p})});
+  var j={};try{j=await r.json();}catch(e){}
+  if(r.ok&&j.success){m.className='msg ok';m.textContent=t.pwsaved;$('pw').value='';$('pw2').value='';await check();
+   setTimeout(function(){if(!$('finish').disabled)location.href='/login';},700);}
+  else{m.className='msg bad';m.textContent=j.error==='already_configured'?t.pwexists:(j.error==='no_kv'?t.pwnokv:(j.error==='too_short'?t.pwshort:t.pwerr));}
+ }catch(e){m.className='msg bad';m.textContent=t.pwerr;}
+ $('pw-btn').disabled=false;}
+$('s1-test').onclick=check;
+$('pw-btn').onclick=setPw;
+$('pw2').addEventListener('keydown',function(e){if(e.key==='Enter')setPw();});
+$('finish').onclick=function(){if(!$('finish').disabled)location.href='/login';};
+$('lg').onclick=function(e){var b=e.target.closest('button');if(b){lang=b.dataset.l;try{localStorage.setItem('nova-lang',lang)}catch(e){}render();}};
+$('theme').onclick=function(){theme=theme==='dark'?'light':'dark';try{localStorage.setItem('nova-theme',theme)}catch(e){}document.documentElement.setAttribute('data-theme',theme);$('theme').textContent=theme==='dark'?'☀':'☾';};
+document.documentElement.setAttribute('data-theme',theme);$('theme').textContent=theme==='dark'?'☀':'☾';
+render();check();
+</script>
+</body>
+</html>
