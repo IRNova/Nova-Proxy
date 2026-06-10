@@ -1,0 +1,2069 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Nova Proxy — Control Plane</title>
+<meta name="nova-panel-version" content="3.12.0" />
+<link rel="icon" type="image/svg+xml" href="/logo-mark.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================================
+   DESIGN TOKENS — preserved verbatim from the existing Nova Proxy panel.
+   Do not rebrand. These are the exact hex codes already in production.
+   ========================================================================== */
+:root{
+  /* surfaces & text (dark = default) */
+  --bg:#070809; --panel:#0c0e12; --card:#101319; --card2:#0b0d11;
+  --bd:#1c2027; --bd2:#262b34; --tx:#e9edf4; --tx2:#aeb6c4; --mu:#6f7888;
+  /* accents & status (unchanged) */
+  --ac:#22d3ee; --ac2:#a855f7; --ok:#34d399; --dg:#f87171; --wn:#f5b042;
+  --grad:linear-gradient(120deg,#22d3ee,#7c5cff);   /* reserved for the brand mark only */
+  --ring:rgba(34,211,238,.35);
+  --shadow:0 1px 0 rgba(255,255,255,.02),0 12px 30px rgba(0,0,0,.45);
+  --radius:12px;
+  /* derived, enterprise spacing scale */
+  --r-sm:9px; --r-lg:16px;
+  --sp:14px;
+  --sidebar:264px;
+  /* tinted accent surfaces, computed from the existing --ac so nothing new is introduced */
+  --ac-soft:color-mix(in srgb,var(--ac) 14%,transparent);
+  --ac-line:color-mix(in srgb,var(--ac) 38%,transparent);
+}
+html[data-theme=light]{
+  --bg:#f4f6fb; --panel:#ffffff; --card:#ffffff; --card2:#f7f9fc;
+  --bd:#e6eaf1; --bd2:#dde2eb; --tx:#101622; --tx2:#445066; --mu:#8a93a6;
+  --ac:#0ea5c4; --ac2:#7c3aed; --grad:linear-gradient(120deg,#0891b2,#7c3aed);
+  --ring:rgba(8,145,178,.25);
+  --shadow:0 1px 2px rgba(20,40,80,.04),0 10px 28px rgba(40,60,110,.10);
+}
+
+/* ============================================================================
+   BASE
+   ========================================================================== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter','Vazirmatn',system-ui,-apple-system,Segoe UI,Tahoma,sans-serif;
+  background:var(--bg); color:var(--tx); min-height:100vh; font-size:14px;
+  -webkit-font-smoothing:antialiased; line-height:1.45;
+}
+html[dir=rtl] body{font-family:'Vazirmatn','Inter',system-ui,Tahoma,sans-serif}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--ac-soft)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:6px}
+
+/* ============================================================================
+   APP SHELL
+   ========================================================================== */
+.app{display:flex;min-height:100vh}
+
+/* ---- Sidebar (primary nav) ---- */
+.sidebar{
+  width:var(--sidebar); flex:0 0 var(--sidebar);
+  background:var(--panel); border-inline-end:1px solid var(--bd);
+  position:sticky; top:0; height:100vh; height:100dvh; overflow-y:auto; overscroll-behavior:contain;
+  display:flex; flex-direction:column; padding:18px 14px; gap:6px; z-index:60;
+}
+.brand{display:flex;align-items:center;gap:12px;padding:6px 8px 16px}
+.brand .mark{width:40px;height:40px;flex:0 0 40px;display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--bd);border-radius:11px;overflow:hidden}
+.brand .mark svg{width:30px;height:30px}
+.brand .mark img{width:30px;height:30px;object-fit:contain;display:block}
+.brand .name{font-size:16px;font-weight:700;letter-spacing:-.2px}
+.brand .env{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--mu);font-weight:600;margin-top:2px}
+.brand .env .d{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 22%,transparent)}
+
+.nav-group{margin-top:10px}
+.nav-label{font-size:10px;font-weight:700;letter-spacing:1.4px;color:var(--mu);text-transform:uppercase;padding:8px 12px 6px}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav-item{
+  display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:var(--r-sm);
+  color:var(--tx2);font-size:13.5px;font-weight:500;position:relative;transition:.13s;
+}
+.nav-item svg{width:18px;height:18px;flex:0 0 18px;opacity:.8}
+.nav-item .count{margin-inline-start:auto;font-size:11px;font-weight:700;color:var(--mu);background:var(--card2);border:1px solid var(--bd);border-radius:999px;padding:1px 8px}
+.nav-item:hover{background:var(--card);color:var(--tx)}
+.nav-item.active{background:var(--card);color:var(--tx)}
+.nav-item.active::before{content:'';position:absolute;inset-inline-start:0;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:var(--grad)}
+.nav-item.active svg{opacity:1;color:var(--ac)}
+html[dir=rtl] .nav-item.active::before{border-radius:3px 0 0 3px}
+
+.side-foot{margin-top:auto;padding-top:12px;border-top:1px solid var(--bd);display:flex;flex-direction:column;gap:8px}
+.side-foot .ver{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--mu);padding:2px 10px}
+.side-foot .ver b{color:var(--tx2);font-weight:600}
+.social{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.social a{display:flex;align-items:center;justify-content:center;height:36px;border:1px solid var(--bd);background:var(--card);border-radius:9px;color:var(--tx2);transition:.12s;cursor:pointer}
+.social a:hover{color:var(--ac);border-color:var(--bd2)}
+.social a svg{width:16px;height:16px}
+.logout{display:flex;align-items:center;justify-content:center;gap:8px;height:38px;border:1px solid var(--bd);border-radius:9px;color:var(--tx2);font-size:12.5px;font-weight:500;transition:.12s}
+.logout:hover{border-color:var(--dg);color:var(--dg)}
+.logout svg{width:15px;height:15px}
+/* Guide steps */
+.gstep{display:flex;gap:13px;padding:9px 0;font-size:13.5px;color:var(--tx2);line-height:1.75}
+.gstep+.gstep{border-top:1px solid var(--bd)}
+.gstep .n{flex:0 0 26px;height:26px;border-radius:8px;background:var(--ac-soft);color:var(--ac);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+.gstep b{color:var(--tx);font-weight:600}
+.gstep code{font-family:ui-monospace,monospace;font-size:12px;color:var(--ac);background:var(--card2);border:1px solid var(--bd);border-radius:5px;padding:1px 6px}
+
+/* ---- Main column ---- */
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+
+/* ---- Top utility bar ---- */
+.topbar{
+  position:sticky;top:0;z-index:40;height:62px;
+  display:flex;align-items:center;gap:12px;padding:0 22px;
+  border-bottom:1px solid var(--bd);
+  background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(10px);
+}
+.menu-btn{display:none;width:38px;height:38px;flex:0 0 38px;border:1px solid var(--bd);background:var(--card);border-radius:var(--r-sm);color:var(--tx);align-items:center;justify-content:center}
+.menu-btn svg{width:20px;height:20px}
+.page-id{min-width:0}
+.page-id .t{font-size:15.5px;font-weight:700;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.page-id .s{font-size:11.5px;color:var(--mu);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-actions{margin-inline-start:auto;display:flex;align-items:center;gap:8px}
+
+.uchip{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:1px solid var(--bd);background:var(--card);border-radius:999px;font-size:12px;font-weight:600;color:var(--tx2);white-space:nowrap}
+.uchip svg{width:14px;height:14px;color:var(--ac)}
+.uchip .d{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.uchip.loc{max-width:200px;min-width:0}
+.uchip.loc span{overflow:hidden;text-overflow:ellipsis}
+
+.iconbtn{width:36px;height:36px;flex:0 0 36px;border:1px solid var(--bd);background:var(--card);border-radius:var(--r-sm);color:var(--tx2);display:flex;align-items:center;justify-content:center;position:relative;transition:.12s}
+.iconbtn:hover{color:var(--ac);border-color:var(--bd2)}
+.iconbtn svg{width:17px;height:17px}
+.iconbtn .badge-dot{position:absolute;top:7px;inset-inline-end:8px;width:7px;height:7px;border-radius:50%;background:var(--dg);box-shadow:0 0 0 2px var(--panel)}
+
+.segmented{display:flex;border:1px solid var(--bd);background:var(--card);border-radius:var(--r-sm);padding:3px;height:36px}
+.segmented button{border:none;background:transparent;color:var(--mu);font-size:12px;font-weight:700;padding:0 11px;border-radius:6px;transition:.12s}
+.segmented button.on{background:var(--ac);color:#04121a}
+html[data-theme=light] .segmented button.on{color:#fff}
+
+/* ============================================================================
+   CONTENT
+   ========================================================================== */
+.content{flex:1;padding:24px 22px;max-width:1240px;width:100%}
+.view{display:none;animation:fade .22s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+
+.view-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.view-head h1{font-size:19px;font-weight:700;letter-spacing:-.3px}
+.view-head p{font-size:13px;color:var(--mu);margin-top:3px}
+
+.section-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--mu);margin:18px 2px 11px}
+.section-label:first-child{margin-top:0}
+
+/* ---- Buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:var(--r-sm);font-size:13px;font-weight:600;border:1px solid transparent;transition:.13s;white-space:nowrap}
+.btn svg{width:15px;height:15px}
+.btn.primary{background:var(--ac);color:#04121a;border-color:var(--ac)}
+html[data-theme=light] .btn.primary{color:#fff}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:var(--card);color:var(--tx);border-color:var(--bd2)}
+.btn.is-disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost:hover{border-color:var(--ac);color:var(--ac)}
+.btn.sm{height:32px;padding:0 12px;font-size:12px}
+
+/* ---- Cards / surfaces ---- */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card-pad{padding:18px 20px}
+.card-h{display:flex;align-items:center;gap:10px;padding:15px 20px;border-bottom:1px solid var(--bd)}
+.card-h h3{font-size:13.5px;font-weight:700;letter-spacing:-.1px}
+.card-h .sub{font-size:11.5px;color:var(--mu);font-weight:500}
+.card-h .right{margin-inline-start:auto;display:flex;align-items:center;gap:8px}
+
+/* ---- Chips / badges ---- */
+.chip{display:inline-flex;flex:0 0 auto;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid var(--bd2);background:var(--card2);color:var(--mu);white-space:nowrap}
+.chip .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.chip.ok{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 35%,transparent);background:color-mix(in srgb,var(--ok) 11%,transparent)}
+.chip.warn{color:var(--wn);border-color:color-mix(in srgb,var(--wn) 35%,transparent);background:color-mix(in srgb,var(--wn) 11%,transparent)}
+.chip.err{color:var(--dg);border-color:color-mix(in srgb,var(--dg) 35%,transparent);background:color-mix(in srgb,var(--dg) 11%,transparent)}
+.chip.info{color:var(--ac);border-color:var(--ac-line);background:var(--ac-soft)}
+
+/* ---- KPI grid ---- */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:var(--radius);padding:14px 15px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:9px}
+.kpi-top{display:flex;align-items:center;gap:11px}
+.kpi-ic{width:38px;height:38px;flex:0 0 38px;border-radius:11px;background:var(--ac-soft);color:var(--ac);display:flex;align-items:center;justify-content:center}
+.kpi-ic svg{width:19px;height:19px}
+.kpi-top .lbl{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+.kpi-top .chip{margin-inline-start:auto}
+.kpi-val{font-size:18px;font-weight:700;letter-spacing:-.3px;direction:ltr;line-height:1.15}
+html[dir=rtl] .kpi-val{text-align:start}
+.kpi-sub{font-size:11.5px;color:var(--mu);direction:ltr}
+html[dir=rtl] .kpi-sub{text-align:start}
+.kpi .meter{height:6px;border-radius:999px;background:var(--card2);border:1px solid var(--bd);overflow:hidden}
+.kpi .meter>i{display:block;height:100%;background:var(--ac);border-radius:999px}
+.kpi-traffic{display:flex;gap:14px}
+.kpi-traffic .u{font-size:13px;font-weight:700}
+.kpi-traffic .dn{color:var(--ok)} .kpi-traffic .up{color:var(--dg)}
+
+/* ---- Two-column dashboard layout ---- */
+.dash-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-top:14px;align-items:stretch}
+#policy-card{display:flex;flex-direction:column}
+#policy-card #policy-rows{flex:1}
+.dash-side{display:flex;flex-direction:column;gap:14px;min-width:0}
+
+/* ---- Policy management card (formerly "Iran Mode") ---- */
+.policy-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 20px;border-top:1px solid var(--bd);font-size:12px;color:var(--mu)}
+.policy-row{display:flex;align-items:center;gap:14px;padding:11px 20px;border-bottom:1px solid var(--bd)}
+.policy-row:last-child{border-bottom:none}
+.policy-row .meta{min-width:0;flex:1}
+.policy-row .meta .nm{font-size:13px;font-weight:600}
+.policy-row .meta .ds{font-size:11.5px;color:var(--mu);margin-top:1px}
+.policy-row .st{font-size:10.5px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.4px;width:60px;text-align:end}
+.policy-row.on .st{color:var(--ok)}
+
+/* ---- Toggle switch ---- */
+.sw{width:40px;height:23px;flex:0 0 auto;border-radius:999px;background:var(--bd2);position:relative;transition:.16s;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--bd) 70%,transparent)}
+.sw .k{width:17px;height:17px;border-radius:50%;background:#fff;position:absolute;top:3px;inset-inline-start:3px;transition:.16s;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.sw.on{background:var(--ac);box-shadow:none}
+.sw.on .k{inset-inline-start:20px}
+
+/* ---- Distribution: sub link + client rows ---- */
+.sublink{display:flex;gap:10px;align-items:center}
+.sublink .field{flex:1;display:flex;align-items:center;gap:10px;min-width:0;background:var(--card2);border:1px solid var(--bd);border-radius:var(--r-sm);padding:10px 12px}
+.sublink .field code{font-family:ui-monospace,'SF Mono',monospace;font-size:12px;color:var(--tx2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;direction:ltr}
+.sublink .field .lock{width:15px;height:15px;flex:0 0 15px;color:var(--mu)}
+
+.client{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--bd);border-radius:var(--r-sm);background:var(--card2);transition:.13s}
+.client:hover{border-color:var(--bd2)}
+.client+.client{margin-top:9px}
+.client .ic{width:34px;height:34px;flex:0 0 34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff}
+.client>.info{min-width:0;flex:1}
+.client .info .nm{font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px}
+.client .info .pl{font-size:11px;color:var(--mu)}
+.client .acts{display:flex;gap:7px}
+
+/* ---- Client app cards ("Open in app": Import + QR + stores) ---- */
+.appgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+.appcard{border:1px solid var(--bd);border-radius:12px;padding:14px;background:var(--card2);display:flex;flex-direction:column;gap:13px}
+.appcard.rec{border-color:var(--ac-line);background:var(--ac-soft)}
+.appcard-h{display:flex;align-items:center;gap:10px}
+.appcard-h .ic{width:32px;height:32px;flex:0 0 32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:#fff}
+.appcard-h .nm{font-size:14px;font-weight:700;color:var(--tx)}
+.appcard-h .rec-badge{margin-inline-start:auto}
+.appcard-qr{display:flex;justify-content:center}
+.appcard-qr>div{background:#fff;padding:9px;border-radius:10px;line-height:0;cursor:pointer;border:1px solid var(--bd);transition:.12s}
+.appcard-qr>div:hover{box-shadow:0 0 0 3px var(--ring)}
+.appcard-qr canvas,.appcard-qr img{display:block;width:122px;height:122px}
+.appcard-acts{display:flex;flex-direction:column;gap:7px}
+.appcard-acts .btn{height:34px;padding:0 11px;font-size:12px}
+.appcard-acts .btn svg{width:13px;height:13px}
+.appcard-acts .btn.primary{width:100%}
+.appcard-stores{display:flex;gap:7px}
+.appcard-stores .btn{flex:1}
+
+/* ---- QR modal ---- */
+.modal{position:fixed;inset:0;background:rgba(2,4,8,.66);display:none;align-items:center;justify-content:center;z-index:90;padding:20px;backdrop-filter:blur(3px)}
+.modal.on{display:flex}
+.modal-c{background:var(--card);border:1px solid var(--bd2);border-radius:16px;padding:22px;max-width:330px;width:100%;text-align:center;box-shadow:var(--shadow)}
+.modal-c h4{font-size:15px;font-weight:700;margin-bottom:16px}
+.qrbox{display:flex;justify-content:center;margin-bottom:14px}
+.qrbox>div{background:#fff;padding:12px;border-radius:12px;line-height:0}
+.modal-c .ml{font-family:ui-monospace,'SF Mono',monospace;font-size:10.5px;color:var(--mu);word-break:break-all;margin-bottom:16px;max-height:62px;overflow:auto;direction:ltr;text-align:start}
+.help-c{max-width:540px;text-align:start}
+.help-body{font-size:13px;line-height:1.72;color:var(--tx2);text-align:start;max-height:62vh;overflow:auto;padding-inline-end:4px}
+.help-body p{margin:0 0 10px}
+.help-body h5{font-size:13.5px;font-weight:700;color:var(--tx);margin:14px 0 6px}
+.help-body h5:first-child{margin-top:0}
+.help-body ol,.help-body ul{margin:0 0 10px;padding-inline-start:20px}
+.help-body li{margin:0 0 6px}
+.help-body b{color:var(--tx);font-weight:600}
+.help-body code{font-family:ui-monospace,monospace;font-size:12px;background:var(--card2);border:1px solid var(--bd);border-radius:5px;padding:1px 5px}
+.help-body .tip{background:var(--card2);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:12.5px}
+/* Free-service notice: locked pill + node box */
+.lockpill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;color:var(--tx2);background:var(--card2);border:1px solid var(--bd);border-radius:999px;padding:4px 11px}
+.lockpill svg{width:12px;height:12px;flex:0 0 auto;color:var(--mu)}
+.notice-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:1px solid var(--bd);border-radius:12px;padding:11px 13px;background:linear-gradient(180deg,var(--card2),transparent)}
+.notice-box code{font-size:13px;color:var(--tx);font-weight:600}
+.notice-tag{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ac);background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:3px 7px;flex:0 0 auto}
+/* Subscription formats grid */
+.fmtgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:10px}
+.fmt-card{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--bd);border-radius:13px;padding:12px 14px;transition:border-color .15s,box-shadow .15s}
+.fmt-card:hover{border-color:var(--bd2);box-shadow:var(--shadow)}
+.fmt-name{font-size:13.5px;font-weight:700;color:var(--tx)}
+.fmt-sub{font-size:11px;color:var(--mu);margin-top:2px}
+.fmt-act{display:flex;gap:6px;flex:0 0 auto}
+
+/* ---- Activity / audit feed ---- */
+.activity{display:flex;gap:13px;padding:13px 20px;border-bottom:1px solid var(--bd)}
+.activity:last-child{border-bottom:none}
+.activity .ai{width:32px;height:32px;flex:0 0 32px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--card2);border:1px solid var(--bd);color:var(--ac)}
+.activity .ai svg{width:15px;height:15px}
+.activity .ab{min-width:0;flex:1}
+.activity .ab .ttl{font-size:12.5px;font-weight:600}
+.activity .ab .mt{font-size:11px;color:var(--mu);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap;direction:ltr}
+html[dir=rtl] .activity .ab .mt{direction:rtl}
+.activity .tm{font-size:11px;color:var(--mu);white-space:nowrap}
+
+/* ---- Data table ---- */
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;white-space:nowrap;min-width:520px}
+.tbl th{text-align:start;color:var(--mu);font-weight:600;text-transform:uppercase;letter-spacing:.4px;font-size:10.5px;padding:11px 16px;border-bottom:1px solid var(--bd)}
+.tbl td{padding:12px 16px;border-bottom:1px solid var(--bd);color:var(--tx2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--card2)}
+.tbl .uid{font-weight:600;color:var(--tx)}
+.tbl code{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--tx2)}
+
+/* ---- Settings groups ---- */
+.set-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.field-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--bd)}
+.field-row:last-child{border-bottom:none}
+.field-row .l{font-size:13px;font-weight:500}
+.field-row .l small{display:block;color:var(--mu);font-size:11px;font-weight:400;margin-top:2px}
+.inp{width:100%;background:var(--card2);border:1px solid var(--bd2);border-radius:var(--r-sm);padding:10px 12px;color:var(--tx);font-size:13px;outline:none;transition:.12s}
+.inp:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--ring)}
+.fg{margin-bottom:13px}
+/* mode selector + progress meter (Clean IPs / speed test) */
+.modeseg{display:flex;gap:5px;background:var(--card2);border:1px solid var(--bd);border-radius:10px;padding:4px;margin-bottom:14px}
+.modeseg button{flex:1;border:none;background:transparent;color:var(--tx2);font:inherit;font-size:12.5px;font-weight:600;padding:9px;border-radius:7px;cursor:pointer}
+.modeseg button.on{background:var(--ac);color:#04121a}
+html[data-theme=light] .modeseg button.on{color:#fff}
+.meter2{height:7px;border-radius:99px;background:var(--card2);border:1px solid var(--bd);overflow:hidden}
+.meter2>i{display:block;height:100%;width:0;background:var(--ac);border-radius:99px;transition:width .25s ease}
+.meter2.indet>i{width:34%;animation:mslide 1.1s ease-in-out infinite}
+@keyframes mslide{0%{margin-inline-start:-34%}100%{margin-inline-start:100%}}
+/* editable user rows */
+.urow2{display:flex;flex-wrap:wrap;gap:11px;align-items:flex-end;padding:14px 0;border-bottom:1px solid var(--bd)}
+.urow2:first-child{padding-top:2px}
+.urow2:last-child{border-bottom:none}
+.urow2 .uf{display:flex;flex-direction:column;gap:5px}
+.urow2 .uf.grow{flex:1 1 150px;min-width:140px}
+.urow2 .uf>label{font-size:10px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--mu)}
+.urow2 .uf .inp{height:36px;padding:8px 10px}
+.urow2 .used{flex-basis:100%;font-size:11px;color:var(--mu);direction:ltr;text-align:start}
+.fg label{display:block;font-size:12px;color:var(--tx2);margin-bottom:7px;font-weight:500}
+select.inp{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--mu) 50%),linear-gradient(135deg,var(--mu) 50%,transparent 50%);background-position:calc(100% - 16px) 17px,calc(100% - 11px) 17px;background-size:5px 5px;background-repeat:no-repeat}
+html[dir=rtl] select.inp{background-position:16px 17px,21px 17px}
+
+/* ---- QR placeholder ---- */
+.qr-ph{width:120px;height:120px;border-radius:10px;background:
+  repeating-conic-gradient(var(--tx) 0% 25%, transparent 0% 50%) 0 / 14px 14px;
+  opacity:.85;border:6px solid #fff;flex:0 0 auto}
+html[data-theme=dark] .qr-ph{border-color:#fff}
+
+/* ---- Toast ---- */
+.toast{position:fixed;bottom:22px;inset-inline-end:22px;z-index:100;background:var(--ok);color:#04110b;font-weight:700;font-size:13px;padding:11px 18px;border-radius:10px;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+
+/* ---- Drawer scrim (mobile) ---- */
+.scrim{position:fixed;inset:0;background:rgba(2,6,12,.55);z-index:55;opacity:0;pointer-events:none;transition:.2s}
+.scrim.show{opacity:1;pointer-events:auto}
+
+/* ============================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media(max-width:1080px){
+  .set-grid{grid-template-columns:1fr}
+}
+@media(max-width:920px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .kpi-grid{grid-template-columns:1fr}
+}
+@media(max-width:1024px){
+  /* transform-based off-canvas drawer (GPU-composited; reliable on mobile browsers) */
+  .sidebar{position:fixed;inset-inline-start:0;top:0;height:100dvh;overflow-y:auto;transform:translateX(-100%);transition:transform .22s ease;box-shadow:var(--shadow);z-index:60;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+  .sidebar.open{transform:translateX(0)}
+  html[dir=rtl] .sidebar{transform:translateX(100%)}
+  html[dir=rtl] .sidebar.open{transform:translateX(0)}
+  .menu-btn{display:flex}
+}
+@media(max-width:680px){
+  .content{padding:16px 14px}
+  .topbar{padding:0 14px;gap:8px}
+  .kpi-grid{grid-template-columns:1fr}
+  .uchip.env-chip,.uchip.loc{display:none}      /* keep the bar uncluttered on phones */
+  .page-id .s{display:none}
+  .top-actions{gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="mark">
+        <img src="/logo-mark.svg" alt="Nova Proxy" />
+      </div>
+      <div>
+        <div class="name">Nova Proxy</div>
+        <div class="env"><span class="d"></span><span data-i18n="env_prod">Production</span></div>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label" data-i18n="grp_ops">Operations</div>
+      <nav class="nav" id="nav-ops">
+        <a class="nav-item active" data-view="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          <span data-i18n="nav_dashboard">Dashboard</span>
+        </a>
+        <a class="nav-item" data-view="distribution">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+          <span data-i18n="nav_distribution">Subscriptions</span>
+        </a>
+        <a class="nav-item" data-view="network">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span data-i18n="nav_network">Network &amp; IPs</span>
+        </a>
+        <a class="nav-item" data-view="cleanips">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span data-i18n="nav_cleanips">Clean IPs</span>
+        </a>
+        <a class="nav-item" data-view="users">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span data-i18n="nav_users">Users</span><span class="count" id="nav-users-count">3</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label" data-i18n="grp_admin">Administration</div>
+      <nav class="nav" id="nav-admin">
+        <a class="nav-item" data-view="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span data-i18n="nav_settings">Settings</span>
+        </a>
+        <a class="nav-item" data-view="activity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span data-i18n="nav_activity">Activity</span>
+        </a>
+        <a class="nav-item" data-view="notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span data-i18n="nav_notifications">Notifications</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="side-foot">
+      <div class="social">
+        <a href="https://novaproxy.online" target="_blank" rel="noopener" title="novaproxy.online" aria-label="Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+        <a href="https://t.me/irnova_proxy" target="_blank" rel="noopener" title="Telegram" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.6 18.9 19.2c-.23 1.01-.83 1.26-1.68.78l-4.64-3.42-2.24 2.16c-.25.25-.46.46-.94.46l.33-4.73 8.6-7.77c.37-.33-.08-.52-.58-.19l-10.63 6.7-4.58-1.43c-1-.31-1.01-1 .21-1.48l17.9-6.9c.83-.31 1.56.19 1.29 1.45z"/></svg></a>
+        <a href="https://www.youtube.com/@novaproxyir" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.76-1.77C19.34 5.13 12 5.13 12 5.13s-7.34 0-8.84.4A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.76 1.77c1.5.4 8.84.4 8.84.4s7.34 0 8.84-.4a2.5 2.5 0 0 0 1.76-1.77C23 15.2 23 12 23 12zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/></svg></a>
+        <a href="https://x.com/irNovaProxy" target="_blank" rel="noopener" title="X (@irNovaProxy)" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a data-view="guide" title="Guide" aria-label="Guide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+      </div>
+      <a class="logout" href="/logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span data-i18n="logout">Logout</span></a>
+      <div class="ver"><span data-i18n="ver_panel">Panel</span><b>V3</b></div>
+      <div class="ver"><span data-i18n="ver_worker">Worker</span><b>V3 b16.5</b></div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <div class="main">
+
+    <!-- Top utility bar -->
+    <header class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="page-id">
+        <div class="t" id="page-title" data-i18n="nav_dashboard">Dashboard</div>
+        <div class="s" id="page-sub" data-i18n="sub_dashboard">Live status of your proxy fleet.</div>
+      </div>
+
+      <div class="top-actions">
+        <span class="uchip env-chip"><span class="d"></span><span data-i18n="status_operational">Operational</span></span>
+        <span class="uchip loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="loc-label">DE · FRA</span></span>
+        <button class="iconbtn" id="bell" aria-label="Notifications" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge-dot"></span></button>
+        <button class="iconbtn" id="help-btn" aria-label="Help" title="Help"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
+        <button class="iconbtn" id="theme-btn" aria-label="Theme"><svg id="theme-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+        <div class="segmented" id="lang-seg"><button data-lang="en" class="on">EN</button><button data-lang="fa">فا</button></div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+
+      <div id="kill-banner" style="display:none;align-items:center;gap:8px;background:var(--dg);color:#fff;padding:11px 16px;border-radius:12px;margin-bottom:14px;font-size:13px;font-weight:600">🚨 <span data-i18n="kill_banner">Service is paused. All proxy traffic and subscription fetches are stopped. Turn the kill switch off in Settings to resume.</span></div>
+
+      <!-- ============ DASHBOARD ============ -->
+      <section class="view active" id="view-dashboard">
+        <div class="kpi-grid" id="kpi-grid"><!-- rendered from MOCK.kpis --></div>
+
+        <div class="dash-grid">
+          <!-- Resilience Policy (the former "Iran Mode") -->
+          <div class="card" id="policy-card">
+            <div class="card-h">
+              <div>
+                <h3 data-i18n="policy_title">Resilience policy</h3>
+                <div class="sub" data-i18n="policy_profile">Profile: Iran / high-censorship</div>
+              </div>
+              <div class="right">
+                <span class="chip ok" id="policy-badge"><span class="dot"></span><span id="policy-badge-txt" data-i18n="policy_active">Active</span></span>
+              </div>
+            </div>
+            <div id="policy-rows"><!-- rendered from MOCK.policy --></div>
+            <div class="policy-foot">
+              <span id="policy-summary"></span>
+              <div style="display:flex;align-items:center;gap:14px"><span><span data-i18n="policy_last">Last applied</span> · 2m ago</span><button class="btn primary sm" id="policy-apply" data-i18n="policy_apply">Apply policy</button></div>
+            </div>
+          </div>
+
+          <!-- Right column: activity + subscription link -->
+          <div class="dash-side">
+            <div class="card">
+              <div class="card-h">
+                <h3 data-i18n="activity_recent">Recent activity</h3>
+                <div class="right"><a class="btn ghost sm" data-view="activity" data-i18n="view_all">View all</a></div>
+              </div>
+              <div id="activity-mini"><!-- rendered from MOCK.activity --></div>
+            </div>
+            <div class="card card-pad">
+              <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mu);margin-bottom:11px" data-i18n="dist_section">Distribution</div>
+              <div class="sublink">
+                <div class="field">
+                  <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  <code id="sub-url">https://cdn.example.com/sub?token=••••••••&amp;b64</code>
+                </div>
+                <button class="btn primary sm" data-copy="#sub-url"><span data-i18n="copy">Copy</span></button>
+              </div>
+              <div style="display:flex;justify-content:center;margin-top:15px">
+                <div id="dist-qr" role="button" tabindex="0" title="QR" style="background:#fff;padding:11px;border-radius:14px;cursor:pointer;line-height:0;box-shadow:0 1px 3px rgba(0,0,0,.08)"></div>
+              </div>
+              <div style="font-size:11.5px;color:var(--mu);margin-top:12px;text-align:center" data-i18n="dist_hint">Share this link or QR. The client selects the fastest clean IP automatically.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Open in app: per-client config (Import deep-link + QR + store links) -->
+        <div class="section-label" data-i18n="open_in">Open in app</div>
+        <div class="card card-pad"><div class="appgrid" id="dash-clients"><!-- rendered from CLIENTS --></div></div>
+      </section>
+
+      <!-- ============ SUBSCRIPTIONS / DISTRIBUTION ============ -->
+      <section class="view" id="view-distribution">
+        <div class="card card-pad" style="margin-bottom:16px">
+          <div class="sublink">
+            <div class="field">
+              <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <code>https://cdn.example.com/sub?token=••••••••&amp;b64</code>
+            </div>
+            <button class="btn ghost sm" data-copy="#sub-url"><span data-i18n="copy">Copy</span></button>
+            <button class="btn primary sm" id="open-qr2"><span data-i18n="qr">QR</span></button>
+          </div>
+        </div>
+
+        <div class="card card-pad" style="margin-bottom:16px">
+          <div class="card-h" style="padding:0;margin-bottom:9px">
+            <h3 style="font-size:15px;display:flex;align-items:center;gap:7px"><span>🎁</span><span data-i18n="notice_h">Free-service notice</span></h3>
+            <div class="right"><span class="lockpill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span data-i18n="notice_locked">Always on</span></span></div>
+          </div>
+          <p style="font-size:12.5px;color:var(--mu);margin:0 0 11px" data-i18n="notice_s">A labelled node is baked into every config so users always know this is the free Nova service. It is fixed in the worker, so it cannot be turned off, renamed, or stripped by a reseller.</p>
+          <div class="notice-box"><span class="notice-tag" data-i18n="notice_node">Node label</span><code>This service is FREE - Nova Proxy Team</code></div>
+        </div>
+
+        <div class="section-label" data-i18n="dist_clients">Client applications</div>
+        <div class="card card-pad" id="clients-list"><!-- rendered from MOCK.clients --></div>
+
+        <div class="section-label" data-i18n="dist_formats">Subscription formats</div>
+        <p style="font-size:12.5px;color:var(--mu);margin:-4px 0 12px" data-i18n="dist_formats_s">The same servers, ready in each app's format. Copy the one your app uses, or scan its QR. They all point to the same proxy.</p>
+        <div class="fmtgrid" id="formats-grid"></div>
+      </section>
+
+      <!-- ============ NETWORK & IPs ============ -->
+      <section class="view" id="view-network">
+        <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
+          <div class="kpi"><div class="kpi-top"><div class="kpi-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6M7 12H1"/></svg></div><div class="lbl" data-i18n="net_pool">Clean IP pool</div><span class="chip ok"><span class="dot"></span>Smart</span></div><div class="kpi-val">128</div><div class="kpi-sub" data-i18n="net_pool_sub">active across 3 ISPs</div></div>
+          <div class="kpi"><div class="kpi-top"><div class="kpi-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12a7 7 0 0 1 14 0"/><path d="M2 12a10 10 0 0 1 20 0"/><circle cx="12" cy="12" r="2"/></svg></div><div class="lbl">WARP</div><span class="chip ok"><span class="dot"></span><span data-i18n="status_on">On</span></span></div><div class="kpi-val">Registered</div><div class="kpi-sub">mode: chain</div></div>
+          <div class="kpi"><div class="kpi-top"><div class="kpi-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></div><div class="lbl" data-i18n="net_doh">Secure DNS</div><span class="chip info"><span class="dot"></span>DoH</span></div><div class="kpi-val">Cloudflare</div><div class="kpi-sub">anti-sanction: Shecan</div></div>
+        </div>
+        <div class="dash-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="net_routing">Smart routing</h3></div>
+            <div id="routing-rows"></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="net_isp">Per-ISP pools</h3></div>
+            <div class="tbl-wrap"><table class="tbl"><thead><tr><th data-i18n="col_isp">ISP</th><th>ASN</th><th data-i18n="col_count">Clean IPs</th></tr></thead><tbody id="isp-body"></tbody></table></div>
+          </div>
+        </div>
+
+        <!-- WARP (Cloudflare WireGuard) -->
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3 data-i18n="warp_h">WARP (Cloudflare WireGuard)</h3><div class="right"><span id="warp-status" style="font-size:12px;color:var(--mu)">…</span></div></div>
+          <div class="card-pad">
+            <div class="field-row"><div class="l" data-i18n="warp_en">Enable WARP<small data-i18n="warp_en_h">add a WireGuard outbound to every config</small></div><div class="sw" id="t2-warp"><span class="k"></span></div></div>
+            <div class="set-grid" style="margin-top:13px">
+              <div class="fg"><label data-i18n="warp_mode">Mode</label><select class="inp" id="w2-mode"><option value="warp">WARP only</option><option value="chain">Chain (proxy, then WARP)</option><option value="wow">WoW (two WARP hops)</option></select></div>
+              <div class="fg"><label data-i18n="warp_ep">Endpoint (if the default is blocked)</label><input class="inp" id="w2-ep" list="warp-eps" placeholder="engage.cloudflareclient.com:2408"><datalist id="warp-eps"></datalist><div style="font-size:11.5px;color:var(--mu);margin-top:6px" data-i18n="warp_ep_h">If the default WARP endpoint is filtered, pick an alternative from the list (the same key works on every endpoint), then Save.</div></div>
+            </div>
+            <div class="field-row"><div class="l" data-i18n="warp_amnezia">AmneziaWG obfuscation<small data-i18n="warp_amnezia_h">junk packets so DPI can't fingerprint WARP</small></div><div class="sw" id="t2-warp-amnezia"><span class="k"></span></div></div>
+            <div class="set-grid" style="margin-top:13px">
+              <div class="fg"><label data-i18n="warp_acc">WARP account</label><div style="display:flex;gap:8px"><button class="btn primary sm" id="w2-register" data-i18n="warp_register">Register</button><button class="btn ghost sm" id="w2-central" data-i18n="warp_central">From central pool</button></div></div>
+              <div class="fg"><label data-i18n="warp_lic">WARP+ license (optional)</label><div style="display:flex;gap:8px"><input class="inp" id="w2-lic" placeholder="xxxxxxxx-..."><button class="btn ghost sm" id="w2-lic-apply" data-i18n="warp_apply">Apply</button></div></div>
+            </div>
+            <div class="set-grid">
+              <div class="fg"><label data-i18n="wn_mode">Noise mode</label><select class="inp" id="w2-nmode"><option value="">Off</option><option value="quic">quic</option><option value="random">random</option></select></div>
+              <div class="fg"><label data-i18n="wn_count">Noise count</label><input class="inp" id="w2-ncount" placeholder="10-15"></div>
+              <div class="fg"><label data-i18n="wn_size">Noise size</label><input class="inp" id="w2-nsize" placeholder="5-10"></div>
+              <div class="fg"><label data-i18n="wn_delay">Noise delay</label><input class="inp" id="w2-ndelay" placeholder="1-1"></div>
+            </div>
+            <div class="fg" style="margin-bottom:0"><label data-i18n="warp_dl_lbl">Download WARP configs (50 endpoints)</label><div style="display:flex;gap:8px"><a class="btn ghost sm" href="/warp?target=wireguard&amp;count=50" target="_blank" rel="noopener">WireGuard</a><a class="btn ghost sm" href="/warp?target=nekoray&amp;count=50" target="_blank" rel="noopener">NekoRay</a></div></div>
+          </div>
+        </div>
+
+        <!-- Custom routing rules -->
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3 data-i18n="rules_h">Custom routing rules</h3></div>
+          <div class="card-pad">
+            <p style="font-size:12px;color:var(--mu);margin-bottom:11px" data-i18n="rules_help">One rule per line: TYPE,value,OUTBOUND (DIRECT / REJECT / PROXY). Needs routing enabled.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+              <select class="inp" id="cr2-type" style="flex:1;min-width:130px"><option>DOMAIN-SUFFIX</option><option>DOMAIN</option><option>DOMAIN-KEYWORD</option><option>IP-CIDR</option><option>IP-CIDR6</option><option>GEOIP</option></select>
+              <input class="inp" id="cr2-val" style="flex:2;min-width:150px" placeholder="example.com / 1.2.3.0/24 / ir">
+              <select class="inp" id="cr2-out" style="flex:1;min-width:110px"><option>DIRECT</option><option>REJECT</option><option>PROXY</option></select>
+              <button class="btn ghost sm" id="cr2-add" data-i18n="rules_add">+ Add</button>
+            </div>
+            <div class="fg" style="margin-bottom:0"><textarea class="inp" id="n2-customrules" spellcheck="false" style="min-height:110px;font-family:ui-monospace,monospace;font-size:12px" placeholder="DOMAIN-SUFFIX,digikala.com,DIRECT&#10;DOMAIN-KEYWORD,doubleclick,REJECT"></textarea></div>
+          </div>
+        </div>
+
+        <!-- Preset rules -->
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3 data-i18n="preset_h">Preset rules</h3></div>
+          <div class="card-pad">
+            <div class="field-row"><div class="l" data-i18n="bp_cn">Bypass China<small data-i18n="bp_cn_h">route China sites/IPs direct</small></div><div class="sw" id="t2-bp-cn"><span class="k"></span></div></div>
+            <div class="field-row"><div class="l" data-i18n="bp_ru">Bypass Russia<small data-i18n="bp_ru_h">route Russia sites/IPs direct</small></div><div class="sw" id="t2-bp-ru"><span class="k"></span></div></div>
+            <div class="field-row"><div class="l" data-i18n="bk_malware">Block malware<small data-i18n="bk_geo_h">needs client geodata</small></div><div class="sw" id="t2-bk-malware"><span class="k"></span></div></div>
+            <div class="field-row"><div class="l" data-i18n="bk_phishing">Block phishing<small data-i18n="bk_geo_h">needs client geodata</small></div><div class="sw" id="t2-bk-phishing"><span class="k"></span></div></div>
+            <div class="field-row"><div class="l" data-i18n="bk_crypto">Block cryptominers<small data-i18n="bk_geo_h">needs client geodata</small></div><div class="sw" id="t2-bk-crypto"><span class="k"></span></div></div>
+          </div>
+        </div>
+
+        <!-- Secure DNS -->
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3 data-i18n="dns_h">Secure DNS</h3></div>
+          <div class="card-pad">
+            <div class="field-row"><div class="l" data-i18n="dns_doh">DNS-over-HTTPS<small data-i18n="dns_doh_h">encrypt DNS lookups</small></div><div class="sw" id="t2-doh"><span class="k"></span></div></div>
+            <div style="margin-top:12px;padding:11px 13px;border:1px solid var(--bd);border-radius:12px;background:var(--card2)">
+              <div style="font-size:12px;color:var(--mu);margin-bottom:7px" data-i18n="dns_yourdoh">Your private DoH endpoint. Paste this into a browser's Secure DNS setting or a client's DoH field.</div>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <code id="doh-url" style="flex:1;min-width:200px;font-size:12.5px;word-break:break-all;color:var(--tx)">https://example.com/dns-query</code>
+                <div style="display:flex;gap:6px"><button class="btn ghost sm" id="doh-copy" data-i18n="copy">Copy</button><button class="btn ghost sm" id="doh-test" data-i18n="dns_test">Test</button></div>
+              </div>
+              <div id="doh-result" style="font-size:12px;color:var(--mu);margin-top:9px;min-height:16px"></div>
+            </div>
+            <div class="set-grid" style="margin-top:13px"><div class="fg"><label data-i18n="dns_dohprov">DoH provider</label><select class="inp" id="d2-dohprov"><option value="cloudflare">Cloudflare (1.1.1.1)</option><option value="google">Google (8.8.8.8)</option><option value="quad9">Quad9 (9.9.9.9)</option><option value="adguard">AdGuard</option></select></div></div>
+            <div class="field-row"><div class="l" data-i18n="dns_antisanc">Anti-sanction DNS<small data-i18n="dns_antisanc_h">reach Google, GitHub, npm and other geo-blocked services</small></div><div class="sw" id="t2-antisanc"><span class="k"></span></div></div>
+            <div class="set-grid" style="margin-top:13px"><div class="fg"><label data-i18n="dns_antiprov">Anti-sanction provider</label><select class="inp" id="d2-antiprov"><option value="shekan">Shecan (Iran)</option><option value="cloudflare">Cloudflare</option><option value="google">Google</option><option value="quad9">Quad9</option><option value="adguard">AdGuard</option><option value="alidns">AliDNS</option><option value="custom">Custom</option></select></div><div class="fg"><label data-i18n="dns_custom">Custom DNS (if Custom)</label><input class="inp" id="d2-anticustom" placeholder="178.22.122.100"></div></div>
+            <div class="field-row"><div class="l" data-i18n="dns_local">Local DNS<small data-i18n="dns_local_h">resolve some names on the device</small></div><div class="sw" id="t2-localdns"><span class="k"></span></div></div>
+            <div class="set-grid" style="margin-top:13px"><div class="fg"><label data-i18n="dns_localip">Local DNS IP</label><input class="inp" id="d2-localip" placeholder="8.8.8.8"></div><div class="fg"><label data-i18n="dns_localport">Local DNS port</label><input class="inp" id="d2-localport" placeholder="53"></div></div>
+            <div class="field-row"><div class="l" data-i18n="dns_fake">Fake DNS<small data-i18n="dns_fake_h">faster connections, lower latency</small></div><div class="sw" id="t2-fakedns"><span class="k"></span></div></div>
+            <div class="set-grid" style="margin-top:13px"><div class="fg"><label data-i18n="dns_fakeip">Fake DNS range</label><input class="inp" id="d2-fakeip" placeholder="198.51.100.1"></div><div class="fg"><label data-i18n="dns_log">Log level</label><select class="inp" id="d2-loglevel"><option value="error">error</option><option value="warn">warn</option><option value="info">info</option><option value="debug">debug</option></select></div></div>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="btn primary" id="save-network2" data-i18n="btn_save">Save</button></div>
+      </section>
+
+      <!-- ============ CLEAN IPs ============ -->
+      <section class="view" id="view-cleanips">
+        <div class="card" style="border-color:var(--ac-line)">
+          <div class="card-h"><h3 data-i18n="ci_speed_h">🚀 Speed test</h3></div>
+          <div class="card-pad">
+            <p style="font-size:12.5px;color:var(--mu);margin-bottom:12px" data-i18n="ci_speed_s">Find the fastest clean IPs for your current network and apply them automatically.</p>
+            <div id="ci-isp" style="font-size:12px;color:var(--mu);margin-bottom:11px"></div>
+            <div class="set-grid">
+              <div class="fg"><label data-i18n="ci_src">Source</label><select class="inp" id="ci-src"><option value="random">Random Cloudflare</option><option value="official">Cloudflare official ranges</option><option value="as13335">AS13335 (Cloudflare)</option><option value="cm">CF-CIDR (community)</option><option value="proxyip">ProxyIP pool</option><option value="dominos">Nova domains (DNS)</option></select></div>
+              <div class="fg"><label data-i18n="ci_port">Port</label><select class="inp" id="ci-port"><option>443</option><option>2053</option><option>2083</option><option>2087</option><option>2096</option><option>8443</option></select></div>
+              <div class="fg"><label data-i18n="ci_keep">Keep best</label><input class="inp" id="ci-keep" type="number" min="1" max="50" value="10"></div>
+              <div class="fg"><label data-i18n="ci_total">IPs to test</label><input class="inp" id="ci-total" type="number" min="10" max="400" value="120"></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:2px"><button class="btn primary" id="ci-speedtest" data-i18n="ci_speed_btn">Speed test &amp; apply best</button><span id="ci-stmsg" style="font-size:12px;color:var(--mu)"></span></div>
+            <div id="ci-pbar" class="meter2" style="display:none;margin-top:12px"><i></i></div>
+            <div id="ci-results" style="margin-top:12px;overflow-x:auto"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h3 data-i18n="ci_mode_h">IP selection mode</h3></div>
+          <div class="card-pad">
+            <div class="modeseg" id="ci-seg"><button data-m="smart" data-i18n="ci_m_smart">Smart (per-ISP)</button><button data-m="custom" data-i18n="ci_m_custom">Custom list</button><button data-m="random" data-i18n="ci_m_random">Random</button></div>
+            <div id="ci-smart"><div class="fg"><label data-i18n="ci_poolapi">Smart IP API (per-ISP database)</label><input class="inp" id="ci-poolapi" placeholder="https://nova-deploy.pages.dev/api/pool"><div style="font-size:11.5px;color:var(--mu);margin-top:6px" data-i18n="ci_poolapi_h">Serves each user IPs tuned to their ISP.</div></div></div>
+            <div id="ci-custom" style="display:none"><div class="fg"><label data-i18n="ci_custom_ips">Custom clean IPs (ip:port#name)</label><textarea class="inp" id="ci-add" spellcheck="false" style="min-height:150px;font-family:ui-monospace,monospace;font-size:12px"></textarea></div></div>
+            <div id="ci-random" style="display:none"><div class="set-grid"><div class="fg"><label data-i18n="ci_rcount">Random count</label><input class="inp" id="ci-rcount" type="number" min="1" max="999"></div><div class="fg"><label data-i18n="ci_rport">Port (-1 = mixed)</label><input class="inp" id="ci-rport" type="number"></div></div></div>
+            <div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn primary" id="ci-save" data-i18n="btn_save">Save</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ACTIVITY / AUDIT ============ -->
+      <section class="view" id="view-activity">
+        <div class="card">
+          <div class="card-h">
+            <h3 data-i18n="activity_audit">Audit log</h3>
+            <div class="right"><button class="btn ghost sm" data-i18n="refresh">Refresh</button></div>
+          </div>
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th data-i18n="col_time">Time</th><th data-i18n="col_event">Event</th><th data-i18n="col_actor">Actor</th><th>IP</th><th data-i18n="col_status">Status</th></tr></thead>
+            <tbody id="audit-body"></tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section class="view" id="view-settings">
+        <div class="card card-pad" style="margin-bottom:14px;border-color:var(--dg)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap">
+            <div style="flex:1;min-width:240px">
+              <h3 style="margin:0;font-size:15px;display:flex;align-items:center;gap:7px"><span>🚨</span><span data-i18n="kill_h">Kill switch</span></h3>
+              <p style="font-size:12.5px;color:var(--mu);margin:5px 0 0" data-i18n="kill_s">Emergency stop. While on, every proxy connection and subscription fetch is refused (503). The admin panel stays reachable so you can switch it back off. Use it if your service is being abused.</p>
+            </div>
+            <div class="sw" id="t2-kill"><span class="k"></span></div>
+          </div>
+        </div>
+        <div class="set-grid">
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="set_proto">Protocol &amp; transport</h3></div>
+            <div class="card-pad">
+              <div class="fg"><label data-i18n="lbl_protocol">Protocol</label><select class="inp" id="f2-proto"><option value="vless">VLESS</option><option value="trojan">Trojan</option><option value="ss">Shadowsocks</option></select></div>
+              <div class="fg"><label data-i18n="lbl_transport">Transport</label><select class="inp" id="f2-trans"><option value="ws">WebSocket</option><option value="xhttp">XHTTP</option><option value="grpc">gRPC</option></select></div>
+              <div class="fg"><label data-i18n="lbl_fp">TLS fingerprint</label><select class="inp" id="f2-fp"><option value="random">random</option><option value="chrome">chrome</option><option value="firefox">firefox</option><option value="safari">safari</option><option value="ios">ios</option><option value="android">android</option><option value="edge">edge</option></select></div>
+              <div class="fg"><label data-i18n="lbl_path">Transport path</label><input class="inp" id="f2-path" placeholder="/"></div>
+              <div class="fg"><label data-i18n="lbl_grpcmode">gRPC mode</label><select class="inp" id="f2-grpcmode"><option value="gun">gun</option><option value="multi">multi</option></select></div>
+              <div class="fg"><label data-i18n="lbl_frag">TLS fragment (DPI evasion)</label><select class="inp" id="f2-frag"><option value="" data-i18n="frag_off">Off</option><option value="Shadowrocket">Shadowrocket</option><option value="Happ">Happ</option><option value="custom" data-i18n="frag_custom">Custom</option></select></div>
+              <div id="f2-frag-custom" style="display:none"><div class="set-grid"><div class="fg"><label data-i18n="frag_len">Fragment length</label><input class="inp" id="f2-frag-len" placeholder="100-200"></div><div class="fg"><label data-i18n="frag_int">Fragment interval</label><input class="inp" id="f2-frag-int" placeholder="10-20"></div><div class="fg"><label data-i18n="frag_pkt">Fragment packets</label><input class="inp" id="f2-frag-pkt" placeholder="tlshello / 1-1 / 1-3"></div></div></div>
+              <div class="fg"><label data-i18n="lbl_proxyip">PROXYIP (reverse proxy, optional)</label><input class="inp" id="f2-proxyip" placeholder="host or ip[:port]"></div>
+              <div class="fg"><label data-i18n="lbl_chain">Chain proxy / fix IP (optional)</label><div style="display:flex;gap:8px"><input class="inp" id="f2-chain" placeholder="socks5://user:pass@host:port"><button class="btn ghost sm" id="f2-chain-test" data-i18n="chain_test">Test</button></div><span id="f2-chain-status" style="font-size:11.5px;color:var(--mu);display:inline-block;margin-top:5px"></span></div>
+              <div class="fg" style="margin-bottom:0"><label data-i18n="lbl_uuid">UUID (used in your configs)</label><div style="display:flex;gap:8px"><input class="inp" id="f2-uuid" readonly style="font-family:ui-monospace,monospace;font-size:12px"><button class="btn ghost sm" id="f2-uuid-copy" data-i18n="copy">Copy</button></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="set_security">Security</h3></div>
+            <div class="card-pad" id="security-rows"></div>
+          </div>
+        </div>
+        <div class="section-label" data-i18n="set_adv">Domains, ECH &amp; subscription</div>
+        <div class="set-grid">
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="hosts_h">Domains (HOST)</h3></div>
+            <div class="card-pad">
+              <p style="font-size:12px;color:var(--mu);margin-bottom:10px" data-i18n="hosts_help">One domain per line. The first is the main host. Connect each to your Worker first.</p>
+              <div class="fg"><textarea class="inp" id="f2-hosts" style="min-height:90px;font-family:ui-monospace,monospace;font-size:12px" placeholder="vpn.example.com&#10;cdn.example.com"></textarea></div>
+              <div style="display:flex;gap:8px;align-items:center"><button class="btn ghost sm" id="f2-hosts-check" data-i18n="hosts_check">Check health</button><span id="f2-hosts-health" style="font-size:11.5px;color:var(--mu)"></span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="adv_h2">ECH &amp; Central</h3></div>
+            <div class="card-pad">
+              <div class="fg"><label data-i18n="ech_sni">ECH SNI</label><input class="inp" id="f2-ech-sni" placeholder="cloudflare-ech.com"></div>
+              <div class="fg"><label data-i18n="ech_dns">ECH DoH</label><input class="inp" id="f2-ech-dns" placeholder="https://dns.alidns.com/dns-query"></div>
+              <div class="fg" style="margin-bottom:0"><label data-i18n="central_api">Central API (optional)</label><input class="inp" id="f2-central" placeholder="https://your-central-server"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <div class="card-h"><h3 data-i18n="sub_naming">Subscription</h3></div>
+          <div class="card-pad">
+            <div class="set-grid"><div class="fg"><label data-i18n="sub_name">Subscription name</label><input class="inp" id="f2-subname"></div><div class="fg"><label data-i18n="sub_int">Update interval (hours)</label><input class="inp" id="f2-subint" type="number" min="1" max="168"></div></div>
+            <div class="fg"><label data-i18n="sub_api">Subscription converter API</label><input class="inp" id="f2-subapi"></div>
+            <div class="fg" style="margin-bottom:0"><label data-i18n="subcfg">Routing rule set (.ini URL)</label><input class="inp" id="f2-subcfg" placeholder="ACL4SSR .ini URL"></div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:14px"><button class="btn primary" id="save-settings2" data-i18n="btn_save">Save</button></div>
+        <div class="section-label" data-i18n="set_access">Access &amp; identity</div>
+        <div class="set-grid">
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="set_password">Password</h3></div>
+            <div class="card-pad">
+              <div class="fg"><label data-i18n="lbl_curpw">Current password</label><input class="inp" id="pw-cur" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+              <div class="fg"><label data-i18n="lbl_newpw">New password</label><input class="inp" id="pw-new" type="password" autocomplete="new-password" placeholder="••••••••"></div>
+              <button class="btn primary sm" id="pw-change" data-i18n="btn_changepw">Change password</button> <span id="pw-msg" style="font-size:12px;color:var(--mu)"></span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="set_2fa">Two-factor authentication</h3><div class="right"><span class="chip warn" id="twofa-chip"><span class="dot"></span><span id="twofa-state" data-i18n="status_off">Off</span></span></div></div>
+            <div class="card-pad">
+              <p style="font-size:12.5px;color:var(--mu);margin-bottom:14px" data-i18n="twofa_hint">Require a 6-digit code at login. Works with Google Authenticator, Authy, and others.</p>
+              <div id="twofa-off"><button class="btn ghost sm" id="twofa-start" data-i18n="btn_enable2fa">Enable 2FA</button></div>
+              <div id="twofa-setup" style="display:none">
+                <div class="fg"><label data-i18n="twofa_secret">Authenticator key</label><div style="display:flex;gap:8px"><input class="inp" id="twofa-key" readonly style="font-family:ui-monospace,monospace;letter-spacing:1px"><button class="btn ghost sm" id="twofa-qr" data-i18n="qr">QR</button></div></div>
+                <div class="fg"><label data-i18n="twofa_code">Enter the 6-digit code</label><input class="inp" id="twofa-code" inputmode="numeric" maxlength="6" placeholder="123456"></div>
+                <button class="btn primary sm" id="twofa-confirm" data-i18n="twofa_confirm">Confirm &amp; turn on</button> <span id="twofa-msg" style="font-size:12px;color:var(--mu)"></span>
+              </div>
+              <div id="twofa-on" style="display:none">
+                <div class="fg"><label data-i18n="twofa_dcode">Authenticator code to turn it off</label><input class="inp" id="twofa-dcode" inputmode="numeric" maxlength="6" placeholder="123456"></div>
+                <button class="btn ghost sm" id="twofa-disable" data-i18n="btn_disable2fa">Disable 2FA</button> <span id="twofa-dmsg" style="font-size:12px;color:var(--mu)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-label" data-i18n="set_maint">Backup &amp; maintenance</div>
+        <div class="card card-pad">
+          <p style="font-size:12.5px;color:var(--mu);margin-bottom:12px" data-i18n="backup_s">Export all settings (config + network + users) to a file, or restore from one. The file contains secrets, so keep it safe.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <button class="btn ghost sm" id="backup-export2" data-i18n="backup_export">Export</button>
+            <button class="btn ghost sm" id="backup-import2" data-i18n="backup_import">Import</button>
+            <input id="backup-file2" type="file" accept="application/json,.json" style="display:none">
+            <span id="backup-msg" style="font-size:12px;color:var(--mu)"></span>
+          </div>
+          <div style="border-top:1px solid var(--bd);margin-top:16px;padding-top:14px">
+            <div style="font-weight:600;font-size:13px;color:var(--dg);margin-bottom:4px" data-i18n="reset_h">Factory reset</div>
+            <p style="font-size:12.5px;color:var(--mu);margin-bottom:11px" data-i18n="reset_s">Wipes everything from the database (settings, network, clean IPs, users, Cloudflare and Telegram keys) and restores the initial state. Your panel password is kept. This cannot be undone.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+              <button class="btn sm" id="factory-reset" style="background:var(--dg);color:#fff;border-color:var(--dg)" data-i18n="reset_btn">Factory reset</button>
+              <span id="reset-msg" style="font-size:12px;color:var(--mu)"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-label" data-i18n="mirror_h">GitHub mirror (blocked-domain failover)</div>
+        <div class="card card-pad">
+          <p style="font-size:12.5px;color:var(--mu);margin-bottom:12px" data-i18n="mirror_intro">Publishes your sub to a GitHub repo so users keep a permanent raw.githubusercontent.com link even if your domain gets filtered.</p>
+          <div class="field-row"><div class="l" data-i18n="mirror_en">Enable mirror<small data-i18n="mirror_en_h">also auto-publishes hourly</small></div><div class="sw" id="t2-mirror"><span class="k"></span></div></div>
+          <div class="set-grid" style="margin-top:13px">
+            <div class="fg"><label data-i18n="mirror_repo">Repo (owner/name)</label><input class="inp" id="m2-repo" placeholder="iiviirv/nova-sub"></div>
+            <div class="fg"><label data-i18n="mirror_branch">Branch</label><input class="inp" id="m2-branch" placeholder="main"></div>
+            <div class="fg"><label data-i18n="mirror_path">Path (optional)</label><input class="inp" id="m2-path" placeholder="sub"></div>
+            <div class="fg"><label data-i18n="mirror_token">GitHub token</label><input class="inp" id="m2-token" type="password" placeholder="ghp_..." autocomplete="off"></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn ghost sm" id="m2-publish" data-i18n="mirror_publish">Publish now</button><button class="btn primary sm" id="m2-save" data-i18n="btn_save">Save</button><span id="m2-msg" style="font-size:12px;color:var(--mu)"></span></div>
+        </div>
+      </section>
+
+      <!-- ============ NOTIFICATIONS ============ -->
+      <section class="view" id="view-notifications">
+        <div class="set-grid">
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="notif_worker">Worker requests</h3><div class="right"><span class="chip" id="cf-chip"><span class="dot"></span><span id="cf-chip-tx" data-i18n="cf_estimate">Estimated</span></span></div></div>
+            <div class="card-pad">
+              <div class="kpi-val" style="font-size:24px"><span id="u-total">18,420</span> <span style="font-size:13px;color:var(--mu);font-weight:500">/ <span id="u-max">100,000</span></span></div>
+              <div class="kpi-sub" style="margin:8px 0" id="u-note" data-i18n="notif_today">requests today (Cloudflare free plan)</div>
+              <div class="meter" style="height:8px;margin-top:6px;border-radius:999px;background:var(--card2);border:1px solid var(--bd);overflow:hidden"><i id="u-bar" style="display:block;height:100%;width:18%;background:var(--ac)"></i></div>
+              <div style="border-top:1px solid var(--bd);margin-top:16px;padding-top:14px">
+                <div style="font-weight:600;font-size:13px;margin-bottom:4px" data-i18n="cf_h">Live status (Cloudflare API)</div>
+                <div style="font-size:11.5px;color:var(--mu);margin-bottom:11px" data-i18n="cf_sub">Connect an API token to show real request counts instead of an estimate. The token needs Account Analytics: Read.</div>
+                <div class="fg"><label data-i18n="cf_accid">Account ID</label><input class="inp" id="cf-accid" spellcheck="false" placeholder="023e105f4ecef8ad9ca31a8372d0c353"></div>
+                <div class="fg"><label data-i18n="cf_token">API token</label><input class="inp" type="password" id="cf-token" placeholder="••••••••••••••••"></div>
+                <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:2px"><button class="btn ghost sm" id="cf-disconnect" data-i18n="cf_disconnect">Disconnect</button><button class="btn primary sm" id="cf-connect" data-i18n="cf_connect">Connect</button></div>
+                <div id="cf-msg" style="font-size:12px;color:var(--mu);margin-top:9px;text-align:end;min-height:16px"></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3 data-i18n="notif_tg">Telegram alerts</h3><div class="right"><span class="chip ok"><span class="dot"></span><span data-i18n="status_on">On</span></span></div></div>
+            <div class="card-pad">
+              <div class="field-row"><div class="l" data-i18n="notif_tg_en">Enable Telegram alerts<small data-i18n="notif_tg_h">message on each fetch, change, and login</small></div><div class="sw on" id="t2-tg"><span class="k"></span></div></div>
+              <div class="fg" style="margin-top:13px"><label data-i18n="notif_bot">Bot token</label><input class="inp" type="password" id="f2-bot" placeholder="123456:ABC-..."></div>
+              <div class="fg"><label data-i18n="notif_chat">Chat / User IDs</label><textarea class="inp" id="f2-chat" spellcheck="false" style="min-height:62px;font-family:ui-monospace,monospace;font-size:12px" placeholder="123456789&#10;-1001234567890"></textarea><div style="font-size:11.5px;color:var(--mu);margin-top:6px" data-i18n="notif_chat_h">One or more (comma or new-line separated): your numeric user ID and/or a channel ID (the bot must be an admin there). Needed so you can manage the bot.</div></div>
+              <div style="display:flex;justify-content:flex-end"><button class="btn primary sm" id="save-notif2" data-i18n="btn_save">Save</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ USERS ============ -->
+      <section class="view" id="view-users">
+        <div class="card">
+          <div class="card-h">
+            <h3 data-i18n="users_title">Users &amp; quotas</h3>
+            <div class="right">
+              <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--tx2)"><span data-i18n="users_multi">Multi-user</span><span class="sw" id="t2-multiuser"><span class="k"></span></span></span>
+              <button class="btn ghost sm" id="users-add2" data-i18n="users_add">+ Add user</button>
+              <button class="btn primary sm" id="users-save2" data-i18n="btn_save">Save</button>
+            </div>
+          </div>
+          <div id="mu-warn" style="display:none;margin:0 16px;background:var(--card2);border:1px solid var(--bd2);border-radius:11px;padding:10px 13px;font-size:12.5px;color:var(--tx2)">💡 <span data-i18n="mu_warn">Multi-user is off, you have one shared config. Turn it on to add users and give each person their own link.</span></div>
+          <div class="card-pad" id="users-body2"><!-- editable rows --></div>
+        </div>
+      </section>
+
+      <!-- ============ GUIDE ============ -->
+      <section class="view" id="view-guide">
+        <div class="card">
+          <div class="card-h"><h3 id="guide-qs-h">Quick start</h3></div>
+          <div class="card-pad" id="guide-steps"></div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-h"><h3 id="guide-tips-h">Tips</h3></div>
+          <div class="card-pad" id="guide-tips"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast"></div>
+
+<!-- QR modal -->
+<div class="modal" id="qrmodal">
+  <div class="modal-c">
+    <h4 id="qrm-title">QR</h4>
+    <div class="qrbox" id="qrm-box"></div>
+    <div class="ml" id="qrm-link"></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn ghost sm" id="qrm-copy" style="flex:1" data-i18n="copy">Copy</button>
+      <button class="btn primary sm" id="qrm-close" style="flex:1" data-i18n="close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="helpmodal">
+  <div class="modal-c help-c">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px">
+      <h4 id="help-title" style="margin:0;text-align:start;font-size:16px"></h4>
+      <button class="iconbtn" id="help-x" aria-label="Close" style="flex:0 0 auto;margin-top:-4px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div id="help-body" class="help-body"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="btn primary sm" id="help-close" data-i18n="close">Close</button></div>
+  </div>
+</div>
+
+<script src="/qrcode.min.js"></script>
+<script>
+/* ============================================================================
+   i18n — English / Farsi. RTL is driven by the <html dir> attribute, and the
+   CSS uses logical properties throughout, so the whole layout mirrors cleanly.
+   ========================================================================== */
+const I18N = {
+  en:{
+    env_prod:'Production', grp_ops:'Operations', grp_admin:'Administration',
+    nav_dashboard:'Dashboard', nav_distribution:'Subscriptions', nav_network:'Network & IPs',
+    nav_activity:'Activity', nav_settings:'Settings', nav_notifications:'Notifications', nav_users:'Users',
+    sub_dashboard:'Live status of your proxy fleet.', sub_distribution:'Subscription links and client onboarding.',
+    sub_network:'Clean IP pools, routing, and DNS.', sub_activity:'Operational audit trail.',
+    sub_settings:'Protocol, security, and access.', sub_notifications:'Usage limits and alert channels.',
+    sub_users:'Per-user links, quotas, and expiry.',
+    status_operational:'Operational', status_on:'On', status_off:'Off', status_nominal:'Nominal',
+    ver_panel:'Panel', ver_worker:'Worker', view_all:'View all', refresh:'Refresh', copy:'Copy', open:'Open', qr:'QR', btn_save:'Save',
+    cf_estimate:'Estimated', cf_h:'Live status (Cloudflare API)', cf_sub:'Connect an API token to show real request counts instead of an estimate. The token needs Account Analytics: Read.', cf_accid:'Account ID', cf_token:'API token', cf_connect:'Connect', cf_disconnect:'Disconnect',
+    dns_yourdoh:'Your private DoH endpoint. Paste it into a Secure DNS field in your browser or VPN client.', dns_test:'Test',
+    reset_h:'Factory reset', reset_s:'Wipes everything from the database (settings, network, clean IPs, users, Cloudflare and Telegram keys) and restores the initial state. Your panel password is kept. This cannot be undone.', reset_btn:'Factory reset',
+    kill_h:'Kill switch', kill_s:'Emergency stop. While on, every proxy connection and subscription fetch is refused (503). The admin panel stays reachable so you can switch it back off. Use it if your service is being abused.', kill_banner:'Service is paused. All proxy traffic and subscription fetches are stopped. Turn the kill switch off in Settings to resume.',
+    nav_guide:'Guide', sub_guide:'How to use Nova Proxy, step by step.', logout:'Logout',
+    /* KPIs */
+    kpi_network:'Network', kpi_storage:'Storage', kpi_worker:'Worker usage', kpi_traffic:'Traffic today',
+    kpi_network_sub:'AS13335 · Cloudflare', kpi_storage_sub:'KV namespace', kpi_worker_sub:'requests today', kpi_traffic_sub:'across 312 sessions',
+    healthy:'Healthy', online:'Online', live:'Live',
+    /* policy */
+    policy_title:'Resilience policy', policy_profile:'Profile: Iran / high-censorship', policy_active:'Active',
+    policy_apply:'Apply policy', policy_last:'Last applied', policy_summary:'{n} of {t} controls active',
+    p_protocols:'All protocols', p_protocols_d:'VLESS, Trojan, and Shadowsocks',
+    p_ports:'Port spread', p_ports_d:'Fan each node across all TLS ports',
+    p_fragment:'TLS fragment', p_fragment_d:'Split the TLS hello to evade DPI',
+    p_ech:'ECH', p_ech_d:'Encrypted Client Hello',
+    p_ipv6:'IPv6 disabled', p_ipv6_d:'Force IPv4 egress',
+    p_quic:'QUIC blocked', p_quic_d:'Force TCP transport',
+    p_domestic:'Domestic bypass', p_domestic_d:'Iranian sites route direct',
+    p_adblock:'Ad and tracker blocking', p_adblock_d:'Drop known ad and tracker domains',
+    p_routing:'Smart routing', p_routing_d:'Rule engine enabled',
+    /* distribution */
+    dist_section:'Distribution', dist_hint:'Share this link or QR. The client selects the fastest clean IP automatically.',
+    dist_clients:'Client applications', dist_formats:'Subscription formats', dist_formats_s:'The same servers in every app format. Copy the one your app uses, or scan its QR. They all point to the same proxy.', notice_node:'Node label',
+    col_format:'Format', col_target:'Target', recommended:'Recommended', import:'Import',
+    open_in:'Open in app', android:'Android', close:'Close', app_copied:'Link copied. Open your app and import.',
+    notice_h:'Free-service notice', notice_locked:'Always on', notice_s:'A labelled node is baked into every config so users always know this is the free Nova service. It is fixed in the worker, so it cannot be turned off, renamed, or stripped by a reseller.',
+    /* network */
+    net_pool:'Clean IP pool', net_pool_sub:'active across 3 ISPs', net_doh:'Secure DNS',
+    net_routing:'Smart routing', net_isp:'Per-ISP pools', col_isp:'ISP', col_count:'Clean IPs',
+    r_routing:'Routing rules', r_domestic:'Domestic direct', r_geoip:'GeoIP routing', r_geosite:'GeoSite routing', r_geosite_d:'route by domain list', r_adblock:'Ad & tracker blocking', r_adblock_d:'auto-updated ad/tracker list', r_porn:'Adult-content filter', r_porn_d:'block adult sites using an auto-updated list',
+    /* activity */
+    activity_recent:'Recent activity', activity_audit:'Audit log',
+    col_time:'Time', col_event:'Event', col_actor:'Actor', col_status:'Status',
+    ev_fetch:'Subscription fetched', ev_save:'Settings saved', ev_policy:'Resilience policy applied',
+    ev_login:'Admin login', ev_warp:'WARP account registered', ev_user:'User created',
+     st_ok:'OK', st_applied:'Applied', st_auth:'Authenticated', st_created:'Created',
+    /* settings */
+    set_proto:'Protocol & transport', set_security:'Security', set_access:'Access & identity',
+    set_password:'Password', set_2fa:'Two-factor authentication',
+    lbl_protocol:'Protocol', lbl_transport:'Transport', lbl_fp:'TLS fingerprint',
+    lbl_curpw:'Current password', lbl_newpw:'New password', btn_changepw:'Change password',
+    btn_enable2fa:'Enable 2FA', twofa_hint:'Require a 6-digit code at login. Works with Google Authenticator, Authy, and others.',
+    s_tls:'TLS', s_tls_d:'Encrypt the tunnel', s_ech:'ECH', s_ech_d:'Encrypted Client Hello', s_rp:'Random path', s_rp_d:'randomize the node path',
+    s_0rtt:'0-RTT', s_0rtt_d:'Faster reconnects', s_scv:'Skip cert verify', s_scv_d:'Allow insecure TLS',
+    /* notifications */
+    notif_worker:'Worker requests', notif_today:'requests today (Cloudflare free plan)',
+    notif_tg:'Telegram alerts', notif_tg_en:'Enable Telegram alerts', notif_tg_h:'message on each fetch, change, and login',
+    notif_bot:'Bot token', notif_chat:'Chat / User IDs', notif_chat_h:'One or more (comma or new-line separated): your numeric user ID and/or a channel ID (the bot must be an admin there). Needed so you can manage the bot.',
+    /* users */
+    users_title:'Users & quotas', users_add:'+ Add user',
+    col_name:'Name', col_quota:'Quota', col_used:'Used', col_expiry:'Expiry',
+    users_multi:'Multi-user', mu_warn:'Multi-user is on. Give each person their own link (Open / Copy / QR on their row), those enforce quota and expiry. Your main subscription still works as the unmetered admin config. Needs worker b15+.', set_maint:'Backup & maintenance',
+    twofa_secret:'Authenticator key', twofa_code:'Enter the 6-digit code', twofa_confirm:'Confirm & turn on', twofa_dcode:'Authenticator code to turn it off', btn_disable2fa:'Disable 2FA',
+    backup_s:'Export all settings (config + network + users) to a file, or restore from one. The file contains secrets, so keep it safe.', backup_export:'Export', backup_import:'Import',
+    warp_h:'WARP (Cloudflare WireGuard)', warp_en:'Enable WARP', warp_en_h:'add a WireGuard outbound to every config', warp_mode:'Mode', warp_ep:'Endpoint (if the default is blocked)', warp_ep_h:'If the default WARP endpoint is filtered, pick an alternative from the list (the same key works on every endpoint), then Save.', warp_amnezia:'AmneziaWG obfuscation', warp_amnezia_h:"junk packets so DPI can't fingerprint WARP", warp_acc:'WARP account', warp_register:'Register', warp_central:'From central pool', warp_lic:'WARP+ license (optional)', warp_apply:'Apply', warp_dl_lbl:'Download WARP configs (50 endpoints)', wn_mode:'Noise mode', wn_count:'Noise count', wn_size:'Noise size', wn_delay:'Noise delay',
+    mirror_h:'GitHub mirror (blocked-domain failover)', mirror_intro:'Publishes your sub to a GitHub repo so users keep a permanent raw.githubusercontent.com link even if your domain gets filtered.', mirror_en:'Enable mirror', mirror_en_h:'also auto-publishes hourly', mirror_repo:'Repo (owner/name)', mirror_branch:'Branch', mirror_path:'Path (optional)', mirror_token:'GitHub token', mirror_publish:'Publish now',
+    nav_cleanips:'Clean IPs', sub_cleanips:'Pick clean Cloudflare IPs, or speed-test for the fastest.',
+    ci_speed_h:'🚀 Speed test', ci_speed_s:'Find the fastest clean IPs for your current network and apply them automatically.', ci_src:'Source', ci_port:'Port', ci_keep:'Keep best', ci_total:'IPs to test', ci_speed_btn:'Speed test & apply best', ci_lat:'Latency', ci_jit:'Jitter', ci_loss:'Loss',
+    ci_mode_h:'IP selection mode', ci_m_smart:'Smart (per-ISP)', ci_m_custom:'Custom list', ci_m_random:'Random', ci_poolapi:'Smart IP API (per-ISP database)', ci_poolapi_h:'Serves each user IPs tuned to their ISP.', ci_custom_ips:'Custom clean IPs (ip:port#name)', ci_rcount:'Random count', ci_rport:'Port (-1 = mixed)',
+    dns_h:'Secure DNS', dns_doh:'DNS-over-HTTPS', dns_doh_h:'encrypt DNS lookups', dns_dohprov:'DoH provider', dns_antisanc:'Anti-sanction DNS', dns_antisanc_h:'reach Google, GitHub, npm and other geo-blocked services', dns_antiprov:'Anti-sanction provider', dns_custom:'Custom DNS (if Custom)', dns_local:'Local DNS', dns_local_h:'resolve some names on the device', dns_localip:'Local DNS IP', dns_localport:'Local DNS port', dns_fake:'Fake DNS', dns_fake_h:'faster connections, lower latency', dns_fakeip:'Fake DNS range', dns_log:'Log level',
+    lbl_path:'Transport path', lbl_grpcmode:'gRPC mode', lbl_frag:'TLS fragment (DPI evasion)', frag_off:'Off', frag_custom:'Custom', frag_len:'Fragment length', frag_int:'Fragment interval', frag_pkt:'Fragment packets', lbl_proxyip:'PROXYIP (reverse proxy, optional)', lbl_chain:'Chain proxy / fix IP (optional)', chain_test:'Test', lbl_uuid:'UUID (used in your configs)',
+    set_adv:'Domains, ECH & subscription', hosts_h:'Domains (HOST)', hosts_help:'One domain per line. The first is the main host. Connect each to your Worker first.', hosts_check:'Check health', adv_h2:'ECH & Central', ech_sni:'ECH SNI', ech_dns:'ECH DoH', central_api:'Central API (optional)',
+    sub_naming:'Subscription', sub_name:'Subscription name', sub_int:'Update interval (hours)', sub_api:'Subscription converter API', subcfg:'Routing rule set (.ini URL)',
+    rules_h:'Custom routing rules', rules_help:'One rule per line: TYPE,value,OUTBOUND (DIRECT / REJECT / PROXY). Needs routing enabled.', rules_add:'+ Add',
+    preset_h:'Preset rules', bp_cn:'Bypass China', bp_cn_h:'route China sites/IPs direct', bp_ru:'Bypass Russia', bp_ru_h:'route Russia sites/IPs direct', bk_malware:'Block malware', bk_phishing:'Block phishing', bk_crypto:'Block cryptominers', bk_geo_h:'needs client geodata',
+    copied:'Copied to clipboard'
+  },
+  fa:{
+    env_prod:'محیط عملیاتی', grp_ops:'عملیات', grp_admin:'مدیریت',
+    nav_dashboard:'داشبورد', nav_distribution:'اشتراک‌ها', nav_network:'شبکه و آی‌پی‌ها',
+    nav_activity:'فعالیت', nav_settings:'تنظیمات', nav_notifications:'اعلان‌ها', nav_users:'کاربران',
+    sub_dashboard:'وضعیت زندهٔ ناوگان پروکسی شما.', sub_distribution:'لینک‌های اشتراک و راه‌اندازی کلاینت.',
+    sub_network:'استخر آی‌پی‌های تمیز، مسیریابی و DNS.', sub_activity:'ردگیری ممیزی عملیاتی.',
+    sub_settings:'پروتکل، امنیت و دسترسی.', sub_notifications:'سقف مصرف و کانال‌های اعلان.',
+    sub_users:'لینک‌های هر کاربر، سهمیه و انقضا.',
+    status_operational:'عملیاتی', status_on:'روشن', status_off:'خاموش', status_nominal:'عادی',
+    ver_panel:'پنل', ver_worker:'ورکر', view_all:'مشاهدهٔ همه', refresh:'بازخوانی', copy:'کپی', open:'باز کردن', qr:'کد QR', btn_save:'ذخیره',
+    cf_estimate:'تخمینی', cf_h:'وضعیت زنده (API کلودفلر)', cf_sub:'برای نمایش تعداد واقعی درخواست‌ها به‌جای تخمین، یک توکن API وصل کنید. توکن به دسترسی Account Analytics: Read نیاز دارد.', cf_accid:'شناسهٔ حساب', cf_token:'توکن API', cf_connect:'اتصال', cf_disconnect:'قطع اتصال',
+    dns_yourdoh:'نشانی DoH خصوصی شما. آن را در فیلد DNS امن مرورگر یا کلاینت VPN بگذارید.', dns_test:'تست',
+    reset_h:'بازنشانی کارخانه‌ای', reset_s:'همه‌چیز را از پایگاه‌داده پاک می‌کند (تنظیمات، شبکه، IPهای تمیز، کاربران، کلیدهای کلودفلر و تلگرام) و به حالت اولیه برمی‌گرداند. رمز پنل حفظ می‌شود. این کار قابل بازگشت نیست.', reset_btn:'بازنشانی کارخانه‌ای',
+    kill_h:'دکمهٔ توقف اضطراری', kill_s:'توقف اضطراری. وقتی روشن باشد، هر اتصال پراکسی و دریافت اشتراک رد می‌شود (۵۰۳). پنل مدیریت باز می‌ماند تا بتوانید دوباره خاموشش کنید. اگر سرویس‌تان مورد سوءاستفاده است از آن استفاده کنید.', kill_banner:'سرویس متوقف است. همهٔ ترافیک پراکسی و دریافت اشتراک‌ها متوقف شده. برای ازسرگیری، Kill switch را در تنظیمات خاموش کنید.',
+    nav_guide:'راهنما', sub_guide:'راهنمای گام‌به‌گام استفاده از نوا پروکسی.', logout:'خروج',
+    kpi_network:'شبکه', kpi_storage:'حافظه', kpi_worker:'مصرف ورکر', kpi_traffic:'مصرف امروز',
+    kpi_network_sub:'AS13335 · کلودفلر', kpi_storage_sub:'فضای KV', kpi_worker_sub:'درخواست امروز', kpi_traffic_sub:'در ۳۱۲ نشست',
+    healthy:'سالم', online:'آنلاین', live:'زنده',
+    policy_title:'سیاست مقاومت', policy_profile:'پروفایل: ایران / سانسور بالا', policy_active:'فعال',
+    policy_apply:'اعمال سیاست', policy_last:'آخرین اعمال', policy_summary:'{n} از {t} کنترل فعال',
+    p_protocols:'همهٔ پروتکل‌ها', p_protocols_d:'VLESS، Trojan و Shadowsocks',
+    p_ports:'پخش پورت', p_ports_d:'پخش هر نود روی همهٔ پورت‌های TLS',
+    p_fragment:'تکه‌تکه‌سازی TLS', p_fragment_d:'شکستن TLS hello برای عبور از DPI',
+    p_ech:'ECH', p_ech_d:'مخفی‌سازی SNI',
+    p_ipv6:'غیرفعال‌سازی IPv6', p_ipv6_d:'خروج فقط IPv4',
+    p_quic:'مسدودسازی QUIC', p_quic_d:'اجبار به TCP',
+    p_domestic:'عبور داخلی', p_domestic_d:'سایت‌های ایرانی مستقیم',
+    p_adblock:'مسدودسازی تبلیغ و ردیاب', p_adblock_d:'حذف دامنه‌های تبلیغاتی و ردیاب',
+    p_routing:'مسیریابی هوشمند', p_routing_d:'موتور قوانین فعال',
+    dist_section:'توزیع', dist_hint:'این لینک یا QR را بفرستید. کلاینت سریع‌ترین آی‌پی تمیز را خودکار انتخاب می‌کند.',
+    dist_clients:'برنامه‌های کلاینت', dist_formats:'فرمت‌های اشتراک', dist_formats_s:'همان سرورها در هر فرمت برنامه. همان را که برنامه‌تان استفاده می‌کند کپی کنید یا QR آن را اسکن کنید. همه به یک پراکسی اشاره می‌کنند.', notice_node:'برچسب نود',
+    col_format:'فرمت', col_target:'مقصد', recommended:'پیشنهادی', import:'افزودن',
+    open_in:'باز کردن در برنامه', android:'اندروید', close:'بستن', app_copied:'لینک کپی شد. برنامه را باز کنید و وارد کنید.',
+    notice_h:'اعلان سرویس رایگان', notice_locked:'همیشه روشن', notice_s:'یک نود برچسب‌دار در هر کانفیگ قرار می‌گیرد تا کاربران بدانند این سرویس رایگان نوا است. این مورد در ورکر ثابت است، پس قابل خاموش‌کردن، تغییر نام یا حذف توسط فروشنده نیست.',
+    net_pool:'استخر آی‌پی تمیز', net_pool_sub:'فعال در ۳ اپراتور', net_doh:'DNS امن',
+    net_routing:'مسیریابی هوشمند', net_isp:'استخر هر اپراتور', col_isp:'اپراتور', col_count:'آی‌پی تمیز',
+    r_routing:'قوانین مسیریابی', r_domestic:'دسترسی مستقیم داخلی', r_geoip:'مسیریابی GeoIP', r_geosite:'مسیریابی GeoSite', r_geosite_d:'مسیریابی بر اساس لیست دامنه', r_adblock:'مسدودسازی تبلیغ و ردیاب', r_adblock_d:'لیست خودکارِ به‌روزِ تبلیغ/ردیاب', r_porn:'فیلتر محتوای بزرگسال', r_porn_d:'مسدودسازی سایت‌های بزرگسال با لیست خودکارِ به‌روز',
+    activity_recent:'فعالیت اخیر', activity_audit:'گزارش ممیزی',
+    col_time:'زمان', col_event:'رویداد', col_actor:'کاربر', col_status:'وضعیت',
+    ev_fetch:'دریافت اشتراک', ev_save:'ذخیرهٔ تنظیمات', ev_policy:'اعمال سیاست مقاومت',
+    ev_login:'ورود ادمین', ev_warp:'ثبت حساب WARP', ev_user:'ساخت کاربر',
+    st_ok:'موفق', st_applied:'اعمال شد', st_auth:'احراز شد', st_created:'ساخته شد',
+    set_proto:'پروتکل و حمل‌ونقل', set_security:'امنیت', set_access:'دسترسی و هویت',
+    set_password:'رمز عبور', set_2fa:'احراز هویت دومرحله‌ای',
+    lbl_protocol:'پروتکل', lbl_transport:'حمل‌ونقل', lbl_fp:'اثر انگشت TLS',
+    lbl_curpw:'رمز فعلی', lbl_newpw:'رمز جدید', btn_changepw:'تغییر رمز',
+    btn_enable2fa:'فعال‌سازی ۲FA', twofa_hint:'یک کد ۶ رقمی هنگام ورود لازم می‌شود. با Google Authenticator، Authy و دیگر برنامه‌ها کار می‌کند.',
+    s_tls:'TLS', s_tls_d:'رمزگذاری تونل', s_ech:'ECH', s_ech_d:'مخفی‌سازی SNI', s_rp:'مسیر تصادفی', s_rp_d:'تصادفی‌کردن مسیر نود',
+    s_0rtt:'0-RTT', s_0rtt_d:'اتصال مجدد سریع‌تر', s_scv:'رد تأیید گواهی', s_scv_d:'اجازهٔ TLS ناامن',
+    notif_worker:'درخواست‌های ورکر', notif_today:'درخواست امروز (پلن رایگان کلودفلر)',
+    notif_tg:'اعلان‌های تلگرام', notif_tg_en:'فعال‌سازی اعلان تلگرام', notif_tg_h:'پیام در هر دریافت، تغییر و ورود',
+    notif_bot:'توکن ربات', notif_chat:'شناسهٔ چت / کاربر', notif_chat_h:'یک یا چند مورد (با کاما یا خط جدید): شناسهٔ عددی کاربری شما و/یا شناسهٔ کانال (ربات باید ادمین آن باشد). برای مدیریت ربات لازم است.',
+    users_title:'کاربران و سهمیه‌ها', users_add:'+ افزودن کاربر',
+    col_name:'نام', col_quota:'سهمیه', col_used:'مصرف', col_expiry:'انقضا',
+    users_multi:'چندکاربره', mu_warn:'حالت چندکاربره روشن است. به هر نفر لینک اختصاصی خودش را بدهید (باز کردن / کپی / QR در ردیف خودش)؛ این‌ها سهمیه و انقضا را اعمال می‌کنند. اشتراک اصلی شما به‌عنوان کانفیگ ادمین (بدون محدودیت) همچنان کار می‌کند. نیازمند ورکر نسخهٔ b15 به بالا.', set_maint:'پشتیبان‌گیری و نگهداری',
+    twofa_secret:'کلید برنامهٔ احراز', twofa_code:'کد ۶ رقمی را وارد کنید', twofa_confirm:'تأیید و روشن‌کردن', twofa_dcode:'کد برنامه برای خاموش‌کردن', btn_disable2fa:'غیرفعال‌سازی ۲FA',
+    backup_s:'همهٔ تنظیمات (کانفیگ + شبکه + کاربران) را در یک فایل ذخیره یا بازیابی کنید. فایل شامل کلیدهای محرمانه است، جای امن نگه‌دارید.', backup_export:'خروجی', backup_import:'ورودی',
+    warp_h:'WARP (وایرگارد کلودفلر)', warp_en:'فعال‌سازی WARP', warp_en_h:'افزودن یک خروجی WireGuard به هر کانفیگ', warp_mode:'حالت', warp_ep:'اندپوینت (اگر پیش‌فرض مسدود بود)', warp_ep_h:'اگر اندپوینت پیش‌فرض WARP فیلتر شد، یکی از موارد فهرست را انتخاب کنید (همان کلید روی همهٔ اندپوینت‌ها کار می‌کند) و ذخیره کنید.', warp_amnezia:'مبهم‌سازی AmneziaWG', warp_amnezia_h:'بسته‌های اضافی تا DPI نتواند WARP را شناسایی کند', warp_acc:'حساب WARP', warp_register:'ثبت', warp_central:'از استخر مرکزی', warp_lic:'لایسنس WARP+ (اختیاری)', warp_apply:'اعمال', warp_dl_lbl:'دانلود کانفیگ‌های WARP (۵۰ اندپوینت)', wn_mode:'حالت نویز', wn_count:'تعداد نویز', wn_size:'اندازه نویز', wn_delay:'تأخیر نویز',
+    mirror_h:'آینه گیت‌هاب (پشتیبان دامنه مسدودشده)', mirror_intro:'ساب شما را در یک ریپو گیت‌هاب منتشر می‌کند تا کاربران یک لینک دائمی raw.githubusercontent.com داشته باشند حتی اگر دامنه‌تان فیلتر شود.', mirror_en:'فعال‌سازی آینه', mirror_en_h:'هر ساعت هم خودکار منتشر می‌شود', mirror_repo:'ریپو (owner/name)', mirror_branch:'شاخه', mirror_path:'مسیر (اختیاری)', mirror_token:'توکن گیت‌هاب', mirror_publish:'انتشار فوری',
+    nav_cleanips:'آی‌پی‌های تمیز', sub_cleanips:'آی‌پی‌های تمیز کلودفلر را انتخاب کنید یا سریع‌ترین را تست کنید.',
+    ci_speed_h:'🚀 تست سرعت', ci_speed_s:'سریع‌ترین آی‌پی‌های تمیز را برای شبکهٔ فعلی‌تان پیدا و خودکار اعمال کنید.', ci_src:'منبع', ci_port:'پورت', ci_keep:'نگه‌داشتن بهترین', ci_total:'تعداد تست', ci_speed_btn:'تست سرعت و اعمال بهترین', ci_lat:'تأخیر', ci_jit:'جیتر', ci_loss:'افت',
+    ci_mode_h:'حالت انتخاب آی‌پی', ci_m_smart:'هوشمند (هر اپراتور)', ci_m_custom:'لیست سفارشی', ci_m_random:'تصادفی', ci_poolapi:'API آی‌پی هوشمند (دیتابیس هر اپراتور)', ci_poolapi_h:'به هر کاربر آی‌پی متناسب با اپراتورش می‌دهد.', ci_custom_ips:'آی‌پی‌های تمیز سفارشی (ip:port#name)', ci_rcount:'تعداد تصادفی', ci_rport:'پورت (۱- = ترکیبی)',
+    dns_h:'DNS امن', dns_doh:'DNS-over-HTTPS', dns_doh_h:'رمزگذاری جست‌وجوهای DNS', dns_dohprov:'ارائه‌دهندهٔ DoH', dns_antisanc:'DNS ضدتحریم', dns_antisanc_h:'دسترسی به گوگل، گیت‌هاب، npm و سرویس‌های جغرافیایی مسدود', dns_antiprov:'ارائه‌دهندهٔ ضدتحریم', dns_custom:'DNS سفارشی (اگر سفارشی)', dns_local:'DNS محلی', dns_local_h:'حل برخی نام‌ها روی دستگاه', dns_localip:'آی‌پی DNS محلی', dns_localport:'پورت DNS محلی', dns_fake:'Fake DNS', dns_fake_h:'اتصال سریع‌تر، تأخیر کمتر', dns_fakeip:'بازهٔ Fake DNS', dns_log:'سطح لاگ',
+    lbl_path:'مسیر حمل‌ونقل', lbl_grpcmode:'حالت gRPC', lbl_frag:'تکه‌تکه‌سازی TLS (عبور از DPI)', frag_off:'خاموش', frag_custom:'سفارشی', frag_len:'طول فرگمنت', frag_int:'فاصله فرگمنت', frag_pkt:'بسته‌های فرگمنت', lbl_proxyip:'PROXYIP (پروکسی معکوس، اختیاری)', lbl_chain:'پراکسی زنجیره‌ای / آی‌پی ثابت (اختیاری)', chain_test:'تست', lbl_uuid:'UUID (در کانفیگ‌های شما)',
+    set_adv:'دامنه‌ها، ECH و اشتراک', hosts_h:'دامنه‌ها (HOST)', hosts_help:'هر دامنه در یک خط. خط اول دامنهٔ اصلی است. ابتدا هرکدام را به Worker وصل کنید.', hosts_check:'بررسی سلامت', adv_h2:'ECH و مرکزی', ech_sni:'ECH SNI', ech_dns:'ECH DoH', central_api:'API مرکزی (اختیاری)',
+    sub_naming:'اشتراک', sub_name:'نام اشتراک', sub_int:'فاصله به‌روزرسانی (ساعت)', sub_api:'API تبدیل اشتراک', subcfg:'مجموعه قوانین مسیریابی (آدرس .ini)',
+    rules_h:'قوانین مسیریابی سفارشی', rules_help:'هر قانون در یک خط: TYPE,value,OUTBOUND (DIRECT / REJECT / PROXY). نیازمند روشن‌بودن مسیریابی.', rules_add:'+ افزودن',
+    preset_h:'قوانین آماده', bp_cn:'عبور چین', bp_cn_h:'سایت‌ها/آی‌پی‌های چین مستقیم', bp_ru:'عبور روسیه', bp_ru_h:'سایت‌ها/آی‌پی‌های روسیه مستقیم', bk_malware:'مسدودسازی بدافزار', bk_phishing:'مسدودسازی فیشینگ', bk_crypto:'مسدودسازی ماینر', bk_geo_h:'نیازمند geodata در کلاینت',
+    copied:'در کلیپ‌بورد کپی شد'
+  }
+};
+
+let lang = localStorage.getItem('nova-lang') || 'en';
+const t = (k) => (I18N[lang] && I18N[lang][k]) || (I18N.en[k]) || k;
+
+/* ============================================================================
+   MOCK DATA — replace each array with a real /admin API response.
+   Every renderer below reads from here, so wiring up the backend is a 1:1 swap.
+   ========================================================================== */
+const MOCK = {
+  kpis: [
+    { id:'network', icon:'globe',   label:'kpi_network', value:'Frankfurt, DE', sub:'kpi_network_sub', chip:'healthy', chipKind:'ok' },
+    { id:'storage', icon:'db',      label:'kpi_storage', value:'Connected',     sub:'kpi_storage_sub', chip:'online',  chipKind:'ok' },
+    { id:'worker',  icon:'cpu',     label:'kpi_worker',  value:'18,420 / 100k', sub:'kpi_worker_sub',  meter:18,       chipKind:'info', chip:'18%' },
+    { id:'traffic', icon:'pulse',   label:'kpi_traffic', traffic:{down:'4.2 GB',up:'0.9 GB'}, sub:'kpi_traffic_sub', chip:'live', chipKind:'info' },
+  ],
+  policy: [
+    { key:'p_ports', on:true },{ key:'p_fragment', on:true },
+    { key:'p_ech', on:true },{ key:'p_ipv6', on:true },{ key:'p_quic', on:true },
+    { key:'p_domestic', on:true },{ key:'p_adblock', on:true },{ key:'p_routing', on:false },
+  ],
+  clients: [
+    { name:'Hiddify',  pill:'iOS · Android', color:'#7c5cff', rec:true },
+    { name:'Karing',   pill:'iOS · Android', color:'#16a34a', rec:true },
+    { name:'v2rayNG',  pill:'Android',       color:'#2563eb', rec:false },
+    { name:'FlClash',  pill:'Android',       color:'#0ea5c4', rec:false },
+    { name:'sing-box', pill:'iOS · Android', color:'#475569', rec:false },
+  ],
+  formats: [
+    { name:'Auto', target:'auto' },{ name:'Base64', target:'b64' },{ name:'Clash', target:'clash' },
+    { name:'sing-box', target:'singbox' },{ name:'Surge', target:'surge' },{ name:'Quantumult X', target:'quanx' },
+  ],
+  routing: [
+    { key:'r_routing', on:true },{ key:'r_domestic', on:true },{ key:'r_geoip', on:true },
+    { key:'r_geosite', on:true },{ key:'r_adblock', on:true },{ key:'r_porn', on:false },
+  ],
+  isp: [
+    { name:'MCI (Hamrah-e Aval)', asn:'197207', count:54 },
+    { name:'Irancell', asn:'44244', count:41 },
+    { name:'Rightel', asn:'57218', count:33 },
+    { name:'Shatel', asn:'31549', count:29 },
+    { name:'ParsOnline', asn:'16322', count:24 },
+    { name:'MobinNet', asn:'50810', count:19 },
+    { name:'AsiaTech', asn:'43754', count:15 },
+  ],
+  security: [
+    { key:'s_tls', on:true },{ key:'s_ech', on:true },{ key:'s_0rtt', on:false },{ key:'s_rp', on:false },{ key:'s_scv', on:false },
+  ],
+  activity: [
+    { ev:'ev_fetch',  icon:'down', actor:'client', ip:'5.22.18.x',   time:'2m',  st:'st_ok',      kind:'ok' },
+    { ev:'ev_policy', icon:'shield',actor:'admin',  ip:'89.40.12.x',  time:'2m',  st:'st_applied', kind:'info' },
+    { ev:'ev_save',   icon:'save', actor:'admin',   ip:'89.40.12.x',  time:'14m', st:'st_ok',      kind:'ok' },
+    { ev:'ev_login',  icon:'key',  actor:'admin',   ip:'89.40.12.x',  time:'14m', st:'st_auth',    kind:'ok' },
+    { ev:'ev_warp',   icon:'wifi', actor:'system',  ip:'—',           time:'1h',  st:'st_applied', kind:'info' },
+    { ev:'ev_user',   icon:'user', actor:'admin',   ip:'89.40.12.x',  time:'3h',  st:'st_created', kind:'info' },
+  ],
+  users: [
+    { name:'Sara',  quota:'50 GB', used:'31 GB', expiry:'2026-07-12', on:true },
+    { name:'Reza',  quota:'∞',     used:'8 GB',  expiry:'—',          on:true },
+    { name:'Guest', quota:'10 GB', used:'10 GB', expiry:'2026-06-10', on:false },
+  ],
+};
+
+/* ---- tiny inline icon set (kept minimal, monochrome, enterprise) ---- */
+const ICON = {
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  db:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+  cpu:'<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/>',
+  pulse:'<path d="M3 12h4l3 8 4-16 3 8h4"/>',
+  down:'<path d="M12 5v14M19 12l-7 7-7-7"/>', shield:'<path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/>',
+  save:'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/>',
+  key:'<path d="M21 2l-2 2m-7.6 7.6a5 5 0 1 0-1.4 1.4l2.5 2.5L14 17l2-2 2 2 2-2-2.5-2.5z"/>',
+  wifi:'<path d="M5 12a7 7 0 0 1 14 0"/><path d="M2 12a10 10 0 0 1 20 0"/><circle cx="12" cy="12" r="2"/>',
+  user:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+};
+const svg = (k)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]||''}</svg>`;
+const $ = (s)=>document.querySelector(s);
+const $$ = (s)=>document.querySelectorAll(s);
+
+/* ============================================================================
+   RENDERERS — each maps a MOCK array into reusable components.
+   ========================================================================== */
+function renderKPIs(){
+  $('#kpi-grid').innerHTML = MOCK.kpis.map(k=>{
+    const val = k.traffic
+      ? `<div class="kpi-traffic"><span class="u dn">↓ ${k.traffic.down}</span><span class="u up">↑ ${k.traffic.up}</span></div>`
+      : `<div class="kpi-val">${k.value}</div>`;
+    const meter = k.meter!=null ? `<div class="meter"><i style="width:${k.meter}%"></i></div>` : '';
+    return `<div class="kpi">
+      <div class="kpi-top"><div class="kpi-ic">${svg(k.icon)}</div><div class="lbl">${t(k.label)}</div>
+        <span class="chip ${k.chipKind}"><span class="dot"></span>${I18N[lang][k.chip]?t(k.chip):k.chip}</span></div>
+      ${val}<div class="kpi-sub">${t(k.sub)}</div>${meter}</div>`;
+  }).join('');
+}
+function policyToggleRow(p){
+  return `<div class="policy-row ${p.on?'on':''}" data-policy="${p.key}">
+    <div class="meta"><div class="nm">${t(p.key)}</div><div class="ds">${t(p.key+'_d')}</div></div>
+    <span class="st">${p.on?t('status_on'):t('status_off')}</span>
+    <div class="sw ${p.on?'on':''}"><span class="k"></span></div></div>`;
+}
+function renderPolicy(){
+  $('#policy-rows').innerHTML = MOCK.policy.map(policyToggleRow).join('');
+  const on = MOCK.policy.filter(p=>p.on).length, total = MOCK.policy.length;
+  $('#policy-summary').textContent = t('policy_summary').replace('{n}',on).replace('{t}',total);
+  const allOn = on===total;
+  const badge = $('#policy-badge'); badge.className = 'chip '+(allOn?'ok':'warn');
+  $('#policy-badge-txt').textContent = allOn ? t('policy_active') : (on+'/'+total);
+}
+const evLabel = (a)=> a.ev ? t(a.ev) : (a.title||'');
+function renderActivity(target, limit){
+  const items = MOCK.activity.slice(0, limit||MOCK.activity.length).map(a=>`
+    <div class="activity">
+      <div class="ai">${svg(a.icon)}</div>
+      <div class="ab"><div class="ttl">${evLabel(a)}</div>
+        <div class="mt"><span>${a.actor}</span><span>·</span><span>${a.ip}</span></div></div>
+      <div class="tm">${a.time}</div></div>`).join('');
+  $(target).innerHTML = items;
+}
+function renderAudit(){
+  $('#audit-body').innerHTML = MOCK.activity.map(a=>`
+    <tr><td>${a.time} ago</td><td class="uid">${evLabel(a)}</td><td>${a.actor}</td><td><code>${a.ip}</code></td>
+    <td><span class="chip ${a.kind}"><span class="dot"></span>${t(a.st)}</span></td></tr>`).join('');
+}
+/* ---- Client apps: per-app config (Import deep-link + QR + store links) ----
+   Each app needs a specific subscription format; the deep link + QR carry that exact URL,
+   built from the live token (or the mock token in preview). Mirrors the original panel. */
+const qrIco = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="21" y2="14"/><line x1="14" y1="21" x2="21" y2="21"/><line x1="17" y1="14" x2="17" y2="21"/></svg>';
+const CLIENTS = [
+  { name:'Hiddify',  color:'#7c5cff', rec:true,  fmt:'b64',   deep:u=>'hiddify://import/'+u,                                          ios:'https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532', and:'https://play.google.com/store/apps/details?id=app.hiddify.com' },
+  { name:'Karing',   color:'#16a34a', rec:true,  fmt:'clash', deep:u=>'karing://install-config?url='+encodeURIComponent(u)+'&name=Nova', ios:'https://apps.apple.com/us/app/karing/id6472431552', and:'https://github.com/KaringX/karing/releases' },
+  { name:'v2rayNG',  color:'#2563eb', rec:false, fmt:'b64',   deep:u=>'v2rayng://install-config?url='+encodeURIComponent(u),           and:'https://github.com/2dust/v2rayNG/releases' },
+  { name:'FlClash',  color:'#0ea5c4', rec:false, fmt:'clash', deep:u=>'clash://install-config?url='+encodeURIComponent(u),             and:'https://github.com/chen08209/FlClash/releases' },
+];
+function subFor(fmt){ const tok=((STATE.config||{}).optimizedSubGeneration||{}).TOKEN||''; return location.origin+'/sub?token='+tok+(fmt && fmt!=='auto' ? '&'+fmt : ''); }
+function clientCard(c){
+  const sub=subFor(c.fmt), esc=sub.replace(/"/g,'&quot;');
+  const stores=[ c.ios? `<a class="btn ghost sm" href="${c.ios}" target="_blank" rel="noopener">iOS</a>` : '',
+                 c.and? `<a class="btn ghost sm" href="${c.and}" target="_blank" rel="noopener">${t('android')}</a>` : '' ].join('');
+  return `<div class="appcard${c.rec?' rec':''}">
+    <div class="appcard-h"><span class="ic" style="background:${c.color}">${c.name[0].toUpperCase()}</span><span class="nm">${c.name}</span>${c.rec?`<span class="chip info rec-badge" style="font-size:9px;padding:1px 7px">${t('recommended')}</span>`:''}</div>
+    <div class="appcard-qr"><div data-qrgen="${esc}" data-qr-url="${esc}" data-qr-name="${c.name}" title="${t('qr')}"></div></div>
+    <div class="appcard-acts">
+      <a class="btn primary sm" href="${c.deep(sub)}" data-import-sub="${esc}">${t('import')}</a>
+      ${stores ? `<div class="appcard-stores">${stores}</div>` : ''}
+    </div></div>`;
+}
+function renderClients(){
+  const html=CLIENTS.map(clientCard).join('');
+  const a=document.getElementById('dash-clients'); if(a) a.innerHTML=html;
+  const b=document.getElementById('clients-list'); if(b) b.innerHTML='<div class="appgrid">'+html+'</div>';
+  // render a live QR into each card (clickable to enlarge via the modal)
+  document.querySelectorAll('[data-qrgen]').forEach(el=>{ el.innerHTML=''; if(window.QRCode){ try{ new QRCode(el,{text:el.getAttribute('data-qrgen'),width:122,height:122,correctLevel:QRCode.CorrectLevel.M}); }catch(e){} } });
+}
+function showQR(url,name){
+  document.getElementById('qrm-title').textContent=name||'QR';
+  document.getElementById('qrm-link').textContent=url;
+  const box=document.getElementById('qrm-box'); box.innerHTML='';
+  if(window.QRCode){ new QRCode(box, {text:url, width:200, height:200, correctLevel:QRCode.CorrectLevel.M}); }
+  else { box.innerHTML='<div style="padding:16px;color:#000;font-size:11px;word-break:break-all">'+url+'</div>'; }
+  document.getElementById('qrm-copy').onclick=()=>copy(url);
+  document.getElementById('qrmodal').classList.add('on');
+}
+/* ---- Contextual help / onboarding (the top-bar "?" opens help for the current page) ---- */
+const HELP = {
+  en: {
+    dashboard:`<p>Your control center. The cards up top show network, storage, worker, and traffic status at a glance.</p>
+      <h5>Get connected</h5>
+      <ol><li>Pick a <b>Resilience policy</b> and press <b>Apply policy</b> (one tap turns on the best anti-filtering combo).</li>
+      <li>Copy your <b>subscription link</b> or scan its <b>QR</b>.</li>
+      <li>Under <b>Open in app</b>, tap a client (Hiddify, Karing, v2rayNG, FlClash) to import in one tap, then connect.</li></ol>
+      <div class="tip">Everything else in the menu is optional tuning. Defaults work for most people.</div>`,
+    distribution:`<p>Hand out and import your configs.</p>
+      <h5>Subscription link</h5><p>One link with all your servers. <b>Copy</b> it into any proxy app, or scan the <b>QR</b>.</p>
+      <h5>Open in app</h5><p>Each client card has a one-tap <b>Import</b>, a visible <b>QR</b>, and App Store / Android links. The card carries the exact config format that app needs.</p>
+      <h5>Subscription formats</h5><p>The same servers in each format (Auto, Base64, Clash, sing-box, Surge…). Pick the one your app understands.</p>
+      <h5>Free-service notice</h5><p>A labelled node is baked into every config so users know it is the free Nova service. It is fixed in the worker and cannot be removed by a reseller.</p>`,
+    network:`<p>These toggles are baked into every Clash and sing-box config: routing, Iran-direct bypass, ad and adult blocking, secure and anti-sanction DNS, WARP, and your own rules.</p>
+      <h5>Secure DNS</h5><p>Turn on DNS-over-HTTPS and copy <b>your private DoH endpoint</b> to use it in a browser or client. The <b>Test</b> button runs a live lookup to confirm it works.</p>
+      <h5>WARP</h5><p>Adds a Cloudflare WireGuard outbound. Register an account, optionally apply a WARP+ license (it is verified, not just saved). If the default endpoint is blocked, pick an alternative from the <b>Endpoint</b> list.</p>
+      <div class="tip">Press <b>Save</b> after any change, then reconnect in the app for it to take effect.</div>`,
+    cleanips:`<p>Controls which Cloudflare IPs your configs use.</p>
+      <ul><li><b>Smart (per-ISP):</b> serves each user the best IPs for their operator (MCI, Irancell, Shatel…).</li>
+      <li><b>Custom:</b> paste your own IP list.</li>
+      <li><b>Random:</b> random Cloudflare IPs.</li></ul>
+      <h5>Speed test</h5><p>The in-browser test pings many Cloudflare IPs from <b>your</b> device, scores them by latency, jitter and loss, and keeps the fastest. Use it when Smart mode is not giving good speeds.</p>`,
+    users:`<p>Give each person their own subscription link with a data quota and expiry.</p>
+      <h5>Add a user</h5><p>Press <b>+ Add user</b> (it saves automatically). Set the <b>Name</b>, <b>Quota</b> in GB (0 = unlimited), and an <b>Expiry</b> date.</p>
+      <h5>Per-user links</h5><p>Each user has their own secret link. <b>Copy</b> sends it to them to paste into a proxy app, <b>QR</b> shows a code they can scan straight into the app, and <b>Open</b> previews it in a browser. They import it once and get every server.</p>
+      <h5>Cutoff</h5><p>Turn a user <b>off</b>, or let their quota or date run out, and their link stops working (the worker returns 403). The row shows used data and the ↑ up / ↓ down split.</p>
+      <div class="tip">Multi-user turns on automatically once you have at least one user.</div>`,
+    settings:`<p>The technical settings: protocol (VLESS / Trojan / Shadowsocks), transport, TLS fingerprint, your domains (HOST), UUID, and DPI-evasion options like TLS fragment and ECH.</p>
+      <h5>Kill switch</h5><p>Emergency stop. While on, every proxy connection and subscription fetch is refused, but this panel stays reachable so you can switch it back off. Use it if your service is being abused.</p>
+      <h5>Backup &amp; maintenance</h5><p><b>Export</b> all settings to a file (keep it private, it holds secrets) or <b>Import</b> to restore. <b>Factory reset</b> wipes everything except your panel password.</p>
+      <div class="tip">Defaults are good for most people. Change protocol/transport only if you know what you need (gRPC/XHTTP need a custom domain).</div>`,
+    activity:`<p>Recent activity on your proxy: subscription fetches, setting changes, logins, WARP events, and errors, each with the time, country, and IP. Use it to confirm changes landed and to spot anything unexpected.</p>`,
+    notifications:`<h5>Worker requests, live status</h5>
+      <p>By default this card shows an <b>estimate</b>. To display the <b>real</b> number of requests your worker has served today (Cloudflare's free plan allows 100,000/day), connect a read-only Cloudflare API token:</p>
+      <ol>
+        <li>In the Cloudflare dashboard, open <b>Workers &amp; Pages</b> and copy your <b>Account ID</b> (shown in the right sidebar, also on any domain's Overview page).</li>
+        <li>Go to <b>My Profile → API Tokens → Create Token → Create Custom Token</b>.</li>
+        <li>Add one permission: <b>Account → Account Analytics → Read</b>. Nothing else is needed.</li>
+        <li>Under <b>Account Resources</b>, select your account. Create the token and copy it.</li>
+        <li>Back here, paste the <b>Account ID</b> and <b>API token</b>, then press <b>Connect</b>. The chip flips from Estimated to <b>Live</b> and shows real counts.</li>
+      </ol>
+      <div class="tip">The token is read-only, it can only read analytics, never change anything. <b>Disconnect</b> removes the key and returns to the estimate.</div>
+      <h5>Telegram alerts</h5>
+      <p>Enter your bot token and your numeric <b>Chat / User ID</b>, then <b>Save</b>. This installs the webhook tied to the bot, so the bot can message you and you can manage it. Get your numeric ID from <code>@userinfobot</code> on Telegram.</p>`
+  },
+  fa: {
+    dashboard:`<p>مرکز کنترل شما. کارت‌های بالا وضعیت شبکه، ذخیره‌سازی، ورکر و ترافیک را یک‌نگاهی نشان می‌دهند.</p>
+      <h5>اتصال</h5>
+      <ol><li>یک <b>سیاست مقاومت</b> را انتخاب کنید و <b>اعمال سیاست</b> را بزنید (با یک ضربه بهترین ترکیب ضدفیلتر روشن می‌شود).</li>
+      <li><b>لینک اشتراک</b> را کپی کنید یا <b>QR</b> آن را اسکن کنید.</li>
+      <li>در بخش <b>باز کردن در برنامه</b>، روی یک کلاینت (هیدیفای، کارینگ، v2rayNG، FlClash) بزنید تا یک‌ضربه وارد شود، بعد وصل شوید.</li></ol>
+      <div class="tip">بقیهٔ گزینه‌های منو اختیاری‌اند. پیش‌فرض‌ها برای بیشتر کاربران مناسب است.</div>`,
+    distribution:`<p>توزیع و وارد کردن کانفیگ‌ها.</p>
+      <h5>لینک اشتراک</h5><p>یک لینک شامل همهٔ سرورها. آن را در هر برنامهٔ پراکسی <b>کپی</b> کنید یا <b>QR</b> را اسکن کنید.</p>
+      <h5>باز کردن در برنامه</h5><p>هر کارت کلاینت یک <b>Import</b> یک‌ضربه‌ای، یک <b>QR</b> قابل‌مشاهده و لینک‌های App Store / اندروید دارد. کارت دقیقاً فرمت موردنیاز همان برنامه را می‌سازد.</p>
+      <h5>فرمت‌های اشتراک</h5><p>همان سرورها در هر فرمت (خودکار، Base64، Clash، sing-box، Surge…). همان را که برنامه‌تان می‌فهمد انتخاب کنید.</p>
+      <h5>اعلان سرویس رایگان</h5><p>یک نود برچسب‌دار در هر کانفیگ قرار می‌گیرد تا کاربران بدانند سرویس رایگان نوا است. این مورد در ورکر ثابت است و فروشنده نمی‌تواند حذفش کند.</p>`,
+    network:`<p>این کلیدها در هر کانفیگ Clash و sing-box قرار می‌گیرند: مسیریابی، عبور مستقیم سایت‌های ایران، مسدودسازی تبلیغات و محتوای بزرگسال، DNS امن و ضدتحریم، WARP و قوانین خودتان.</p>
+      <h5>DNS امن</h5><p>DNS-over-HTTPS را روشن کنید و <b>نشانی DoH خصوصی</b> خود را برای استفاده در مرورگر یا کلاینت کپی کنید. دکمهٔ <b>تست</b> یک جست‌وجوی زنده انجام می‌دهد تا کارکردش تأیید شود.</p>
+      <h5>WARP</h5><p>یک خروجی WireGuard کلودفلر اضافه می‌کند. حساب بسازید و در صورت تمایل یک لایسنس WARP+ اعمال کنید (که واقعاً بررسی می‌شود، نه فقط ذخیره). اگر اندپوینت پیش‌فرض مسدود بود، از فهرست <b>اندپوینت</b> یکی را انتخاب کنید.</p>
+      <div class="tip">بعد از هر تغییر <b>ذخیره</b> را بزنید و در برنامه دوباره وصل شوید تا اعمال شود.</div>`,
+    cleanips:`<p>تعیین می‌کند کانفیگ‌ها از کدام آی‌پی‌های کلودفلر استفاده کنند.</p>
+      <ul><li><b>هوشمند (هر اپراتور):</b> به هر کاربر بهترین آی‌پی‌های اپراتورش را می‌دهد (همراه اول، ایرانسل، شاتل…).</li>
+      <li><b>سفارشی:</b> فهرست آی‌پی خودتان را بگذارید.</li>
+      <li><b>تصادفی:</b> آی‌پی‌های تصادفی کلودفلر.</li></ul>
+      <h5>تست سرعت</h5><p>تست داخل مرورگر، آی‌پی‌های زیادی را از دستگاه <b>شما</b> پینگ می‌کند، براساس تأخیر، پراکندگی و افت امتیاز می‌دهد و سریع‌ترین‌ها را نگه می‌دارد. وقتی حالت هوشمند سرعت خوبی نمی‌دهد از آن استفاده کنید.</p>`,
+    users:`<p>به هر نفر یک لینک اشتراک اختصاصی با سهمیهٔ حجم و تاریخ انقضا بدهید.</p>
+      <h5>افزودن کاربر</h5><p><b>+ افزودن کاربر</b> را بزنید (خودکار ذخیره می‌شود). <b>نام</b>، <b>سهمیه</b> برحسب گیگابایت (۰ = نامحدود) و تاریخ <b>انقضا</b> را تنظیم کنید.</p>
+      <h5>لینک هر کاربر</h5><p>هر کاربر لینک مخفی خودش را دارد. <b>کپی</b> آن را برایشان می‌فرستد تا در برنامهٔ پراکسی بچسبانند، <b>QR</b> کدی نشان می‌دهد که مستقیم در برنامه اسکن می‌کنند، و <b>باز کردن</b> آن را در مرورگر پیش‌نمایش می‌دهد. یک‌بار وارد می‌کنند و همهٔ سرورها را می‌گیرند.</p>
+      <h5>قطع دسترسی</h5><p>کاربر را <b>خاموش</b> کنید یا بگذارید سهمیه/تاریخش تمام شود تا لینکش از کار بیفتد (ورکر ۴۰۳ برمی‌گرداند). ردیف، حجم مصرفی و تفکیک ↑ ارسال / ↓ دریافت را نشان می‌دهد.</p>
+      <div class="tip">با داشتن حداقل یک کاربر، حالت چندکاربره خودکار روشن می‌شود.</div>`,
+    settings:`<p>تنظیمات فنی: پروتکل (VLESS / Trojan / Shadowsocks)، ترنسپورت، اثرانگشت TLS، دامنه‌ها (HOST)، UUID و گزینه‌های دور زدن DPI مثل TLS fragment و ECH.</p>
+      <h5>دکمهٔ توقف اضطراری</h5><p>توقف اضطراری. وقتی روشن باشد، هر اتصال و دریافت اشتراک رد می‌شود، اما این پنل باز می‌ماند تا بتوانید دوباره خاموشش کنید. اگر سرویس‌تان مورد سوءاستفاده است از آن استفاده کنید.</p>
+      <h5>پشتیبان‌گیری و نگهداری</h5><p><b>خروجی</b> همهٔ تنظیمات را در فایل می‌گیرد (محرمانه نگه دارید، شامل کلیدهاست) و <b>ورودی</b> بازیابی می‌کند. <b>بازنشانی کارخانه‌ای</b> همه‌چیز جز رمز پنل را پاک می‌کند.</p>
+      <div class="tip">پیش‌فرض‌ها برای بیشتر کاربران خوب است. پروتکل/ترنسپورت را فقط در صورت نیاز تغییر دهید (gRPC/XHTTP به دامنهٔ اختصاصی نیاز دارد).</div>`,
+    activity:`<p>فعالیت اخیر پراکسی شما: دریافت اشتراک، تغییر تنظیمات، ورودها، رویدادهای WARP و خطاها، هرکدام با زمان، کشور و آی‌پی. برای اطمینان از اعمال تغییرات و دیدن موارد غیرعادی از آن استفاده کنید.</p>`,
+    notifications:`<h5>درخواست‌های ورکر، وضعیت زنده</h5>
+      <p>این کارت به‌طور پیش‌فرض یک <b>تخمین</b> نشان می‌دهد. برای نمایش تعداد <b>واقعی</b> درخواست‌هایی که ورکر امروز سرو کرده (پلن رایگان کلودفلر روزانه ۱۰۰٬۰۰۰ تا می‌دهد)، یک توکن فقط‌خواندنی کلودفلر وصل کنید:</p>
+      <ol>
+        <li>در داشبورد کلودفلر، <b>Workers &amp; Pages</b> را باز کنید و <b>Account ID</b> خود را کپی کنید (در نوار کناری راست، و در صفحهٔ Overview هر دامنه هم هست).</li>
+        <li>به <b>My Profile → API Tokens → Create Token → Create Custom Token</b> بروید.</li>
+        <li>فقط یک دسترسی اضافه کنید: <b>Account → Account Analytics → Read</b>. به چیز دیگری نیاز نیست.</li>
+        <li>در بخش <b>Account Resources</b> حساب خود را انتخاب کنید. توکن را بسازید و کپی کنید.</li>
+        <li>این‌جا <b>Account ID</b> و <b>توکن API</b> را بچسبانید و <b>اتصال</b> را بزنید. نشان از «تخمینی» به <b>زنده</b> تغییر می‌کند و عدد واقعی را نشان می‌دهد.</li>
+      </ol>
+      <div class="tip">توکن فقط‌خواندنی است و فقط آمار را می‌بیند، چیزی را تغییر نمی‌دهد. <b>قطع اتصال</b> کلید را حذف می‌کند و به تخمین برمی‌گردد.</div>
+      <h5>اعلان‌های تلگرام</h5>
+      <p>توکن ربات و <b>شناسهٔ عددی چت/کاربر</b> خود را وارد کنید و <b>ذخیره</b> را بزنید. این کار وب‌هوک متصل به ربات را نصب می‌کند تا ربات بتواند به شما پیام دهد و شما آن را مدیریت کنید. شناسهٔ عددی خود را از <code>@userinfobot</code> در تلگرام بگیرید.</p>`
+  }
+};
+function openHelp(){
+  const dict=HELP[lang]||HELP.en; const body=dict[currentView]||dict.dashboard;
+  const navKey={ dashboard:'nav_dashboard', distribution:'nav_distribution', network:'nav_network', cleanips:'nav_cleanips', activity:'nav_activity', settings:'nav_settings', notifications:'nav_notifications', users:'nav_users', guide:'nav_guide' }[currentView]||'nav_dashboard';
+  document.getElementById('help-title').textContent=(lang==='fa'?'راهنما: ':'Help: ')+t(navKey);
+  document.getElementById('help-body').innerHTML=body;
+  document.getElementById('helpmodal').classList.add('on');
+}
+const FMT_DESC = { auto:'Any app', b64:'v2rayNG, NekoBox', clash:'Clash, Mihomo', singbox:'sing-box', surge:'Surge', quanx:'Quantumult X' };
+function renderFormats(){
+  const box=$('#formats-grid'); if(!box) return;
+  box.innerHTML = MOCK.formats.map(f=>`
+    <div class="fmt-card">
+      <div class="fmt-info"><div class="fmt-name">${f.name}</div><div class="fmt-sub">${FMT_DESC[f.target]||('?'+f.target)}</div></div>
+      <div class="fmt-act">
+        <button class="btn ghost sm" data-copy-fmt="${f.target}">${t('copy')}</button>
+        <button class="btn ghost sm" data-qr-fmt="${f.target}" data-qr-fmtname="${f.name}">${t('qr')}</button>
+      </div>
+    </div>`).join('');
+}
+function simpleToggleRows(arr){
+  return arr.map(r=>`<div class="field-row" data-toggle="${r.key}">
+    <div class="l">${t(r.key)}${I18N[lang][r.key+'_d']?`<small>${t(r.key+'_d')}</small>`:''}</div>
+    <div class="sw ${r.on?'on':''}"><span class="k"></span></div></div>`).join('');
+}
+function renderNetwork(){
+  $('#routing-rows').innerHTML = `<div class="card-pad" style="padding-top:4px;padding-bottom:4px">${simpleToggleRows(MOCK.routing)}</div>`;
+  $('#isp-body').innerHTML = MOCK.isp.map(i=>`<tr><td class="uid">${i.name}</td><td><code>AS${i.asn}</code></td>
+    <td><span class="chip ok"><span class="dot"></span>${i.count}</span></td></tr>`).join('');
+}
+function renderSettings(){ $('#security-rows').innerHTML = simpleToggleRows(MOCK.security); }
+/* ---- Users: full editable CRUD, persisted to /admin/users.json ---- */
+function renderUsers(){
+  const box=document.getElementById('users-body2'); if(!box) return;
+  const arr=STATE.users||[], usage=STATE.usage||{};
+  const cnt=document.getElementById('nav-users-count'); if(cnt) cnt.textContent=arr.length;
+  const mu=document.getElementById('t2-multiuser'); if(mu) mu.classList.toggle('on', STATE.multiUser===true);
+  updateMultiUserUI();
+  if(!arr.length){ box.innerHTML='<p style="color:var(--mu);font-size:13px;padding:8px 0">'+(lang==='fa'?'هنوز کاربری نیست. یکی اضافه کنید.':'No users yet. Add one.')+'</p>'; return; }
+  const io=STATE.usageIO||{};
+  box.innerHTML=arr.map((u,i)=>{ const used=usage[u.id]||0, q=u.quotaBytes||0; const usedTxt=fmtBytes(used)+(q?(' / '+fmtBytes(q)):' / ∞');
+    const uio=io[u.id]||{}; const ioTxt=(uio.up||uio.down)?(' &nbsp; ↑ '+fmtBytes(uio.up)+' &nbsp; ↓ '+fmtBytes(uio.down)):'';
+    return `<div class="urow2">
+      <div class="uf grow"><label>${t('col_name')}</label><input class="inp" data-un="${i}" value="${String(u.name||'').replace(/"/g,'&quot;')}"></div>
+      <div class="uf" style="width:96px"><label>${t('col_quota')} (GB)</label><input class="inp" type="number" min="0" data-uq="${i}" value="${q?Math.round(q/1073741824):0}"></div>
+      <div class="uf" style="width:150px"><label>${t('col_expiry')}</label><input class="inp" type="date" data-ux="${i}" value="${u.expiry?String(u.expiry).slice(0,10):''}"></div>
+      <div class="uf"><label>${t('col_status')}</label><div class="sw${u.enabled!==false?' on':''}" data-ue="${i}"><span class="k"></span></div></div>
+      <div class="uf" style="margin-inline-start:auto"><label>&nbsp;</label><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn ghost sm" data-open-user="${u.token||''}" title="${t('open')}">${t('open')}</button><button class="btn ghost sm" data-copy-user="${u.token||''}">${t('copy')}</button><button class="btn ghost sm" data-qr-user="${u.token||''}" data-qr-uname="${String(u.name||'').replace(/"/g,'&quot;')}">${t('qr')}</button><button class="btn ghost sm" data-ud="${i}" title="${lang==='fa'?'حذف':'Remove'}" style="color:var(--dg)">✕</button></div></div>
+      <div class="used">${(lang==='fa'?'مصرف: ':'used: ')}${usedTxt}${ioTxt} &nbsp; <code>${String(u.tag||'').slice(0,10)}</code></div>
+    </div>`;
+  }).join('');
+}
+function uRid(){ try{ return crypto.randomUUID().replace(/-/g,''); }catch(e){ return Math.random().toString(16).slice(2)+Math.random().toString(16).slice(2); } }
+function collectUsers(){ const box=document.getElementById('users-body2'); if(!box) return; const arr=STATE.users||[];
+  box.querySelectorAll('[data-un]').forEach(el=>{ const u=arr[+el.dataset.un]; if(u) u.name=el.value.trim(); });
+  box.querySelectorAll('[data-uq]').forEach(el=>{ const u=arr[+el.dataset.uq]; if(u){ const g=Number(el.value)||0; u.quotaBytes=g>0?Math.round(g*1073741824):0; } });
+  box.querySelectorAll('[data-ux]').forEach(el=>{ const u=arr[+el.dataset.ux]; if(u) u.expiry=el.value||''; });
+  box.querySelectorAll('[data-ue]').forEach(el=>{ const u=arr[+el.dataset.ue]; if(u) u.enabled=el.classList.contains('on'); });
+}
+// Cloudflare KV is eventually consistent: a GET right after a write can return the old/empty
+// value for up to ~60s ("users vanish on refresh"). We mirror the last save to localStorage with
+// a timestamp; on load, within 120s, the cache is trusted over a differing/empty server read and
+// re-pushed to heal KV. This is the original panel's defense, ported on top of our worker GET fix.
+function readUsersCache(){ try{ return JSON.parse(localStorage.getItem('nova_users_cache')||'null'); }catch(e){ return null; } }
+function writeUsersCache(mu,users){ try{ localStorage.setItem('nova_users_cache', JSON.stringify({ t:Date.now(), mu:!!mu, users:users||[] })); }catch(e){} }
+async function loadUsersFromServer(){
+  let serverUsers=[], usage={}, usageIO={}, mu=false, parsed=false;
+  try{ const r=await fetch('/admin/users.json?_t='+Date.now(),{cache:'no-store'});
+    if(!(r.redirected || /\/login/.test(r.url))){ const d=await r.json(); serverUsers=Array.isArray(d.users)?d.users:[]; usage=d.usage||{}; usageIO=d.usageIO||{}; mu=d.multiUser===true; parsed=true; }
+  }catch(e){}
+  const c=readUsersCache();
+  if(c && Array.isArray(c.users) && (Date.now()-(c.t||0))<120000 && (!parsed || c.users.length!==serverUsers.length || JSON.stringify(c.users)!==JSON.stringify(serverUsers))){
+    serverUsers=c.users; mu=c.mu===true || c.users.length>0;
+    // heal KV with the cached copy (best-effort, fire-and-forget)
+    fetch('/admin/users.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({multiUser:mu, users:serverUsers})}).catch(()=>{});
+  }
+  return { users:serverUsers, usage, usageIO, multiUser:mu };
+}
+async function addUser(){ const _sw=document.getElementById('t2-multiuser'); if(!_sw || !_sw.classList.contains('on')){ toast(lang==='fa'?'ابتدا «چندکاربره» را روشن کنید':'Turn on Multi-user first to add users'); return; } collectUsers(); STATE.users=STATE.users||[]; STATE.users.push({ id:uRid(), name:'user'+(STATE.users.length+1), tag:uRid().slice(0,10), token:uRid()+uRid().slice(0,8), quotaBytes:0, expiry:'', enabled:true, created:new Date().toISOString() }); renderUsers(); if(LIVE) await saveUsers(); }
+function updateMultiUserUI(){
+  const sw=document.getElementById('t2-multiuser'); const on = !!(sw && sw.classList.contains('on'));
+  const btn=document.getElementById('users-add2');
+  if(btn){ btn.classList.toggle('is-disabled', !on); btn.setAttribute('aria-disabled', String(!on)); btn.title = on ? '' : (lang==='fa'?'برای افزودن کاربر، «چندکاربره» را روشن کنید':'Turn on Multi-user to add users'); }
+  const warn=document.getElementById('mu-warn'); const wt=warn && warn.querySelector('span');
+  if(warn){ warn.style.display='block';
+    if(wt) wt.textContent = on
+      ? (lang==='fa'?'حالت چندکاربره روشن است. هر نفر لینک اختصاصی خودش را دارد (باز کردن / کپی / QR). اشتراک اصلی شما هم کار می‌کند.':'Multi-user is on. Each person gets their own link (Open / Copy / QR). Your main subscription still works too.')
+      : (lang==='fa'?'حالت چندکاربره خاموش است؛ یک کانفیگ مشترک دارید. برای افزودن کاربر و دادن لینک اختصاصی به هر نفر، آن را روشن کنید.':'Multi-user is off, you have one shared config. Turn it on to add users and give each person their own link.');
+  }
+}
+async function deleteUser(i){ collectUsers(); (STATE.users||[]).splice(i,1); renderUsers(); if(LIVE) await saveUsers(); }
+async function saveUsers(){ collectUsers();
+  // Multi-user is explicit (the toggle only). It is NOT auto-enabled by adding users, because
+  // turning it on makes the worker reject the default/dashboard config (it has no per-user tag),
+  // which looked like "all configs stopped working".
+  const mu=document.getElementById('t2-multiuser').classList.contains('on'); STATE.multiUser=mu;
+  if(!LIVE){ writeUsersCache(mu, STATE.users); renderUsers(); return previewToast(); }
+  try{ const r=await fetch('/admin/users.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({multiUser:mu, users:STATE.users})});
+    if(r.redirected || /\/login/.test(r.url)){ toast(lang==='fa'?'نشست منقضی شد — دوباره وارد شوید':'Session expired — sign in again'); return; }
+    let j={}; try{ j=await r.json(); }catch(e){}
+    if(r.ok && j && j.success===true){ writeUsersCache(mu, STATE.users); const n=(typeof j.count==='number')?j.count:STATE.users.length; toast((lang==='fa'?'ذخیره و تأیید شد — ':'Saved & verified — ')+n+(lang==='fa'?' کاربر':(' user'+(n===1?'':'s')))); renderUsers(); }
+    else { toast('⚠️ '+((j&&j.error)||('HTTP '+r.status))); }
+  }catch(e){ toast('⚠️ '+e.message); } }
+
+/* ---- Worker requests: live Cloudflare status (connect / disconnect) ---- */
+function renderWorker(){
+  const u=((STATE.config||{}).CF||{}).Usage||{};
+  const tot=document.getElementById('u-total'), mx=document.getElementById('u-max'), bar=document.getElementById('u-bar'),
+        note=document.getElementById('u-note'), chip=document.getElementById('cf-chip'), chipTx=document.getElementById('cf-chip-tx');
+  if(!chip) return;
+  if(u && u.success===true && u.total!=null){
+    const max=u.max||100000, pct=Math.min(100,Math.round((u.total/max)*100));
+    if(tot) tot.textContent=nf(u.total); if(mx) mx.textContent=nf(max);
+    if(bar){ bar.style.width=pct+'%'; bar.style.background = pct<75?'var(--ok)':pct<90?'var(--wn)':'var(--dg)'; }
+    if(note) note.textContent=(lang==='fa'?'درخواست‌های امروز (واقعی، از Cloudflare)':'requests today (live, from Cloudflare)');
+    chip.className='chip ok'; if(chipTx){ chipTx.removeAttribute('data-i18n'); chipTx.textContent=lang==='fa'?'زنده':'Live'; }
+  } else if(LIVE){
+    if(tot) tot.textContent='—'; if(mx) mx.textContent=nf(100000);
+    if(bar){ bar.style.width='0%'; }
+    if(note) note.textContent=(lang==='fa'?'برای نمایش عدد واقعی، توکن Cloudflare را وصل کنید':'connect a Cloudflare token to show the real count');
+    chip.className='chip warn'; if(chipTx){ chipTx.removeAttribute('data-i18n'); chipTx.textContent=lang==='fa'?'تخمینی':'Estimated'; }
+  }
+}
+async function cfConnect(){
+  const msg=document.getElementById('cf-msg'); if(!LIVE) return previewToast();
+  const acc=(document.getElementById('cf-accid').value||'').trim(), tok=(document.getElementById('cf-token').value||'').trim();
+  if(!acc||!tok){ if(msg) msg.textContent=lang==='fa'?'شناسهٔ حساب و توکن را وارد کنید':'Enter Account ID and API token'; return; }
+  if(msg) msg.textContent=lang==='fa'?'در حال اتصال…':'Connecting…';
+  try{
+    const r=await fetch('/admin/cf.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({AccountID:acc, APIToken:tok})});
+    if(!r.ok){ if(msg) msg.textContent='⚠️ '+(lang==='fa'?'ذخیرهٔ کلید ناموفق بود':'could not save key'); return; }
+    const ur=await fetch('/admin/getCloudflareUsage?AccountID='+encodeURIComponent(acc)+'&APIToken='+encodeURIComponent(tok));
+    const u=await ur.json().catch(()=>null);
+    if(u && u.success){ STATE.config.CF=STATE.config.CF||{}; STATE.config.CF.Usage=u; renderWorker(); renderKPIs(); if(msg) msg.textContent=lang==='fa'?'وصل شد ✓':'Connected ✓'; }
+    else { if(msg) msg.textContent='⚠️ '+(lang==='fa'?'کلید ذخیره شد ولی آماری نیامد — توکن را بررسی کنید':'key saved but no stats — check the token'); }
+  }catch(e){ if(msg) msg.textContent='⚠️ '+e.message; }
+}
+async function cfDisconnect(){
+  const msg=document.getElementById('cf-msg'); if(!LIVE) return previewToast();
+  if(msg) msg.textContent=lang==='fa'?'در حال قطع…':'Disconnecting…';
+  try{
+    await fetch('/admin/cf.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init:true})});
+    if(STATE.config.CF) STATE.config.CF.Usage=null;
+    const a=document.getElementById('cf-accid'), tk=document.getElementById('cf-token'); if(a) a.value=''; if(tk) tk.value='';
+    renderWorker(); renderKPIs(); if(msg) msg.textContent=lang==='fa'?'قطع شد':'Disconnected';
+  }catch(e){ if(msg) msg.textContent='⚠️ '+e.message; }
+}
+/* ---- DoH endpoint (this worker's private resolver) ---- */
+function renderDoh(){ const el=document.getElementById('doh-url'); if(el) el.textContent=location.origin+'/dns-query'; }
+function renderDistQR(){ const el=document.getElementById('dist-qr'); if(!el || !window.QRCode) return; const url=STATE.subUrl||subFor('b64'); el.innerHTML=''; new QRCode(el, {text:url, width:138, height:138, correctLevel:QRCode.CorrectLevel.M}); }
+/* ---- Kill switch (global pause): borrowed from nahan, KV-backed via config.paused ---- */
+function renderKill(){ const on=((STATE.config||{}).paused===true);
+  const sw=document.getElementById('t2-kill'); if(sw) sw.classList.toggle('on', on);
+  const b=document.getElementById('kill-banner'); if(b) b.style.display = on ? 'flex' : 'none'; }
+async function toggleKill(){
+  const sw=document.getElementById('t2-kill'); const turnOn = !(sw && sw.classList.contains('on'));
+  if(turnOn && !confirm(lang==='fa'?'فعال‌سازی Kill switch همهٔ اتصال‌ها و اشتراک‌ها را متوقف می‌کند (پنل باز می‌ماند). ادامه می‌دهید؟':'Turning the kill switch on stops every connection and subscription fetch (the panel stays open). Continue?')){ renderKill(); return; }
+  if(!LIVE){ STATE.config=STATE.config||{}; STATE.config.paused=turnOn; renderKill(); return previewToast(); }
+  STATE.config.paused=turnOn;
+  const ok=await API.post('config.json', STATE.config);
+  if(ok){ renderKill(); toast(turnOn ? (lang==='fa'?'سرویس متوقف شد 🚨':'Service paused 🚨') : (lang==='fa'?'سرویس از سر گرفته شد ✓':'Service resumed ✓')); }
+  else { STATE.config.paused=!turnOn; renderKill(); toast(savedMsg(false)); }
+}
+async function dohTest(){ const el=document.getElementById('doh-result');
+  if(el){ el.style.color='var(--mu)'; el.textContent=(lang==='fa'?'در حال آزمایش…':'Testing…'); }
+  const t0=performance.now();
+  try{ const r=await fetch(location.origin+'/dns-query?name=cloudflare.com&type=A',{headers:{'Accept':'application/dns-json'},cache:'no-store'});
+    const j=await r.json().catch(()=>null); const ms=Math.round(performance.now()-t0);
+    const ans=(j&&Array.isArray(j.Answer))?j.Answer.filter(a=>a.type===1).map(a=>a.data):[];
+    if(r.ok && j && j.Status===0 && ans.length){ if(el){ el.style.color='var(--ok)'; el.textContent=(lang==='fa'?'✓ کار می‌کند: cloudflare.com → ':'✓ Working: cloudflare.com → ')+ans[0]+' ('+ms+'ms)'; } }
+    else if(r.ok && j && j.Status===0){ if(el){ el.style.color='var(--ok)'; el.textContent=(lang==='fa'?'✓ پاسخ DNS معتبر ':'✓ Valid DNS response ')+'('+ms+'ms)'; } }
+    else { if(el){ el.style.color='var(--dg)'; el.textContent='⚠️ '+(lang==='fa'?'پاسخی نیامد (HTTP ':'No DNS answer (HTTP ')+r.status+')'; } }
+  }catch(e){ if(el){ el.style.color='var(--dg)'; el.textContent='⚠️ '+e.message; } }
+}
+/* ---- Factory reset: wipe the DB to initial state, keep the panel password ---- */
+async function factoryReset(){
+  const msg=document.getElementById('reset-msg'); if(!LIVE) return previewToast();
+  const warn=lang==='fa'
+    ? 'بازنشانی کارخانه‌ای: همه‌چیز (تنظیمات، شبکه، IPها، کاربران، کلیدهای Cloudflare و تلگرام) جز رمز پنل پاک می‌شود و قابل بازگشت نیست. ادامه می‌دهید؟'
+    : 'Factory reset wipes everything (settings, network, IPs, users, Cloudflare and Telegram keys) except your panel password, and cannot be undone. Continue?';
+  if(!confirm(warn)) return;
+  if(msg) msg.textContent=lang==='fa'?'در حال بازنشانی…':'Resetting…';
+  const steps=[
+    ()=>fetch('/admin/init'),
+    ()=>fetch('/admin/cf.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init:true})}),
+    ()=>fetch('/admin/tg.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({init:true})}),
+    ()=>fetch('/admin/users.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({multiUser:false, users:[]})}),
+  ];
+  try{ for(const s of steps){ await s(); }
+    if(msg) msg.textContent=lang==='fa'?'انجام شد — بارگذاری مجدد…':'Done — reloading…';
+    setTimeout(()=>location.reload(), 1000);
+  }catch(e){ if(msg) msg.textContent='⚠️ '+(lang==='fa'?'بازنشانی ناقص ماند: ':'reset incomplete: ')+e.message; }
+}
+
+/* ---- Security: password change + 2FA (TOTP) ---- */
+function set2faUI(on){ const chip=document.getElementById('twofa-chip'), st=document.getElementById('twofa-state');
+  if(chip) chip.className='chip '+(on?'ok':'warn'); if(st) st.textContent= on? t('status_on') : t('status_off');
+  const off=document.getElementById('twofa-off'), setup=document.getElementById('twofa-setup'), onb=document.getElementById('twofa-on');
+  if(off) off.style.display = on?'none':'block'; if(setup) setup.style.display='none'; if(onb) onb.style.display = on?'block':'none'; }
+async function loadSecurity(){ if(!LIVE) return; try{ const s=await API.get('security/status'); set2faUI(s && s.twofa===true); }catch(e){} }
+async function changePassword(){ const msg=document.getElementById('pw-msg'); const cur=document.getElementById('pw-cur').value, nw=document.getElementById('pw-new').value;
+  if(!LIVE) return previewToast();
+  if((nw||'').length<6){ msg.textContent=lang==='fa'?'حداقل ۶ کاراکتر':'At least 6 characters'; return; }
+  msg.textContent=lang==='fa'?'در حال تغییر…':'Changing…';
+  try{ const r=await fetch('/admin/security/change-password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({current:cur,new:nw})}); let j={}; try{ j=await r.json(); }catch(e){}
+    if(r.ok && j && j.success!==false){ msg.textContent=lang==='fa'?'رمز تغییر کرد ✓':'Password changed ✓'; document.getElementById('pw-cur').value=''; document.getElementById('pw-new').value=''; }
+    else { msg.textContent='⚠️ '+((j&&j.error)||(lang==='fa'?'رمز فعلی اشتباه است':'Wrong current password')); }
+  }catch(e){ msg.textContent='⚠️ '+e.message; } }
+async function twofaStart(){ const msg=document.getElementById('twofa-msg'); if(msg) msg.textContent='';
+  if(!LIVE){ STATE.twofaSecret='DEMOKEYNOVA234567'; STATE.twofaOtp='otpauth://totp/Nova%20Proxy?secret=DEMOKEYNOVA234567&issuer=Nova'; document.getElementById('twofa-key').value=STATE.twofaSecret; document.getElementById('twofa-off').style.display='none'; document.getElementById('twofa-setup').style.display='block'; return; }
+  try{ const s=await API.get('security/2fa-setup'); STATE.twofaSecret=s.secret; STATE.twofaOtp=s.otpauth||('otpauth://totp/Nova?secret='+s.secret+'&issuer=Nova');
+    document.getElementById('twofa-key').value=s.secret||''; document.getElementById('twofa-off').style.display='none'; document.getElementById('twofa-setup').style.display='block';
+  }catch(e){ if(msg) msg.textContent='⚠️ '+e.message; } }
+async function twofaConfirm(){ const msg=document.getElementById('twofa-msg'); const code=(document.getElementById('twofa-code').value||'').trim();
+  if(!LIVE) return previewToast();
+  try{ const r=await fetch('/admin/security/2fa-enable',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secret:STATE.twofaSecret, code})}); let j={}; try{ j=await r.json(); }catch(e){}
+    if(r.ok && j && j.success===true){ toast(lang==='fa'?'۲FA فعال شد ✓':'2FA enabled ✓'); set2faUI(true); } else { msg.textContent='⚠️ '+((j&&j.error)||(lang==='fa'?'کد اشتباه است':'Wrong code')); }
+  }catch(e){ msg.textContent='⚠️ '+e.message; } }
+async function twofaDisable(){ const msg=document.getElementById('twofa-dmsg'); const code=(document.getElementById('twofa-dcode').value||'').trim();
+  if(!LIVE) return previewToast();
+  try{ const r=await fetch('/admin/security/2fa-disable',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})}); let j={}; try{ j=await r.json(); }catch(e){}
+    if(r.ok && j && j.success!==false){ toast(lang==='fa'?'۲FA خاموش شد':'2FA turned off'); set2faUI(false); } else { msg.textContent='⚠️ '+((j&&j.error)||(lang==='fa'?'کد اشتباه است':'Wrong code')); }
+  }catch(e){ msg.textContent='⚠️ '+e.message; } }
+
+/* ---- Backup & restore (config + network) ---- */
+async function backupExport(){ const msg=document.getElementById('backup-msg'); if(!LIVE) return previewToast(); msg.textContent=lang==='fa'?'در حال آماده‌سازی…':'Preparing…';
+  try{ const [c,n]=await Promise.all([API.get('config.json'), API.get('network-settings.json').catch(()=>({}))]);
+    const blob=new Blob([JSON.stringify({nova:1, exportedAt:new Date().toISOString(), config:c, network:n}, null, 2)],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='nova-backup-'+new Date().toISOString().slice(0,10)+'.json'; a.click(); URL.revokeObjectURL(a.href);
+    msg.textContent=lang==='fa'?'✓ خروجی گرفته شد':'✓ Exported';
+  }catch(e){ msg.textContent='⚠️ '+e.message; } }
+async function backupImport(file){ const msg=document.getElementById('backup-msg'); if(!LIVE) return previewToast(); msg.textContent=lang==='fa'?'در حال بازیابی…':'Restoring…';
+  try{ const data=JSON.parse(await file.text()); if(!data || !data.config) throw new Error(lang==='fa'?'فایل نامعتبر':'invalid file');
+    await API.post('config.json', data.config); if(data.network) await API.post('network-settings.json', data.network);
+    msg.textContent=lang==='fa'?'✓ بازیابی شد — صفحه را رفرش کنید':'✓ Restored — refresh the page'; toast(savedMsg(true));
+  }catch(e){ msg.textContent='⚠️ '+e.message; } }
+/* ---- Guide page (bilingual; supports inline emphasis) ---- */
+const GUIDE = {
+  en:{ qs:'Quick start', tips:'Tips',
+    steps:[
+      'Sign in at <code>/login</code> with your admin password.',
+      'On the <b>Dashboard</b>, apply the <b>Resilience policy</b>, then copy your subscription link or scan the QR.',
+      'Under <b>Open in app</b>, tap your client (Hiddify, Karing, v2rayNG, FlClash) to import in one tap, then connect.',
+      'If a network blocks you, switch protocol or port in the app, or change the <b>Fragment</b> preset in Settings.' ],
+    tipList:[
+      'Recommended apps: <b>Hiddify</b> and <b>Karing</b> work best on most networks.',
+      'Each app card carries the exact config format it needs, so just use its own Import or QR.',
+      'Set per-person data limits and expiry under <b>Users</b>.',
+      'Turn on <b>two-factor authentication</b> in Settings to protect this panel.' ] },
+  fa:{ qs:'شروع سریع', tips:'نکته‌ها',
+    steps:[
+      'در <code>/login</code> با رمز ادمین وارد شوید.',
+      'در <b>داشبورد</b>، <b>سیاست مقاومت</b> را اعمال کنید، سپس لینک اشتراک را کپی یا QR را اسکن کنید.',
+      'در بخش <b>باز کردن در برنامه</b>، روی کلاینت خود (هیدیفای، کارینگ، v2rayNG، FlClash) بزنید تا یک‌ضربه وارد شود، بعد وصل شوید.',
+      'اگر شبکه‌ای بستتان، پروتکل یا پورت را در برنامه عوض کنید یا پریست <b>فرگمنت</b> را در تنظیمات تغییر دهید.' ],
+    tipList:[
+      'برنامه‌های پیشنهادی: <b>هیدیفای</b> و <b>کارینگ</b> روی بیشتر شبکه‌ها بهتر کار می‌کنند.',
+      'هر کارت برنامه دقیقاً فرمت موردنیاز خودش را دارد، پس فقط از Import یا QR همان استفاده کنید.',
+      'محدودیت حجم و انقضای هر نفر را در <b>کاربران</b> تنظیم کنید.',
+      'برای محافظت از این پنل، <b>احراز هویت دومرحله‌ای</b> را در تنظیمات روشن کنید.' ] },
+};
+function renderGuide(){ const g=GUIDE[lang]||GUIDE.en;
+  const sb=document.getElementById('guide-steps'); if(sb) sb.innerHTML=g.steps.map((s,i)=>`<div class="gstep"><span class="n">${i+1}</span><span>${s}</span></div>`).join('');
+  const tb=document.getElementById('guide-tips'); if(tb) tb.innerHTML=g.tipList.map(s=>`<div class="gstep"><span class="n">•</span><span>${s}</span></div>`).join('');
+  const qh=document.getElementById('guide-qs-h'); if(qh) qh.textContent=g.qs;
+  const th=document.getElementById('guide-tips-h'); if(th) th.textContent=g.tips;
+}
+function renderAll(){
+  renderKPIs(); renderPolicy(); renderActivity('#activity-mini',5); renderAudit();
+  renderClients(); renderFormats(); renderNetwork(); renderSettings(); renderUsers(); renderGuide();
+  renderWorker(); renderDoh(); fillWarpEps(); renderKill(); renderDistQR();
+  syncFormValues();
+}
+
+/* ============================================================================
+   i18n / RTL application
+   ========================================================================== */
+function applyLang(l){
+  lang = l; localStorage.setItem('nova-lang', l);
+  const rtl = (l==='fa');
+  document.documentElement.lang = l;
+  document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+  $$('[data-i18n]').forEach(el=>{ const k = el.getAttribute('data-i18n'); el.textContent = t(k); });
+  $$('#lang-seg button').forEach(b=>b.classList.toggle('on', b.dataset.lang===l));
+  syncPageHeader();
+  renderAll(); /* dynamic content re-rendered in the new language */
+}
+
+/* ============================================================================
+   Navigation (section switching + mobile drawer)
+   ========================================================================== */
+const SUBS = { dashboard:'sub_dashboard', distribution:'sub_distribution', network:'sub_network', cleanips:'sub_cleanips',
+  activity:'sub_activity', settings:'sub_settings', notifications:'sub_notifications', users:'sub_users', guide:'sub_guide' };
+let currentView = 'dashboard';
+function syncPageHeader(){
+  $('#page-title').textContent = t('nav_'+(currentView==='distribution'?'distribution':currentView==='network'?'network':currentView));
+  // map view id back to its nav key for the title
+  const navKey = { dashboard:'nav_dashboard', distribution:'nav_distribution', network:'nav_network', cleanips:'nav_cleanips',
+    activity:'nav_activity', settings:'nav_settings', notifications:'nav_notifications', users:'nav_users', guide:'nav_guide' }[currentView];
+  $('#page-title').textContent = t(navKey);
+  $('#page-sub').textContent = t(SUBS[currentView]);
+}
+function showView(v){
+  currentView = v;
+  $$('.view').forEach(s=>s.classList.toggle('active', s.id==='view-'+v));
+  $$('.nav-item').forEach(n=>n.classList.toggle('active', n.dataset.view===v));
+  syncPageHeader();
+  closeDrawer();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function openDrawer(){ $('#sidebar').classList.add('open'); $('#scrim').classList.add('show'); }
+function closeDrawer(){ $('#sidebar').classList.remove('open'); $('#scrim').classList.remove('show'); }
+
+/* ============================================================================
+   Theme
+   ========================================================================== */
+function applyTheme(th){
+  document.documentElement.setAttribute('data-theme', th);
+  localStorage.setItem('nova-theme', th);
+  const ic = $('#theme-ic');
+  ic.innerHTML = th==='light'
+    ? '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>'
+    : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+}
+
+/* ============================================================================
+   Misc interactions
+   ========================================================================== */
+let toastTimer;
+function toast(msg){
+  const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>el.classList.remove('show'), 1800);
+}
+function copy(text){ navigator.clipboard && navigator.clipboard.writeText(text); toast(t('copied')); }
+
+/* ============================================================================
+   LIVE BACKEND WIRING
+   The same /admin endpoints the production panel uses. When this page is served
+   by the Nova Worker, every section shows real data and the Save / Apply actions
+   persist to KV. When opened standalone (no backend), config.json 404s, LIVE stays
+   false, and the MOCK data above keeps the page fully previewable.
+   ========================================================================== */
+let LIVE = false;
+const STATE = { config:{}, net:{}, users:[], usage:{}, subUrl:'' };
+const API = {
+  async get(p){ const r = await fetch('/admin/'+p+'?_t='+Date.now(), {cache:'no-store'}); if(!r.ok || /\/login/.test(r.url)) throw new Error('HTTP '+r.status); return r.json(); },
+  async post(p,obj){ const r = await fetch('/admin/'+p, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(obj)}); return r.ok; },
+};
+const nf = (n)=>{ n = Number(n)||0; return n.toLocaleString('en-US'); };
+function fmtBytes(b){ b = Number(b)||0; const u=['B','KB','MB','GB','TB']; let i=0; while(b>=1024 && i<u.length-1){ b/=1024; i++; } return (i? b.toFixed(1): b)+' '+u[i]; }
+const flagOf = (cc)=>{ cc=(cc||'').toUpperCase(); return /^[A-Z]{2}$/.test(cc)? String.fromCodePoint(...[...cc].map(c=>0x1F1E6+c.charCodeAt(0)-65)) : ''; };
+function relTime(d){ const s=Math.max(0,(Date.now()-d.getTime())/1000); if(s<60) return Math.floor(s)+'s'; if(s<3600) return Math.floor(s/60)+'m'; if(s<86400) return Math.floor(s/3600)+'h'; return Math.floor(s/86400)+'d'; }
+
+/* Each policy control maps to a real config.json or network-settings.json field. */
+const POLICY_MAP = {
+  p_ports:    {s:'config', f:'portSpread'},
+  p_fragment: {s:'config', f:'tlsFragment', frag:true},
+  p_ech:      {s:'config', f:'ECH'},
+  p_ipv6:     {s:'net',    f:'enableIPv6', invert:true},
+  p_quic:     {s:'net',    f:'blockCategories', list:'quic'},
+  p_domestic: {s:'net',    f:'enableDomesticBypass'},
+  p_adblock:  {s:'net',    f:'enableAdBlock'},
+  p_routing:  {s:'net',    f:'enableRouting'},
+};
+const SEC_MAP = { s_tls:'enableTLS', s_ech:'ECH', s_0rtt:'enable0RTT', s_rp:'randomPath', s_scv:'skipCertVerify' };
+const NET_MAP = { r_routing:'enableRouting', r_domestic:'enableDomesticBypass', r_geoip:'enableGeoIP', r_geosite:'enableGeoSite', r_adblock:'enableAdBlock', r_porn:'enablePornBlock' };
+const LOGLABEL = { Get_SUB:['ev_fetch','down'], Get_Best_SUB:['ev_fetch','down'], Save_Config:['ev_save','save'],
+  Save_Network_Settings:['ev_save','save'], Init_Config:['ev_save','save'], Save_Custom_IPs:['ev_save','save'],
+  Admin_Login:['ev_login','key'], Register_WARP:['ev_warp','wifi'], WARP_License:['ev_warp','wifi'], Save_Users:['ev_user','user'] };
+
+function readPolicy(key){ const m=POLICY_MAP[key], c=STATE.config||{}, n=STATE.net||{};
+  if(m.s==='config') return m.frag ? !!c.tlsFragment : !!c[m.f];
+  if(m.list){ const a=n[m.f]; return Array.isArray(a) && a.includes(m.list); }
+  if(m.invert) return n[m.f]===false;
+  return !!n[m.f];
+}
+function writePolicy(key,on){ const m=POLICY_MAP[key], c=STATE.config, n=STATE.net;
+  if(m.s==='config'){ if(m.frag){ c.tlsFragment = on ? (c.tlsFragment||'Shadowrocket') : null; } else { c[m.f]=on; } return; }
+  if(m.list){ let a=Array.isArray(n[m.f])? n[m.f].slice() : []; a=a.filter(x=>x!==m.list); if(on) a.push(m.list); n[m.f]=a; return; }
+  if(m.invert){ n[m.f] = !on; return; }
+  n[m.f]=on;
+}
+
+/* ---- map real responses into the MOCK shapes the renderers already use ---- */
+function mapKPIs(sys){
+  const c=STATE.config||{}, u=(c.CF&&c.CF.Usage)||{}, tu=sys.todayUsage||{};
+  const loc=(sys.city? sys.city+', ' : '')+(sys.country||'—');
+  const pct = (u.success && u.max) ? Math.min(100, Math.round(u.total/u.max*100)) : 0;
+  MOCK.kpis = [
+    { id:'network', icon:'globe', label:'kpi_network', value:(flagOf(sys.country)? flagOf(sys.country)+' ':'')+loc, sub:(sys.asOrganization||'Cloudflare')+(sys.colo? ' · '+sys.colo : ''), chip:sys.kvConnected?'healthy':'offline', chipKind:sys.kvConnected?'ok':'err' },
+    { id:'storage', icon:'db', label:'kpi_storage', value:sys.kvConnected?'Connected':'Offline', sub:'KV namespace', chip:sys.kvConnected?'online':'down', chipKind:sys.kvConnected?'ok':'err' },
+    { id:'worker', icon:'cpu', label:'kpi_worker', value:(u.success && u.total!=null)? (nf(u.total)+' / '+nf(u.max||100000)) : '—', sub:'kpi_worker_sub', meter:pct, chip:(u.success&&u.max)? pct+'%' : '—', chipKind:'info' },
+    { id:'traffic', icon:'pulse', label:'kpi_traffic', traffic:{ down:fmtBytes(tu.down), up:fmtBytes(tu.up) }, sub:'kpi_traffic_sub', chip:'live', chipKind:'info' },
+  ];
+  const ll=$('#loc-label'); if(ll) ll.textContent=(sys.country||'')+(sys.colo? ' · '+sys.colo : '') || '—';
+}
+function mapPolicyFromState(){ MOCK.policy = MOCK.policy.map(p=>({ key:p.key, on:readPolicy(p.key) })); }
+function mapActivity(logs){
+  if(!Array.isArray(logs) || !logs.length) return;
+  MOCK.activity = logs.slice().reverse().slice(0,8).map(e=>{
+    const m=LOGLABEL[e.TYPE]||[null,'pulse']; const d=new Date(e.TIME||0);
+    return { ev:m[0]||null, title:m[0]?null:(e.TYPE||'event'), icon:m[1], actor:(e.CC||'').replace('N/A','')||'—', ip:e.IP||'—', time:isNaN(d)?'':relTime(d), st:'st_ok', kind:'ok' };
+  });
+}
+function mapUsers(d){
+  const arr=Array.isArray(d.users)? d.users : []; const usage=d.usage||{};
+  STATE.users=arr; STATE.usage=usage; STATE.usageIO=d.usageIO||{}; STATE.multiUser=d.multiUser===true;
+  MOCK.users = arr.map(u=>{ const used=usage[u.id]||0, q=u.quotaBytes||0;
+    return { name:u.name||u.tag||'user', quota:q? fmtBytes(q) : '∞', used:fmtBytes(used), expiry:u.expiry? String(u.expiry).slice(0,10) : '—', on:u.enabled!==false, token:u.token||'' }; });
+}
+function mapToggleState(){
+  const c=STATE.config||{}, n=STATE.net||{};
+  MOCK.security = MOCK.security.map(r=>({ key:r.key, on: r.key==='s_tls' ? (c.enableTLS!==false) : c[SEC_MAP[r.key]]===true }));
+  MOCK.routing  = MOCK.routing.map(r=>({ key:r.key, on: !!n[NET_MAP[r.key]] }));
+}
+function mapSub(){
+  const tok=(STATE.config.optimizedSubGeneration||{}).TOKEN||'';
+  STATE.subUrl = location.origin+'/sub?token='+tok+'&b64';
+  $$('.sublink code').forEach(el=>{ el.textContent=STATE.subUrl; });
+}
+/* selects + notification fields are real DOM controls; set them after every render */
+function syncFormValues(){
+  if(!LIVE) return; const c=STATE.config||{};
+  const set=(id,v)=>{ const e=document.getElementById(id); if(e!=null && e) e.value=v; };
+  set('f2-proto', c.protocolType||'vless');
+  set('f2-trans', c.transportProtocol||'ws');
+  set('f2-fp', c.Fingerprint||'random');
+  const tg=c.TG||{}; const sw=document.getElementById('t2-tg'); if(sw) sw.classList.toggle('on', tg.enabled===true);
+  const bot=document.getElementById('f2-bot'); if(bot) bot.placeholder = tg.BotToken ? '•••••••• (saved)' : '123456:ABC-...';
+  const chat=document.getElementById('f2-chat'); if(chat) chat.value = tg.ChatID || '';
+  // WARP (network-settings) + GitHub mirror (config)
+  const n=STATE.net||{}; const on=(id,v)=>{ const e=document.getElementById(id); if(e) e.classList.toggle('on', !!v); };
+  on('t2-warp', n.enableWarp); set('w2-mode', n.warpMode||'warp'); set('w2-ep', n.warpEndpoint||''); on('t2-warp-amnezia', n.warpAmnezia);
+  const wn=n.warpNoise||{}; set('w2-nmode', wn.mode||''); set('w2-ncount', wn.count||''); set('w2-nsize', wn.size||''); set('w2-ndelay', wn.delay||'');
+  const mir=c.mirror||{}; on('t2-mirror', mir.enabled); set('m2-repo', mir.repo||''); set('m2-branch', mir.branch||'main'); set('m2-path', mir.pathPrefix||'');
+  const mt=document.getElementById('m2-token'); if(mt) mt.placeholder = mir.token ? '•••••••• (saved)' : 'ghp_...';
+  // Secure DNS (network-settings)
+  on('t2-doh', n.enableDoH); set('d2-dohprov', n.dohProvider||'cloudflare');
+  on('t2-antisanc', n.enableAntiSanctionDNS); set('d2-antiprov', n.antiSanctionDNSProvider||'shekan'); set('d2-anticustom', n.antiSanctionCustomDNS||'');
+  on('t2-localdns', n.enableLocalDNS); set('d2-localip', n.localDNSIP||'8.8.8.8'); set('d2-localport', n.localDNSPort||'53');
+  on('t2-fakedns', n.enableFakeDNS); set('d2-fakeip', n.fakeDNSIP||'198.51.100.1'); set('d2-loglevel', n.logLevel||'error');
+  // Clean IPs (config) — mode + pool API + random params; custom list loaded from ADD.txt
+  const osg=c.optimizedSubGeneration||{}, pool=osg.localIPPool||{};
+  set('ci-poolapi', c.POOL_API||'https://nova-deploy.pages.dev/api/pool');
+  set('ci-rcount', pool.randomCount||16); set('ci-rport', pool.specifiedPorts!=null?pool.specifiedPorts:-1);
+  setCiMode(c.POOL_API ? 'smart' : (pool.randomIP===false ? 'custom' : 'random'));
+  fetch('/admin/ADD.txt?_t='+Date.now()).then(r=>r.text()).then(txt=>{ const a=document.getElementById('ci-add'); if(a) a.value=(txt==='null'?'':txt); }).catch(()=>{});
+  fetch('/admin/whoami').then(r=>r.json()).then(w=>{ const el=document.getElementById('ci-isp'); if(el) el.innerHTML=(lang==='fa'?'شبکهٔ شما: ':'Your network: ')+'<b>AS'+(w.asn||'?')+'</b> '+(w.isp||'')+(w.country?(' · '+w.country):''); }).catch(()=>{});
+  // Advanced Settings (config)
+  set('f2-path', c.PATH||'/'); set('f2-grpcmode', c.gRPCmode||'gun'); set('f2-frag', c.tlsFragment||'');
+  const fp=c.fragmentParams||{}; set('f2-frag-len', fp.length||''); set('f2-frag-int', fp.interval||''); set('f2-frag-pkt', fp.packets||'');
+  const fcb=document.getElementById('f2-frag-custom'); if(fcb) fcb.style.display = c.tlsFragment==='custom' ? 'block' : 'none';
+  set('f2-proxyip', (c.proxy&&c.proxy.PROXYIP)||c.PROXYIP||''); set('f2-chain', c.chainProxy||'');
+  const ec=c.ECHConfig||{}; set('f2-ech-sni', ec.SNI||''); set('f2-ech-dns', ec.DNS||''); set('f2-central', c.centralApi||'');
+  set('f2-hosts', (Array.isArray(c.HOSTS)?c.HOSTS:[]).join('\n')); set('f2-uuid', c.UUID||'');
+  const og=c.optimizedSubGeneration||{}; set('f2-subname', og.SUBNAME||''); set('f2-subint', og.SUBUpdateTime||3);
+  const scc=c.subConverterConfig||{}; set('f2-subapi', scc.SUBAPI||''); set('f2-subcfg', scc.SUBCONFIG||'');
+  // Custom + preset routing rules (network)
+  set('n2-customrules', n.customRules||'');
+  const bc=n.bypassCountries||[]; on('t2-bp-cn', bc.includes('cn')); on('t2-bp-ru', bc.includes('ru'));
+  const bk=n.blockCategories||[]; on('t2-bk-malware', bk.includes('malware')); on('t2-bk-phishing', bk.includes('phishing')); on('t2-bk-crypto', bk.includes('cryptominers'));
+}
+
+async function loadLive(){
+  let cfg; try{ cfg=await API.get('config.json'); }catch(e){ LIVE=false; return false; }
+  LIVE=true; STATE.config=cfg||{};
+  try{ STATE.net=await API.get('network-settings.json'); }catch(e){ STATE.net={}; }
+  let sys={}; try{ sys=await API.get('system.json'); }catch(e){}
+  let logs=[]; try{ logs=await API.get('log.json'); }catch(e){}
+  let usersR={}; try{ usersR=await loadUsersFromServer(); }catch(e){}
+  mapKPIs(sys); mapPolicyFromState(); mapActivity(logs); mapUsers(usersR); mapToggleState(); mapSub();
+  return true;
+}
+
+/* ---- save / apply actions (no-ops with a notice when there is no backend) ---- */
+const previewToast = ()=> toast(lang==='fa' ? 'حالت پیش‌نمایش (بدون بک‌اند)' : 'Preview mode — no backend connected');
+const savedMsg = (ok)=> ok ? (lang==='fa'?'ذخیره شد ✓':'Saved ✓') : (lang==='fa'?'ذخیره ناموفق بود':'Save failed');
+
+async function applyPolicy(){
+  if(!LIVE) return previewToast();
+  MOCK.policy.forEach(p=>writePolicy(p.key, p.on));
+  const ok = (await API.post('config.json', STATE.config)) && (await API.post('network-settings.json', STATE.net));
+  toast(ok ? (lang==='fa'?'سیاست اعمال شد ✓':'Policy applied ✓') : savedMsg(false));
+}
+async function saveSettings(){
+  if(!LIVE) return previewToast(); const c=STATE.config;
+  const g=(id)=>{ const e=document.getElementById(id); return e? e.value : undefined; };
+  const proto=g('f2-proto');
+  c.protocolType=(proto && proto!=='all') ? proto : 'vless'; c.multiProtocolSub=false; // All-protocol removed (caused 1101)
+  c.transportProtocol=g('f2-trans'); c.Fingerprint=g('f2-fp');
+  document.querySelectorAll('#security-rows [data-toggle]').forEach(row=>{ const k=row.dataset.toggle, on=row.querySelector('.sw').classList.contains('on');
+    if(k==='s_tls') c.enableTLS=on; else c[SEC_MAP[k]]=on; });
+  // advanced
+  let pa=(g('f2-path')||'/').trim()||'/'; if(!pa.startsWith('/')) pa='/'+pa; c.PATH=pa;
+  c.gRPCmode=g('f2-grpcmode'); c.tlsFragment=g('f2-frag')||null;
+  c.fragmentParams={ length:(g('f2-frag-len')||'').trim(), interval:(g('f2-frag-int')||'').trim(), packets:(g('f2-frag-pkt')||'').trim() };
+  c.proxy=c.proxy||{}; c.proxy.PROXYIP=(g('f2-proxyip')||'').trim(); c.chainProxy=(g('f2-chain')||'').trim();
+  c.ECHConfig=c.ECHConfig||{}; c.ECHConfig.SNI=(g('f2-ech-sni')||'').trim()||'cloudflare-ech.com'; c.ECHConfig.DNS=(g('f2-ech-dns')||'').trim()||'https://dns.alidns.com/dns-query';
+  c.centralApi=(g('f2-central')||'').trim();
+  const hosts=(g('f2-hosts')||'').split('\n').map(s=>s.trim().toLowerCase().replace(/^https?:\/\//,'').split('/')[0].split(':')[0]).filter(Boolean); if(hosts.length) c.HOSTS=hosts;
+  c.optimizedSubGeneration=c.optimizedSubGeneration||{}; c.optimizedSubGeneration.SUBNAME=g('f2-subname')||''; c.optimizedSubGeneration.SUBUpdateTime=Number(g('f2-subint'))||3;
+  c.subConverterConfig=c.subConverterConfig||{}; c.subConverterConfig.SUBAPI=(g('f2-subapi')||'').trim(); c.subConverterConfig.SUBCONFIG=(g('f2-subcfg')||'').trim();
+  toast(savedMsg(await API.post('config.json', c)));
+}
+async function saveNetwork(){
+  if(!LIVE) return previewToast(); const n=STATE.net;
+  document.querySelectorAll('#routing-rows [data-toggle]').forEach(row=>{ n[NET_MAP[row.dataset.toggle]] = row.querySelector('.sw').classList.contains('on'); });
+  const g=(id)=>{ const e=document.getElementById(id); return e? e.value : ''; };
+  const isOn=(id)=>{ const e=document.getElementById(id); return e? e.classList.contains('on') : false; };
+  n.enableWarp=isOn('t2-warp'); n.warpMode=g('w2-mode'); n.warpEndpoint=(g('w2-ep')||'').trim(); n.warpAmnezia=isOn('t2-warp-amnezia');
+  n.warpNoise={ mode:g('w2-nmode'), count:(g('w2-ncount')||'').trim(), size:(g('w2-nsize')||'').trim(), delay:(g('w2-ndelay')||'').trim() };
+  n.enableDoH=isOn('t2-doh'); n.dohProvider=g('d2-dohprov');
+  n.enableAntiSanctionDNS=isOn('t2-antisanc'); n.antiSanctionDNSProvider=g('d2-antiprov'); n.antiSanctionCustomDNS=(g('d2-anticustom')||'').trim();
+  n.enableLocalDNS=isOn('t2-localdns'); n.localDNSIP=(g('d2-localip')||'').trim()||'8.8.8.8'; n.localDNSPort=(g('d2-localport')||'').trim()||'53';
+  n.enableFakeDNS=isOn('t2-fakedns'); n.fakeDNSIP=(g('d2-fakeip')||'').trim()||'198.51.100.1'; n.logLevel=g('d2-loglevel');
+  // custom + preset rules
+  n.customRules=g('n2-customrules')||'';
+  n.bypassCountries=[['cn','t2-bp-cn'],['ru','t2-bp-ru']].filter(([,id])=>isOn(id)).map(([c])=>c);
+  const cats=[]; if(Array.isArray(n.blockCategories) && n.blockCategories.includes('quic')) cats.push('quic'); // keep QUIC (set by the policy card)
+  [['malware','t2-bk-malware'],['phishing','t2-bk-phishing'],['cryptominers','t2-bk-crypto']].forEach(([c,id])=>{ if(isOn(id)) cats.push(c); });
+  n.blockCategories=cats;
+  toast(savedMsg(await API.post('network-settings.json', n)));
+}
+/* ---- WARP account: register / WARP+ license / central pool ---- */
+// Known-good WARP endpoints (Cloudflare anycast). If the default engage.cloudflareclient.com:2408
+// is filtered, any of these works with the same key. Offered as a fallback list on the endpoint field.
+const WARP_ENDPOINTS = ['engage.cloudflareclient.com:2408','162.159.192.1:2408','162.159.193.10:2408','162.159.195.1:2408','188.114.96.1:2408','188.114.97.1:2408','188.114.98.1:2408','188.114.99.1:2408','162.159.192.1:894','188.114.96.1:1701','162.159.195.1:928','188.114.98.1:955'];
+function fillWarpEps(extra){ const dl=document.getElementById('warp-eps'); if(!dl) return; const all=[...new Set([...(Array.isArray(extra)?extra:[]), ...WARP_ENDPOINTS])]; dl.innerHTML=all.map(e=>'<option value="'+String(e).replace(/"/g,'&quot;')+'"></option>').join(''); }
+async function loadWarpStatus(){ const el=document.getElementById('warp-status'); fillWarpEps(); if(!el || !LIVE) return;
+  try{ const w=await API.get('warp.json'); fillWarpEps(w && w.suggestedEndpoints);
+    if(w && w.registered){ let s=(lang==='fa'?'ثبت‌شده':'Registered')+(w.endpoint?(': '+w.endpoint):''); if(w.warpPlus) s+=', WARP+'; if(w.wow && w.wow.registered) s+=', WoW'; el.textContent=s; el.style.color='var(--ok)'; }
+    else { el.textContent=(lang==='fa'?'ثبت‌نشده':'Not registered'); el.style.color='var(--mu)'; }
+  }catch(e){ el.textContent='—'; }
+}
+async function warpPost(body, okMsg, needPlus){ const el=document.getElementById('warp-status'); if(el) el.textContent='…';
+  try{ const r=await fetch('/admin/warp.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); const w=await r.json().catch(()=>({}));
+    // For a license/central apply, success means WARP+ actually turned on — not just that the
+    // account is registered. The worker validates the key and returns warpPlus:true only when accepted.
+    const ok = r.ok && w && !w.error && (needPlus ? w.warpPlus===true : (w.registered===true || w.warpPlus===true));
+    if(ok){ toast(okMsg); loadWarpStatus(); return true; }
+    const why = (w&&w.error) || (needPlus ? (lang==='fa'?'لایسنس پذیرفته نشد (WARP+ نیست، منقضی شده، یا قبلاً استفاده شده)':'License not accepted (not WARP+, expired, or already in use)') : ('HTTP '+r.status));
+    toast('⚠️ '+why); loadWarpStatus(); return false;
+  }catch(e){ toast('⚠️ '+e.message); return false; } }
+function warpRegister(){ if(!LIVE) return previewToast(); warpPost({ wow: document.getElementById('w2-mode').value==='wow' }, savedMsg(true), false); }
+function warpCentral(){ if(!LIVE) return previewToast(); warpPost({ fromCentral:true }, lang==='fa'?'WARP+ از استخر اعمال شد ✓':'WARP+ applied from pool ✓', true); }
+function warpLicense(){ if(!LIVE) return previewToast(); const lic=(document.getElementById('w2-lic').value||'').trim(); if(!lic){ toast(lang==='fa'?'لایسنس را وارد کنید':'Enter a license key'); return; } warpPost({ license:lic }, lang==='fa'?'لایسنس معتبر بود؛ WARP+ فعال شد ✓':'License valid, WARP+ enabled ✓', true).then(ok=>{ if(ok) document.getElementById('w2-lic').value=''; }); }
+/* ---- GitHub mirror: save config + publish now ---- */
+async function mirrorSave(silent){ if(!LIVE) return previewToast(); const c=STATE.config; c.mirror=c.mirror||{};
+  c.mirror.enabled=document.getElementById('t2-mirror').classList.contains('on');
+  c.mirror.repo=(document.getElementById('m2-repo').value||'').trim();
+  c.mirror.branch=(document.getElementById('m2-branch').value||'').trim()||'main';
+  c.mirror.pathPrefix=(document.getElementById('m2-path').value||'').trim();
+  const tk=(document.getElementById('m2-token').value||'').trim(); if(tk){ c.mirror.token=tk; document.getElementById('m2-token').value=''; }
+  const ok=await API.post('config.json', c); if(!silent){ document.getElementById('m2-msg').textContent=savedMsg(ok); } return ok;
+}
+async function mirrorPublish(){ if(!LIVE) return previewToast(); const msg=document.getElementById('m2-msg'); msg.textContent=lang==='fa'?'در حال انتشار…':'Publishing…';
+  await mirrorSave(true);
+  try{ const r=await fetch('/admin/publish-mirror',{method:'POST'}); const j=await r.json().catch(()=>({})); msg.textContent = r.ok ? (lang==='fa'?'✓ منتشر شد':'✓ Published') : ('⚠️ '+(j.reason||('HTTP '+r.status))); }
+  catch(e){ msg.textContent='⚠️ '+e.message; } }
+async function saveNotif(){
+  if(!LIVE) return previewToast(); const c=STATE.config; c.TG=c.TG||{};
+  c.TG.enabled = document.getElementById('t2-tg').classList.contains('on');
+  const bot=(document.getElementById('f2-bot').value||'').trim(); if(bot) c.TG.BotToken=bot;
+  const chat=(document.getElementById('f2-chat').value||'').trim(); c.TG.ChatID=chat;
+  const tok=c.TG.BotToken||'';
+  // bot token + chat id installs the webhook + bot commands so the bot is manageable from Telegram
+  let wh=null;
+  if(tok && chat){ try{ const r=await fetch('/admin/tg.json',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({BotToken:tok, ChatID:chat})}); wh=await r.json().catch(()=>null); }catch(e){} }
+  const ok=await API.post('config.json', c);
+  if(wh && wh.webhookSet===false) toast((lang==='fa'?'ذخیره شد؛ نصب وب‌هوک ناموفق بود':'Saved; webhook install failed'), 1);
+  else if(wh && wh.webhookSet) toast(lang==='fa'?'ذخیره و وب‌هوک نصب شد ✓':'Saved & bot webhook installed ✓');
+  else toast(savedMsg(ok));
+}
+
+/* ============================================================================
+   CLEAN IPs: selection mode (smart/custom/random) + in-browser speed test.
+   The speed test latency-tests Cloudflare IPs from the browser (same as the old
+   panel) and applies the fastest to the custom list, then saves.
+   ========================================================================== */
+const CF_RANGES=[['104.16.',0,255],['104.17.',0,255],['104.18.',0,255],['104.19.',0,255],['104.20.',0,255],['104.21.',0,255],['104.22.',0,255],['104.24.',0,255],['104.25.',0,255],['104.26.',0,255],['104.27.',0,255],['162.159.',0,255],['172.64.',0,255],['172.66.',0,255],['172.67.',0,255],['188.114.',96,111],['141.101.',64,127]];
+function randCfIp(){ const r=CF_RANGES[Math.floor(Math.random()*CF_RANGES.length)]; const c=r[1]+Math.floor(Math.random()*(r[2]-r[1]+1)); return r[0]+c+'.'+Math.floor(Math.random()*256); }
+function nova5(){ const a='abcdefghijklmnopqrstuvwxyz0123456789'; let s=''; for(let i=0;i<5;i++) s+=a[Math.floor(Math.random()*36)]; return s; }
+function pingIp(ip,port,timeout){ return new Promise(res=>{ const t0=performance.now(); let done=false; const img=new Image();
+  const fin=ok=>{ if(done)return; done=true; img.onerror=img.onload=null; res(ok?Math.round(performance.now()-t0):null); };
+  const timer=setTimeout(()=>fin(false),timeout);
+  img.onerror=()=>{ clearTimeout(timer); fin(true); }; img.onload=()=>{ clearTimeout(timer); fin(true); };
+  img.src='https://'+(port==443?ip:ip+':'+port)+'/cdn-cgi/trace?'+Math.random(); }); }
+let scanResults=[]; let ciMode='smart';
+function setCiMode(m){ ciMode=m; document.querySelectorAll('#ci-seg button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+  const sh=(id,on)=>{ const e=document.getElementById(id); if(e) e.style.display=on?'block':'none'; };
+  sh('ci-smart',m==='smart'); sh('ci-custom',m==='custom'); sh('ci-random',m==='random'); }
+async function saveCleanIps(silent){
+  if(!LIVE) return previewToast(); const c=STATE.config; c.optimizedSubGeneration=c.optimizedSubGeneration||{}; c.optimizedSubGeneration.local=true;
+  c.optimizedSubGeneration.localIPPool=c.optimizedSubGeneration.localIPPool||{}; const p=c.optimizedSubGeneration.localIPPool;
+  const v=(id)=>{ const e=document.getElementById(id); return e? e.value : ''; };
+  if(ciMode==='smart'){ c.POOL_API=(v('ci-poolapi')||'').trim(); p.randomIP=false; }
+  else if(ciMode==='custom'){ c.POOL_API=''; p.randomIP=false; await fetch('/admin/ADD.txt',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:v('ci-add')}); }
+  else { c.POOL_API=''; p.randomIP=true; p.randomCount=Number(v('ci-rcount'))||16; p.specifiedPorts=Number(v('ci-rport')); }
+  const ok=await API.post('config.json', c); if(!silent) toast(savedMsg(ok)); return ok;
+}
+async function runSpeedTest(){
+  if(!LIVE) return previewToast();
+  const $g=(id)=>document.getElementById(id);
+  const btn=$g('ci-speedtest'), msg=$g('ci-stmsg'), pbar=$g('ci-pbar'), pfill=pbar.querySelector('i');
+  const port=Number($g('ci-port').value)||443, keep=Math.max(1,Number($g('ci-keep').value)||10), total=Math.min(400,Math.max(10,Number($g('ci-total').value)||120)), timeout=2000;
+  const src=$g('ci-src').value||'random';
+  btn.disabled=true; pbar.style.display='block'; pbar.classList.add('indet'); pfill.style.width='0%';
+  msg.textContent=lang==='fa'?'در حال آماده‌سازی…':'Preparing…';
+  let ips=[]; const seen=new Set();
+  if(src==='random'){ while(ips.length<total){ const ip=randCfIp(); if(!seen.has(ip)){ seen.add(ip); ips.push(ip); } } }
+  else {
+    msg.textContent=lang==='fa'?'در حال دریافت آی‌پی‌ها…':'Fetching candidate IPs…';
+    try{ const r=await fetch('/admin/bestip?loadIPs='+encodeURIComponent(src)+'&port='+port+'&_t='+Date.now()); const d=await r.json();
+      for(const x of ((d&&d.ips)||[])){ const ip=String(x).split('#')[0].split(':')[0].trim(); if(/^\d+\.\d+\.\d+\.\d+$/.test(ip)&&!seen.has(ip)){ seen.add(ip); ips.push(ip); } } }catch(e){}
+    ips.sort(()=>Math.random()-0.5); if(ips.length>total) ips=ips.slice(0,total);
+    if(!ips.length){ msg.textContent=lang==='fa'?'آی‌پی پیدا نشد':'no candidate IPs'; btn.disabled=false; pbar.style.display='none'; return; }
+  }
+  const totalN=ips.length; let tested=0, alive=[]; const conc=12, probes=3; pbar.classList.remove('indet');
+  async function worker(){ while(ips.length){ const ip=ips.pop(); const samples=[]; for(let i=0;i<probes;i++){ const ms=await pingIp(ip,port,timeout); if(ms!=null) samples.push(ms); } tested++;
+    if(samples.length){ const avg=Math.round(samples.reduce((a,b)=>a+b,0)/samples.length); const jitter=Math.round(Math.max(...samples)-Math.min(...samples)); const loss=Math.round((1-samples.length/probes)*100); alive.push({ip,port,ms:avg,jitter,loss,score:avg+jitter*0.5+loss*20}); }
+    pfill.style.width=Math.max(3,Math.round(tested/totalN*100))+'%';
+    msg.textContent=(lang==='fa'?('در حال تست… '+tested+'/'+totalN+' ('+alive.length+' سالم)'):('Testing… '+tested+'/'+totalN+' ('+alive.length+' alive)')); } }
+  await Promise.all(Array.from({length:conc},worker));
+  alive.sort((a,b)=>a.score-b.score); scanResults=alive.slice(0,keep);
+  pfill.style.width='100%'; setTimeout(()=>{ pbar.style.display='none'; },600);
+  if(!scanResults.length){ msg.textContent=lang==='fa'?'آی‌پی سالمی پیدا نشد':'no responsive IPs found'; btn.disabled=false; return; }
+  $g('ci-results').innerHTML='<div class="tbl-wrap"><table class="tbl"><thead><tr><th>#</th><th>IP</th><th>'+t('ci_lat')+'</th><th>'+t('ci_jit')+'</th><th>'+t('ci_loss')+'</th></tr></thead><tbody>'+scanResults.map((r,i)=>'<tr><td>'+(i+1)+'</td><td><code>'+r.ip+':'+r.port+'</code></td><td>'+r.ms+' ms</td><td>'+(r.jitter||0)+' ms</td><td>'+(r.loss||0)+'%</td></tr>').join('')+'</tbody></table></div>';
+  const lines=scanResults.map(r=>r.ip+':'+r.port+'#Nova-'+nova5());
+  const add=$g('ci-add'); const cur=(add.value||'').trim(); add.value=(cur?cur+'\n':'')+lines.join('\n');
+  setCiMode('custom');
+  await saveCleanIps(true);
+  msg.textContent=lang==='fa'?('✅ '+scanResults.length+' آی‌پی برتر اعمال و ذخیره شد'):('✅ applied & saved top '+scanResults.length);
+  toast(lang==='fa'?'بهترین آی‌پی‌ها اعمال شد':'Best IPs applied'); btn.disabled=false;
+}
+
+/* ---- Advanced settings helpers: chain-proxy test + domain health ---- */
+async function chainTest(){ const st=document.getElementById('f2-chain-status'); const v=(document.getElementById('f2-chain').value||'').trim();
+  const m=/^(socks5|http|https|turn|sstp):\/\/(.+)$/i.exec(v); if(!m){ st.textContent=lang==='fa'?'یک پراکسی معتبر وارد کنید (مثل socks5://...)':'enter a valid proxy (e.g. socks5://...)'; return; }
+  if(!LIVE) return previewToast(); st.textContent=lang==='fa'?'در حال تست…':'Testing…';
+  try{ const r=await fetch('/admin/check?'+m[1].toLowerCase()+'='+encodeURIComponent(m[2].split('/')[0])); const j=await r.json().catch(()=>({}));
+    if(r.ok && j.success!==false){ const ms=j.latency||j.ms||j.time; st.textContent=(lang==='fa'?'✅ سالم':'✅ Works')+(ms?` (${ms}ms)`:''); } else st.textContent='⚠️ '+(j.error||j.msg||('HTTP '+r.status)); }
+  catch(e){ st.textContent='⚠️ '+e.message; } }
+async function hostsCheck(){ const st=document.getElementById('f2-hosts-health'); if(!LIVE) return previewToast(); st.textContent=lang==='fa'?'در حال بررسی…':'Checking…';
+  try{ const r=await fetch('/admin/domains?check=1'); const j=await r.json().catch(()=>null); const arr=(j&&j.health&&Array.isArray(j.health.domains))?j.health.domains:[];
+    if(arr.length){ st.innerHTML=arr.map(d=>`${d.ok?'🟢':'🔴'} ${d.host||d}`).join('&nbsp;&nbsp;'); } else st.textContent=lang==='fa'?'دامنه‌ای برای بررسی نبود':'no domains to check'; }
+  catch(e){ st.textContent='⚠️ '+e.message; } }
+function addCustomRule(){ const ty=document.getElementById('cr2-type').value, val=(document.getElementById('cr2-val').value||'').trim(), out=document.getElementById('cr2-out').value;
+  if(!val) return; let line=ty+','+val+','+out; if((ty==='IP-CIDR'||ty==='IP-CIDR6'||ty==='GEOIP') && out!=='REJECT') line+=',no-resolve';
+  const ta=document.getElementById('n2-customrules'); const cur=(ta.value||'').trim(); ta.value=(cur?cur+'\n':'')+line; document.getElementById('cr2-val').value='';
+  toast(lang==='fa'?'افزوده شد — ذخیره را بزنید':'Added — press Save'); }
+
+/* ============================================================================
+   Wire-up
+   ========================================================================== */
+document.addEventListener('click', (e)=>{
+  const nav = e.target.closest('[data-view]'); if(nav){ e.preventDefault(); showView(nav.dataset.view); return; }
+  // primary actions -> real backend
+  if(e.target.closest('#policy-apply')){ applyPolicy(); return; }
+  if(e.target.closest('#save-settings2')){ saveSettings(); return; }
+  if(e.target.closest('#save-network2')){ saveNetwork(); return; }
+  { const cm=e.target.closest('#ci-seg button'); if(cm){ setCiMode(cm.dataset.m); return; } }
+  if(e.target.closest('#ci-speedtest')){ runSpeedTest(); return; }
+  if(e.target.closest('#ci-save')){ saveCleanIps(); return; }
+  if(e.target.closest('#cr2-add')){ addCustomRule(); return; }
+  if(e.target.closest('#f2-uuid-copy')){ copy(document.getElementById('f2-uuid').value); return; }
+  if(e.target.closest('#f2-chain-test')){ chainTest(); return; }
+  if(e.target.closest('#f2-hosts-check')){ hostsCheck(); return; }
+  if(e.target.closest('#w2-register')){ warpRegister(); return; }
+  if(e.target.closest('#w2-central')){ warpCentral(); return; }
+  if(e.target.closest('#w2-lic-apply')){ warpLicense(); return; }
+  if(e.target.closest('#m2-save')){ mirrorSave(); return; }
+  if(e.target.closest('#m2-publish')){ mirrorPublish(); return; }
+  if(e.target.closest('#save-notif2')){ saveNotif(); return; }
+  if(e.target.closest('#cf-connect')){ cfConnect(); return; }
+  if(e.target.closest('#cf-disconnect')){ cfDisconnect(); return; }
+  if(e.target.closest('#factory-reset')){ factoryReset(); return; }
+  if(e.target.closest('#t2-kill')){ toggleKill(); return; }
+  if(e.target.closest('#doh-copy')){ copy(location.origin+'/dns-query'); return; }
+  if(e.target.closest('#doh-test')){ dohTest(); return; }
+  // stage-2 actions: users CRUD, password, 2FA, backup
+  if(e.target.closest('#users-add2')){ addUser(); return; }
+  if(e.target.closest('#users-save2')){ saveUsers(); return; }
+  const ud=e.target.closest('[data-ud]'); if(ud){ deleteUser(+ud.dataset.ud); return; }
+  if(e.target.closest('#pw-change')){ changePassword(); return; }
+  if(e.target.closest('#twofa-start')){ twofaStart(); return; }
+  if(e.target.closest('#twofa-qr')){ showQR(STATE.twofaOtp||'', 'Nova 2FA'); return; }
+  if(e.target.closest('#twofa-confirm')){ twofaConfirm(); return; }
+  if(e.target.closest('#twofa-disable')){ twofaDisable(); return; }
+  if(e.target.closest('#backup-export2')){ backupExport(); return; }
+  if(e.target.closest('#backup-import2')){ document.getElementById('backup-file2').click(); return; }
+  // QR modal + per-app import (Import is an <a>: copy the link, let the href open the app)
+  if(e.target.closest('#qrm-close') || e.target.id==='qrmodal'){ document.getElementById('qrmodal').classList.remove('on'); return; }
+  if(e.target.closest('#help-btn')){ openHelp(); return; }
+  if(e.target.closest('#help-close') || e.target.closest('#help-x') || e.target.id==='helpmodal'){ document.getElementById('helpmodal').classList.remove('on'); return; }
+  const qb = e.target.closest('[data-qr-url]'); if(qb){ showQR(qb.dataset.qrUrl, qb.dataset.qrName); return; }
+  if(e.target.closest('#open-qr') || e.target.closest('#open-qr2') || e.target.closest('#dist-qr')){ showQR(STATE.subUrl || subFor('b64'), 'Nova Proxy'); return; }
+  const ib = e.target.closest('[data-import-sub]'); if(ib){ navigator.clipboard && navigator.clipboard.writeText(ib.dataset.importSub); toast(t('app_copied')); return; }
+  // copy actions
+  const cp = e.target.closest('[data-copy]'); if(cp){ const el=$(cp.getAttribute('data-copy')); copy(el? el.textContent : (STATE.subUrl||'')); return; }
+  const ou = e.target.closest('[data-open-user]'); if(ou){ window.open(location.origin+'/sub?token='+ou.dataset.openUser+'&b64','_blank','noopener'); return; }
+  const qu = e.target.closest('[data-qr-user]'); if(qu){ showQR(location.origin+'/sub?token='+qu.dataset.qrUser+'&b64', qu.dataset.qrUname||'User'); return; }
+  const qfm = e.target.closest('[data-qr-fmt]'); if(qfm){ const tok=(STATE.config.optimizedSubGeneration||{}).TOKEN||''; const q=qfm.dataset.qrFmt; showQR(location.origin+'/sub?token='+tok+(q && q!=='auto' ? '&'+q : ''), 'Nova '+(qfm.dataset.qrFmtname||q)); return; }
+  const cu = e.target.closest('[data-copy-user]'); if(cu){ copy(location.origin+'/sub?token='+cu.dataset.copyUser+'&b64'); return; }
+  const cfm = e.target.closest('[data-copy-fmt]'); if(cfm){ const tok=(STATE.config.optimizedSubGeneration||{}).TOKEN||''; const q=cfm.dataset.copyFmt; copy(location.origin+'/sub?token='+tok+(q && q!=='auto' ? '&'+q : '')); return; }
+  // policy toggle (flips local state; persisted by "Apply policy")
+  const prow = e.target.closest('[data-policy]');
+  if(prow){ const key=prow.dataset.policy; const p=MOCK.policy.find(x=>x.key===key); p.on=!p.on; renderPolicy(); return; }
+  // section toggles (security / routing) — visual; persisted by that section's Save
+  const trow = e.target.closest('[data-toggle]');
+  if(trow){ trow.querySelector('.sw').classList.toggle('on'); return; }
+  // standalone switches (telegram alerts, etc.)
+  const sw = e.target.closest('.sw'); if(sw){ sw.classList.toggle('on'); if(sw.id==='t2-multiuser') updateMultiUserUI(); return; }
+});
+{ const bf=document.getElementById('backup-file2'); if(bf) bf.onchange=(e)=>{ const f=e.target.files&&e.target.files[0]; if(f) backupImport(f); e.target.value=''; }; }
+{ const ff=document.getElementById('f2-frag'); if(ff) ff.addEventListener('change',function(){ const b=document.getElementById('f2-frag-custom'); if(b) b.style.display=this.value==='custom'?'block':'none'; }); }
+$('#menu-btn').addEventListener('click', openDrawer);
+$('#scrim').addEventListener('click', closeDrawer);
+$('#theme-btn').addEventListener('click', ()=>applyTheme(document.documentElement.getAttribute('data-theme')==='light'?'dark':'light'));
+$('#lang-seg').addEventListener('click', (e)=>{ const b=e.target.closest('button'); if(b) applyLang(b.dataset.lang); });
+
+/* Demo users so the Users CRUD is visible in standalone preview (replaced by live data). */
+const DEMO_USERS=[
+  { id:'u1', name:'Sara',  tag:'sara01x',  token:'demoSaraToken',  quotaBytes:50*1073741824, expiry:'2026-07-12', enabled:true },
+  { id:'u2', name:'Reza',  tag:'reza02xy', token:'demoRezaToken',  quotaBytes:0,             expiry:'',           enabled:true },
+  { id:'u3', name:'Guest', tag:'guest03z', token:'demoGuestToken', quotaBytes:10*1073741824, expiry:'2026-06-10', enabled:false },
+];
+const DEMO_USAGE={ u1:31*1073741824, u2:8*1073741824, u3:10*1073741824 };
+
+/* ---- boot ---- */
+(async function init(){
+  applyTheme(localStorage.getItem('nova-theme') || 'light');
+  await loadLive();   // pull real /admin data when served by the Worker; falls back to MOCK otherwise
+  if(LIVE){ loadSecurity(); loadWarpStatus(); }
+  else { STATE.users=DEMO_USERS.map(u=>({...u})); STATE.usage=DEMO_USAGE; STATE.multiUser=true; }
+  applyLang(lang);    // renders everything (incl. syncFormValues) in the chosen language
+  try{ setCiMode(LIVE ? ciMode : 'smart'); }catch(e){}  // default Clean-IP mode highlight (live mode is set by syncFormValues)
+  if(!LIVE) console.log('%cNova panel — preview mode (no backend): showing mock data','color:#f5b042;font-weight:700');
+})();
+</script>
+</body>
+</html>
