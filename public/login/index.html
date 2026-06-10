@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nova Proxy Login</title>
+<link rel="icon" type="image/svg+xml" href="/logo-mark.svg" /><link rel="alternate icon" href="/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+ --bg:#f4f6fb;--card:#ffffff;--c2:#f7f9fc;--bd:#e6eaf1;--bd2:#dde2eb;--tx:#101622;--tx2:#445066;--mu:#8a93a6;
+ --ac:#0ea5c4;--ac2:#7c3aed;--grad:linear-gradient(120deg,#0891b2,#7c3aed);--ring:rgba(8,145,178,.22);--dg:#e5484d;
+ --shadow:0 1px 2px rgba(20,40,80,.04),0 18px 40px rgba(40,60,110,.12)}
+html[data-theme=dark]{
+ --bg:#070809;--card:#101319;--c2:#0b0d11;--bd:#1c2027;--bd2:#262b34;--tx:#e9edf4;--tx2:#aeb6c4;--mu:#6f7888;
+ --ac:#22d3ee;--ac2:#a855f7;--grad:linear-gradient(120deg,#22d3ee,#7c5cff);--ring:rgba(34,211,238,.28);--dg:#f87171;
+ --shadow:0 1px 0 rgba(255,255,255,.02),0 18px 44px rgba(0,0,0,.5)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter','Vazirmatn',system-ui,-apple-system,Segoe UI,Tahoma,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;color:var(--tx);
+ background:radial-gradient(820px 420px at 50% -6%,color-mix(in srgb,var(--ac) 16%,transparent),transparent 60%),radial-gradient(720px 420px at 88% 8%,color-mix(in srgb,var(--ac2) 14%,transparent),transparent 55%),var(--bg)}
+html[dir=rtl] body{font-family:'Vazirmatn','Inter',system-ui,Tahoma,sans-serif}
+.box{width:100%;max-width:392px}
+.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .lg{width:40px;height:40px;border-radius:11px;background:var(--c2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.brand .lg img{width:30px;height:30px;object-fit:contain;display:block}
+.brand h1{font-size:19px;font-weight:800;letter-spacing:-.3px}
+.tools{display:flex;gap:8px;align-items:center}
+.lang{display:flex;gap:3px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:3px}
+.lang button{border:none;background:transparent;color:var(--mu);font:inherit;font-size:12px;font-weight:600;padding:5px 12px;border-radius:7px;cursor:pointer}
+.lang button.on{background:var(--ac);color:#fff}
+.tbtn{width:40px;height:34px;background:var(--card);border:1px solid var(--bd);border-radius:10px;color:var(--tx2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1}
+.tbtn:hover{color:var(--ac);border-color:var(--bd2)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:26px 24px;box-shadow:var(--shadow)}
+.t{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:1.4px;font-weight:700;margin-bottom:16px}
+label{display:block;font-size:12px;color:var(--tx2);font-weight:500;margin-bottom:7px}
+input{width:100%;background:var(--c2);border:1px solid var(--bd2);border-radius:11px;padding:13px 14px;color:var(--tx);font-size:14px;font-family:inherit;outline:none;transition:.12s}
+input:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--ring)}
+button.go{width:100%;margin-top:16px;padding:13px;border:none;border-radius:11px;background:var(--ac);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:.12s}
+button.go:hover{filter:brightness(1.05)}
+.err{color:var(--dg);font-size:13px;margin-top:13px;display:none}
+.social{display:flex;gap:9px;margin-top:16px}
+.social a{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;height:40px;background:var(--card);border:1px solid var(--bd);border-radius:11px;color:var(--tx2);text-decoration:none;font-size:12.5px;font-weight:600;transition:.12s}
+.social a:hover{border-color:var(--ac);color:var(--ac)}
+.social a svg{width:16px;height:16px}
+.foot{text-align:center;color:var(--mu);font-size:11.5px;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="bar">
+<div class="brand">
+<span class="lg"><img src="/logo-mark.svg" alt="Nova" /></span>
+<h1>Nova Proxy</h1>
+</div>
+<div class="tools">
+<div class="lang" id="lg"><button data-l="en" class="on">EN</button><button data-l="fa">فا</button></div>
+<button class="tbtn" id="theme" title="Theme">☾</button>
+</div>
+</div>
+<div class="card">
+<div class="t" id="t1">Sign in to the admin panel</div>
+<label id="lpw" for="pw">Password</label>
+<input id="pw" type="password" placeholder="password" autocomplete="current-password" />
+<div id="tfaWrap" style="display:none;margin-top:14px">
+<label id="lcode" for="code">Authenticator code</label>
+<input id="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456" />
+</div>
+<button class="go" id="go">Login</button>
+<div class="err" id="er"></div>
+<details style="margin-top:12px"><summary id="forgot-s" style="cursor:pointer;color:var(--mu);font-size:12.5px;list-style:none">Forgot password?</summary><div id="forgot-b" style="color:var(--tx2);font-size:12.5px;line-height:1.7;margin-top:8px"></div></details>
+<div class="social">
+<a href="https://novaproxy.online" target="_blank" rel="noopener" title="novaproxy.online"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>Web</span></a>
+<a href="https://t.me/irnova_proxy" target="_blank" rel="noopener" title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.6 18.9 19.2c-.23 1.01-.83 1.26-1.68.78l-4.64-3.42-2.24 2.16c-.25.25-.46.46-.94.46l.33-4.73 8.6-7.77c.37-.33-.08-.52-.58-.19l-10.63 6.7-4.58-1.43c-1-.31-1.01-1 .21-1.48l17.9-6.9c.83-.31 1.56.19 1.29 1.45z"/></svg><span>Telegram</span></a>
+<a href="https://www.youtube.com/@novaproxyir" target="_blank" rel="noopener" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.76-1.77C19.34 5.13 12 5.13 12 5.13s-7.34 0-8.84.4A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.76 1.77c1.5.4 8.84.4 8.84.4s7.34 0 8.84-.4a2.5 2.5 0 0 0 1.76-1.77C23 15.2 23 12 23 12zM9.75 15.5v-7l6.25 3.5-6.25 3.5z"/></svg><span>YouTube</span></a>
+</div>
+</div>
+<div class="foot" id="ft">Nova Proxy, open-source networking tools</div>
+</div>
+<script>
+var L={
+ en:{dir:'ltr',t1:'Sign in to the admin panel',lpw:'Password',pw:'password',go:'Login',bad:'Wrong password',lcode:'Authenticator code',badcode:'Wrong code',need:'Enter the 6-digit code from your authenticator app',ft:'Nova Proxy, open-source networking tools',forgot:'Forgot password?',forgotb:'The password is the ADMIN secret on your Cloudflare Worker. Recover or reset it in the Cloudflare dashboard → Workers &amp; Pages → your Worker → Settings → Variables and Secrets → ADMIN. If you set it in the in-app wizard instead, delete the KV key “admin_pass” (Workers &amp; Pages → KV → your namespace) to reset.'},
+ fa:{dir:'rtl',t1:'ورود به پنل مدیریت',lpw:'رمز عبور',pw:'رمز عبور',go:'ورود',bad:'رمز اشتباه است',lcode:'کد برنامه‌ی احراز هویت',badcode:'کد اشتباه است',need:'کد ۶ رقمی برنامه‌ی احراز هویت را وارد کنید',ft:'Nova Proxy، ابزار شبکه متن‌باز',forgot:'رمز را فراموش کردید؟',forgotb:'رمز همان سکرت ADMIN روی ورکر کلودفلر شماست. آن را در داشبورد کلودفلر بازیابی/تغییر دهید → Workers &amp; Pages → ورکر شما → Settings → Variables and Secrets → ADMIN. اگر رمز را با ویزارد داخل برنامه گذاشته‌اید، کلید KV با نام «admin_pass» را پاک کنید (Workers &amp; Pages → KV → namespace شما) تا ریست شود.'}};
+var lang=(navigator.language||'en').toLowerCase().indexOf('fa')===0?'fa':'en';
+var theme='light';
+try{var sl=localStorage.getItem('nova-lang');if(sl)lang=sl;var st=localStorage.getItem('nova-theme');if(st)theme=st;}catch(e){}
+function $(i){return document.getElementById(i)}
+function ap(){var t=L[lang];document.documentElement.dir=t.dir;document.documentElement.lang=lang;
+ $('t1').textContent=t.t1;$('lpw').textContent=t.lpw;$('pw').placeholder=t.pw;$('go').textContent=t.go;$('ft').textContent=t.ft;$('lcode').textContent=t.lcode;
+ if($('forgot-s'))$('forgot-s').textContent=t.forgot; if($('forgot-b'))$('forgot-b').innerHTML=t.forgotb;
+ [].forEach.call(document.querySelectorAll('#lg button'),function(b){b.classList.toggle('on',b.dataset.l===lang)})}
+function at(){document.documentElement.setAttribute('data-theme',theme);$('theme').textContent=theme==='dark'?'☀':'☾';}
+$('lg').onclick=function(e){var b=e.target.closest('button');if(b){lang=b.dataset.l;try{localStorage.setItem('nova-lang',lang)}catch(e){}ap()}};
+$('theme').onclick=function(){theme=theme==='dark'?'light':'dark';try{localStorage.setItem('nova-theme',theme)}catch(e){}at()};
+async function login(){var body='password='+encodeURIComponent($('pw').value);var cv=$('code').value.trim();if(cv)body+='&code='+encodeURIComponent(cv);
+ var r=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body});
+ var j={};try{j=await r.json()}catch(e){}
+ if(j&&j.success){location.href='/admin';return}
+ if(j&&j.need2fa){$('tfaWrap').style.display='block';$('code').focus();$('er').textContent=(j.error==='bad_code')?L[lang].badcode:L[lang].need;$('er').style.display='block';return}
+ $('er').textContent=(j&&j.error==='bad_code')?L[lang].badcode:L[lang].bad;$('er').style.display='block'}
+$('go').onclick=login;$('pw').addEventListener('keydown',function(e){if(e.key==='Enter')login()});$('code').addEventListener('keydown',function(e){if(e.key==='Enter')login()});
+at();ap();
+</script>
+</body>
+</html>
