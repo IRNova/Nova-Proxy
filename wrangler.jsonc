@@ -1,0 +1,16 @@
+// Cloudflare Workers config for Nova-Proxy.
+// This file makes the "Deploy to Cloudflare" button work:
+// https://deploy.workers.cloudflare.com/?url=https://github.com/IRNova/Nova-Proxy
+// It tells Cloudflare to create the Worker from worker.js and automatically
+// provision the KV namespace with the binding name "KV" (required by /install).
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "nova-proxy",
+  "main": "worker.js",
+  "compatibility_date": "2025-01-01",
+  "kv_namespaces": [
+    {
+      "binding": "KV"
+    }
+  ]
+}
