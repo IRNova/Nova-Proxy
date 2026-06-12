@@ -253,7 +253,8 @@ links, a Telegram bot, WARP, and one-click deploy. Runs on Cloudflare's **free**
 ---
 
 <p align="center">
-  <strong>نسخه 2.0.0 - در حال توسعه | با ❤️ برای جامعه ایران</strong>
+  <strong>نسخه V3.1.6 | با ❤️ برای جامعه ایران</strong><br>
+  <a href="UPDATES.md">📝 تغییرات این نسخه / Build updates</a>
 </p>
 
 ---
