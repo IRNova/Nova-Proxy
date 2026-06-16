@@ -1,0 +1,28 @@
+{
+  "name": "nova-proxy",
+  "version": "3.5.3",
+  "private": true,
+  "description": "Nova Proxy — all-in-one VLESS/Trojan/Shadowsocks proxy panel on a Cloudflare Worker (D1, users, Telegram bot, WARP, optional backend mode).",
+  "main": "worker.js",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "cloudflare": {
+    "label": "Nova Proxy",
+    "products": ["Workers", "D1"],
+    "bindings": {
+      "DB": {
+        "description": "The D1 database Nova uses for storage. Cloudflare creates this automatically — keep the default. Nova builds its own tables on first run, no migration needed."
+      },
+      "PASSWORD": {
+        "description": "Optional. Leave blank — after deploy, open your Worker URL and the **/install** wizard asks you to set an admin password. You can also set it later under Settings → Variables."
+      },
+      "UUID": {
+        "description": "Optional. Leave blank — Nova auto-derives a UUID. Only set this if you want a specific VLESS UUID."
+      }
+    }
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
