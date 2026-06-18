@@ -31,6 +31,8 @@ accounts, a Telegram bot, WARP, proxy chaining, and backend mode. Runs on Cloudf
 [![Telegram Group](https://img.shields.io/badge/👥%20Telegram%20Group-@irnovaproxy__group-0ea5e9?style=for-the-badge&logo=telegram)](https://t.me/irnovaproxy_group)
 [![YouTube](https://img.shields.io/badge/▶️%20YouTube-@novaproxyir-ff0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/@novaproxyir)
 [![X (Twitter)](https://img.shields.io/badge/𝕏%20X-@irNovaProxy-000000?style=for-the-badge&logo=x)](https://x.com/irNovaProxy)
+[![GitHub](https://img.shields.io/badge/🐙%20GitHub-IRNova/Nova--Proxy-181717?style=for-the-badge&logo=github)](https://github.com/IRNova/Nova-Proxy)
+
 </div>
 
 ---
@@ -234,7 +236,7 @@ If Nova helps you, please **⭐ star the repo** and consider a small donation �
 
 Built with ❤️ for a free and open internet.
 
-- [@iiviirv](https://github.com/iiviirv) — developer
+- [@iiviirv](https://github.com/iiviirv) — contributor
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [Xray-core](https://github.com/XTLS/xray-core)
 
