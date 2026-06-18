@@ -1,7 +1,5 @@
 <div align="center">
-
-<img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-gradient.svg" width="180" height="180" alt="Nova Proxy Logo">
-
+  <img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-gradient.svg" width="70" alt="Nova">
 <div align="right" style="position: relative; top: -40px;">
   <a href="README.fa.md">🇮🇷 فارسی</a>
 </div>
