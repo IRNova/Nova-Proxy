@@ -48,7 +48,7 @@ Nova Proxy is a **personal, all-in-one censorship-circumvention proxy** that run
 - 🤖 **Telegram bot** — full management from Telegram
 - 🔗 **Proxy chaining** — SOCKS5, HTTP, HTTPS, TURN, SSTP
 - 🛡️ **Advanced evasion** — ECH, TLS fragment, 0-RTT, fingerprint
-- 🧩 **Backend mode** — connect to your own Xray/sing-box VPS for VMess + UDP calls
+- 🧩 **Backend mode** — connect to your own Xray/sing-box VPS for VLESS + UDP calls
 
 ---
 
@@ -72,14 +72,14 @@ Visit the official site and follow the step-by-step guide:
 
 ### 📱 Mobile
 
-- **Android:** The Nova Proxy client is built directly into **Radar** — the Android app with built-in one-click wizard will be released soon.
+- **Android:** **Radar** — an Android app with a built-in wizard for one-click Nova Proxy installation on Cloudflare. Coming soon.
 - **iOS:** Currently in development.
 
 ---
 
-## 🛰 Backend Mode (VMess + Voice/Video Calls)
+## 🛰 Backend Mode (VLESS + Voice/Video Calls)
 
-Cloudflare Workers cannot run VMess or handle UDP traffic natively. To enable these features, Nova supports **Backend Mode** — forward traffic to your own Xray or sing-box VPS.
+Cloudflare Workers cannot run native TCP proxy or handle UDP traffic directly. To enable these features, Nova supports **Backend Mode** — forward traffic to your own Xray or sing-box VPS.
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/IRNova/Tools/main/nova-backend.sh)
@@ -180,14 +180,13 @@ After running the installer, enable Backend Mode in the Nova panel (Network Sett
 | Uplink coalescing / Downlink grain | ➖ | ✅ | ✅ |
 | Upload queue limit | ➖ | ✅ | ✅ |
 | IP Load Balance / Proxy Fallback | ➖ | ✅ | ✅ |
-| **━━━ v3 exclusive ━━━** | | | |
 | Tokenless format-named sub links | ➖ | ➖ | ✅ |
 | Permanent GitHub sub-mirror | ➖ | ➖ | ✅ |
 | Bundled dashboard (Static Assets) | ➖ | ➖ | ✅ |
 | Bilingual EN + FA UI + guided tour | ➖ | ➖ | ✅ |
 | Malware / Phishing / Cryptominers blocking | ➖ | ➖ | ✅ |
 | QUIC blocking | ➖ | ➖ | ✅ |
-| Backend mode (VMess + UDP / voice-video calls) | ➖ | ➖ | ✅ |
+| Backend mode (VLESS + UDP / voice-video calls) | ➖ | ➖ | ✅ |
 | ECH (Encrypted Client Hello) | ➖ | ➖ | ✅ |
 | Port-spread / Multi-transport | ➖ | ➖ | ✅ |
 | Telegram auto-announce domain updates | ➖ | ➖ | ✅ |
@@ -237,7 +236,7 @@ If Nova helps you, please **⭐ star the repo** and consider a small donation �
 
 Built with ❤️ for a free and open internet.
 
-- **vahid** — creator & maintainer · [@iiviirv](https://github.com/iiviirv)
+- [@iiviirv](https://github.com/iiviirv) — developer
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [Xray-core](https://github.com/XTLS/xray-core)
 
