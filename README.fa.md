@@ -233,7 +233,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/IRNova/Tools/main/nova-backe
 
 ساخته شده با ❤️ برای اینترنت آزاد و باز.
 
-- [@iiviirv](https://github.com/iiviirv) — توسعه‌دهنده
+- [@iiviirv](https://github.com/iiviirv) — مشارکت‌کننده
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [Xray-core](https://github.com/XTLS/xray-core)
 
