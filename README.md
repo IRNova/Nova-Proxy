@@ -180,7 +180,6 @@ After running the installer, enable Backend Mode in the Nova panel (Network Sett
 | Uplink coalescing / Downlink grain | ➖ | ✅ | ✅ |
 | Upload queue limit | ➖ | ✅ | ✅ |
 | IP Load Balance / Proxy Fallback | ➖ | ✅ | ✅ |
-| **━━━ v3 exclusive ━━━** | | | |
 | Tokenless format-named sub links | ➖ | ➖ | ✅ |
 | Permanent GitHub sub-mirror | ➖ | ➖ | ✅ |
 | Bundled dashboard (Static Assets) | ➖ | ➖ | ✅ |
