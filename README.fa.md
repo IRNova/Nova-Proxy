@@ -1,7 +1,5 @@
-<div align="center" dir="rtl">
-
-<img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-gradient.svg" width="180" height="180" alt="لوگوی نوا پروکسی">
-
+<div align="center">
+  <img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-gradient.svg" width="70" alt="Nova">
 <div align="left" style="position: relative; top: -40px;">
   <a href="README.md">🇬🇧 English</a>
 </div>
@@ -181,7 +179,6 @@ bash <(curl -fsSL https://raw.githubusercontent.com/IRNova/Tools/main/nova-backe
 | تجمیع آپلود / داونلود / Uplink/downlink | ➖ | ✅ | ✅ |
 | محدودیت صف آپلود / Upload queue limit | ➖ | ✅ | ✅ |
 | Load Balance IP / Proxy Fallback | ➖ | ✅ | ✅ |
-| **━━━ اختصاصی نسخه ۳ ━━━** | | | |
 | لینک اشتراک بدون توکن با فرمت نام‌گذاری شده | ➖ | ➖ | ✅ |
 | آینه دائمی گیتهاب برای اشتراک | ➖ | ➖ | ✅ |
 | پنل یکپارچه (Static Assets) | ➖ | ➖ | ✅ |
