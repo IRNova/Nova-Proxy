@@ -256,11 +256,11 @@ Made for Iran 🇮🇷 — and anyone who needs a free, open internet.
 ---
 ## Star History
 
-<a href="https://www.star-history.com/?repos=MorDavid%2FFlareTunnel%2CIRNova%2FNova-Proxy&type=date&legend=top-left">
+<a href="https://www.star-history.com/?repos=IRNova%2FNova-Proxy&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=MorDavid/FlareTunnel%2CIRNova/Nova-Proxy&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=MorDavid/FlareTunnel%2CIRNova/Nova-Proxy&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=MorDavid/FlareTunnel%2CIRNova/Nova-Proxy&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=IRNova/Nova-Proxy&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=IRNova/Nova-Proxy&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=IRNova/Nova-Proxy&type=date&legend=top-left" />
  </picture>
 </a>
 
