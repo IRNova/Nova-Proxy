@@ -253,8 +253,6 @@ MIT — فایل [LICENSE](LICENSE) را ببینید.
 📖 [نسخه انگلیسی / English version](README.md)
 
 ---
-## Star History
-
 <a href="https://www.star-history.com/?repos=IRNova%2FNova-Proxy&type=date&legend=top-left">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=IRNova/Nova-Proxy&type=date&theme=dark&legend=top-left" />
