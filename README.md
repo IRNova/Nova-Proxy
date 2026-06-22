@@ -3,7 +3,7 @@
 <img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-gradient.svg" width="70" alt="Nova">
 
 <div align="right">
-  <a href="README.fa.md">🇮🇷 فارسی</a>
+  <a href="README.fa.md"><img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" /> فارسی</a>
 </div>
 
 # Nova Proxy
@@ -248,7 +248,7 @@ MIT — see the [LICENSE](LICENSE) file.
 
 <div align="center">
 
-Made for Iran 🇮🇷 — and anyone who needs a free, open internet.
+Made for Iran <img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" /> — and anyone who needs a free, open internet.
 **Nothing about your traffic is logged. The proxy is yours.**
 
 📖 [Persian version](README.fa.md)
