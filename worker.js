@@ -1,6 +1,6 @@
-// Build: 2026-07-08T06:49:38.350Z
+// Build: 2026-07-08T06:54:37.049Z
 // @ts-nocheck
-let e=66060,t=52721,r=23106,n=22722,i=5147,o=78101,s=67273,a=93443,c=7198,l=15832,d=35698,w=4885,f=9958,h=7494,p=89646,g=59629,m=8894,y=86016,x=55086,v=70586,b=24514,k=45457,S=35842,C=17733,L=75164,M=62429,_=75116,K=27343,P=62387,R=70121,T=56411,X=14676,Y=16266,Z=17569,N=74475,H=61869,J=43895,B=11862,E=22522,D=90612,F=15086,G=89335,I=16954,O=88493,U=54512,W=25315,Q=15910,A=7817,V=47747,j=50068,q=37432,u=9817,z=33365,ee=52119,et=10693,er=42406,en=42498,ei=9205,eo=98113,es=26193,ea=18220,ec=53614,el=18860,ed=20825,ew=52689,ef=98147,eh=28637,ep=32623,eg=91478,em=82485,ey=16551,ex=77010,ev=53983,eb=41446,ek=80735,e0=16999,e1=10167,e2=25923,e3=94020,e4=979,e5=88023,e6=46250,e7=61239,e8=34965,e9=92237,te=42553,tt=87478,tr=81215,tn=66565,ti=20285,to=79834,ts=38263,ta=21412,tc=53021,tl=82012,td=38465,tw=69248,tf=33195,th=85150,tp=27685,tg=50622,tm=40022,ty=70209,tx=68611,tv=85192,tb=20398,tk=74154,t0=19172,t1=18897,t2=12850,t3=65574,t4=265,t5=14061,t6=17375,t7=99324,t8=13636,t9=70980,re=56926,rt=37049,rr=28964,rn=70359,ri=60544,ro=26221,rs=19652,ra=9151,rc=16610,rl=78214,rd=35976,rw=45054,rf=97051,rh=14707,rp=50291,rg=57239,rm=52283,ry=9500,rx=6789,rv=34744,rb=21992,rk=46140,r0=93738,r1=31688,r2=82640,r3=39228,r4=4207,r5=70758,r6=49946,r7=59160,r8=85598,r9=25318,ne=21458,nt=58311,nr=9323,nn=87157,ni=4837,no=40461,ns=77210,na=97230,nc=90501,nl=70105,nd=74754,nw=61958,nf=44652,nh=58778,np=21710,ng=95671,nm=88193,ny=9800,nx=14006,nv=22926,nb=60853,nk=33018,n0=61549,n1=6305,n2=7973,n3=57131,n4=27350,n5=50317,n6=96512,n7=69407,n8=3535,n9=50358,ie=63061,it=66231,ir=86474,ii=84324,io=50813,is=28942,ia=78827,ic=51018,il=33808,id=36521,iw=2045,ih=20219,ip=69951,ig=69877,im=39151,iy=35544,ix=28991,iv=51763,ib=59483;function ao(){return 577}function aa(){return 255}function ae(){return 461}function ai(){return 750}function au(){return 579}function ay(){return 212}function co(){return 196}function ca(){return 328}function ce(){return 54}function ci(){return 34}function cu(){return 913}function cy(){return 323}function da(){return 548}function de(){return 936}function di(){return 886}function du(){return 598}function dy(){return 948}function eu(){return 196}function fo(){return 389}function fa(){return 887}function fe(){return 11}function fi(){return 340}function fu(){return 246}function fy(){return 421}function go(){return 303}function ga(){return 720}function ge(){return 29}function gi(){return 693}function gu(){return 230}function gy(){return 175}function ho(){return 869}function ha(){return 161}function he(){return 962}function hi(){return 739}function hu(){return 497}function hy(){return 438}function iu(){return 876}function jo(){return 959}function ja(){return 721}function je(){return 124}function ji(){return 527}function ju(){return 87}function jy(){return 842}function ko(){return 577}function ka(){return 543}function ke(){return 353}function ki(){return 805}function ku(){return 649}function ky(){return 161}function lo(){return 119}function la(){return 784}function le(){return 472}function li(){return 491}function lu(){return 456}function ly(){return 55}function mo(){return 835}function ma(){return 241}function me(){return 934}function mi(){return 462}function mu(){return 440}function my(){return 934}function nu(){return 972}function oo(){return 699}function oa(){return 186}function oe(){return 479}function oi(){return 189}function ou(){return 309}function oy(){return 321}function po(){return 83}function pa(){return 409}function pe(){return 456}function pi(){return 948}function pu(){return 225}function py(){return 309}function qo(){return 126}function qa(){return 434}function qe(){return 54}function qi(){return 877}function qu(){return 23}function qy(){return 987}function ru(){return 805}function so(){return 325}function sa(){return 386}function se(){return 348}function si(){return 373}function su(){return 338}function sy(){return 124}function tu(){return 908}function uo(){return 95}function ua(){return 930}function ue(){return 986}function ui(){return 260}function uu(){return 47}function uy(){return 451}function vo(){return 460}function va(){return 646}function ve(){return 280}function vi(){return 181}function vu(){return 933}function vy(){return 306}function wo(){return 749}function wa(){return 386}function we(){return 827}function wi(){return 480}function wu(){return 161}function wy(){return 199}function Ao(){return 822}function Aa(){return 34}function Ae(){return 165}function Ai(){return 763}function Au(){return 718}function Ay(){return 41}function Co(){return 40}function Ca(){return 270}function Ce(){return 969}function Ci(){return 344}function Cu(){return 906}function Cy(){return 328}function Do(){return 411}function Da(){return 903}function De(){return 991}function Di(){return 955}function Du(){return 971}function Dy(){return 83}function Eo(){return 874}function Ea(){return 151}function Ee(){return 636}function Ei(){return 46}function Eu(){return 307}function Ey(){return 94}function Fo(){return 884}function Fa(){return 178}function Fe(){return 176}function Fi(){return 840}function Fu(){return 330}function Fy(){return 862}function Go(){return 798}function Ga(){return 259}function Ge(){return 679}function Gi(){return 581}function Gu(){return 226}function Gy(){return 977}function Ho(){return 447}function Ha(){return 29}function He(){return 325}function Hi(){return 954}function Hu(){return 135}function Hy(){return 909}function Io(){return 0}function Ia(){return 550}function ik(s){return new TextDecoder().decode(Uint8Array.from(atob(s),c=>c.charCodeAt(0)))}const i0 = ik("MjAyNi0wNi0xNyAwMTo0MToyMQ==");
+let e=31574,t=70351,r=32072,n=76395,i=28912,o=26754,s=57498,a=41661,c=55281,l=14402,d=67512,w=63525,f=59770,h=96789,p=6039,g=5617,m=68297,y=9853,x=10054,v=69625,b=14449,k=45690,S=95527,C=3494,L=80864,M=44955,_=82456,K=49684,P=48412,R=46513,T=18650,X=47019,Y=15049,Z=91920,N=77327,H=46743,J=49289,B=28323,E=84191,D=4014,F=85254,G=17533,I=42612,O=82239,U=9626,W=16845,Q=82383,A=46136,V=37045,j=47185,q=41086,u=2651,z=10704,ee=44984,et=46277,er=98641,en=96498,ei=84926,eo=44192,es=96320,ea=52315,ec=89762,el=61470,ed=54594,ew=17661,ef=45868,eh=50958,ep=51286,eg=30583,em=38268,ey=77326,ex=5445,ev=23163,eb=40673,ek=55705,e0=78765,e1=49432,e2=21771,e3=66708,e4=84703,e5=20838,e6=75174,e7=53148,e8=41017,e9=17316,te=55604,tt=35352,tr=62673,tn=17172,ti=55740,to=65001,ts=60758,ta=12515,tc=16510,tl=67321,td=97521,tw=27784,tf=25913,th=77030,tp=47883,tg=27363,tm=44441,ty=11393,tx=81086,tv=85183,tb=3716,tk=5546,t0=55429,t1=77485,t2=70370,t3=87935,t4=72838,t5=86910,t6=96362,t7=3177,t8=56485,t9=23962,re=6697,rt=6239,rr=9677,rn=4682,ri=58171,ro=88500,rs=12797,ra=27152,rc=830,rl=22171,rd=75315,rw=67610,rf=85532,rh=30563,rp=74401,rg=30264,rm=84554,ry=24463,rx=26597,rv=61325,rb=41065,rk=13418,r0=82810,r1=73494,r2=72645,r3=45508,r4=89691,r5=53527,r6=67708,r7=36234,r8=28568,r9=7779,ne=47428,nt=53820,nr=36323,nn=33155,ni=48906,no=17331,ns=57896,na=69252,nc=75690,nl=41648,nd=41715,nw=20297,nf=89243,nh=49638,np=81639,ng=86074,nm=71950,ny=20195,nx=22275,nv=41567,nb=84282,nk=15639,n0=81021,n1=41211,n2=27988,n3=28077,n4=43325,n5=13368,n6=73633,n7=31119,n8=88800,n9=30971,ie=53853,it=29951,ir=75035,ii=17727,io=65314,is=48481,ia=92307,ic=31397,il=70827,id=43974,iw=6690,ih=91287,ip=10495,ig=84060,im=37393,iy=45862,ix=3157,iv=99824,ib=74931;function ao(){return 677}function aa(){return 486}function ae(){return 408}function ai(){return 358}function au(){return 171}function ay(){return 719}function co(){return 448}function ca(){return 725}function ce(){return 390}function ci(){return 286}function cu(){return 713}function cy(){return 723}function da(){return 632}function de(){return 99}function di(){return 928}function du(){return 993}function dy(){return 414}function eu(){return 953}function fo(){return 568}function fa(){return 255}function fe(){return 941}function fi(){return 759}function fu(){return 562}function fy(){return 433}function go(){return 999}function ga(){return 530}function ge(){return 500}function gi(){return 561}function gu(){return 370}function gy(){return 198}function ho(){return 412}function ha(){return 266}function he(){return 26}function hi(){return 83}function hu(){return 646}function hy(){return 420}function iu(){return 621}function jo(){return 316}function ja(){return 908}function je(){return 965}function ji(){return 275}function ju(){return 698}function jy(){return 964}function ko(){return 404}function ka(){return 726}function ke(){return 331}function ki(){return 640}function ku(){return 891}function ky(){return 287}function lo(){return 836}function la(){return 348}function le(){return 505}function li(){return 962}function lu(){return 882}function ly(){return 462}function mo(){return 480}function ma(){return 553}function me(){return 126}function mi(){return 931}function mu(){return 92}function my(){return 69}function nu(){return 504}function oo(){return 294}function oa(){return 506}function oe(){return 691}function oi(){return 581}function ou(){return 210}function oy(){return 85}function po(){return 276}function pa(){return 163}function pe(){return 991}function pi(){return 183}function pu(){return 733}function py(){return 875}function qo(){return 199}function qa(){return 26}function qe(){return 339}function qi(){return 45}function qu(){return 653}function qy(){return 886}function ru(){return 754}function so(){return 421}function sa(){return 578}function se(){return 83}function si(){return 689}function su(){return 794}function sy(){return 49}function tu(){return 280}function uo(){return 898}function ua(){return 508}function ue(){return 826}function ui(){return 753}function uu(){return 64}function uy(){return 864}function vo(){return 88}function va(){return 183}function ve(){return 49}function vi(){return 501}function vu(){return 738}function vy(){return 258}function wo(){return 736}function wa(){return 206}function we(){return 470}function wi(){return 568}function wu(){return 867}function wy(){return 28}function Ao(){return 865}function Aa(){return 30}function Ae(){return 11}function Ai(){return 373}function Au(){return 891}function Ay(){return 213}function Co(){return 825}function Ca(){return 791}function Ce(){return 694}function Ci(){return 204}function Cu(){return 906}function Cy(){return 914}function Do(){return 87}function Da(){return 570}function De(){return 184}function Di(){return 848}function Du(){return 755}function Dy(){return 141}function Eo(){return 202}function Ea(){return 304}function Ee(){return 876}function Ei(){return 593}function Eu(){return 697}function Ey(){return 965}function Fo(){return 794}function Fa(){return 455}function Fe(){return 242}function Fi(){return 514}function Fu(){return 682}function Fy(){return 461}function Go(){return 534}function Ga(){return 996}function Ge(){return 392}function Gi(){return 314}function Gu(){return 871}function Gy(){return 440}function Ho(){return 20}function Ha(){return 14}function He(){return 436}function Hi(){return 277}function Hu(){return 64}function Hy(){return 701}function Io(){return 720}function Ia(){return 13}function ik(s){return new TextDecoder().decode(Uint8Array.from(atob(s),c=>c.charCodeAt(0)))}const i0 = ik("MjAyNi0wNi0xNyAwMTo0MToyMQ==");
 let i1, i2 = '', i3 = null, i4 = false, i5 = '', i6 = {};
 let i7 = null, i8, i9, ot = 0, or = true, on = false;
 let os = '';
@@ -10,7 +10,7 @@ let od = '', ow = null, oh = 0, op = '';
 let og = false, om = false;
 let ox = null, ov = 0;
 let ob = ['*tapecontent.net', '*cloudatacdn.com', '*loadshare.org', ik("KmNkbi1jZW50YXVydXMuY29t"), ik("c2Nob2xhci5nb29nbGUuY29t")];
-const ok = 'https://nova-panel.github.io/';
+const ok = ik("aHR0cHM6Ly9ub3ZhLXBhbmVsLmdpdGh1Yi5pby8=");
 const o0 = ik("8J+OgSDZhtmI2Kcg2LHYp9uM2q/Yp9mGINin2LPYqtiMINio2LHYp9uMINii2YYg2KjZhyDaqdiz24wg2b7ZiNmEINmG2K/Zh9uM2K8=");
 globalThis.__workerStart = Date.now();
 const o1 = 'config.json';
@@ -196,7 +196,7 @@ function l4(env) {
 async function l5(env) {
   if (og || !l4(env)) return og;
   try {
-    await env.DB.batch([env.DB.prepare('CREATE TABLE IF NOT EXISTS usage (k TEXT PRIMARY KEY, up INTEGER DEFAULT 0, down INTEGER DEFAULT 0, total INTEGER DEFAULT 0)'), env.DB.prepare(ik("Q1JFQVRFIFRBQkxFIElGIE5PVCBFWElTVFMgbG9ncyAoaWQgSU5URUdFUiBQUklNQVJZIEtFWSBBVVRPSU5DUkVNRU5ULCBUWVBFIFRFWFQsIElQIFRFWFQsIEFTTiBURVhULCBDQyBURVhULCBVUkwgVEVYVCwgVUEgVEVYVCwgVElNRSBJTlRFR0VSKQ==")), env.DB.prepare('CREATE TABLE IF NOT EXISTS kvstore (k TEXT PRIMARY KEY, v TEXT, updated INTEGER)')]);
+    await env.DB.batch([env.DB.prepare('CREATE TABLE IF NOT EXISTS usage (k TEXT PRIMARY KEY, up INTEGER DEFAULT 0, down INTEGER DEFAULT 0, total INTEGER DEFAULT 0)'), env.DB.prepare('CREATE TABLE IF NOT EXISTS logs (id INTEGER PRIMARY KEY AUTOINCREMENT, TYPE TEXT, IP TEXT, ASN TEXT, CC TEXT, URL TEXT, UA TEXT, TIME INTEGER)'), env.DB.prepare(ik("Q1JFQVRFIFRBQkxFIElGIE5PVCBFWElTVFMga3ZzdG9yZSAoayBURVhUIFBSSU1BUlkgS0VZLCB2IFRFWFQsIHVwZGF0ZWQgSU5URUdFUik="))]);
     og = true;
   } catch (l6) {
     console.error('d1Init: ' + (l6 && l6.message || l6));
@@ -233,7 +233,7 @@ function l7(env) {
     },
     put: async (dl, dd, dw) => {
       try {
-        if (typeof dd === 'string' && await l5(env)) await env.DB.prepare(ik("SU5TRVJUIElOVE8ga3ZzdG9yZSAoayx2LHVwZGF0ZWQpIFZBTFVFUyAoPyw/LD8pIE9OIENPTkZMSUNUKGspIERPIFVQREFURSBTRVQgdj1leGNsdWRlZC52LCB1cGRhdGVkPWV4Y2x1ZGVkLnVwZGF0ZWQ=")).bind(dl, dd, Date.now()).run();
+        if (typeof dd === 'string' && await l5(env)) await env.DB.prepare('INSERT INTO kvstore (k,v,updated) VALUES (?,?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v, updated=excluded.updated').bind(dl, dd, Date.now()).run();
       } catch (df) {}
       if (l8 && (env.NOVA_KV_MIRROR === '1' || env.NOVA_KV_MIRROR === 'true')) {
         try {
@@ -292,7 +292,7 @@ async function d0(env) {
         try {
           const d6 = await env.__realKV.get(d5.name);
           if (d6 != null) {
-            await env.DB.prepare(ik("SU5TRVJUIElOVE8ga3ZzdG9yZSAoayx2LHVwZGF0ZWQpIFZBTFVFUyAoPyw/LD8pIE9OIENPTkZMSUNUKGspIERPIE5PVEhJTkc=")).bind(d5.name, d6, Date.now()).run();
+            await env.DB.prepare('INSERT INTO kvstore (k,v,updated) VALUES (?,?,?) ON CONFLICT(k) DO NOTHING').bind(d5.name, d6, Date.now()).run();
             d3++;
           }
         } catch (d7) {}
@@ -301,7 +301,7 @@ async function d0(env) {
     } while (d2);
     await env.DB.prepare('INSERT INTO kvstore (k,v,updated) VALUES (?,?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v, updated=excluded.updated').bind('__kv_migrated', String(Date.now()), Date.now()).run();
     om = true;
-    console.log('migrateKvToD1: copied ' + d3 + ' keys');
+    console.log(ik("bWlncmF0ZUt2VG9EMTogY29waWVkIA==") + d3 + ' keys');
   } catch (d8) {
     console.error('migrateKvToD1: ' + (d8 && d8.message || d8));
   }
@@ -338,7 +338,7 @@ async function wp(env, wg, wm, wx) {
   wx = wx || 0;
   if (l4(env) && await l5(env)) {
     try {
-      const wv = await env.DB.prepare('INSERT INTO usage (k,up,down,total) VALUES (?,?,?,?) ON CONFLICT(k) DO UPDATE SET up=up+?, down=down+?, total=total+? RETURNING total').bind(wg, wm, wx, wm + wx, wm, wx, wm + wx).first();
+      const wv = await env.DB.prepare(ik("SU5TRVJUIElOVE8gdXNhZ2UgKGssdXAsZG93bix0b3RhbCkgVkFMVUVTICg/LD8sPyw/KSBPTiBDT05GTElDVChrKSBETyBVUERBVEUgU0VUIHVwPXVwKz8sIGRvd249ZG93bis/LCB0b3RhbD10b3RhbCs/IFJFVFVSTklORyB0b3RhbA==")).bind(wg, wm, wx, wm + wx, wm, wx, wm + wx).first();
       return wv && wv.total || 0;
     } catch (wb) {
       console.error('usageAdd: ' + wb);
@@ -477,9 +477,9 @@ function hw(hf) {
 }
 async function hh(hp) {
   try {
-    const hg = await fetch(ik("aHR0cHM6Ly9jbG91ZGZsYXJlLWRucy5jb20vZG5zLXF1ZXJ5P25hbWU9") + encodeURIComponent(hp) + '&type=A', {
+    const hg = await fetch('https://cloudflare-dns.com/dns-query?name=' + encodeURIComponent(hp) + '&type=A', {
       headers: {
-        accept: ik("YXBwbGljYXRpb24vZG5zLWpzb24=")
+        accept: 'application/dns-json'
       }
     });
     const hm = await hg.json();
@@ -636,7 +636,7 @@ export default {
     sv = ['1', 'true'].includes(env.PRELOAD_RACE_DIAL) || sv;
     try {
       if (env.KV && typeof env.KV.get === 'function') {
-        const mr = await env.KV.get(ik("bmV0d29yay1zZXR0aW5ncy5qc29u"));
+        const mr = await env.KV.get('network-settings.json');
         ol = mr ? JSON.parse(mr) : {
           enableRouting: true,
           enableGeoIP: true,
@@ -693,7 +693,7 @@ export default {
       or = false;
     } else i2 = `${p6.cf.colo}.${lk[0]}.${lk[1]}SsSs.nEt`.toLowerCase();
     od = env.NAT64 || env.nat64 || '';
-    const mc = p6.headers.get('CF-Connecting-IP') || p6.headers.get('True-Client-IP') || p6.headers.get('X-Real-IP') || p6.headers.get('X-Forwarded-For') || p6.headers.get('Fly-Client-IP') || p6.headers.get('X-Appengine-Remote-Addr') || p6.headers.get(ik("WC1DbHVzdGVyLUNsaWVudC1JUA==")) || '未知IP';
+    const mc = p6.headers.get('CF-Connecting-IP') || p6.headers.get('True-Client-IP') || p6.headers.get('X-Real-IP') || p6.headers.get('X-Forwarded-For') || p6.headers.get('Fly-Client-IP') || p6.headers.get(ik("WC1BcHBlbmdpbmUtUmVtb3RlLUFkZHI=")) || p6.headers.get('X-Cluster-Client-IP') || '未知IP';
     if (i7 === null) {
       if (env.GO2SOCKS5) ob = [...new Set(ob.concat(await rdg(env.GO2SOCKS5)))];
       i7 = ob;
@@ -711,7 +711,7 @@ export default {
         if ((env.URL || '').trim() === '1101') return new Response(await r2p(gr.host, mc), {
           status: 200,
           headers: {
-            'Content-Type': ik("dGV4dC9odG1sOyBjaGFyc2V0PVVURi04")
+            'Content-Type': 'text/html; charset=UTF-8'
           }
         });
         return new Response(await r2h(), {
@@ -736,7 +736,7 @@ export default {
         if (mh) return new Response('Service paused', {
           status: 503,
           headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
+            'Content-Type': ik("dGV4dC9wbGFpbjtjaGFyc2V0PXV0Zi04"),
             'Cache-Control': 'no-store'
           }
         });
@@ -744,7 +744,7 @@ export default {
         if (mm > 0 && await ff(env) >= mm * 1073741824) return new Response('Monthly data cap reached', {
           status: 503,
           headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
+            'Content-Type': ik("dGV4dC9wbGFpbjtjaGFyc2V0PXV0Zi04"),
             'Cache-Control': 'no-store'
           }
         });
@@ -802,7 +802,7 @@ export default {
           status: 403
         });
         const m6 = await env.KV.get('tg.json');
-        if (!m6) return new Response('Bot not configured', {
+        if (!m6) return new Response(ik("Qm90IG5vdCBjb25maWd1cmVk"), {
           status: 400
         });
         const m7 = JSON.parse(m6);
@@ -822,7 +822,7 @@ export default {
       }
       if (mt === 'bot') {
         if (p6.method === 'POST') return await rbf(p6, env, gk, g9);
-        return new Response(ik("Qm90IHdlYmhvb2sgYWN0aXZl"), {
+        return new Response('Bot webhook active', {
           status: 200
         });
       }
@@ -868,7 +868,7 @@ export default {
           }
         });
         if (gw) return new Response(JSON.stringify({
-          error: ik("YWxyZWFkeV9jb25maWd1cmVk")
+          error: 'already_configured'
         }), {
           status: 409,
           headers: {
@@ -885,7 +885,7 @@ export default {
         }), {
           status: 400,
           headers: {
-            'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+            'Content-Type': 'application/json;charset=utf-8'
           }
         });
         try {
@@ -921,7 +921,7 @@ export default {
           statusText: yp.statusText,
           headers: yg
         });
-      }).catch(() => new Response('ADMIN not configured', {
+      }).catch(() => new Response(ik("QURNSU4gbm90IGNvbmZpZ3VyZWQ="), {
         status: 404
       }));
       if (env.KV && typeof env.KV.get === 'function') {
@@ -952,7 +952,7 @@ export default {
             }), {
               status: 429,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
                 'Retry-After': String(y1.retryAfter),
                 'Cache-Control': 'no-store'
               }
@@ -973,7 +973,7 @@ export default {
                 }), {
                   status: 200,
                   headers: {
-                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                    'Content-Type': 'application/json;charset=utf-8'
                   }
                 });
                 if (!await ln(y7.secret, y9)) {
@@ -994,7 +994,7 @@ export default {
               }), {
                 status: 200,
                 headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
+                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                 }
               });
               cc(y0);
@@ -1014,7 +1014,7 @@ export default {
               'Location': ml.pubLogin
             }
           });
-          if (mt === ik("YWRtaW4vc2VjdXJpdHkvc3RhdHVz")) {
+          if (mt === 'admin/security/status') {
             let xo = null;
             try {
               xo = JSON.parse(await env.KV.get('admin_2fa.json') || 'null');
@@ -1029,12 +1029,12 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
                 'Cache-Control': 'no-store'
               }
             });
           } else if (mt === 'admin/security/change-password') {
-            if (p6.method !== 'POST') return new Response('Method Not Allowed', {
+            if (p6.method !== 'POST') return new Response(ik("TWV0aG9kIE5vdCBBbGxvd2Vk"), {
               status: 405
             });
             let xc = {};
@@ -1049,7 +1049,7 @@ export default {
             }), {
               status: 403,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                'Content-Type': 'application/json;charset=utf-8'
               }
             });
             if (xw.length < 6) return new Response(JSON.stringify({
@@ -1057,7 +1057,7 @@ export default {
             }), {
               status: 400,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                'Content-Type': 'application/json;charset=utf-8'
               }
             });
             try {
@@ -1078,7 +1078,7 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
               }
             });
             xg.headers.set('Set-Cookie', `auth=${await s3(gn, gp, xw)}; Path=/; Max-Age=86400; HttpOnly; Secure; SameSite=Lax`);
@@ -1096,11 +1096,11 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
                 'Cache-Control': 'no-store'
               }
             });
-          } else if (mt === 'admin/security/2fa-setup') {
+          } else if (mt === ik("YWRtaW4vc2VjdXJpdHkvMmZhLXNldHVw")) {
             const xx = cd(32);
             const xv = encodeURIComponent('Nova Proxy (' + gr.host + ')');
             const xb = `otpauth://totp/${xv}?secret=${xx}&issuer=${encodeURIComponent('Nova Proxy')}&algorithm=SHA1&digits=6&period=30`;
@@ -1114,7 +1114,7 @@ export default {
                 'Cache-Control': 'no-store'
               }
             });
-          } else if (mt === 'admin/security/2fa-enable') {
+          } else if (mt === ik("YWRtaW4vc2VjdXJpdHkvMmZhLWVuYWJsZQ==")) {
             if (p6.method !== 'POST') return new Response(ik("TWV0aG9kIE5vdCBBbGxvd2Vk"), {
               status: 405
             });
@@ -1129,7 +1129,7 @@ export default {
             }), {
               status: 400,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                'Content-Type': 'application/json;charset=utf-8'
               }
             });
             if (!await ln(x1, x2)) return new Response(JSON.stringify({
@@ -1137,7 +1137,7 @@ export default {
             }), {
               status: 400,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
               }
             });
             await env.KV.put('admin_2fa.json', JSON.stringify({
@@ -1153,8 +1153,8 @@ export default {
                 'Content-Type': 'application/json;charset=utf-8'
               }
             });
-          } else if (mt === ik("YWRtaW4vc2VjdXJpdHkvMmZhLWRpc2FibGU=")) {
-            if (p6.method !== 'POST') return new Response(ik("TWV0aG9kIE5vdCBBbGxvd2Vk"), {
+          } else if (mt === 'admin/security/2fa-disable') {
+            if (p6.method !== 'POST') return new Response('Method Not Allowed', {
               status: 405
             });
             let x3 = {};
@@ -1191,7 +1191,7 @@ export default {
                 'Content-Type': 'application/json;charset=utf-8'
               }
             });
-          } else if (yy === ik("YWRtaW4vZ2V0Q2xvdWRmbGFyZVVzYWdl")) {
+          } else if (yy === 'admin/getCloudflareUsage') {
             try {
               const x9 = await rgy(gr.searchParams.get('Email'), gr.searchParams.get('GlobalAPIKey'), gr.searchParams.get('AccountID'), gr.searchParams.get('APIToken'));
               return new Response(JSON.stringify(x9, null, 2), {
@@ -1226,12 +1226,12 @@ export default {
                 }, null, 2), {
                   status: 200,
                   headers: {
-                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                    'Content-Type': 'application/json;charset=utf-8'
                   }
                 });
               } catch (vf) {
                 const vh = {
-                  msg: 'Optimized API check failed / بررسی API ناموفق بود: ' + vf.message,
+                  msg: ik("T3B0aW1pemVkIEFQSSBjaGVjayBmYWlsZWQgLyDYqNix2LHYs9uMIEFQSSDZhtin2YXZiNmB2YIg2KjZiNivOiA=") + vf.message,
                   error: vf.message
                 };
                 return new Response(JSON.stringify(vh, null, 2), {
@@ -1248,13 +1248,13 @@ export default {
             }, null, 2), {
               status: 403,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                'Content-Type': 'application/json;charset=utf-8'
               }
             });
           } else if (mt === 'admin/check') {
             const vp = ['socks5', 'http', 'https', 'turn', 'sstp'].find(vg => gr.searchParams.has(vg)) || null;
             if (!vp) return new Response(JSON.stringify({
-              error: 'Missing proxy parameter / پارامتر پروکسی موجود نیست'
+              error: ik("TWlzc2luZyBwcm94eSBwYXJhbWV0ZXIgLyDZvtin2LHYp9mF2KrYsSDZvtix2Yjaqdiz24wg2YXZiNis2YjYryDZhtuM2LPYqg==")
             }), {
               status: 400,
               headers: {
@@ -1354,7 +1354,7 @@ export default {
               return new Response(JSON.stringify(i1, null, 2), {
                 status: 200,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                  'Content-Type': 'application/json;charset=utf-8'
                 }
               });
             } catch (bb) {
@@ -1365,7 +1365,7 @@ export default {
               return new Response(JSON.stringify(bk, null, 2), {
                 status: 500,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                  'Content-Type': 'application/json;charset=utf-8'
                 }
               });
             }
@@ -1392,18 +1392,18 @@ export default {
                 }
                 if (b0.优选订阅生成 && typeof b0.优选订阅生成 === 'object') delete b0.优选订阅生成.TOKEN;
                 if (!b0.UUID || !b0.HOST) return new Response(JSON.stringify({
-                  error: 'Incomplete configuration / پیکربندی ناقص است'
+                  error: ik("SW5jb21wbGV0ZSBjb25maWd1cmF0aW9uIC8g2b7bjNqp2LHYqNmG2K/bjCDZhtin2YLYtSDYp9iz2Ko=")
                 }), {
                   status: 400,
                   headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
+                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                   }
                 });
                 await o6(env, JSON.stringify(b0, null, 2));
                 ctx.waitUntil(rrp(env, p6, mc, 'Save_Config', i1));
                 return new Response(JSON.stringify({
                   success: true,
-                  message: 'Configuration saved / پیکربندی ذخیره شد'
+                  message: ik("Q29uZmlndXJhdGlvbiBzYXZlZCAvINm+24zaqdix2KjZhtiv24wg2LDYrtuM2LHZhyDYtNiv")
                 }), {
                   status: 200,
                   headers: {
@@ -1413,11 +1413,11 @@ export default {
               } catch (b3) {
                 console.error('保存配置失败:', b3);
                 return new Response(JSON.stringify({
-                  error: ik("RmFpbGVkIHRvIHNhdmUgY29uZmlndXJhdGlvbiAvINiw2K7bjNix2Ycg2b7bjNqp2LHYqNmG2K/bjCDZhtin2YXZiNmB2YIg2KjZiNivOiA=") + b3.message
+                  error: 'Failed to save configuration / ذخیره پیکربندی ناموفق بود: ' + b3.message
                 }), {
                   status: 500,
                   headers: {
-                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                    'Content-Type': 'application/json;charset=utf-8'
                   }
                 });
               }
@@ -1442,11 +1442,11 @@ export default {
                     b5.UsageAPI = b4.UsageAPI;
                   } else {
                     return new Response(JSON.stringify({
-                      error: ik("SW5jb21wbGV0ZSBjb25maWd1cmF0aW9uIC8g2b7bjNqp2LHYqNmG2K/bjCDZhtin2YLYtSDYp9iz2Ko=")
+                      error: 'Incomplete configuration / پیکربندی ناقص است'
                     }), {
                       status: 400,
                       headers: {
-                        'Content-Type': 'application/json;charset=utf-8'
+                        'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                       }
                     });
                   }
@@ -1459,13 +1459,13 @@ export default {
                 }), {
                   status: 200,
                   headers: {
-                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                    'Content-Type': 'application/json;charset=utf-8'
                   }
                 });
               } catch (b6) {
                 console.error('保存配置失败:', b6);
                 return new Response(JSON.stringify({
-                  error: 'Failed to save configuration / ذخیره پیکربندی ناموفق بود: ' + b6.message
+                  error: ik("RmFpbGVkIHRvIHNhdmUgY29uZmlndXJhdGlvbiAvINiw2K7bjNix2Ycg2b7bjNqp2LHYqNmG2K/bjCDZhtin2YXZiNmB2YIg2KjZiNivOiA=") + b6.message
                 }), {
                   status: 500,
                   headers: {
@@ -1484,11 +1484,11 @@ export default {
                   await env.KV.put('tg.json', JSON.stringify(b8, null, 2));
                 } else {
                   if (!b7.BotToken || !b7.ChatID) return new Response(JSON.stringify({
-                    error: ik("SW5jb21wbGV0ZSBjb25maWd1cmF0aW9uIC8g2b7bjNqp2LHYqNmG2K/bjCDZhtin2YLYtSDYp9iz2Ko=")
+                    error: 'Incomplete configuration / پیکربندی ناقص است'
                   }), {
                     status: 400,
                     headers: {
-                      'Content-Type': 'application/json;charset=utf-8'
+                      'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                     }
                   });
                   await env.KV.put('tg.json', JSON.stringify(b7, null, 2));
@@ -1500,13 +1500,13 @@ export default {
                 }), {
                   status: 200,
                   headers: {
-                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                    'Content-Type': 'application/json;charset=utf-8'
                   }
                 });
               } catch (b9) {
                 console.error('保存配置失败:', b9);
                 return new Response(JSON.stringify({
-                  error: 'Failed to save configuration / ذخیره پیکربندی ناموفق بود: ' + b9.message
+                  error: ik("RmFpbGVkIHRvIHNhdmUgY29uZmlndXJhdGlvbiAvINiw2K7bjNix2Ycg2b7bjNqp2LHYqNmG2K/bjCDZhtin2YXZiNmB2YIg2KjZiNivOiA=") + b9.message
                 }), {
                   status: 500,
                   headers: {
@@ -1514,7 +1514,7 @@ export default {
                   }
                 });
               }
-            } else if (mt === ik("YWRtaW4vbmV0d29yay1zZXR0aW5ncy5qc29u")) {
+            } else if (mt === 'admin/network-settings.json') {
               try {
                 const kt = await p6.json();
                 const kr = {
@@ -1595,17 +1595,17 @@ export default {
                 }), {
                   status: 200,
                   headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
+                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                   }
                 });
               } catch (kc) {
                 console.error('保存自定义IP失败:', kc);
                 return new Response(JSON.stringify({
-                  error: 'Failed to save custom IP / ذخیره آی‌پی سفارشی ناموفق بود: ' + kc.message
+                  error: ik("RmFpbGVkIHRvIHNhdmUgY3VzdG9tIElQIC8g2LDYrtuM2LHZhyDYotuM4oCM2b7bjCDYs9mB2KfYsdi024wg2YbYp9mF2YjZgdmCINio2YjYrzog") + kc.message
                 }), {
                   status: 500,
                   headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
+                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                   }
                 });
               }
@@ -1623,11 +1623,11 @@ export default {
                   return new Response(JSON.stringify(t5p(kw), null, 2), {
                     status: 200,
                     headers: {
-                      'Content-Type': 'application/json;charset=utf-8'
+                      'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                     }
                   });
                 }
-                const kf = await t47(env, 'warp-account.json');
+                const kf = await t47(env, ik("d2FycC1hY2NvdW50Lmpzb24="));
                 if (kl && kl.wow) await t47(env, ik("d2FycC1hY2NvdW50LXdvdy5qc29u"));
                 ctx.waitUntil(rrp(env, p6, mc, 'Register_WARP', i1));
                 const kh = t5p(kf);
@@ -1636,13 +1636,13 @@ export default {
                 return new Response(JSON.stringify(kh, null, 2), {
                   status: 200,
                   headers: {
-                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                    'Content-Type': 'application/json;charset=utf-8'
                   }
                 });
               } catch (kg) {
                 console.error('warpActionFail:', kg);
                 return new Response(JSON.stringify({
-                  error: ik("d2FycEFjdGlvbkZhaWw6IA==") + kg.message
+                  error: 'warpActionFail: ' + kg.message
                 }), {
                   status: 502,
                   headers: {
@@ -1650,7 +1650,7 @@ export default {
                   }
                 });
               }
-            } else if (mt === 'admin/users.json') {
+            } else if (mt === ik("YWRtaW4vdXNlcnMuanNvbg==")) {
               try {
                 const km = await p6.json();
                 let kx = {};
@@ -1705,7 +1705,7 @@ export default {
                 }), {
                   status: 200,
                   headers: {
-                    'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                    'Content-Type': 'application/json;charset=utf-8'
                   }
                 });
               } catch (k3) {
@@ -1724,7 +1724,7 @@ export default {
               }, k6 || ({}))), {
                 status: 200,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
+                  'Content-Type': 'application/json;charset=utf-8',
                   'Cache-Control': 'no-store'
                 }
               });
@@ -1774,7 +1774,7 @@ export default {
               }), {
                 status: 200,
                 headers: {
-                  'Content-Type': 'application/json;charset=utf-8',
+                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
                   'Cache-Control': 'no-store'
                 }
               });
@@ -1808,11 +1808,11 @@ export default {
             } else if (mt === 'admin/self-update.json') {
               return new Response(JSON.stringify({
                 error: 'not_configured',
-                detail: ik("YXV0by11cGRhdGUgaXMgZGlzYWJsZWQgb24gdGhpcyBidWlsZCAvINio2YfigIzYsdmI2LLYsdiz2KfZhtuMINiu2YjYr9qp2KfYsSDYqNix2KfbjCDYp9uM2YYg2YbYs9iu2Ycg2LrbjNix2YHYudin2YQg2KfYs9iq")
+                detail: 'auto-update is disabled on this build / به‌روزرسانی خودکار برای این نسخه غیرفعال است'
               }), {
                 status: 200,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                  'Content-Type': 'application/json;charset=utf-8'
                 }
               });
             } else return new Response(JSON.stringify({
@@ -1823,7 +1823,7 @@ export default {
                 'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
               }
             });
-          } else if (mt === ik("YWRtaW4vY29uZmlnLmpzb24=")) {
+          } else if (mt === 'admin/config.json') {
             const eew = await rnd(g9 + gk);
             const eef = Object.assign({}, i1, {
               optimizedSubGeneration: Object.assign({}, i1.优选订阅生成, {
@@ -1841,7 +1841,7 @@ export default {
             return new Response(JSON.stringify(eef, null, 2), {
               status: 200,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbg==")
+                'Content-Type': 'application/json'
               }
             });
           } else if (yy === 'admin/ADD.txt') {
@@ -1850,7 +1850,7 @@ export default {
             return new Response(eeh, {
               status: 200,
               headers: {
-                'Content-Type': ik("dGV4dC9wbGFpbjtjaGFyc2V0PXV0Zi04"),
+                'Content-Type': 'text/plain;charset=utf-8',
                 'asn': p6.cf.asn
               }
             });
@@ -1861,7 +1861,7 @@ export default {
                 'Content-Type': 'application/json;charset=utf-8'
               }
             });
-          } else if (mt === 'admin/network-settings.json') {
+          } else if (mt === ik("YWRtaW4vbmV0d29yay1zZXR0aW5ncy5qc29u")) {
             try {
               const eep = await env.KV.get('network-settings.json');
               const eeg = {
@@ -1907,7 +1907,7 @@ export default {
               return new Response(JSON.stringify(eem, null, 2), {
                 status: 200,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                  'Content-Type': 'application/json;charset=utf-8'
                 }
               });
             } catch (eey) {
@@ -1933,7 +1933,7 @@ export default {
               return new Response(JSON.stringify(eev, null, 2), {
                 status: 200,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                  'Content-Type': 'application/json;charset=utf-8'
                 }
               });
             } catch (eek) {
@@ -1947,7 +1947,7 @@ export default {
                 }
               });
             }
-          } else if (mt === ik("YWRtaW4vc3lzdGVtLmpzb24=")) {
+          } else if (mt === 'admin/system.json') {
             const ee0 = !!(env.KV && typeof env.KV.get === 'function');
             let ee1 = false;
             if (ee0) try {
@@ -2000,7 +2000,7 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
                 'Cache-Control': 'no-store'
               }
             });
@@ -2010,19 +2010,19 @@ export default {
               return new Response(JSON.stringify(ete), {
                 status: 200,
                 headers: {
-                  'Content-Type': 'application/json;charset=utf-8',
+                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
                   'Cache-Control': 'no-store'
                 }
               });
             } else {
-              const ett = env.KV && typeof env.KV.get === 'function' ? JSON.parse(await env.KV.get('domain-health.json') || 'null') : null;
+              const ett = env.KV && typeof env.KV.get === 'function' ? JSON.parse(await env.KV.get(ik("ZG9tYWluLWhlYWx0aC5qc29u")) || 'null') : null;
               return new Response(JSON.stringify(ett || ({
                 checkedAt: 0,
                 domains: []
               })), {
                 status: 200,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
+                  'Content-Type': 'application/json;charset=utf-8',
                   'Cache-Control': 'no-store'
                 }
               });
@@ -2099,7 +2099,7 @@ export default {
             const et0 = await rnd(g9 + gk);
             const et1 = `${gr.protocol}//${gr.host}/sub?token=${et0}`;
             const et2 = await fetch(et1).catch(() => null);
-            if (!et2) return new Response('Sub content unavailable', {
+            if (!et2) return new Response(ik("U3ViIGNvbnRlbnQgdW5hdmFpbGFibGU="), {
               status: 502
             });
             const et3 = await et2.text();
@@ -2110,10 +2110,10 @@ export default {
                 'Cache-Control': 'no-store'
               }
             });
-          } else if (mt === ik("YWRtaW4vdXNlcnMuanNvbg==")) {
+          } else if (mt === 'admin/users.json') {
             let et4 = {};
             try {
-              et4 = JSON.parse(await env.KV.get(ik("bmV0d29yay1zZXR0aW5ncy5qc29u")) || '{}');
+              et4 = JSON.parse(await env.KV.get('network-settings.json') || '{}');
             } catch (et5) {}
             return new Response(JSON.stringify({
               multiUser: !!et4.multiUser,
@@ -2122,11 +2122,11 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
+                'Content-Type': 'application/json;charset=utf-8',
                 'Cache-Control': 'no-store'
               }
             });
-          } else if (mt === ik("YWRtaW4vY2VudHJhbC9zdGF0cw==")) {
+          } else if (mt === 'admin/central/stats') {
             return new Response(JSON.stringify({
               configured: false
             }), {
@@ -2136,7 +2136,7 @@ export default {
                 'Cache-Control': 'no-store'
               }
             });
-          } else if (mt === 'admin/announcement') {
+          } else if (mt === ik("YWRtaW4vYW5ub3VuY2VtZW50")) {
             let et6 = null;
             try {
               et6 = JSON.parse(await env.KV.get('announcement.json') || 'null');
@@ -2166,7 +2166,7 @@ export default {
               }), {
                 status: 200,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                  'Content-Type': 'application/json;charset=utf-8'
                 }
               });
             } catch (ero) {
@@ -2176,11 +2176,11 @@ export default {
               }), {
                 status: 200,
                 headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
+                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
                 }
               });
             }
-          } else if (mt === 'admin/update-check.json') {
+          } else if (mt === ik("YWRtaW4vdXBkYXRlLWNoZWNrLmpzb24=")) {
             let ers = false;
             try {
               const era = JSON.parse(await env.KV.get('cf.json') || '{}');
@@ -2194,7 +2194,7 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
+                'Content-Type': 'application/json;charset=utf-8',
                 'Cache-Control': 'no-store'
               }
             });
@@ -2209,18 +2209,18 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8',
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
                 'Cache-Control': 'no-store'
               }
             });
-          } else if (mt === ik("YWRtaW4vc2luZ2JveC1wcmV2aWV3")) {
+          } else if (mt === 'admin/singbox-preview') {
             const erd = gr.searchParams.get('token') || '';
             if (!erd) return new Response(JSON.stringify({
               error: 'pass ?token=<sub token>'
             }), {
               status: 400,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
               }
             });
             try {
@@ -2232,7 +2232,7 @@ export default {
               return new Response(await erw.text(), {
                 status: erw.status,
                 headers: {
-                  'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
+                  'Content-Type': 'application/json;charset=utf-8',
                   'Cache-Control': 'no-store'
                 }
               });
@@ -2247,7 +2247,7 @@ export default {
               });
             }
           } else if (mt === 'admin/announce') {
-            const erh = JSON.parse(await env.KV.get(ik("ZG9tYWluLWhlYWx0aC5qc29u")) || 'null');
+            const erh = JSON.parse(await env.KV.get('domain-health.json') || 'null');
             const erp = await r1g(env, {
               baseUrl: `${gr.protocol}//${gr.host}`,
               health: erh
@@ -2258,13 +2258,13 @@ export default {
                 'Content-Type': 'application/json;charset=utf-8'
               }
             });
-          } else if (mt === 'admin/publish-mirror') {
+          } else if (mt === ik("YWRtaW4vcHVibGlzaC1taXJyb3I=")) {
             const erg = await r13(env, `${gr.protocol}//${gr.host}`);
             const erm = !erg.skipped && Array.isArray(erg.results) && erg.results.every(ery => ery.ok);
             return new Response(JSON.stringify(erg, null, 2), {
               status: erg.skipped ? 400 : erm ? 200 : 502,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
+                'Content-Type': 'application/json;charset=utf-8'
               }
             });
           } else if (mt === 'admin/domains') {
@@ -2279,13 +2279,13 @@ export default {
                 'Content-Type': 'application/json;charset=utf-8'
               }
             });
-          } else if (mt === 'admin/cf-usage-setup') {
+          } else if (mt === ik("YWRtaW4vY2YtdXNhZ2Utc2V0dXA=")) {
             if (p6.method !== 'POST') return new Response(JSON.stringify({
               error: ik("bWV0aG9kX25vdF9hbGxvd2Vk")
             }), {
               status: 405,
               headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04")
               }
             });
             const erb = (erk, er0) => new Response(JSON.stringify(Object.assign({
@@ -2319,7 +2319,7 @@ export default {
                 er7 = await r0k(er3);
               } catch (er8) {}
               if (!er7.length) return erb('no_accounts');
-              if (er7.length === 1) er6 = er7[0].id; else return erb(ik("bXVsdGlwbGVfYWNjb3VudHM="), {
+              if (er7.length === 1) er6 = er7[0].id; else return erb('multiple_accounts', {
                 accounts: er7
               });
             }
@@ -2343,7 +2343,7 @@ export default {
             }), {
               status: 200,
               headers: {
-                'Content-Type': ik("YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PXV0Zi04"),
+                'Content-Type': 'application/json;charset=utf-8',
                 'Cache-Control': 'no-store'
               }
             });
@@ -2356,14 +2356,14 @@ export default {
             eni = eni.replace(/"\.\.\/logo\.png"/g, `"${ok}logo.png"`);
             eni = eni.replace(/src=['"]\.\.\/logo\.png['"]/g, `src="${ok}logo.png"`);
             if (ent && ent !== '') {
-              eni = eni.replace('</head>', '<script>location.hash="page=' + ent + '";</script></head>');
+              eni = eni.replace('</head>', '<script>location.hash="page=' + ent + ik("Ijs8L3NjcmlwdD48L2hlYWQ+"));
             }
             return new Response(eni, {
               status: enn.status,
               statusText: enn.statusText,
               headers: enn.headers
             });
-          }).catch(() => new Response('Admin panel unavailable', {
+          }).catch(() => new Response(ik("QWRtaW4gcGFuZWwgdW5hdmFpbGFibGU="), {
             status: 502
           }));
         } else if (mt === 'logout' || gv.test(mt)) {
@@ -2376,7 +2376,7 @@ export default {
           eno.headers.set('Set-Cookie', 'auth=; Path=/; Max-Age=0; HttpOnly');
           return eno;
         } else if (mt === 'sub') {
-          const ens = await rnd(g9 + gk), ena = ['1', 'true'].includes(env.BEST_SUB) && gr.searchParams.get('host') === 'example.com' && gr.searchParams.get('uuid') === ik("MDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMDAw") && gn.toLowerCase().includes('tunnel (https://github.com/' + lk[1] + '/edge');
+          const ens = await rnd(g9 + gk), ena = ['1', 'true'].includes(env.BEST_SUB) && gr.searchParams.get('host') === 'example.com' && gr.searchParams.get('uuid') === '00000000-0000-4000-8000-000000000000' && gn.toLowerCase().includes(ik("dHVubmVsIChodHRwczovL2dpdGh1Yi5jb20v") + lk[1] + '/Nova');
           const enc = gr.searchParams.get('token');
           const enl = enc === ens;
           const end = Math.floor(Date.now() / 86400000);
@@ -2388,7 +2388,7 @@ export default {
             if (ena) ctx.waitUntil(rrp(env, p6, mc, 'Get_Best_SUB', i1, false)); else ctx.waitUntil(rrp(env, p6, mc, 'Get_SUB', i1));
             const eng = gn.toLowerCase();
             const enm = {
-              "content-type": ik("dGV4dC9wbGFpbjsgY2hhcnNldD11dGYtOA=="),
+              "content-type": "text/plain; charset=utf-8",
               "Profile-Update-Interval": i1.优选订阅生成.SUBUpdateTime,
               "Profile-web-page-url": gr.protocol + '//' + gr.host + '/admin',
               "Profile-Title": encodeURIComponent(i1.优选订阅生成.SUBNAME || 'Nova Proxy'),
@@ -2400,13 +2400,13 @@ export default {
               const enb = Number.isFinite(i1.CF.Usage.max) ? i1.CF.Usage.max / 1000 * 1024 : 1024 * 100;
               enm[ik("U3Vic2NyaXB0aW9uLVVzZXJpbmZv")] = `upload=${eny}; download=${enx}; total=${enb}; expire=4102329600`;
             }
-            const enk = gr.searchParams.has('b64') || gr.searchParams.has('base64') || p6.headers.get('subconverter-request') || p6.headers.get(ik("c3ViY29udmVydGVyLXZlcnNpb24=")) || eng.includes('subconverter') || eng.includes(('CF-Workers-SUB').toLowerCase()) || ena;
+            const enk = gr.searchParams.has('b64') || gr.searchParams.has('base64') || p6.headers.get('subconverter-request') || p6.headers.get('subconverter-version') || eng.includes('subconverter') || eng.includes(('CF-Workers-SUB').toLowerCase()) || ena;
             const en0 = enk ? 'mixed' : gr.searchParams.has('target') ? gr.searchParams.get('target') : gr.searchParams.has('clash') || eng.includes('clash') || eng.includes('meta') || eng.includes('mihomo') ? 'clash' : gr.searchParams.has('sb') || gr.searchParams.has('singbox') || eng.includes('singbox') || eng.includes('sing-box') ? 'singbox' : gr.searchParams.has('surge') || eng.includes('surge') ? 'surge&ver=4' : gr.searchParams.has('quanx') || eng.includes('quantumult') ? 'quanx' : gr.searchParams.has('loon') || eng.includes('loon') ? 'loon' : 'mixed';
-            if (!eng.includes('mozilla')) enm[ik("Q29udGVudC1EaXNwb3NpdGlvbg==")] = `attachment; filename*=utf-8''${encodeURIComponent(i1.优选订阅生成.SUBNAME)}`;
+            if (!eng.includes('mozilla')) enm["Content-Disposition"] = `attachment; filename*=utf-8''${encodeURIComponent(i1.优选订阅生成.SUBNAME)}`;
             const en1 = (gr.searchParams.has('surge') || eng.includes('surge')) && i1.协议类型 !== 'ss' ? 'tro' + 'jan' : i1.协议类型;
             let en2 = '';
             if (en0 === 'mixed') {
-              const en3 = i1.TLS分片 == 'Shadowrocket' ? `&fragment=${encodeURIComponent('1,40-60,30-50,tlshello')}` : i1.TLS分片 == 'Happ' ? `&fragment=${encodeURIComponent('3,1,tlshello')}` : '';
+              const en3 = i1.TLS分片 == 'Shadowrocket' ? `&fragment=${encodeURIComponent(ik("MSw0MC02MCwzMC01MCx0bHNoZWxsbw=="))}` : i1.TLS分片 == 'Happ' ? `&fragment=${encodeURIComponent('3,1,tlshello')}` : '';
               let en4 = [], en5 = '', en6 = [];
               if (!gr.searchParams.has('sub') && i1.优选订阅生成.local) {
                 const en7 = i1.优选订阅生成.本地IP库.随机IP ? (await rlm(p6, i1.优选订阅生成.本地IP库.随机数量, i1.优选订阅生成.本地IP库.指定端口))[0] : await env.KV.get('ADD.txt') ? await rdg(await env.KV.get('ADD.txt')) : (await rlm(p6, i1.优选订阅生成.本地IP库.随机数量, i1.优选订阅生成.本地IP库.指定端口))[0];
@@ -2513,7 +2513,7 @@ export default {
                 if (eiy) eoa = eoa.replace(/,/g, '%2C');
                 {
                   const eog = (eos.match(/ ·S\d+$/) || [''])[0];
-                  eos = 'سرویس رایگان نوا ' + (eot + 1) + eog;
+                  eos = ik("2LPYsdmI24zYsyDYsdin24zar9in2YYg2YbZiNinIA==") + (eot + 1) + eog;
                 }
                 const eom = i1.protocolType === 'mixed' && !ena ? ['vless', 'trojan'][eot % 2] : en1;
                 if (eom === 'ss' && !ena) {
@@ -2524,7 +2524,7 @@ export default {
                   }
                   eoa = (eoa.includes('?') ? eoa.replace('?', '?enc=' + i1.SS.加密方式 + '&') : eoa + '?enc=' + i1.SS.加密方式).replace(/([=,])/g, '\\$1');
                   if (!enk) eoa = eoa + ';mux=0';
-                  return `${eom}://${btoa(i1.SS.加密方式 + ':00000000-0000-4000-8000-000000000000')}@${eoi}:${eoo}?plugin=v2${encodeURIComponent('ray-plugin;mode=websocket;host=example.com;path=' + (i1.随机路径 ? rnk(eoa) : eoa) + (i1.SS.TLS ? ';tls' : '')) + eim + en3}#${encodeURIComponent(eos)}`;
+                  return `${eom}://${btoa(i1.SS.加密方式 + ':00000000-0000-4000-8000-000000000000')}@${eoi}:${eoo}?plugin=v2${encodeURIComponent(ik("cmF5LXBsdWdpbjttb2RlPXdlYnNvY2tldDtob3N0PWV4YW1wbGUuY29tO3BhdGg9") + (i1.随机路径 ? rnk(eoa) : eoa) + (i1.SS.TLS ? ';tls' : '')) + eim + en3}#${encodeURIComponent(eos)}`;
                 } else {
                   const eov = t4w(i1, eoa, ena);
                   if (i1.enableTLS === false) {
@@ -2532,15 +2532,15 @@ export default {
                     const eo0 = String(eok[eob.indexOf(Number(eoo))] ?? eoo);
                     return `${eom}://00000000-0000-4000-8000-000000000000@${eoi}:${eo0}?security=none&type=${eix}&${eib}=example.com&${eiv}=${encodeURIComponent(eov)}&encryption=none#${encodeURIComponent(eos)}`;
                   }
-                  return `${eom}://00000000-0000-4000-8000-000000000000@${eoi}:${eoo}?security=tls&type=${eix + eim}&${eib}=example.com&fp=${i1.Fingerprint}&sni=example.com&${eiv}=${encodeURIComponent(eov) + en3}&encryption=none${i1.skipCertVerify ? '&insecure=1&allowInsecure=1' : ''}#${encodeURIComponent(eos)}`;
+                  return `${eom}://00000000-0000-4000-8000-000000000000@${eoi}:${eoo}?security=tls&type=${eix + eim}&${eib}=example.com&fp=${i1.Fingerprint}&sni=example.com&${eiv}=${encodeURIComponent(eov) + en3}&encryption=none${i1.skipCertVerify ? ik("Jmluc2VjdXJlPTEmYWxsb3dJbnNlY3VyZT0x") : ''}#${encodeURIComponent(eos)}`;
                 }
               }).filter(eo1 => eo1 !== null).join('\n');
             } else {
-              const eo2 = `${i1.订阅转换配置.SUBAPI}/sub?target=${en0}&url=${encodeURIComponent(gr.protocol + '//' + gr.host + ik("L3N1Yj90YXJnZXQ9bWl4ZWQmdG9rZW49") + enf + '&cnIspCode=' + rlc(p6) + (gr.searchParams.has('sub') && gr.searchParams.get('sub') != '' ? `&sub=${gr.searchParams.get('sub')}` : ''))}&config=${encodeURIComponent(i1.订阅转换配置.SUBCONFIG)}&emoji=${i1.订阅转换配置.SUBEMOJI}&list=${i1.订阅转换配置.SUBLIST}&scv=${i1.跳过证书验证}`;
+              const eo2 = `${i1.订阅转换配置.SUBAPI}/sub?target=${en0}&url=${encodeURIComponent(gr.protocol + '//' + gr.host + '/sub?target=mixed&token=' + enf + '&cnIspCode=' + rlc(p6) + (gr.searchParams.has('sub') && gr.searchParams.get('sub') != '' ? `&sub=${gr.searchParams.get('sub')}` : ''))}&config=${encodeURIComponent(i1.订阅转换配置.SUBCONFIG)}&emoji=${i1.订阅转换配置.SUBEMOJI}&list=${i1.订阅转换配置.SUBLIST}&scv=${i1.跳过证书验证}`;
               try {
                 const eo3 = await fetch(eo2, {
                   headers: {
-                    'User-Agent': 'Subconverter for ' + en0 + ' edge' + 'tunnel (https://github.com/' + lk[1] + '/edge' + 'tunnel)'
+                    'User-Agent': ik("U3ViY29udmVydGVyIGZvciA=") + en0 + ' edge' + ik("dHVubmVsIChodHRwczovL2dpdGh1Yi5jb20v") + lk[1] + '/Nova' + 'Proxy)'
                   }
                 });
                 if (eo3.ok) {
@@ -2587,10 +2587,10 @@ export default {
             }
             if (en0 === 'singbox') {
               en2 = await t9o(en2, i1, ol, eo9);
-              enm["content-type"] = 'application/json; charset=utf-8';
+              enm["content-type"] = ik("YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==");
             } else if (en0 === 'clash') {
               en2 = t6e(en2, i1, ol, eo9);
-              enm["content-type"] = 'application/x-yaml; charset=utf-8';
+              enm["content-type"] = ik("YXBwbGljYXRpb24veC15YW1sOyBjaGFyc2V0PXV0Zi04");
             }
             if (eng.includes('mozilla') && !gr.searchParams.has('raw') && !gr.searchParams.has('b64') && !gr.searchParams.has('base64')) {
               const esi = await raw();
@@ -2609,10 +2609,10 @@ export default {
               'Referer': ik("aHR0cHM6Ly9zcGVlZC5jbG91ZGZsYXJlLmNvbS8=")
             }
           }));
-        } else if (mt === 'robots.txt') return new Response('User-agent: *\nDisallow: /', {
+        } else if (mt === 'robots.txt') return new Response(ik("VXNlci1hZ2VudDogKgpEaXNhbGxvdzogLw=="), {
           status: 200,
           headers: {
-            'Content-Type': ik("dGV4dC9wbGFpbjsgY2hhcnNldD1VVEYtOA==")
+            'Content-Type': 'text/plain; charset=UTF-8'
           }
         });
       } else if (!gb) return fetch(ok + '/install').then(async esc => {
@@ -2649,7 +2649,7 @@ export default {
     if (esf === '1101') return new Response(await r2p(gr.host, mc), {
       status: 200,
       headers: {
-        'Content-Type': ik("dGV4dC9odG1sOyBjaGFyc2V0PVVURi04")
+        'Content-Type': 'text/html; charset=UTF-8'
       }
     });
     try {
@@ -2682,7 +2682,7 @@ export default {
     return new Response(await r2h(), {
       status: 200,
       headers: {
-        'Content-Type': 'text/html; charset=UTF-8'
+        'Content-Type': ik("dGV4dC9odG1sOyBjaGFyc2V0PVVURi04")
       }
     });
   },
@@ -2692,7 +2692,7 @@ export default {
     if (!env || !['1', 'true'].includes(String(env.ENABLE_CRON || ''))) return;
     ctx.waitUntil(rca(env).then(es0 => {
       if (es0) console.log('scheduledMaintenance completed');
-    }).catch(es1 => console.error('runScheduledMaintenance error:', es1 && es1.message)));
+    }).catch(es1 => console.error(ik("cnVuU2NoZWR1bGVkTWFpbnRlbmFuY2UgZXJyb3I6"), es1 && es1.message)));
   }
 };
 async function es2(es3, es4) {
@@ -3092,7 +3092,7 @@ async function elk(el0, el1) {
     down: 0
   };
   const edt = new Headers({
-    'Content-Type': 'application/grpc',
+    'Content-Type': ik("YXBwbGljYXRpb24vZ3JwYw=="),
     'grpc-status': '0',
     'X-Accel-Buffering': 'no',
     'Cache-Control': 'no-store'
@@ -3280,7 +3280,7 @@ async function elk(el0, el1) {
               if (el6 === null) el6 = ewv.byteLength >= 58 && ewv[56] === 0x0d && ewv[57] === 0x0a;
               if (el6) {
                 const ewb = ey1(ewv, el1);
-                if (ewb?.hasError) throw new Error(ewb.message || 'Invalid trojan request');
+                if (ewb?.hasError) throw new Error(ewb.message || ik("SW52YWxpZCB0cm9qYW4gcmVxdWVzdA=="));
                 const {port: ewk, hostname: ew0, rawClientData: ew1, isUDP: ew2} = ewb;
                 t4m(`[gRPC] 木马首包: ${ew0}:${ewk} | UDP: ${ew2 ? '是' : '否'}`);
                 if (rvc(ew0)) throw new Error('Blocked site');
@@ -3357,7 +3357,7 @@ function efo(efs, efa) {
 }
 function efd(efw, eff) {
   if (!efw) return null;
-  if (efw.length > sd) throw new Error(ik("ZWFybHkgZGF0YSBpcyB0b28gbGFyZ2U="));
+  if (efw.length > sd) throw new Error('early data is too large');
   let efh;
   const efp = Uint8Array;
   if (typeof efp.fromBase64 === 'function') {
@@ -3404,7 +3404,7 @@ async function efk(ef0, ef1, ef2) {
   const ehe = {
     缓存: new Uint8Array(0)
   };
-  const eht = ef0.headers.get('sec-websocket-protocol') || '';
+  const eht = ef0.headers.get(ik("c2VjLXdlYnNvY2tldC1wcm90b2NvbA==")) || '';
   const ehr = !!ef2.searchParams.get('enc');
   let ehn = null;
   let ehi = Promise.resolve();
@@ -3439,7 +3439,7 @@ async function efk(ef0, ef1, ef2) {
     },
     释放写入器: ehy,
     重试连接: async () => {
-      if (typeof ef7.retryConnect !== 'function') throw new Error(ik("cmV0cnkgdW5hdmFpbGFibGU="));
+      if (typeof ef7.retryConnect !== 'function') throw new Error('retry unavailable');
       await ef7.retryConnect();
     },
     关闭连接: () => {
@@ -3526,7 +3526,7 @@ async function efk(ef0, ef1, ef2) {
                 const ep6 = ept.buffer.subarray(0, ep5);
                 ept.buffer = ept.buffer.subarray(ep5);
                 const ep7 = await e0o(ept.decryptKey, ept.nonceCounter, ep6);
-                if (ep7.byteLength !== 2) throw new Error(ik("U1MgbGVuZ3RoIGRlY3J5cHQgZmFpbGVk"));
+                if (ep7.byteLength !== 2) throw new Error('SS length decrypt failed');
                 const ep8 = ep7[0] << 8 | ep7[1];
                 if (ep8 < 0 || ep8 > ept.加密配置.maxChunk) throw new Error(`SS payload length invalid: ${ep8}`);
                 ept.waitPayloadLength = ep8;
@@ -3546,7 +3546,7 @@ async function efk(ef0, ef1, ef2) {
         const egn = 32 * 1024;
         const egi = async () => {
           if (egr) return egr;
-          if (!ept.加密配置) throw new Error(ik("U1MgY2lwaGVyIGlzIG5vdCBuZWdvdGlhdGVk"));
+          if (!ept.加密配置) throw new Error('SS cipher is not negotiated');
           const ego = ept.加密配置;
           const egs = await eks(ef1, ego.keyLen);
           const ega = crypto.getRandomValues(new Uint8Array(ego.saltLen));
@@ -3635,7 +3635,7 @@ async function efk(ef0, ef1, ef2) {
       emr = await emt.入站解密器.输入(eme);
     } catch (emn) {
       const emi = emn?.message || `${emn}`;
-      if (emi.includes(ik("RGVjcnlwdGlvbiBmYWlsZWQ=")) || emi.includes(ik("U1MgaGFuZHNoYWtlIGRlY3J5cHQgZmFpbGVk")) || emi.includes('SS length decrypt failed')) {
+      if (emi.includes('Decryption failed') || emi.includes('SS handshake decrypt failed') || emi.includes('SS length decrypt failed')) {
         t4m(`[SS入站] 解密失败，连接关闭: ${emi}`);
         e4w(ef5);
         return;
@@ -3665,14 +3665,14 @@ async function efk(ef0, ef1, ef2) {
         emw = `${emc[emd]}.${emc[emd + 1]}.${emc[emd + 2]}.${emc[emd + 3]}`;
         emd += 4;
       } else if (eml === 3) {
-        if (emc.byteLength < emd + 1) throw new Error(ik("aW52YWxpZCBzcyBkb21haW4gbGVuZ3Ro"));
+        if (emc.byteLength < emd + 1) throw new Error('invalid ss domain length');
         const emf = emc[emd];
         emd += 1;
-        if (emc.byteLength < emd + emf + 2) throw new Error('invalid ss domain data');
+        if (emc.byteLength < emd + emf + 2) throw new Error(ik("aW52YWxpZCBzcyBkb21haW4gZGF0YQ=="));
         emw = ev0.decode(emc.subarray(emd, emd + emf));
         emd += emf;
       } else if (eml === 4) {
-        if (emc.byteLength < emd + 16 + 2) throw new Error(ik("aW52YWxpZCBzcyBpcHY2IGxlbmd0aA=="));
+        if (emc.byteLength < emd + 16 + 2) throw new Error('invalid ss ipv6 length');
         const emh = [];
         const emp = new DataView(emc.buffer, emc.byteOffset + emd, 16);
         for (let emg = 0; emg < 8; emg++) emh.push(emp.getUint16(emg * 2).toString(16));
@@ -3721,7 +3721,7 @@ async function efk(ef0, ef1, ef2) {
     if (await eh0(emv)) return;
     if (ehd === '木马') {
       const em1 = ey1(emv, ef1);
-      if (em1?.hasError) throw new Error(em1.message || ik("SW52YWxpZCB0cm9qYW4gcmVxdWVzdA=="));
+      if (em1?.hasError) throw new Error(em1.message || 'Invalid trojan request');
       const {port: em2, hostname: em3, rawClientData: em4, isUDP: em5} = em1;
       if (rvc(em3)) throw new Error('Blocked site');
       if (em5) {
@@ -3735,11 +3735,11 @@ async function efk(ef0, ef1, ef2) {
       emb = emb || ev2(emv);
       const em6 = emb;
       const em7 = ex7(em6, ef1);
-      if (em7?.hasError) throw new Error(em7.message || 'Invalid 魏烈思 request');
+      if (em7?.hasError) throw new Error(em7.message || ik("SW52YWxpZCDprY/ng4jmgJ0gcmVxdWVzdA=="));
       const {port: em8, hostname: em9, version: eye, isUDP: eyt, rawClientData: eyr} = em7;
       if (rvc(em9)) throw new Error('Blocked site');
       if (eyt) {
-        if (em8 === 53) ef8 = true; else throw new Error(ik("VURQIGlzIG5vdCBzdXBwb3J0ZWQ="));
+        if (em8 === 53) ef8 = true; else throw new Error('UDP is not supported');
       }
       const eyn = new Uint8Array([eye, 0]);
       const eyi = eyr;
@@ -3844,7 +3844,7 @@ function ey1(ey2, ey3) {
   let ey6 = 56;
   if (ey4[ey6] !== 0x0d || ey4[ey6 + 1] !== 0x0a) return {
     hasError: true,
-    message: "invalid header format"
+    message: ik("aW52YWxpZCBoZWFkZXIgZm9ybWF0")
   };
   for (let ey7 = 0; ey7 < ey6; ey7++) {
     if (ey4[ey7] !== ey5.charCodeAt(ey7)) return {
@@ -3855,12 +3855,12 @@ function ey1(ey2, ey3) {
   const ey8 = ey6 + 2;
   if (ey4.byteLength < ey8 + 6) return {
     hasError: true,
-    message: "invalid S5 request data"
+    message: ik("aW52YWxpZCBTNSByZXF1ZXN0IGRhdGE=")
   };
   const ey9 = ey4[ey8];
   if (ey9 !== 1 && ey9 !== 3) return {
     hasError: true,
-    message: ik("dW5zdXBwb3J0ZWQgY29tbWFuZCwgb25seSBUQ1AvVURQIGlzIGFsbG93ZWQ=")
+    message: "unsupported command, only TCP/UDP is allowed"
   };
   const exe = ey9 === 3;
   const ext = ey4[ey8 + 1];
@@ -3872,14 +3872,14 @@ function ey1(ey2, ey3) {
       exr = 4;
       if (ey4.byteLength < exn + exr + 4) return {
         hasError: true,
-        message: "invalid S5 request data"
+        message: ik("aW52YWxpZCBTNSByZXF1ZXN0IGRhdGE=")
       };
       exi = `${ey4[exn]}.${ey4[exn + 1]}.${ey4[exn + 2]}.${ey4[exn + 3]}`;
       break;
     case 3:
       if (ey4.byteLength < exn + 1) return {
         hasError: true,
-        message: ik("aW52YWxpZCBTNSByZXF1ZXN0IGRhdGE=")
+        message: "invalid S5 request data"
       };
       exr = ey4[exn];
       exn += 1;
@@ -3917,7 +3917,7 @@ function ey1(ey2, ey3) {
   const exc = exn + exr;
   if (ey4.byteLength < exc + 4) return {
     hasError: true,
-    message: "invalid S5 request data"
+    message: ik("aW52YWxpZCBTNSByZXF1ZXN0IGRhdGE=")
   };
   const exl = ey4[exc] << 8 | ey4[exc + 1];
   return {
@@ -4006,13 +4006,13 @@ function ex7(ex8, ex9) {
     case 2:
       if (evt < evl + 1) return {
         hasError: true,
-        message: 'Invalid domain length'
+        message: ik("SW52YWxpZCBkb21haW4gbGVuZ3Ro")
       };
       evd = eve[evl];
       evl += 1;
       if (evt < evl + evd) return {
         hasError: true,
-        message: 'Invalid domain data'
+        message: ik("SW52YWxpZCBkb21haW4gZGF0YQ==")
       };
       evw = exw.decode(eve.subarray(evl, evl + evd));
       break;
@@ -4105,7 +4105,7 @@ async function ebn(ebi, ebo, ebs, eba) {
     if (ebd.byteLength < ebm + 6) break;
     const eby = ebd[ebm] << 8 | ebd[ebm + 1];
     const ebx = ebd[ebm + 2] << 8 | ebd[ebm + 3];
-    if (ebd[ebm + 4] !== 0x0d || ebd[ebm + 5] !== 0x0a) throw new Error('invalid trojan udp delimiter');
+    if (ebd[ebm + 4] !== 0x0d || ebd[ebm + 5] !== 0x0a) throw new Error(ik("aW52YWxpZCB0cm9qYW4gdWRwIGRlbGltaXRlcg=="));
     const ebv = ebm + 6;
     const ebb = ebv + ebx;
     if (ebd.byteLength < ebb) break;
@@ -4376,7 +4376,7 @@ async function e0w(e0f, e0h, e0p, e0g, e0m, e0y, e0x, e0v = null, e0b = null) {
     }
     if (e21) return e2n(e2v, e2b, e2k, false); else {
       e4w(e0g);
-      throw new Error(ik("W+WPjeS7o+i/nuaOpV0g5omA5pyJ5Y+N5Luj6L+e5o6l5aSx6LSl77yM5LiU5pyq5ZCv55So5Y+N5Luj5YWc5bqV77yM6L+e5o6l57uI5q2i44CC"));
+      throw new Error('[反代连接] 所有反代连接失败，且未启用反代兜底，连接终止。');
     }
   }
   async function e3i(e3o = true) {
@@ -4909,7 +4909,7 @@ async function e8k(e80, e81, e82, e83) {
     if (e9r.done || e9r.value.byteLength < 2) throw new Error('S5 method selection failed');
     const e9n = new Uint8Array(e9r.value)[1];
     if (e9n === 0x02) {
-      if (!e84 || !e85) throw new Error(ik("UzUgcmVxdWlyZXMgYXV0aGVudGljYXRpb24="));
+      if (!e84 || !e85) throw new Error('S5 requires authentication');
       const e9i = new TextEncoder().encode(e84), e9o = new TextEncoder().encode(e85);
       const e9s = new Uint8Array([0x01, e9i.length, ...e9i, e9o.length, ...e9o]);
       await e89.write(e9s);
@@ -4920,7 +4920,7 @@ async function e8k(e80, e81, e82, e83) {
     const e9c = new Uint8Array([0x05, 0x01, 0x00, 0x03, e9a.length, ...e9a, e81 >> 8, e81 & 0xff]);
     await e89.write(e9c);
     e9r = await e9e.read();
-    if (e9r.done || new Uint8Array(e9r.value)[1] !== 0x00) throw new Error(ik("UzUgY29ubmVjdGlvbiBmYWlsZWQ="));
+    if (e9r.done || new Uint8Array(e9r.value)[1] !== 0x00) throw new Error('S5 connection failed');
     if (ect(e82) > 0) await e89.write(e82);
     e89.releaseLock();
     e9e.releaseLock();
@@ -4968,7 +4968,7 @@ async function e9h(e9p, e9g, e9m, e9y = false, e9x) {
       const ten = e98.findIndex((tei, teo) => teo < e98.length - 3 && e98[teo] === 0x0d && e98[teo + 1] === 0x0a && e98[teo + 2] === 0x0d && e98[teo + 3] === 0x0a);
       if (ten !== -1) e99 = ten + 4;
     }
-    if (e99 === -1) throw new Error(ik("5Luj55CGIENPTk5FQ1Qg5ZON5bqU5aS06L+H6ZW/5oiW5peg5pWI"));
+    if (e99 === -1) throw new Error('代理 CONNECT 响应头过长或无效');
     const tes = e95.decode(e98.slice(0, e99)).split('\r\n')[0].match(/HTTP\/\d\.\d\s+(\d+)/);
     const tea = tes ? parseInt(tes[1], 10) : NaN;
     if (!Number.isFinite(tea) || tea < 200 || tea >= 300) throw new Error(`Connection failed: HTTP ${tea}`);
@@ -5047,7 +5047,7 @@ async function tem(tey, tex, tev, teb) {
     let tts = new Uint8Array(0), tta = -1, ttc = 0;
     while (tta === -1 && ttc < 8192) {
       const ttl = await te5.read();
-      if (!ttl) throw new Error('HTTPS 代理在返回 CONNECT 响应前关闭连接');
+      if (!ttl) throw new Error(ik("SFRUUFMg5Luj55CG5Zyo6L+U5ZueIENPTk5FQ1Qg5ZON5bqU5YmN5YWz6Zet6L+e5o6l"));
       tts = ev4(tts, ttl);
       ttc = tts.length;
       const ttd = tts.findIndex((ttw, ttf) => ttf < tts.length - 3 && tts[ttf] === 0x0d && tts[ttf + 1] === 0x0a && tts[ttf + 2] === 0x0d && tts[ttf + 3] === 0x0a);
@@ -5360,7 +5360,7 @@ function tca(tcc, tcl, tcd, tcw) {
   return tie(tch, tcx);
 }
 function tcv(tcb, tck, tc0, tc1) {
-  if (tc0.length < 16) throw new Error("Ciphertext too short");
+  if (tc0.length < 16) throw new Error(ik("Q2lwaGVydGV4dCB0b28gc2hvcnQ="));
   const tc2 = tc0.slice(-16), tc3 = tc0.slice(0, -16), tc4 = ts4(tcb, 0, tck).slice(0, 32), tc5 = (16 - tc1.length % 16) % 16, tc6 = (16 - tc3.length % 16) % 16, tc7 = new Uint8Array(tc1.length + tc5 + tc3.length + tc6 + 16);
   (tc7.set(tc1, 0), tc7.set(tc3, tc1.length + tc5));
   const tc8 = new DataView(tc7.buffer, tc1.length + tc5 + tc3.length + tc6);
@@ -5368,7 +5368,7 @@ function tcv(tcb, tck, tc0, tc1) {
   const tc9 = tag(tc4, tc7);
   let tle = 0;
   for (let tlt = 0; tlt < 16; tlt++) tle |= tc2[tlt] ^ tc9[tlt];
-  if (0 !== tle) throw new Error("ChaCha20-Poly1305 authentication failed");
+  if (0 !== tle) throw new Error(ik("Q2hhQ2hhMjAtUG9seTEzMDUgYXV0aGVudGljYXRpb24gZmFpbGVk"));
   return tao(tcb, tck, tc3);
 }
 const tlr = 16 * 1024;
@@ -5535,7 +5535,7 @@ function twn(twi, two, tws, {tls13: twa = !0, tls12: twc = !0, alpn: twl = null,
   if (twa && tws) {
     let twk;
     if ((twh.push(twc ? tnv(tn2(tno), 0, 5, 4, 3, 4, 3, 3) : tnv(tn2(tno), 0, 3, 2, 3, 4)), twh.push(tnv(tn2(tns), 0, 2, 1, 1)), tws?.x25519 && tws?.p256)) twk = tie(tnv(0, 29, tn2(tws.x25519.length), tws.x25519), tnv(0, 23, tn2(tws.p256.length), tws.p256)); else if (tws?.x25519) twk = tnv(0, 29, tn2(tws.x25519.length), tws.x25519); else if (tws?.p256) twk = tnv(0, 23, tn2(tws.p256.length), tws.p256); else {
-      if (!(tws instanceof Uint8Array)) throw new Error("Invalid keyShares");
+      if (!(tws instanceof Uint8Array)) throw new Error(ik("SW52YWxpZCBrZXlTaGFyZXM="));
       twk = tnv(0, 23, tn2(tws.length), tws);
     }
     twh.push(tnv(tn2(tna), tn2(twk.length + 2), tn2(twk.length), twk));
@@ -5553,7 +5553,7 @@ const tw1 = tw2 => {
 }, tfe = (tft, tfr, tfn, tfi) => Promise.all([tol(tft, tfr, "key", tng, tfn), tol(tft, tfr, "iv", tng, tfi)]);
 class tfo {
   constructor(tfs, tfa = {}) {
-    if ((this.socket = tfs, this.serverName = tfa.serverName || "", this.supportTls13 = !1 !== tfa.tls13, this.supportTls12 = !1 !== tfa.tls12, !this.supportTls13 && !this.supportTls12)) throw new Error(ik("QXQgbGVhc3Qgb25lIFRMUyB2ZXJzaW9uIG11c3QgYmUgZW5hYmxlZA=="));
+    if ((this.socket = tfs, this.serverName = tfa.serverName || "", this.supportTls13 = !1 !== tfa.tls13, this.supportTls12 = !1 !== tfa.tls12, !this.supportTls13 && !this.supportTls12)) throw new Error("At least one TLS version must be enabled");
     (this.alpnProtocols = Array.isArray(tfa.alpn) ? tfa.alpn : tfa.alpn ? [tfa.alpn] : null, this.allowChacha = tfa.allowChacha !== false, this.timeout = tfa.timeout ?? 3e4, this.clientRandom = tid(32), this.serverRandom = null, this.handshakeChunks = [], this.handshakeComplete = !1, this.negotiatedAlpn = null, this.cipherSuite = null, this.cipherConfig = null, this.isTls13 = !1, this.masterSecret = null, this.handshakeSecret = null, this.clientWriteKey = null, this.serverWriteKey = null, this.clientWriteIv = null, this.serverWriteIv = null, this.clientHandshakeKey = null, this.serverHandshakeKey = null, this.clientHandshakeIv = null, this.serverHandshakeIv = null, this.clientAppKey = null, this.serverAppKey = null, this.clientAppIv = null, this.serverAppIv = null, this.clientWriteCryptoKey = null, this.serverWriteCryptoKey = null, this.clientHandshakeCryptoKey = null, this.serverHandshakeCryptoKey = null, this.clientAppCryptoKey = null, this.serverAppCryptoKey = null, this.clientSeqNum = 0n, this.serverSeqNum = 0n, this.recordParser = new tlh(), this.handshakeParser = new tlb(), this.keyPairs = new Map(), this.ecdhKeyPair = null, this.sawCert = !1);
   }
   recordHandshake(tfc) {
@@ -5661,11 +5661,11 @@ class tfo {
         case tr5:
           return (this.recordHandshake(thw.raw), thd = !0, 1);
         case tr4:
-          throw new Error(ik("Q2xpZW50IGNlcnRpZmljYXRlIGlzIG5vdCBzdXBwb3J0ZWQ="));
+          throw new Error("Client certificate is not supported");
         default:
           this.recordHandshake(thw.raw);
       }
-    }, "Connection closed during TLS 1.2 handshake"), !this.sawCert)) throw new Error("Missing TLS 1.2 leaf certificate");
+    }, ik("Q29ubmVjdGlvbiBjbG9zZWQgZHVyaW5nIFRMUyAxLjIgaGFuZHNoYWtl")), !this.sawCert)) throw new Error("Missing TLS 1.2 leaf certificate");
     const thh = thl;
     if (!thh) throw new Error(ik("TWlzc2luZyBUTFMgMS4yIFNlcnZlcktleUV4Y2hhbmdl"));
     const thp = tny.get(thh.namedCurve);
@@ -5695,7 +5695,7 @@ class tfo {
       const th5 = tn7(th4, 1), th6 = th4.slice(4, 4 + th5), th7 = await ti5(this.masterSecret, "server finished", await ti2(thx, this.transcript()), 12, thx);
       if (!tif(th6, th7)) throw new Error("TLS 1.2 server Finished verify failed");
       return 1;
-    }, ik("Q29ubmVjdGlvbiBjbG9zZWQgd2FpdGluZyBmb3IgVExTIDEuMiBGaW5pc2hlZA=="));
+    }, "Connection closed waiting for TLS 1.2 Finished");
   }
   async handshakeTls13(th8, th9, tpe) {
     const tpt = tny.get(tpe.keyShare?.group);
@@ -5718,7 +5718,7 @@ class tfo {
         case tr2:
           {
             const tpy = tdb(tpg.body);
-            if (!tpy) throw new Error("Missing TLS 1.3 certificate");
+            if (!tpy) throw new Error(ik("TWlzc2luZyBUTFMgMS4zIGNlcnRpZmljYXRl"));
             (await this.acceptCertificate(tpy), this.recordHandshake(tpg.raw));
             break;
           }
@@ -5810,7 +5810,7 @@ class tfo {
     };
   }
   async write(tg9) {
-    if (!this.handshakeComplete) throw new Error("Handshake not complete");
+    if (!this.handshakeComplete) throw new Error(ik("SGFuZHNoYWtlIG5vdCBjb21wbGV0ZQ=="));
     const tme = ev2(tg9);
     if (!tme.byteLength) return;
     const tmt = this.socket.writable.getWriter();
@@ -5844,7 +5844,7 @@ class tfo {
         }
         if (tmc !== trx) continue;
         let tml;
-        for (this.handshakeParser.feed(tma); tml = this.handshakeParser.next(); ) if (tml.type !== tr0 && tml.type === tr9) throw new Error(ik("VExTIDEuMyBLZXlVcGRhdGUgaXMgbm90IHN1cHBvcnRlZCBieSBUTFNDbGllbnRNaW5p"));
+        for (this.handshakeParser.feed(tma); tml = this.handshakeParser.next(); ) if (tml.type !== tr0 && tml.type === tr9) throw new Error("TLS 1.3 KeyUpdate is not supported by TLSClientMini");
       }
       const tmd = this.socket.readable.getReader();
       try {
@@ -5952,7 +5952,7 @@ async function ty0(ty1, ty2) {
   const ty6 = await crypto.subtle.sign('HMAC', ty5, ty3);
   return ev4(ty3, tys(tm2.MESSAGE_INTEGRITY, new Uint8Array(ty6)));
 }
-async function ty7(ty8, ty9 = null, txe = ik("VFVSTiByZXNwb25zZSB0aW1lZCBvdXQ=")) {
+async function ty7(ty8, ty9 = null, txe = 'TURN response timed out') {
   let txt = ect(ty9) ? ev2(ty9) : new Uint8Array(0);
   const txr = async () => {
     const {done: txn, value: txi} = await tm3(ty8.read(), tmk, txe);
@@ -5961,7 +5961,7 @@ async function ty7(ty8, ty9 = null, txe = ik("VFVSTiByZXNwb25zZSB0aW1lZCBvdXQ=")
   };
   while (txt.byteLength < 20) await txr();
   const txo = 20 + (txt[2] << 8 | txt[3]);
-  if (txo > 65555) throw new Error(ik("VFVSTiByZXNwb25zZSBpcyB0b28gbGFyZ2U="));
+  if (txo > 65555) throw new Error('TURN response is too large');
   while (txt.byteLength < txo) await txr();
   const txs = txt.subarray(0, txo);
   if (tm0.some((txa, txc) => txs[4 + txc] !== txa)) throw new Error('Invalid TURN/STUN response');
@@ -6021,7 +6021,7 @@ async function txx(txv, txb, txk, tx0) {
       hostname: tx6,
       port: txv.port
     });
-    await tm3(tx7.opened, tmk, ik("VFVSTiBzZXJ2ZXIgY29ubmVjdGlvbiB0aW1lZCBvdXQ="));
+    await tm3(tx7.opened, tmk, 'TURN server connection timed out');
     tx9 = tx7.writable.getWriter();
     tve = tx7.readable.getReader();
     const tvl = new Uint8Array(8);
@@ -6032,7 +6032,7 @@ async function txx(txv, txb, txk, tx0) {
     });
     const tvf = tys(tm2.XOR_PEER_ADDRESS, tvl);
     const tvh = new Uint8Array([6, 0, 0, 0]);
-    await txp(tx9, tyf(tm1.ALLOCATE_REQUEST, tyk(), [tys(tm2.REQUESTED_TRANSPORT, tvh)]), 'TURN Allocate request timed out');
+    await txp(tx9, tyf(tm1.ALLOCATE_REQUEST, tyk(), [tys(tm2.REQUESTED_TRANSPORT, tvh)]), ik("VFVSTiBBbGxvY2F0ZSByZXF1ZXN0IHRpbWVkIG91dA=="));
     let tvp = await ty7(tve, null, ik("VFVSTiBBbGxvY2F0ZSByZXNwb25zZSB0aW1lZCBvdXQ="));
     let tvg = tvp.message;
     let tvm = tvp.extraData;
@@ -6048,13 +6048,13 @@ async function txx(txv, txb, txk, tx0) {
       tvx = [tys(tm2.USERNAME, tnh.encode(txv.username)), tys(tm2.REALM, tnh.encode(tv1)), tys(tm2.NONCE, tv0)];
       const tv2 = await ty0(tyf(tm1.ALLOCATE_REQUEST, tyk(), [tys(tm2.REQUESTED_TRANSPORT, tvh), ...tvx]), tvy);
       const tv3 = await Promise.all([tvv(tyf(tm1.CREATE_PERMISSION_REQUEST, tyk(), [tvf, ...tvx])), tvv(tyf(tm1.CONNECT_REQUEST, tyk(), [tvf, ...tvx]))]);
-      await txp(tx9, ev4(tv2, ...tv3), 'TURN authenticated Allocate request timed out');
+      await txp(tx9, ev4(tv2, ...tv3), ik("VFVSTiBhdXRoZW50aWNhdGVkIEFsbG9jYXRlIHJlcXVlc3QgdGltZWQgb3V0"));
       tvp = await ty7(tve, tvm, ik("VFVSTiBhdXRoZW50aWNhdGVkIEFsbG9jYXRlIHJlc3BvbnNlIHRpbWVkIG91dA=="));
       tvg = tvp.message;
       tvm = tvp.extraData;
     } else if (tvg.type === tm1.ALLOCATE_SUCCESS) {
       const tv4 = await Promise.all([tvv(tyf(tm1.CREATE_PERMISSION_REQUEST, tyk(), [tvf, ...tvx])), tvv(tyf(tm1.CONNECT_REQUEST, tyk(), [tvf, ...tvx]))]);
-      if (tv4.length) await txp(tx9, ev4(...tv4), 'TURN pipelined request timed out');
+      if (tv4.length) await txp(tx9, ev4(...tv4), ik("VFVSTiBwaXBlbGluZWQgcmVxdWVzdCB0aW1lZCBvdXQ="));
     }
     if (tvg.type !== tm1.ALLOCATE_SUCCESS) {
       const tv5 = tyv(tvg.attributes[tm2.ERROR_CODE]);
@@ -6067,8 +6067,8 @@ async function txx(txv, txb, txk, tx0) {
     tvp = await ty7(tve, tvm, ik("VFVSTiBDcmVhdGVQZXJtaXNzaW9uIHJlc3BvbnNlIHRpbWVkIG91dA=="));
     tvg = tvp.message;
     tvm = tvp.extraData;
-    if (tvg.type !== tm1.CREATE_PERMISSION_SUCCESS) throw new Error(ik("VFVSTiBDcmVhdGVQZXJtaXNzaW9uIGZhaWxlZA=="));
-    tvp = await ty7(tve, tvm, 'TURN CONNECT response timed out');
+    if (tvg.type !== tm1.CREATE_PERMISSION_SUCCESS) throw new Error('TURN CreatePermission failed');
+    tvp = await ty7(tve, tvm, ik("VFVSTiBDT05ORUNUIHJlc3BvbnNlIHRpbWVkIG91dA=="));
     tvg = tvp.message;
     tvm = tvp.extraData;
     if (tvg.type !== tm1.CONNECT_SUCCESS || !tvg.attributes[tm2.CONNECTION_ID]) throw new Error(ik("VFVSTiBDT05ORUNUIGZhaWxlZA=="));
@@ -6209,7 +6209,7 @@ async function tb0(tb1, tb2, tb3, tb4) {
   const tk4 = async (tk5 = tmk) => {
     const tk6 = await tm3(tkx(4), tk5, 'SSTP read timeout');
     const tk7 = tbl(tk6, 2) & 0x0fff;
-    if (tk7 < 4) throw new Error('Invalid SSTP packet length');
+    if (tk7 < 4) throw new Error(ik("SW52YWxpZCBTU1RQIHBhY2tldCBsZW5ndGg="));
     return {
       isControl: (tk6[1] & 1) !== 0,
       body: tk7 > 4 ? await tm3(tkx(tk7 - 4), tk5, 'SSTP packet body read timeout') : tbc
@@ -6283,7 +6283,7 @@ async function tb0(tb1, tb2, tb3, tb4) {
     tb8 = tb7.readable.getReader();
     tb9 = tb7.writable.getWriter();
     const t04 = t02.includes(':') ? `[${t02}]` : t02;
-    const t05 = tnh.encode(`SSTP_DUPLEX_POST /sra_{BA195980-CD49-458b-9E23-C84EE0ADCD75}/ HTTP/1.1\r\n` + `Host: ${Number(t03) === 443 ? t04 : `${t04}:${t03}`}\r\n` + 'Content-Length: 18446744073709551615\r\n' + `SSTPCORRELATIONID: {${crypto.randomUUID()}}\r\n\r\n`);
+    const t05 = tnh.encode(`SSTP_DUPLEX_POST /sra_{BA195980-CD49-458b-9E23-C84EE0ADCD75}/ HTTP/1.1\r\n` + `Host: ${Number(t03) === 443 ? t04 : `${t04}:${t03}`}\r\n` + ik("Q29udGVudC1MZW5ndGg6IDE4NDQ2NzQ0MDczNzA5NTUxNjE1DQo=") + `SSTPCORRELATIONID: {${crypto.randomUUID()}}\r\n\r\n`);
     const t06 = new Uint8Array(2);
     new DataView(t06.buffer).setUint16(0, 1);
     const t07 = new Uint8Array(2);
@@ -6301,10 +6301,10 @@ async function tb0(tb1, tb2, tb3, tb4) {
     await tm3(tb9.write(ev4(t05, t08, tk8(t0r(0xc021, 1, tb6++, [{
       type: 1,
       data: t07
-    }])))), tmk, ik("U1NUUCBIVFRQIGhhbmRzaGFrZSByZXF1ZXN0IHRpbWVkIG91dA=="));
-    const t1e = await tm3(tk0(), tmk, 'SSTP HTTP handshake timed out');
+    }])))), tmk, 'SSTP HTTP handshake request timed out');
+    const t1e = await tm3(tk0(), tmk, ik("U1NUUCBIVFRQIGhhbmRzaGFrZSB0aW1lZCBvdXQ="));
     for (; ; ) {
-      const t1t = await tm3(tk0(), tmk, 'SSTP HTTP header read timed out');
+      const t1t = await tm3(tk0(), tmk, ik("U1NUUCBIVFRQIGhlYWRlciByZWFkIHRpbWVkIG91dA=="));
       if (t1t === '') break;
     }
     if (!(/HTTP\/\d(?:\.\d)?\s+2\d\d/i).test(t1e)) throw new Error(`SSTP HTTP handshake failed: ${t1e || 'invalid status'}`);
@@ -6326,7 +6326,7 @@ async function tb0(tb1, tb2, tb3, tb4) {
       t1p.set(t1w, 7);
       t1p[7 + t1w.byteLength] = t1f.byteLength;
       t1p.set(t1f, 8 + t1w.byteLength);
-      await tm3(tb9.write(tk8(t1p)), tmk, 'SSTP PAP authentication request timed out');
+      await tm3(tb9.write(tk8(t1p)), tmk, ik("U1NUUCBQQVAgYXV0aGVudGljYXRpb24gcmVxdWVzdCB0aW1lZCBvdXQ="));
       t1o = true;
     };
     const t1m = async () => {
@@ -6334,7 +6334,7 @@ async function tb0(tb1, tb2, tb3, tb4) {
       await tm3(tb9.write(tk8(t0r(0x8021, 1, tb6++, [{
         type: 3,
         data: new Uint8Array(4)
-      }]))), tmk, 'SSTP IPCP request timed out');
+      }]))), tmk, ik("U1NUUCBJUENQIHJlcXVlc3QgdGltZWQgb3V0"));
       t1a = true;
     };
     for (let t1y = 0; t1y < 50 && !t1c; t1y++) {
@@ -6374,7 +6374,7 @@ async function tb0(tb1, tb2, tb3, tb4) {
         if (t1v.code === 1) {
           const t12 = new Uint8Array(t1v.rawPacket);
           t12[2] = 2;
-          await tm3(tb9.write(tk8(t12)), tmk, ik("U1NUUCBJUENQIENvbmZpZ3VyZS1BY2sgdGltZWQgb3V0"));
+          await tm3(tb9.write(tk8(t12)), tmk, 'SSTP IPCP Configure-Ack timed out');
           await t1m();
         } else if (t1v.code === 3) {
           const t13 = t0x(t1v.payload).find(t14 => t14.type === 3);
@@ -6393,7 +6393,7 @@ async function tb0(tb1, tb2, tb3, tb4) {
         }
       }
     }
-    if (!t1l) throw new Error(ik("U1NUUCBkaWQgbm90IGFzc2lnbiBhbiBJUHY0IGFkZHJlc3M="));
+    if (!t1l) throw new Error('SSTP did not assign an IPv4 address');
     const t17 = tmh(tb2);
     let t18 = tye(t17) ? t17 : null;
     if (!t18) {
@@ -6454,7 +6454,7 @@ async function tb0(tb1, tb2, tb3, tb4) {
         payloadOffset: t2k + (t2b[t2k + 12] >> 4 & 0x0f) * 4
       };
     };
-    await tm3(tb9.write(t2l(0x02)), tmk, 'SSTP TCP SYN write timed out');
+    await tm3(tb9.write(t2l(0x02)), tmk, ik("U1NUUCBUQ1AgU1lOIHdyaXRlIHRpbWVkIG91dA=="));
     t2o = t2o + 1 >>> 0;
     let t20 = false;
     for (let t21 = 0; t21 < 30; t21++) {
@@ -6601,7 +6601,7 @@ function t37(t38, t39) {
 function t4c(t4l = {}) {
   const t4d = t4l.传输协议 === 'grpc';
   return {
-    type: t4d ? t4l.gRPC模式 === 'multi' ? 'grpc&mode=multi' : 'grpc&mode=gun' : t4l.传输协议 === 'xhttp' ? ik("eGh0dHAmbW9kZT1zdHJlYW0tb25l") : 'ws',
+    type: t4d ? t4l.gRPC模式 === 'multi' ? 'grpc&mode=multi' : 'grpc&mode=gun' : t4l.传输协议 === 'xhttp' ? 'xhttp&mode=stream-one' : 'ws',
     路径字段名: t4d ? 'serviceName' : 'path',
     域名字段名: t4d ? 'authority' : 'host'
   };
@@ -6636,7 +6636,7 @@ function t42(t43) {
     return [0, 0, 0];
   }
 }
-async function t47(env, t48 = 'warp-account.json') {
+async function t47(env, t48 = ik("d2FycC1hY2NvdW50Lmpzb24=")) {
   const {publicKey: t49, privateKey: t5e} = await t4b();
   const t5t = {
     key: t49,
@@ -6648,10 +6648,10 @@ async function t47(env, t48 = 'warp-account.json') {
     locale: 'en_US',
     warp_enabled: true
   };
-  const t5r = await fetch(ik("aHR0cHM6Ly9hcGkuY2xvdWRmbGFyZWNsaWVudC5jb20vdjBhNDAwNS9yZWc="), {
+  const t5r = await fetch('https://api.cloudflareclient.com/v0a4005/reg', {
     method: 'POST',
     headers: {
-      'Content-Type': ik("YXBwbGljYXRpb24vanNvbg=="),
+      'Content-Type': 'application/json',
       'User-Agent': 'okhttp/4.9.0',
       'CF-Client-Version': 'a-6.30-2935'
     },
@@ -6683,7 +6683,7 @@ async function t47(env, t48 = 'warp-account.json') {
 }
 async function t5s(env, t5a, t5c = 'warp-account.json') {
   const t5l = env.KV && typeof env.KV.get === 'function' ? await env.KV.get(t5c) : null;
-  if (!t5l) throw new Error('no WARP account registered yet');
+  if (!t5l) throw new Error(ik("bm8gV0FSUCBhY2NvdW50IHJlZ2lzdGVyZWQgeWV0"));
   const t5d = JSON.parse(t5l);
   if (!t5d.deviceId || !t5d.token) throw new Error(ik("YWNjb3VudCBtaXNzaW5nIGRldmljZSBpZCBvciB0b2tlbg=="));
   const t5w = String(t5a || '').trim();
@@ -6691,7 +6691,7 @@ async function t5s(env, t5a, t5c = 'warp-account.json') {
   const t5f = await fetch(`https://api.cloudflareclient.com/v0a4005/reg/${t5d.deviceId}/account`, {
     method: 'PUT',
     headers: {
-      'Content-Type': ik("YXBwbGljYXRpb24vanNvbg=="),
+      'Content-Type': 'application/json',
       'User-Agent': 'okhttp/4.9.0',
       'CF-Client-Version': 'a-6.30-2935',
       'Authorization': 'Bearer ' + t5d.token
@@ -6719,7 +6719,7 @@ function t5p(t5g) {
   };
 }
 function t5x(t5v) {
-  const t5b = String(t5v || 'engage.cloudflareclient.com:2408');
+  const t5b = String(t5v || ik("ZW5nYWdlLmNsb3VkZmxhcmVjbGllbnQuY29tOjI0MDg="));
   const t5k = t5b.lastIndexOf(':');
   return t5k > 0 ? {
     server: t5b.slice(0, t5k),
@@ -6730,7 +6730,7 @@ function t5x(t5v) {
   };
 }
 function t50(t51, t52, t53, t54, t55) {
-  const t56 = t55 ? ik("MTYyLjE1OS4xOTIuMToyNDA4") : t54 || t51.endpoint;
+  const t56 = t55 ? '162.159.192.1:2408' : t54 || t51.endpoint;
   const {server: t57, port: t58} = t5x(t56);
   const t59 = {
     type: 'wireguard',
@@ -6894,7 +6894,7 @@ function t6e(t6t, t6r = {}, t6n = null, t6i = null) {
     const t8n = t6a.map(t8i => `    "${t8i}": ${t6l ? t6l : ''}`).join('\n');
     t6p = t69(t6p, t8n);
   }
-  if (t6n && t6n.enableWarp && t6i && t6i.registered && t6i.privateKey && !t6p.includes('name: "Nova-WARP"')) {
+  if (t6n && t6n.enableWarp && t6i && t6i.registered && t6i.privateKey && !t6p.includes(ik("bmFtZTogIk5vdmEtV0FSUCI="))) {
     try {
       const t8o = t6n.warpEndpoint && String(t6n.warpEndpoint).trim() || null;
       const t8s = t6n.warpAmnezia ? `\n    amnezia-wg-option: {jc: 4, jmin: 40, jmax: 70}` : '';
@@ -6914,7 +6914,7 @@ function t6e(t6t, t6r = {}, t6n = null, t6i = null) {
       };
       let t8y, t8x;
       if (t6n.warpMode === 'wow' && t6i.wow && t6i.wow.privateKey) {
-        t8y = t8d(t6i, 'Nova-WARP', t8o || t6i.endpoint, '') + '\n' + t8d(t6i.wow, 'Nova-WoW', ik("MTYyLjE1OS4xOTIuMToyNDA4"), 'Nova-WARP');
+        t8y = t8d(t6i, 'Nova-WARP', t8o || t6i.endpoint, '') + '\n' + t8d(t6i.wow, 'Nova-WoW', '162.159.192.1:2408', 'Nova-WARP');
         t8x = 'Nova-WoW';
       } else {
         let t8v = '';
@@ -6999,7 +6999,7 @@ async function t9o(t9s, t9a = {}, t9c = null, t9l = null) {
   const t9d = t9a?.UUID || null;
   const t9w = t9a?.Fingerprint || "chrome";
   const t9f = Boolean(t9a?.ECH);
-  const t9h = t9a?.ECHConfig?.SNI || "cloudflare-ech.com";
+  const t9h = t9a?.ECHConfig?.SNI || ik("Y2xvdWRmbGFyZS1lY2guY29t");
   const t9p = t9s.replace('1.1.1.1', '8.8.8.8').replace('1.0.0.1', '8.8.4.4');
   try {
     const t9g = JSON.parse(t9p);
@@ -7073,10 +7073,10 @@ async function t9o(t9s, t9a = {}, t9c = null, t9l = null) {
           sourceKeys: ['inet4_address', 'inet6_address']
         }, {
           targetKey: 'route_address',
-          sourceKeys: [ik("aW5ldDRfcm91dGVfYWRkcmVzcw=="), 'inet6_route_address']
+          sourceKeys: ['inet4_route_address', 'inet6_route_address']
         }, {
           targetKey: 'route_exclude_address',
-          sourceKeys: [ik("aW5ldDRfcm91dGVfZXhjbHVkZV9hZGRyZXNz"), 'inet6_route_exclude_address']
+          sourceKeys: [ik("aW5ldDRfcm91dGVfZXhjbHVkZV9hZGRyZXNz"), ik("aW5ldDZfcm91dGVfZXhjbHVkZV9hZGRyZXNz")]
         }]) {
           const rew = t9m(rel[red.targetKey]);
           for (const ref of red.sourceKeys) rew.push(...t9m(rel[ref]));
@@ -7381,8 +7381,8 @@ async function rrp(env, rrg, rrm, rry = "Get_SUB", rrx, rrv = true) {
           await fetch(`https://api.telegram.org/bot${rr1.BotToken}/sendMessage?chat_id=${rr1.ChatID}&parse_mode=HTML&text=${encodeURIComponent(rr4)}`, {
             method: 'GET',
             headers: {
-              'Accept': 'text/html,application/xhtml+xml,application/xml;',
-              'Accept-Encoding': 'gzip, deflate, br',
+              'Accept': ik("dGV4dC9odG1sLGFwcGxpY2F0aW9uL3hodG1sK3htbCxhcHBsaWNhdGlvbi94bWw7"),
+              'Accept-Encoding': ik("Z3ppcCwgZGVmbGF0ZSwgYnI="),
               'User-Agent': rrk.UA || 'Unknown'
             }
           });
@@ -7592,7 +7592,7 @@ async function rn9(rie, rit, rir = ik("aHR0cHM6Ly9jbG91ZGZsYXJlLWRucy5jb20vZG5zL
 }
 async function ro4(env, ro5, ro6, ro7 = "Mozilla/5.0", ro8 = false) {
   const ro9 = lk[0];
-  const rse = ro5, rst = "https://dns.alidns.com/dns-query", rsr = "cloudflare-ech.com", rsn = '{{IP:PORT}}', rsi = performance.now(), rso = {
+  const rse = ro5, rst = ik("aHR0cHM6Ly9kbnMuYWxpZG5zLmNvbS9kbnMtcXVlcnk="), rsr = ik("Y2xvdWRmbGFyZS1lY2guY29t"), rsn = '{{IP:PORT}}', rsi = performance.now(), rso = {
     TIME: new Date().toISOString(),
     HOST: rse,
     HOSTS: [ro5],
@@ -7624,7 +7624,7 @@ async function ro4(env, ro5, ro6, ro7 = "Mozilla/5.0", ro8 = false) {
         指定端口: -1
       },
       SUB: null,
-      SUBNAME: "edge" + "tunnel",
+      SUBNAME: "Nova" + "Proxy",
       SUBUpdateTime: 3,
       TOKEN: await rnd(ro5 + ro6)
     },
@@ -7776,7 +7776,7 @@ async function ro4(env, ro5, ro6, ro7 = "Mozilla/5.0", ro8 = false) {
   const {type: rsk, 路径字段名: rs0, 域名字段名: rs1} = t4c(i1);
   const rs2 = t4w(i1, i1.完整节点路径);
   const rs3 = i1.协议类型 === 'mixed' ? 'vless' : i1.协议类型;
-  i1.LINK = rs3 === 'ss' ? `${rs3}://${btoa(i1.SS.加密方式 + ':' + ro6)}@${rse}:${i1.SS.TLS ? '443' : '80'}?plugin=v2${encodeURIComponent(`ray-plugin;mode=websocket;host=${rse};path=${(i1.完整节点路径.includes('?') ? i1.完整节点路径.replace('?', '?enc=' + i1.SS.加密方式 + '&') : i1.完整节点路径 + '?enc=' + i1.SS.加密方式) + (i1.SS.TLS ? ';tls' : '')};mux=0`) + rsb}#${encodeURIComponent(i1.优选订阅生成.SUBNAME)}` : i1.enableTLS === false ? `${rs3}://${ro6}@${rse}:80?security=none&type=${rsk}&${rs1}=${rse}&${rs0}=${encodeURIComponent(rs2)}&encryption=none#${encodeURIComponent(i1.优选订阅生成.SUBNAME)}` : `${rs3}://${ro6}@${rse}:443?security=tls&type=${rsk + rsb}&${rs1}=${rse}&fp=${i1.Fingerprint}&sni=${rse}&${rs0}=${encodeURIComponent(rs2) + rsv}&encryption=none${i1.skipCertVerify ? '&insecure=1&allowInsecure=1' : ''}#${encodeURIComponent(i1.优选订阅生成.SUBNAME)}`;
+  i1.LINK = rs3 === 'ss' ? `${rs3}://${btoa(i1.SS.加密方式 + ':' + ro6)}@${rse}:${i1.SS.TLS ? '443' : '80'}?plugin=v2${encodeURIComponent(`ray-plugin;mode=websocket;host=${rse};path=${(i1.完整节点路径.includes('?') ? i1.完整节点路径.replace('?', '?enc=' + i1.SS.加密方式 + '&') : i1.完整节点路径 + '?enc=' + i1.SS.加密方式) + (i1.SS.TLS ? ';tls' : '')};mux=0`) + rsb}#${encodeURIComponent(i1.优选订阅生成.SUBNAME)}` : i1.enableTLS === false ? `${rs3}://${ro6}@${rse}:80?security=none&type=${rsk}&${rs1}=${rse}&${rs0}=${encodeURIComponent(rs2)}&encryption=none#${encodeURIComponent(i1.优选订阅生成.SUBNAME)}` : `${rs3}://${ro6}@${rse}:443?security=tls&type=${rsk + rsb}&${rs1}=${rse}&fp=${i1.Fingerprint}&sni=${rse}&${rs0}=${encodeURIComponent(rs2) + rsv}&encryption=none${i1.skipCertVerify ? ik("Jmluc2VjdXJlPTEmYWxsb3dJbnNlY3VyZT0x") : ''}#${encodeURIComponent(i1.优选订阅生成.SUBNAME)}`;
   i1.优选订阅生成.TOKEN = await rnd(ro5 + ro6);
   const rs4 = {
     BotToken: null,
@@ -7893,7 +7893,7 @@ function ram(ray) {
   const rab = Number(rax.asn || 0);
   if (String(rax.country || '').toUpperCase() !== 'IR') return 'all';
   if (rab === 44244 || rav.includes('irancell') || rav.includes('mtn')) return 'mtn';
-  if (rab === 197207 || rav.includes(ik("bW9iaWxlIGNvbW11bmljYXRpb24gY29tcGFueSBvZiBpcmFu")) || rav.includes('mcci') || rav.includes('hamrah')) return 'mci';
+  if (rab === 197207 || rav.includes('mobile communication company of iran') || rav.includes('mcci') || rav.includes('hamrah')) return 'mci';
   if (rab === 57218 || rav.includes('rightel')) return 'rightel';
   if (rab === 31549 || rav.includes('shatel')) return 'shatel';
   return 'ir';
@@ -7951,18 +7951,18 @@ async function rca(env) {
     }
     if (env.KV && typeof env.KV.put === 'function') {
       try {
-        await env.KV.put(ik("bGFzdF9tYWludGVuYW5jZS5qc29u"), JSON.stringify({
+        await env.KV.put('last_maintenance.json', JSON.stringify({
           timestamp: Date.now(),
           health: rcd
         }));
       } catch (rcy) {}
     }
-    console.log(ik("W1NjaGVkdWxlZCBNYWludGVuYW5jZV0g57u05oqk5a6M5oiQ"));
+    console.log('[Scheduled Maintenance] 维护完成');
     return {
       success: true
     };
   } catch (rcx) {
-    console.error('[Scheduled Maintenance] 维护失败:', rcx.message);
+    console.error(ik("W1NjaGVkdWxlZCBNYWludGVuYW5jZV0g57u05oqk5aSx6LSlOg=="), rcx.message);
     return {
       success: false,
       error: rcx.message
@@ -7980,7 +7980,7 @@ async function rcv(env, rcb, rck) {
         host: rc6,
         ok: true,
         status: 200,
-        reason: 'live (this worker)',
+        reason: ik("bGl2ZSAodGhpcyB3b3JrZXIp"),
         checkedAt: Date.now()
       });
       return;
@@ -7999,7 +7999,7 @@ async function rcv(env, rcb, rck) {
       if (rc7) {
         const rlr = await rlt.text();
         rc7 = !!rlr && rlr.length > 8;
-        if (!rc7) rc9 = 'empty or invalid sub response';
+        if (!rc7) rc9 = ik("ZW1wdHkgb3IgaW52YWxpZCBzdWIgcmVzcG9uc2U=");
       } else {
         let rln = '';
         try {
@@ -8025,7 +8025,7 @@ async function rcv(env, rcb, rck) {
   };
   if (env.KV && typeof env.KV.put === 'function') {
     try {
-      await env.KV.put('domain-health.json', JSON.stringify(rls));
+      await env.KV.put(ik("ZG9tYWluLWhlYWx0aC5qc29u"), JSON.stringify(rls));
     } catch (rla) {}
   }
   return rls;
@@ -8121,7 +8121,7 @@ async function rdv(rdb) {
   try {
     const rd5 = await fetch(rd4, {
       headers: {
-        'User-Agent': 'v2rayN/edge' + 'tunnel (https://github.com/' + lk[1] + '/edge' + 'tunnel)'
+        'User-Agent': 'v2rayN/Nova' + 'tunnel (https://github.com/' + lk[1] + '/Nova' + 'Proxy)'
       }
     });
     if (!rd5.ok) {
@@ -8132,7 +8132,7 @@ async function rdv(rdb) {
     const rd7 = rd6.includes('\r\n') ? rd6.split('\r\n') : rd6.split('\n');
     for (const rd8 of rd7) {
       if (!rd8.trim()) continue;
-      if (rd8.includes('00000000-0000-4000-8000-000000000000') && rd8.includes('example.com')) {
+      if (rd8.includes(ik("MDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMDAw")) && rd8.includes('example.com')) {
         const rd9 = rd8.match(/:\/\/[^@]+@([^?]+)/);
         if (rd9) {
           let rwe = rd9[1], rwt = '';
@@ -8223,7 +8223,7 @@ async function rwi(rwo, rws = '443', rwa = 3000) {
           return;
         }
       } catch (rfc) {
-        console.error(ik("RmFpbGVkIHRvIGRlY29kZSByZXNwb25zZTo="), rfc);
+        console.error('Failed to decode response:', rfc);
         return;
       }
       let rfl = rw9;
@@ -8325,7 +8325,7 @@ async function rpt(rpr, rpn) {
       const rpc = t37(rpa[1], rpn);
       const {type: rpl, ...rpd} = JSON.parse(rpc);
       if (!rpl || !rp7[String(rpl).toLowerCase()]) throw new Error('链式代理类型无效');
-      if (!rpd.hostname || !rpd.port) throw new Error('链式代理地址缺少 hostname 或 port');
+      if (!rpd.hostname || !rpd.port) throw new Error(ik("6ZO+5byP5Luj55CG5Zyw5Z2A57y65bCRIGhvc3RuYW1lIOaIliBwb3J0"));
       i5 = '';
       i2 = '链式代理';
       or = false;
@@ -8438,7 +8438,7 @@ function rgr(rgn, rgi = 80) {
     }
   }
   if (isNaN(rgh)) throw new Error(ik("5peg5pWI55qEIFNPQ0tTIOWcsOWdgOagvOW8j++8muerr+WPo+WPt+W/hemhu+aYr+aVsOWtlw=="));
-  if (rgf.includes(":") && !rgt.test(rgf)) throw new Error('无效的 SOCKS 地址格式：IPv6 地址必须用方括号括起来，如 [2001:db8::1]');
+  if (rgf.includes(":") && !rgt.test(rgf)) throw new Error(ik("5peg5pWI55qEIFNPQ0tTIOWcsOWdgOagvOW8j++8mklQdjYg5Zyw5Z2A5b+F6aG755So5pa55ous5Y+35ous6LW35p2l77yM5aaCIFsyMDAxOmRiODo6MV0="));
   return {
     username: rgd,
     password: rgw,
@@ -8447,7 +8447,7 @@ function rgr(rgn, rgi = 80) {
   };
 }
 async function rgy(rgx, rgv, rgb, rgk) {
-  const rg0 = ik("aHR0cHM6Ly9hcGkuY2xvdWRmbGFyZS5jb20vY2xpZW50L3Y0");
+  const rg0 = "https://api.cloudflare.com/client/v4";
   const rg1 = rg2 => rg2?.reduce((rg3, rg4) => rg3 + (rg4?.sum?.requests || 0), 0) || 0;
   const rg5 = {
     "Content-Type": ik("YXBwbGljYXRpb24vanNvbg==")
@@ -8573,7 +8573,7 @@ function rmd(rmw) {
   }
   return ryf;
 }
-async function ryg(rym, ryy = ik("ZGFzaC5jbG91ZGZsYXJlLmNvbQ=="), ryx = '00000000-0000-4000-8000-000000000000') {
+async function ryg(rym, ryy = ik("ZGFzaC5jbG91ZGZsYXJlLmNvbQ=="), ryx = ik("MDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMDAw")) {
   rym = rym.toLowerCase();
   if (!i8 || !i9 || i8 !== rym) {
     function ryv(ryb) {
@@ -8645,7 +8645,7 @@ async function ryg(rym, ryy = ik("ZGFzaC5jbG91ZGZsYXJlLmNvbQ=="), ryx = '0000000
   } else t4m(`[反代解析] 读取缓存 总数: ${i9.length}个\n${i9.map(([rve, rvt], rvr) => `${rvr + 1}. ${rve}:${rvt}`).join('\n')}`);
   return i9;
 }
-const rvn = ['pornhub.com', 'www.pornhub.com', 'xvideos.com', 'www.xvideos.com', 'xnxx.com', 'www.xnxx.com', 'xhamster.com', 'www.xhamster.com', 'redtube.com', 'www.redtube.com', 'youporn.com', 'www.youporn.com', 'porn.com', 'www.porn.com', 'tube8.com', 'www.tube8.com', 'xvideos3.com', 'eporner.com', 'www.eporner.com', 'hclips.com', 'www.hclips.com', 'hqporner.com', 'www.hqporner.com', 'pornhd.com', 'www.pornhd.com', 'porn300.com', 'www.porn300.com', 'porntrex.com', 'www.porntrex.com', 'spankbang.com', 'www.spankbang.com', 'txxx.com', 'www.txxx.com', 'vjav.com', 'www.vjav.com', 'xvideos2.com', 'xvideos3.com', 'adult-empire.com', 'www.adult-empire.com', 'adulttime.com', ik("d3d3LmFkdWx0dGltZS5jb20="), 'alphaporno.com', ik("d3d3LmFscGhhcG9ybm8uY29t"), 'analytics.porn', ik("YW5pbWVpZGhlbnRhaS5jb20="), 'anyporn.com', 'anysex.com', 'www.anysex.com', 'beeg.com', 'www.beeg.com', 'bellesa.co', 'www.bellesa.co', 'bigassporn.org', 'bigtits.com', 'www.bigtits.com', 'bravotube.net', 'www.bravotube.net', 'bustyplatinum.com', 'cam4.com', 'www.cam4.com', 'cambay.tv', 'www.cambay.tv', 'chaturbate.com', ik("d3d3LmNoYXR1cmJhdGUuY29t"), 'clips4sale.com', ik("d3d3LmNsaXBzNHNhbGUuY29t"), 'cock.xxx', 'daporno.com', 'desiporn.tv', 'www.desiporn.tv', 'deviporn.com', ik("d3d3LmRldmlwb3JuLmNvbQ=="), 'dirtyship.com', ik("d3d3LmRpcnR5c2hpcC5jb20="), 'ebony.com', 'www.ebony.com', 'efukt.com', 'www.efukt.com', 'egotastic.com', 'www.egotastic.com', 'empflix.com', 'www.empflix.com', 'erome.com', 'www.erome.com', 'eroprofile.com', ik("d3d3LmVyb3Byb2ZpbGUuY29t"), 'esporn.com', 'www.esporn.com', 'ex-gf.me', 'www.ex-gf.me', 'extremetube.com', ik("d3d3LmV4dHJlbWV0dWJlLmNvbQ=="), 'fap.com', 'www.fap.com', 'fapdu.com', 'www.fapdu.com', 'faphouse.com', 'www.faphouse.com', 'femjoy.com', 'www.femjoy.com', 'fetlife.com', 'www.fetlife.com', 'filthygirls.com', ik("d3d3LmZpbHRoeWdpcmxzLmNvbQ=="), 'flix.com', 'www.flix.com', 'freeones.com', 'www.freeones.com', 'freeporn.com', ik("d3d3LmZyZWVwb3JuLmNvbQ=="), 'fux.com', 'www.fux.com', 'gayboystube.com', ik("d3d3LmdheWJveXN0dWJlLmNvbQ=="), 'gaymaletube.com', ik("d3d3LmdheW1hbGV0dWJlLmNvbQ=="), 'ghettotube.com', 'www.ghettotube.com', 'girlsway.com', 'www.girlsway.com', 'gofap.net', 'www.gofap.net', 'hentai2read.com', 'hentaigasm.com', 'www.hentaigasm.com', 'hentaihaven.com', ik("d3d3LmhlbnRhaWhhdmVuLmNvbQ=="), 'hotmovies.com', ik("d3d3LmhvdG1vdmllcy5jb20="), 'hqbabes.com', 'www.hqbabes.com', 'hqseek.com', 'www.hqseek.com', 'iafd.com', 'www.iafd.com', 'imagefap.com', 'www.imagefap.com', 'incestflix.com', 'indexxx.com', 'www.indexxx.com', 'jacquieetmichel.tv', 'www.jacquieetmichel.tv', 'japaneseporn.tv', 'www.japaneseporn.tv', 'jerkoffto.com', ik("d3d3LmplcmtvZmZ0by5jb20="), 'jizzhut.com', 'www.jizzhut.com', 'joymii.com', 'www.joymii.com', 'keezmovies.com', 'www.keezmovies.com', 'lesbianporn.com', 'www.lesbianporn.com', 'lustery.com', 'www.lustery.com', 'madthumbs.com', ik("d3d3Lm1hZHRodW1icy5jb20="), 'mofos.com', 'www.mofos.com', 'motherless.com', 'www.motherless.com', 'mrporngeek.com', 'www.mrporngeek.com', 'mydirtyhobby.com', 'www.mydirtyhobby.com', 'myduckisdead.org', 'nastyporn.com', 'www.nastyporn.com', 'naughtyamerica.com', ik("d3d3Lm5hdWdodHlhbWVyaWNhLmNvbQ=="), 'nuvid.com', 'www.nuvid.com', 'onlyfans.com', ik("d3d3Lm9ubHlmYW5zLmNvbQ=="), 'palcomp3.com.br', ik("d3d3LnBhbGNvbXAzLmNvbS5icg=="), 'pandamovies.pw', ik("cGVyZmVjdGdpcmxzLmNvbQ=="), 'www.perfectgirls.com', 'pinklabel.tv', 'www.pinklabel.tv', 'playboy.com', 'www.playboy.com', 'pornbox.com', 'www.pornbox.com', 'pornburst.xxx', 'porndoe.com', 'www.porndoe.com', 'pornfidelity.com', ik("d3d3LnBvcm5maWRlbGl0eS5jb20="), 'porngem.com', 'www.porngem.com', 'pornhubpremium.com', 'www.pornhubpremium.com', 'pornmd.com', 'www.pornmd.com', 'pornone.com', 'www.pornone.com', ik("cG9ybm9yb3VsZXR0ZS5uZXQ="), ik("d3d3LnBvcm5vcm91bGV0dGUubmV0"), 'pornoxo.com', 'www.pornoxo.com', 'porntop.com', 'www.porntop.com', 'pornvisit.com', ik("d3d3LnBvcm52aXNpdC5jb20="), 'pornwhite.com', 'www.pornwhite.com', 'porzo.com', 'www.porzo.com', 'propertysex.com', ik("d3d3LnByb3BlcnR5c2V4LmNvbQ=="), 'rapexxx.com', 'www.rapexxx.com', 'ratexxx.net', 'www.ratexxx.net', 'realitykings.com', 'www.realitykings.com', 'redtube.com.br', 'www.redtube.com.br', 'rockettube.com', ik("d3d3LnJvY2tldHR1YmUuY29t"), 'rulertube.com', ik("d3d3LnJ1bGVydHViZS5jb20="), 'sausage.com', 'www.sausage.com', 'sextube.com', 'www.sextube.com', 'sexu.com', 'www.sexu.com', 'shemale.com', 'www.shemale.com', 'sinparty.com', 'www.sinparty.com', 'sleazyneasy.com', ik("d3d3LnNsZWF6eW5lYXN5LmNvbQ=="), 'slutload.com', 'www.slutload.com', 'smartporn.com', 'www.smartporn.com', 'smut.com', 'www.smut.com', 'sologirls.xxx', 'spankwire.com', ik("d3d3LnNwYW5rd2lyZS5jb20="), 'stripchat.com', ik("d3d3LnN0cmlwY2hhdC5jb20="), 'sunporno.com', ik("d3d3LnN1bnBvcm5vLmNvbQ=="), ik("dGVlbnNsb3ZlcG9ybi5jb20="), ik("d3d3LnRlZW5zbG92ZXBvcm4uY29t"), 'teentube.com', ik("d3d3LnRlZW50dWJlLmNvbQ=="), 'thatpervert.com', 'www.thatpervert.com', ik("dGhlcGVyZnJldmlldy5jb20="), ik("d3d3LnRoZXBlcmZyZXZpZXcuY29t"), 'thumbzilla.com', 'www.thumbzilla.com', 'tiava.com', 'www.tiava.com', 'tnaflix.com', 'www.tnaflix.com', 'tube.xxx', 'tubegalore.com', 'www.tubegalore.com', 'tubeporn.com', 'www.tubeporn.com', 'tubepornclassic.com', ik("d3d3LnR1YmVwb3JuY2xhc3NpYy5jb20="), 'tubestack.com', ik("d3d3LnR1YmVzdGFjay5jb20="), 'twistys.com', 'www.twistys.com', 'upornia.com', 'www.upornia.com', 'videosz.com', 'www.videosz.com', 'vintageporn.net', ik("d3d3LnZpbnRhZ2Vwb3JuLm5ldA=="), 'voyeurhit.com', ik("d3d3LnZveWV1cmhpdC5jb20="), 'watchmygf.com', ik("d3d3LndhdGNobXlnZi5jb20="), 'wetpussy.com', 'www.wetpussy.com', 'whalebone.vip', 'xhamsterlive.com', ik("d3d3LnhoYW1zdGVybGl2ZS5jb20="), 'xnxx.app', 'www.xnxx.app', 'xnxx.tv', 'www.xnxx.tv', 'xossip.com', 'www.xossip.com', 'xporn.net', 'www.xporn.net', 'xpornz.com', 'www.xpornz.com', 'xtube.com', 'www.xtube.com', 'xvideo.com', 'www.xvideo.com', 'xvideos-br.com', 'xvideos.es', 'www.xvideos.es', 'xvideos.fr', 'www.xvideos.fr', 'xvideos.it', 'www.xvideos.it', 'xvideos.jp', 'www.xvideos.jp', 'xvideos.ru', 'www.xvideos.ru', 'xvideos.tv', 'www.xvideos.tv', 'youjizz.com', 'www.youjizz.com', 'youpornbook.com', ik("d3d3LnlvdXBvcm5ib29rLmNvbQ=="), 'yourlust.com', ik("d3d3LnlvdXJsdXN0LmNvbQ=="), 'zbporn.com', 'www.zbporn.com', 'zporn.com', 'www.zporn.com'];
+const rvn = ['pornhub.com', 'www.pornhub.com', 'xvideos.com', 'www.xvideos.com', 'xnxx.com', 'www.xnxx.com', 'xhamster.com', 'www.xhamster.com', 'redtube.com', 'www.redtube.com', 'youporn.com', 'www.youporn.com', 'porn.com', 'www.porn.com', 'tube8.com', 'www.tube8.com', 'xvideos3.com', 'eporner.com', 'www.eporner.com', 'hclips.com', 'www.hclips.com', 'hqporner.com', 'www.hqporner.com', 'pornhd.com', 'www.pornhd.com', 'porn300.com', 'www.porn300.com', 'porntrex.com', ik("d3d3LnBvcm50cmV4LmNvbQ=="), 'spankbang.com', 'www.spankbang.com', 'txxx.com', 'www.txxx.com', 'vjav.com', 'www.vjav.com', 'xvideos2.com', 'xvideos3.com', 'adult-empire.com', ik("d3d3LmFkdWx0LWVtcGlyZS5jb20="), 'adulttime.com', ik("d3d3LmFkdWx0dGltZS5jb20="), 'alphaporno.com', 'www.alphaporno.com', 'analytics.porn', 'animeidhentai.com', 'anyporn.com', 'anysex.com', 'www.anysex.com', 'beeg.com', 'www.beeg.com', 'bellesa.co', 'www.bellesa.co', 'bigassporn.org', 'bigtits.com', 'www.bigtits.com', 'bravotube.net', 'www.bravotube.net', 'bustyplatinum.com', 'cam4.com', 'www.cam4.com', 'cambay.tv', 'www.cambay.tv', 'chaturbate.com', 'www.chaturbate.com', 'clips4sale.com', 'www.clips4sale.com', 'cock.xxx', 'daporno.com', 'desiporn.tv', 'www.desiporn.tv', 'deviporn.com', ik("d3d3LmRldmlwb3JuLmNvbQ=="), 'dirtyship.com', ik("d3d3LmRpcnR5c2hpcC5jb20="), 'ebony.com', 'www.ebony.com', 'efukt.com', 'www.efukt.com', 'egotastic.com', 'www.egotastic.com', 'empflix.com', 'www.empflix.com', 'erome.com', 'www.erome.com', 'eroprofile.com', 'www.eroprofile.com', 'esporn.com', 'www.esporn.com', 'ex-gf.me', 'www.ex-gf.me', 'extremetube.com', ik("d3d3LmV4dHJlbWV0dWJlLmNvbQ=="), 'fap.com', 'www.fap.com', 'fapdu.com', 'www.fapdu.com', 'faphouse.com', ik("d3d3LmZhcGhvdXNlLmNvbQ=="), 'femjoy.com', 'www.femjoy.com', 'fetlife.com', 'www.fetlife.com', 'filthygirls.com', 'www.filthygirls.com', 'flix.com', 'www.flix.com', 'freeones.com', ik("d3d3LmZyZWVvbmVzLmNvbQ=="), 'freeporn.com', ik("d3d3LmZyZWVwb3JuLmNvbQ=="), 'fux.com', 'www.fux.com', 'gayboystube.com', 'www.gayboystube.com', 'gaymaletube.com', ik("d3d3LmdheW1hbGV0dWJlLmNvbQ=="), 'ghettotube.com', ik("d3d3LmdoZXR0b3R1YmUuY29t"), 'girlsway.com', ik("d3d3Lmdpcmxzd2F5LmNvbQ=="), 'gofap.net', 'www.gofap.net', 'hentai2read.com', 'hentaigasm.com', 'www.hentaigasm.com', 'hentaihaven.com', 'www.hentaihaven.com', 'hotmovies.com', 'www.hotmovies.com', 'hqbabes.com', 'www.hqbabes.com', 'hqseek.com', 'www.hqseek.com', 'iafd.com', 'www.iafd.com', 'imagefap.com', 'www.imagefap.com', 'incestflix.com', 'indexxx.com', 'www.indexxx.com', 'jacquieetmichel.tv', 'www.jacquieetmichel.tv', 'japaneseporn.tv', 'www.japaneseporn.tv', 'jerkoffto.com', ik("d3d3LmplcmtvZmZ0by5jb20="), 'jizzhut.com', 'www.jizzhut.com', 'joymii.com', 'www.joymii.com', 'keezmovies.com', ik("d3d3LmtlZXptb3ZpZXMuY29t"), 'lesbianporn.com', ik("d3d3Lmxlc2JpYW5wb3JuLmNvbQ=="), 'lustery.com', 'www.lustery.com', 'madthumbs.com', 'www.madthumbs.com', 'mofos.com', 'www.mofos.com', 'motherless.com', 'www.motherless.com', 'mrporngeek.com', 'www.mrporngeek.com', 'mydirtyhobby.com', 'www.mydirtyhobby.com', 'myduckisdead.org', 'nastyporn.com', 'www.nastyporn.com', 'naughtyamerica.com', ik("d3d3Lm5hdWdodHlhbWVyaWNhLmNvbQ=="), 'nuvid.com', 'www.nuvid.com', 'onlyfans.com', ik("d3d3Lm9ubHlmYW5zLmNvbQ=="), 'palcomp3.com.br', ik("d3d3LnBhbGNvbXAzLmNvbS5icg=="), 'pandamovies.pw', ik("cGVyZmVjdGdpcmxzLmNvbQ=="), 'www.perfectgirls.com', 'pinklabel.tv', 'www.pinklabel.tv', 'playboy.com', 'www.playboy.com', 'pornbox.com', 'www.pornbox.com', 'pornburst.xxx', 'porndoe.com', 'www.porndoe.com', 'pornfidelity.com', 'www.pornfidelity.com', 'porngem.com', 'www.porngem.com', 'pornhubpremium.com', ik("d3d3LnBvcm5odWJwcmVtaXVtLmNvbQ=="), 'pornmd.com', 'www.pornmd.com', 'pornone.com', 'www.pornone.com', ik("cG9ybm9yb3VsZXR0ZS5uZXQ="), 'www.pornoroulette.net', 'pornoxo.com', 'www.pornoxo.com', 'porntop.com', 'www.porntop.com', 'pornvisit.com', ik("d3d3LnBvcm52aXNpdC5jb20="), 'pornwhite.com', 'www.pornwhite.com', 'porzo.com', 'www.porzo.com', 'propertysex.com', ik("d3d3LnByb3BlcnR5c2V4LmNvbQ=="), 'rapexxx.com', 'www.rapexxx.com', 'ratexxx.net', 'www.ratexxx.net', ik("cmVhbGl0eWtpbmdzLmNvbQ=="), ik("d3d3LnJlYWxpdHlraW5ncy5jb20="), 'redtube.com.br', ik("d3d3LnJlZHR1YmUuY29tLmJy"), 'rockettube.com', ik("d3d3LnJvY2tldHR1YmUuY29t"), 'rulertube.com', 'www.rulertube.com', 'sausage.com', 'www.sausage.com', 'sextube.com', 'www.sextube.com', 'sexu.com', 'www.sexu.com', 'shemale.com', 'www.shemale.com', 'sinparty.com', ik("d3d3LnNpbnBhcnR5LmNvbQ=="), 'sleazyneasy.com', 'www.sleazyneasy.com', 'slutload.com', ik("d3d3LnNsdXRsb2FkLmNvbQ=="), 'smartporn.com', 'www.smartporn.com', 'smut.com', 'www.smut.com', 'sologirls.xxx', 'spankwire.com', 'www.spankwire.com', 'stripchat.com', 'www.stripchat.com', 'sunporno.com', ik("d3d3LnN1bnBvcm5vLmNvbQ=="), ik("dGVlbnNsb3ZlcG9ybi5jb20="), 'www.teensloveporn.com', 'teentube.com', 'www.teentube.com', 'thatpervert.com', ik("d3d3LnRoYXRwZXJ2ZXJ0LmNvbQ=="), 'theperfreview.com', ik("d3d3LnRoZXBlcmZyZXZpZXcuY29t"), 'thumbzilla.com', 'www.thumbzilla.com', 'tiava.com', 'www.tiava.com', 'tnaflix.com', 'www.tnaflix.com', 'tube.xxx', 'tubegalore.com', 'www.tubegalore.com', 'tubeporn.com', ik("d3d3LnR1YmVwb3JuLmNvbQ=="), ik("dHViZXBvcm5jbGFzc2ljLmNvbQ=="), ik("d3d3LnR1YmVwb3JuY2xhc3NpYy5jb20="), 'tubestack.com', ik("d3d3LnR1YmVzdGFjay5jb20="), 'twistys.com', 'www.twistys.com', 'upornia.com', 'www.upornia.com', 'videosz.com', 'www.videosz.com', 'vintageporn.net', ik("d3d3LnZpbnRhZ2Vwb3JuLm5ldA=="), 'voyeurhit.com', ik("d3d3LnZveWV1cmhpdC5jb20="), 'watchmygf.com', 'www.watchmygf.com', 'wetpussy.com', ik("d3d3LndldHB1c3N5LmNvbQ=="), 'whalebone.vip', ik("eGhhbXN0ZXJsaXZlLmNvbQ=="), 'www.xhamsterlive.com', 'xnxx.app', 'www.xnxx.app', 'xnxx.tv', 'www.xnxx.tv', 'xossip.com', 'www.xossip.com', 'xporn.net', 'www.xporn.net', 'xpornz.com', 'www.xpornz.com', 'xtube.com', 'www.xtube.com', 'xvideo.com', 'www.xvideo.com', 'xvideos-br.com', 'xvideos.es', 'www.xvideos.es', 'xvideos.fr', 'www.xvideos.fr', 'xvideos.it', 'www.xvideos.it', 'xvideos.jp', 'www.xvideos.jp', 'xvideos.ru', 'www.xvideos.ru', 'xvideos.tv', 'www.xvideos.tv', 'youjizz.com', 'www.youjizz.com', 'youpornbook.com', 'www.youpornbook.com', 'yourlust.com', 'www.yourlust.com', 'zbporn.com', 'www.zbporn.com', 'zporn.com', 'www.zporn.com'];
 function rvi(rvo) {
   if (!rvo) return false;
   const rvs = rvo.toLowerCase();
@@ -8680,14 +8680,14 @@ async function rvg(rvm) {
       status: 204,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Accept',
+        'Access-Control-Allow-Methods': ik("R0VULCBQT1NULCBPUFRJT05T"),
+        'Access-Control-Allow-Headers': ik("Q29udGVudC1UeXBlLCBBY2NlcHQ="),
         'Access-Control-Max-Age': '86400'
       }
     });
   }
   if (!['GET', 'POST'].includes(rvm.method)) {
-    return new Response('Method not allowed. Use GET or POST.', {
+    return new Response(ik("TWV0aG9kIG5vdCBhbGxvd2VkLiBVc2UgR0VUIG9yIFBPU1Qu"), {
       status: 405
     });
   }
@@ -8697,32 +8697,32 @@ async function rvg(rvm) {
     return new Response(rvv, {
       status: 200,
       headers: {
-        'Content-Type': ik("dGV4dC9odG1sO2NoYXJzZXQ9dXRmLTg="),
+        'Content-Type': 'text/html;charset=utf-8',
         'Cache-Control': 'no-store'
       }
     });
   }
   const rvb = [{
     name: 'Cloudflare',
-    url: 'https://cloudflare-dns.com/dns-query'
+    url: ik("aHR0cHM6Ly9jbG91ZGZsYXJlLWRucy5jb20vZG5zLXF1ZXJ5")
   }, {
     name: 'Google',
     url: 'https://dns.google/dns-query'
   }, {
     name: 'Quad9',
-    url: 'https://dns.quad9.net/dns-query'
+    url: ik("aHR0cHM6Ly9kbnMucXVhZDkubmV0L2Rucy1xdWVyeQ==")
   }, {
     name: 'OpenDNS',
-    url: 'https://doh.opendns.com/dns-query'
+    url: ik("aHR0cHM6Ly9kb2gub3BlbmRucy5jb20vZG5zLXF1ZXJ5")
   }, {
     name: 'AdGuard',
-    url: ik("aHR0cHM6Ly9kbnMuYWRndWFyZC5jb20vZG5zLXF1ZXJ5")
+    url: 'https://dns.adguard.com/dns-query'
   }, {
     name: 'Mullvad',
     url: 'https://adblock.dns.mullvad.net/dns-query'
   }, {
     name: 'NextDNS',
-    url: 'https://dns.nextdns.io/dns-query'
+    url: ik("aHR0cHM6Ly9kbnMubmV4dGRucy5pby9kbnMtcXVlcnk=")
   }];
   const rvk = rvb[Math.floor(Math.random() * rvb.length)];
   const rv0 = rvm.method === 'POST' ? await rvm.arrayBuffer().catch(() => null) : null;
@@ -8732,7 +8732,7 @@ async function rvg(rvm) {
     if (rvm.method === 'POST') {
       rv1.set('Content-Type', ik("YXBwbGljYXRpb24vZG5zLW1lc3NhZ2U="));
     } else {
-      rv1.set('Accept', 'application/dns-message');
+      rv1.set('Accept', ik("YXBwbGljYXRpb24vZG5zLW1lc3NhZ2U="));
     }
     const rv2 = new Request(rvk.url + rvy.search, {
       method: rvm.method,
@@ -8743,8 +8743,8 @@ async function rvg(rvm) {
     const rv3 = await fetch(rv2);
     const rv4 = new Headers(rv3.headers);
     rv4.set('Access-Control-Allow-Origin', '*');
-    rv4.set(ik("QWNjZXNzLUNvbnRyb2wtQWxsb3ctTWV0aG9kcw=="), 'GET, POST, OPTIONS');
-    rv4.set('Access-Control-Allow-Headers', ik("Q29udGVudC1UeXBlLCBBY2NlcHQ="));
+    rv4.set('Access-Control-Allow-Methods', ik("R0VULCBQT1NULCBPUFRJT05T"));
+    rv4.set('Access-Control-Allow-Headers', 'Content-Type, Accept');
     rv4.set('Cache-Control', ik("cHVibGljLCBtYXgtYWdlPTMwMA=="));
     return new Response(rv3.body, {
       status: rv3.status,
@@ -8757,7 +8757,7 @@ async function rvg(rvm) {
       try {
         const rv7 = new Headers(rvm.headers);
         rv7.set('User-Agent', 'DoH-Proxy/1.0');
-        if (rvm.method === 'POST') rv7.set('Content-Type', 'application/dns-message'); else rv7.set('Accept', 'application/dns-message');
+        if (rvm.method === 'POST') rv7.set('Content-Type', ik("YXBwbGljYXRpb24vZG5zLW1lc3NhZ2U=")); else rv7.set('Accept', ik("YXBwbGljYXRpb24vZG5zLW1lc3NhZ2U="));
         const rv8 = new Request(rvb[rv6].url + rvy.search, {
           method: rvm.method,
           headers: rv7,
@@ -8768,7 +8768,7 @@ async function rvg(rvm) {
         const rbe = new Headers(rv9.headers);
         rbe.set('Access-Control-Allow-Origin', '*');
         rbe.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-        rbe.set('Access-Control-Allow-Headers', 'Content-Type, Accept');
+        rbe.set(ik("QWNjZXNzLUNvbnRyb2wtQWxsb3ctSGVhZGVycw=="), 'Content-Type, Accept');
         return new Response(rv9.body, {
           status: rv9.status,
           statusText: rv9.statusText,
@@ -8792,7 +8792,7 @@ async function rbr(rbn, rbi, rbo, rbs = 'HTML') {
       method: 'GET'
     });
   } catch (rbc) {
-    console.error(ik("c2VuZEJvdE1lc3NhZ2UgZXJyb3I6"), rbc);
+    console.error('sendBotMessage error:', rbc);
   }
 }
 function rbl(rbd, rbw) {
@@ -8813,7 +8813,7 @@ function rbl(rbd, rbw) {
       text: '🖥 پنل مدیریت',
       url: rbd
     }, {
-      text: '📥 باز کردن لینک',
+      text: ik("8J+TpSDYqNin2LIg2qnYsdiv2YYg2YTbjNmG2qk="),
       url: rbw
     }]]
   };
@@ -8821,7 +8821,7 @@ function rbl(rbd, rbw) {
 async function rbf(rbh, env, rbp, rbg) {
   try {
     const rbm = await env.KV.get('tg.json');
-    if (!rbm) return new Response(ik("Qm90IG5vdCBjb25maWd1cmVk"), {
+    if (!rbm) return new Response('Bot not configured', {
       status: 200
     });
     const rby = JSON.parse(rbm);
@@ -8912,7 +8912,7 @@ async function rbf(rbh, env, rbp, rbg) {
               method: 'GET'
             });
           } catch (rkg) {
-            console.error(ik("c2VuZEJvdE1lc3NhZ2UgZXJyb3I6"), rkg);
+            console.error('sendBotMessage error:', rkg);
           }
           break;
         }
@@ -9106,7 +9106,7 @@ async function r08(r09, r1e, r1t, r1r = 'HTML', r1n = null) {
         method: 'GET'
       });
     } catch (r1d) {
-      console.error('sendBotMessage error:', r1d);
+      console.error(ik("c2VuZEJvdE1lc3NhZ2UgZXJyb3I6"), r1d);
     }
   }
   return r1i;
@@ -9138,13 +9138,13 @@ async function r1w(r1f) {
     description: 'ارسال به کانال'
   }, {
     command: 'pause',
-    description: '🚨 توقف اضطراری سرویس'
+    description: ik("8J+aqCDYqtmI2YLZgSDYp9i22LfYsdin2LHbjCDYs9ix2YjbjNiz")
   }, {
     command: 'resume',
-    description: ik("4pyFINin2LLYs9ix2q/bjNix24wg2LPYsdmI24zYsw==")
+    description: '✅ ازسرگیری سرویس'
   }, {
     command: 'install',
-    description: ik("8J+agCDZhti12Kgg2b7ZhtmEINix2YjbjCBDbG91ZGZsYXJl")
+    description: '🚀 نصب پنل روی Cloudflare'
   }, {
     command: 'help',
     description: 'راهنما'
@@ -9153,7 +9153,7 @@ async function r1w(r1f) {
     await fetch(`https://api.telegram.org/bot${r1f}/setMyCommands`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': ik("YXBwbGljYXRpb24vanNvbg==")
       },
       body: JSON.stringify({
         commands: r1h
@@ -9175,9 +9175,9 @@ async function r1g(env, r1m = {}) {
       reason: 'BotToken/ChatID missing'
     };
     const r1b = r1m.baseUrl || '';
-    const r1k = [ik("PGI+8J+UpSDZhNuM2YbaqeKAjNmH2KfbjCDYp9i02KrYsdin2qkgTm92YSAvIE5vdmEgc3Vic2NyaXB0aW9uIGxpbmtzPC9iPg=="), ''];
+    const r1k = ['<b>🔥 لینک‌های اشتراک Nova / Nova subscription links</b>', ''];
     if (r1b) {
-      r1k.push('<b>⚡️ لینک مستقیم (بهینه per-ISP) / Live (per-ISP optimized)</b>');
+      r1k.push(ik("PGI+4pqh77iPINmE24zZhtqpINmF2LPYqtmC24zZhSAo2KjZh9uM2YbZhyBwZXItSVNQKSAvIExpdmUgKHBlci1JU1Agb3B0aW1pemVkKTwvYj4="));
       r1k.push(`<code>${r1b}/sub/mihomo.yaml</code>`);
       r1k.push(`<code>${r1b}/sub/base64.txt</code>`);
       r1k.push('');
@@ -9202,7 +9202,7 @@ async function r1g(env, r1m = {}) {
 }
 async function r13(env, r14) {
   try {
-    const r15 = env.KV && typeof env.KV.get === 'function' ? await env.KV.get('github-mirror.json') : null;
+    const r15 = env.KV && typeof env.KV.get === 'function' ? await env.KV.get(ik("Z2l0aHViLW1pcnJvci5qc29u")) : null;
     if (!r15) return {
       skipped: true,
       reason: ik("R2l0SHViIG1pcnJvciBub3QgY29uZmlndXJlZA==")
@@ -9271,7 +9271,7 @@ async function r13(env, r14) {
           method: 'PUT',
           headers: {
             'Authorization': 'token ' + r16.token,
-            'Content-Type': 'application/json',
+            'Content-Type': ik("YXBwbGljYXRpb24vanNvbg=="),
             'User-Agent': 'NovaMirror'
           },
           body: JSON.stringify(r2a)
@@ -9448,7 +9448,7 @@ applyTheme();applyLang();loadTemplate();
   return new Response(r2f, {
     status: 200,
     headers: {
-      'Content-Type': 'text/html;charset=utf-8',
+      'Content-Type': ik("dGV4dC9odG1sO2NoYXJzZXQ9dXRmLTg="),
       'Cache-Control': 'no-store'
     }
   });
