@@ -262,3 +262,11 @@ MIT — فایل [LICENSE](LICENSE) را ببینید.
  </picture>
 </a>
 </div>
+
+---
+
+<div align="center">
+
+ساخته شده توسط <a href="https://github.com/iiviirv"><b>@iiviirv</b></a> برای گروه نوا پروکسی.
+
+</div>

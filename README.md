@@ -265,3 +265,11 @@ Made for Iran <img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main
 
 </div>
 
+
+---
+
+<div align="center">
+
+Built by <a href="https://github.com/iiviirv"><b>@iiviirv</b></a> for the Nova Proxy Group.
+
+</div>
