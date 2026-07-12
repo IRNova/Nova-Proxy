@@ -1,4 +1,4 @@
-<div align="center">
+https://github.com/IRNova/Nova-Proxy.git<div align="center">
 
 <img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-gradient.svg" width="70" alt="Nova">
 
