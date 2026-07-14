@@ -1,5 +1,5 @@
 {
-  "version": "3.8.3",
+  "version": "4.1.0",
   "released": "2026-06-23",
   "notes": "Five changes. (1) Fixes a regression where domestic Iranian (.ir) sites were tunneled through the proxy instead of going direct — sing-box/Hiddify/NekoBox/Karing and Clash/mihomo now both get a self-contained .ir direct rule (works even when GitHub is blocked). Make sure the 'Domestic bypass / ایران‌مستقیم' toggle is on. (2) Optional download speed limit (Settings -> Speed limit, KB/s; 0 = unlimited) — caps each user's total download across all their connections, with an optional per-user override on the Users page; off by default. (Upload is intentionally not limited: Cloudflare's WebSocket inbound can't be backpressured, so download is the reliable, exact direction.) (3) Faster panel load — dashboard assets are edge-cached. (4) Exit-datacenter flags on generated nodes (e.g. 🇩🇪 Nova-xxxxxx) so users can see which Cloudflare location they're exiting through. (5) Panel language toggle now applies to the Speed-limit and Monthly-cap cards. Drop-in worker.js replacement; no config/KV/D1 changes. Includes everything from 3.8.2. Update in-app from Settings -> Update panel.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js"
