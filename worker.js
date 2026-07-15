@@ -865,7 +865,7 @@ async function panelHtml(env, path, opts = {}) {
 	// connect-src allows https: so the Multi-Panel Hub can reach admin-entered child panel URLs
 	// (browser-driven Test/Sync). Scripts/styles stay 'self'; this only widens fetch/XHR targets to
 	// HTTPS origins, which is safe on an authenticated admin page where the URLs are operator-supplied.
-	h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'");
+	h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'");
 	h.set('X-Frame-Options', 'DENY');
 	h.set('X-Content-Type-Options', 'nosniff');
 	h.set('Referrer-Policy', 'no-referrer');
@@ -3514,7 +3514,7 @@ export default {
 			}
 		}
 
-		if (/\.\w{2,4}$/.test(url.pathname)) {
+		if (/\.\w{2,6}$/.test(url.pathname)) {
 			const staticResponse = await panelFetch(env, url.pathname).catch(() => null);
 			if (staticResponse && staticResponse.ok) return staticResponse;
 		}
