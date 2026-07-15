@@ -63,7 +63,7 @@ const haavaraMehira = false, haavaraMaks = false;
 let misparChiyugTcpMakbili = 4, preloadChiyugMerotz = false;
 const regexKtovetTzomet = /^(\[[\da-fA-F:]+\]|[\d.]+|[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)*)(?::(\d+))?(?:#(.+))?$/;
 const novaMachsanRaw = 'https://raw.githubusercontent.com/IRNova/Nova-Proxy/main';
-const urlGirsatNOVA = novaMachsanRaw + '/public/version.json';
+const urlGirsatNOVA = novaMachsanRaw + '/version.json';
 const NOVAWorkerSrcFallback = novaMachsanRaw + '/worker.js';
 const tikraTzometLecholMishtamesh = 40;
 ///////////////////////////////////////////////////////امنیت: توابع کمکی///////////////////////////////////////////////
@@ -666,7 +666,7 @@ async function runAutoUpdate(env, ns, ctx) {
 		if (!cfAccountId || !cfApiToken || !cfWorkerName) return;
 		let remoteVer = null, workerCode = null;
 		try {
-			const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/public/version.json`, { headers: { 'User-Agent': 'NovaProxy' }, cf: { cacheTtl: 0 } });
+const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/version.json`, { headers: { 'User-Agent': 'NovaProxy' }, cf: { cacheTtl: 0 } });
 			if (res.ok) { const j = await res.json(); remoteVer = j && j.version ? String(j.version).replace(/^[vV]/, '') : null; }
 		} catch (e) {}
 		if (!remoteVer) {
@@ -865,7 +865,7 @@ async function panelHtml(env, path, opts = {}) {
 	// connect-src allows https: so the Multi-Panel Hub can reach admin-entered child panel URLs
 	// (browser-driven Test/Sync). Scripts/styles stay 'self'; this only widens fetch/XHR targets to
 	// HTTPS origins, which is safe on an authenticated admin page where the URLs are operator-supplied.
-	h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; manifest-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'");
+	h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; manifest-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'");
 	h.set('X-Frame-Options', 'DENY');
 	h.set('X-Content-Type-Options', 'nosniff');
 	h.set('Referrer-Policy', 'no-referrer');
@@ -2484,7 +2484,7 @@ export default {
 							if (body.action === 'check') {
 								const repo = (ns.githubRepo || 'IRNova/Nova-Proxy').replace(/https?:\/\/github\.com\//, '').trim();
 								let remoteVer = null;
-								try { const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/public/version.json`, { headers: { 'User-Agent': 'NovaProxy' }, cf: { cacheTtl: 0 } }); if (res.ok) { const j = await res.json(); if (j && j.version) remoteVer = String(j.version).replace(/^[vV]/, ''); } } catch (e) {}
+								try { const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/version.json`, { headers: { 'User-Agent': 'NovaProxy' }, cf: { cacheTtl: 0 } }); if (res.ok) { const j = await res.json(); if (j && j.version) remoteVer = String(j.version).replace(/^[vV]/, ''); } } catch (e) {}
 								const current = String(Version).replace(/^[vV]/, '').replace(/\D+/g, '');
 								return new Response(JSON.stringify({ success: true, current, latest: remoteVer || '', updateAvailable: remoteVer ? cmpVersions(current, remoteVer) < 0 : false, cfConfigured: !!(ns.cfAccountId && ns.cfApiToken && ns.cfWorkerName) }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 							}
@@ -10619,7 +10619,7 @@ async function cfDeploy({ token, accountId, scriptName, scriptText, uuid, passwo
 }
 
 async function runCfInstall(env, botToken, chatId, host, request) {
-	const a = ['https://', 'raw.', 'githubusercontent', '.com/', 'IRNova/', 'Nova-Proxy/', 'main/', 'public/', 'version.json'].join('');
+	const a = ['https://', 'raw.', 'githubusercontent', '.com/', 'IRNova/', 'Nova-Proxy/', 'main/', 'version.json'].join('');
 	const b = ['https://', 'raw.', 'githubusercontent', '.com/', 'IRNova/', 'Nova-Proxy/', 'main/', 'worker.js'].join('');
 	const st = cfInstallGet(chatId);
 	if (!st || !st.token) { try { await sendBotMessage(botToken, chatId, 'نشست منقضی شد. دوباره از منو «نصب پنل» شروع کنید.'); } catch (e) {} return new Response('OK', { status: 200 }); }
