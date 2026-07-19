@@ -8896,6 +8896,30 @@ async function logErrorToKV(env, error, request) {
 	} catch (e) { /* ignore KV write errors */ }
 }
 
+// One-time phone-home so novaproxy.online can count how many panels get set up.
+// Fires only on the very first password set (see the `adminPassword` guard below),
+// and reports an opaque hash of this panel's host, never the host itself, so the
+// counter can dedupe without learning where the panel lives. Best-effort and
+// bounded, and fully skippable by setting the STATS_OPTOUT env var on the Worker.
+async function novaReportInstall(env, host) {
+	try {
+		if (['1', 'true', 'yes'].includes(String(env.STATS_OPTOUT || '').toLowerCase())) return;
+		if (!host) return;
+		const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('nova-panel:' + host));
+		const id = 'w_' + Array.from(new Uint8Array(buf)).slice(0, 16).map((b) => b.toString(16).padStart(2, '0')).join('');
+		const ctrl = new AbortController();
+		const timer = setTimeout(() => ctrl.abort(), 2500);
+		try {
+			await fetch('https://novaproxy.online/api/stats', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ type: 'install', id }),
+				signal: ctrl.signal,
+			});
+		} finally { clearTimeout(timer); }
+	} catch (e) { /* best-effort: never block setup */ }
+}
+
 async function tipulAshafHatkana(request, env, url, adminPassword, encryptionKey, UA) {
 	const sub = url.pathname.slice(1).toLowerCase().replace(/^install\/?/, '');
 	const hasStore = !!(env.KV && typeof env.KV.get === 'function');
@@ -8927,6 +8951,7 @@ async function tipulAshafHatkana(request, env, url, adminPassword, encryptionKey
 		} catch (e) { return new Response(JSON.stringify({ error: 'kv_write_failed' }), { status: 500, headers: { 'Content-Type': 'application/json;charset=utf-8' } }); }
 		const headers = { 'Content-Type': 'application/json;charset=utf-8' };
 		try { headers['Set-Cookie'] = `auth=${await makeSessionToken((UA || 'null'), encryptionKey, pass)}; Path=/; HttpOnly; Secure; SameSite=Lax`; } catch (e) {}
+		await novaReportInstall(env, url.host);
 		return new Response(JSON.stringify({ success: true }), { status: 200, headers });
 	}
 	if (sub === 'recover-disguise') {
