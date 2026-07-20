@@ -1,5 +1,5 @@
 const _D_={_vl_:atob('dmxlc3M='),_tr_:atob('dHJvamFu'),_vm_:atob('dm1lc3M='),_ss_:atob('c2hhZG93c29ja3M='),_wg_:atob('d2lyZWd1YXJk'),_cl_:atob('Y2xhc2g='),_sb_:atob('c2luZ2JveA=='),_sb2_:atob('c2luZy1ib3g='),_mh_:atob('bWlob21v'),_hd_:atob('aGlkZGlmeQ=='),_sg_:atob('c3VyZ2U='),_qx_:atob('cXVhbng='),_ln_:atob('bG9vbg=='),_np_:atob('Tm92YVByb3h5'),_np2_:atob('Tm92YS1Qcm94eQ=='),_np3_:atob('Tm92YQ=='),_cf_:atob('Y2xvdWRmbGFyZQ=='),_xr_:atob('eHJheQ=='),_cr_:atob('Q21saXVzcw=='),_pr_:atob('UFJPWFlJUA=='),_sp_:atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='),_wr_:atob('Tm92YS1XQVJQ'),_ws_:atob('d3M='),_grpc_:atob('Z3JwYw=='),_xhttp_:atob('eHR0cA=='),_aes128_:atob('YWVzLTEyOC1nY20='),_aes256_:atob('YWVzLTI1Ni1nY20='),_chrome_:atob('Y2hyb21l'),_mixed_:atob('bWl4ZWQ=')};
-const Version = 'V4.1.0';
+const Version = 'V4.1.3';
 let config_JSON, metavechIP = '', hafelSocks5Metavech = null, hafelSocks5Klali = false, cheshbonSocks5Sheli = '', parsedSocks5Address = {};
 let mitmonReshimaLevanaSocks5 = null, mitmonIpMetavech, mitmonNituachMetavech, indeksMaarachMetavechMitmon = 0, hafelGibuiMetavech = true, hadpasatYomanNipui = false;
 let connClientIp = '';
@@ -489,16 +489,21 @@ async function handleApiRelayStatus(request, env, adminPassword, alreadyAuthed) 
 	// If bestHost still looks like a raw workers.dev subdomain, prefer it anyway (user may not have custom domain)
 	// Relay now lives on the MAIN endpoint (/) alongside the Cloudflare speed-test decoy, so hand out '/'.
 	const relayUrl = 'https://' + bestHost + '/';
-	const relayAuthKey = (hagdarotReshet && hagdarotReshet.relayAuthKey) || 'Novaproxy';
-	const relayEnabled = true; // Relay is always available on this worker
+	const relayAuthKey = await getRelayAuthKey(env);
+	let gasUrl = '', verified = false, verifiedAt = 0;
+	try { gasUrl = (await relayConfigGet(env, 'gas_url')) || ''; } catch (e) {}
+	try { const vr = await relayConfigGet(env, 'verified'); if (vr) { const p = JSON.parse(vr); verified = !!(p && p.ok); verifiedAt = (p && p.at) || 0; } } catch (e) {}
 	return apiJson({
 		success: true,
 		relay: {
-			enabled: relayEnabled,
+			enabled: !!relayAuthKey,
 			workerUrl: relayUrl,
 			bestHost: bestHost,
 			requestHost: requestHost,
-			authKey: relayAuthKey
+			authKey: relayAuthKey || '',
+			gasUrl: gasUrl,
+			verified: verified,
+			verifiedAt: verifiedAt
 		}
 	});
 }
@@ -507,10 +512,85 @@ const RELAY_BLOCKED_HOSTS = ['localhost', '127.0.0.1', '::1'];
 function isRelayAllowed(targetUrl) {
 	try {
 		const u = new URL(targetUrl);
-		if (!u.hostname || RELAY_BLOCKED_HOSTS.includes(u.hostname)) return false;
-		if (u.hostname === new URL('http://example.com').hostname && u.port === '') return false;
+		// Only allow real web traffic; block file:, gopher:, ftp:, data:, etc.
+		if (u.protocol !== 'http:' && u.protocol !== 'https:') return false;
+		const host = (u.hostname || '').toLowerCase().replace(/^\[|\]$/g, '');
+		if (!host) return false;
+		if (host === 'localhost' || host.endsWith('.localhost')) return false;
+		if (RELAY_BLOCKED_HOSTS.includes(host)) return false;
+		// Literal IPv4: block loopback, private, link-local (incl. 169.254.169.254 cloud metadata), CGNAT, multicast.
+		const v4 = host.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
+		if (v4) {
+			const a = parseInt(v4[1], 10), b = parseInt(v4[2], 10);
+			if (a === 0 || a === 10 || a === 127) return false;
+			if (a === 169 && b === 254) return false;
+			if (a === 172 && b >= 16 && b <= 31) return false;
+			if (a === 192 && b === 168) return false;
+			if (a === 100 && b >= 64 && b <= 127) return false;
+			if (a >= 224) return false;
+		}
+		// Literal IPv6: block loopback, ULA (fc00::/7), link-local (fe80::/10), IPv4-mapped.
+		if (host.includes(':')) {
+			if (host === '::1' || host === '::') return false;
+			if (/^f[cd][0-9a-f]{2}:/.test(host)) return false;
+			if (/^fe[89ab][0-9a-f]:/.test(host)) return false;
+			if (host.startsWith('::ffff:')) return false;
+		}
+		if (host === new URL('http://example.com').hostname && u.port === '') return false;
 		return true;
 	} catch (e) { return false; }
+}
+// --- Relay config store: D1 (strongly consistent), so enable / disable / rotate take effect
+// within seconds. KV was too eventually-consistent for a value that gets toggled (a rotated or
+// revoked key kept working for minutes). A tiny in-isolate cache bounds D1 reads on the hot path.
+let _relayTableReady = false;
+async function relayConfigEnsure(env) {
+	if (_relayTableReady) return true;
+	if (!env || !env.DB) return false;
+	try { await env.DB.prepare('CREATE TABLE IF NOT EXISTS relay_config (k TEXT PRIMARY KEY, v TEXT)').run(); _relayTableReady = true; return true; } catch (e) { return false; }
+}
+async function relayConfigGet(env, k) {
+	if (!env || !env.DB) return null;
+	try { await relayConfigEnsure(env); const r = await env.DB.prepare('SELECT v FROM relay_config WHERE k=?').bind(k).first(); return (r && r.v != null) ? r.v : null; } catch (e) { return null; }
+}
+async function relayConfigSet(env, k, v) {
+	if (!env || !env.DB) return false;
+	try { await relayConfigEnsure(env); await env.DB.prepare('INSERT INTO relay_config (k,v) VALUES (?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v').bind(k, v == null ? '' : String(v)).run(); return true; } catch (e) { return false; }
+}
+// Effective relay auth key: prefer an immutable Worker env var/secret (RELAY_AUTH_KEY), then the
+// panel-set key in D1, then fail closed (null -> 503). Never a guessable default, so an
+// unconfigured deployment is NOT an open relay.
+let _relayKeyCache = null, _relayKeyCacheAt = 0;
+async function getRelayAuthKey(env) {
+	const fromEnv = env && (env.RELAY_AUTH_KEY || env.RELAYKEY);
+	if (fromEnv && String(fromEnv).trim()) return String(fromEnv).trim();
+	const now = Date.now();
+	if (_relayKeyCache === null || (now - _relayKeyCacheAt) >= 5000) {
+		_relayKeyCache = '';
+		const v = await relayConfigGet(env, 'auth_key');
+		if (v && String(v).trim()) _relayKeyCache = String(v).trim();
+		_relayKeyCacheAt = now;
+	}
+	return _relayKeyCache || null;
+}
+function genRelayKey() {
+	const bytes = crypto.getRandomValues(new Uint8Array(24));
+	let hex = ''; for (const b of bytes) hex += b.toString(16).padStart(2, '0');
+	return 'nova_' + hex;
+}
+// Server-side check that a deployed Google Apps Script relay actually reaches this worker.
+// The GAS 302-redirects its doPost output, so follow the redirect manually for reliability.
+async function verifyRelayGas(gasUrl, key) {
+	try {
+		const target = 'https://api.ipify.org?format=json';
+		let resp = await fetch(gasUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ k: key, u: target, m: 'GET' }), redirect: 'manual' });
+		if (resp.status >= 300 && resp.status < 400) { const loc = resp.headers.get('location'); if (loc) resp = await fetch(loc, { redirect: 'follow' }); }
+		const txt = await resp.text();
+		let j; try { j = JSON.parse(txt); } catch (e) { return { verified: false, detail: 'Relay did not return JSON (check the Web app URL and that access is set to Anyone).' }; }
+		if (j.s && Number(j.s) >= 200 && Number(j.s) < 500) return { verified: true, detail: 'Relay reached the worker (status ' + j.s + ').' };
+		if (j.e) return { verified: false, detail: 'Relay replied: ' + j.e + (j.e === 'unauthorized' ? ' (the script AUTH_KEY does not match this panel key).' : '') };
+		return { verified: false, detail: 'Unexpected reply: ' + txt.slice(0, 100) };
+	} catch (e) { return { verified: false, detail: String((e && e.message) || e) }; }
 }
 async function handleRelayRequest(request, env) {
 	if (request.method === 'GET') {
@@ -521,7 +601,8 @@ async function handleRelayRequest(request, env) {
 	let reqBody;
 	try { reqBody = await request.json(); } catch (e) { return relayJson({ e: 'Invalid JSON' }, 400); }
 	if (!reqBody.k) return relayJson({ e: 'missing auth key' }, 401);
-	const relayAuthKey = (hagdarotReshet && hagdarotReshet.relayAuthKey) || 'Novaproxy';
+	const relayAuthKey = await getRelayAuthKey(env);
+	if (!relayAuthKey) return relayJson({ e: 'relay not configured' }, 503);
 	if (reqBody.k !== relayAuthKey) return relayJson({ e: 'unauthorized' }, 401);
 	if (!reqBody.u) return relayJson({ e: 'missing url' }, 400);
 	if (!isRelayAllowed(reqBody.u)) return relayJson({ e: 'target not allowed' }, 400);
@@ -675,7 +756,7 @@ const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/version.
 				if (res.ok) { workerCode = await res.text(); const m = workerCode.match(/const\s+Version\s*=\s*['"]([^'"]+)['"]/); if (m) remoteVer = m[1].replace(/^[vV]/, ''); }
 			} catch (e) {}
 		}
-		const currentVer = String(Version).replace(/^[vV]/, '').replace(/\D+/g, '');
+		const currentVer = String(Version).replace(/^[vV]/, '');
 		if (!remoteVer || cmpVersions(currentVer, remoteVer) >= 0) { log('[AutoUpdate] no update available'); return; }
 		if (!workerCode) {
 			const codeUrl = `https://raw.githubusercontent.com/${repo}/main/worker.js`;
@@ -856,7 +937,7 @@ async function panelHtml(env, path, opts = {}) {
 			+ 'else{fetch(' + JSON.stringify(_dgp.pubAdmin + '/keepalive') + ',{method:"GET",credentials:"same-origin",cache:"no-store"}).catch(function(){});}'
 			+ '},CHECK_MS);'
 			+ '})();</script>';
-		text = text.replace('</body>', _idleScript + '</body>');
+		{ const _bi = text.lastIndexOf('</body>'); if (_bi >= 0) text = text.slice(0, _bi) + _idleScript + text.slice(_bi); else text += _idleScript; }
 	}
 	const h = new Headers();
 	h.set('Content-Type', 'text/html;charset=utf-8');
@@ -1382,6 +1463,24 @@ async function tryNat64Chibur(yaadHost, portNum, rawData, chiburTCP) {
 	}
 	return null;
 }
+// Per-ISP client optimization profile. Nova clients fetch GET /isp-profile and
+// auto-apply the best fingerprint/fragment/mux/mtu for the carrier they're on
+// (detected client-side by mccmnc/asn). Kept identical to the node agent's
+// DEFAULT_ISP_PROFILE; an admin can override it by saving `ispProfile` into
+// network-settings.json in KV.
+const DEFAULT_ISP_PROFILE = {
+	version: 1,
+	updated: '',
+	default: { fingerprint: 'chrome', tlsFragment: false, mux: false, mtu: 1280 },
+	isps: [
+		{ label: 'Irancell (MTN)', mccmnc: ['43235'], asn: ['44244'], settings: { fingerprint: 'chrome', tlsFragment: true } },
+		{ label: 'MCI (Hamrah-e Aval)', mccmnc: ['43211'], asn: ['197207'], settings: { fingerprint: 'randomized', tlsFragment: true } },
+		{ label: 'Rightel', mccmnc: ['43220'], asn: ['57218'], settings: { fingerprint: 'firefox', tlsFragment: true } },
+		{ label: 'Shatel', asn: ['31549'], settings: { fingerprint: 'chrome', tlsFragment: false } },
+		{ label: 'MobinNet', asn: ['50810'], settings: { fingerprint: 'chrome', tlsFragment: true } },
+	],
+};
+
 // ===== Main entry point =====
 export default {
 	async fetch(request, env, ctx) { try {
@@ -1457,6 +1556,23 @@ export default {
 		const hosts = env.HOST ? (await saderLeMaarach(env.HOST)).map(h => h.toLowerCase().replace(/^https?:\/\//, '').split('/')[0].split(':')[0]) : [url.hostname];
 		const host = hosts[0];
 		let nativGisha = url.pathname.slice(1).toLowerCase();
+		// Public, read-only per-ISP optimization profile for Nova clients. No auth,
+		// no disguise remap (it's a fixed public path). Served before everything so
+		// clients can fetch it even on a locked-down panel.
+		if (nativGisha === 'isp-profile') {
+			let profile = null;
+			try {
+				if (env.KV && typeof env.KV.get === 'function') {
+					const ns = JSON.parse((await env.KV.get('network-settings.json')) || 'null');
+					if (ns && ns.ispProfile) profile = typeof ns.ispProfile === 'string' ? JSON.parse(ns.ispProfile) : ns.ispProfile;
+				}
+			} catch { profile = null; }
+			if (!profile || typeof profile !== 'object') profile = DEFAULT_ISP_PROFILE;
+			return new Response(JSON.stringify(profile), {
+				status: 200,
+				headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=300', 'Access-Control-Allow-Origin': '*' },
+			});
+		}
 		hadpasatYomanNipui = ['1', 'true'].includes(env.DEBUG) || hadpasatYomanNipui;
 		preloadChiyugMerotz = ['1', 'true'].includes(env.PRELOAD_RACE_DIAL) || preloadChiyugMerotz;
 		try {
@@ -1471,7 +1587,7 @@ export default {
 					enableLocalDNS: false, localDNSIP: '8.8.8.8', localDNSPort: '53',
 					enableAntiSanctionDNS: false, antiSanctionDNSProvider: 'cloudflare', antiSanctionCustomDNS: '',
 					enableFakeDNS: false, fakeDNSIP: '198.51.100.1',
-					enableIPv6: true, allowLAN: false, logLevel: 'error', enableWarp: false, warpCalls: false, warpMode: 'warp', warpEndpoint: '', warpAmnezia: false, customRules: '',
+					enableIPv6: true, allowLAN: false, logLevel: 'error', enableWarp: false, warpCalls: false, warpMode: 'warp', warpEndpoint: '', warpAmnezia: false, warpAmneziaLevel: 'medium', warpAmneziaJc: 4, warpAmneziaJmin: 40, warpAmneziaJmax: 70, warpCleanIp: false, customRules: '',
 					enableMalwareBlock: true, enablePhishingBlock: true,
 					bypassChina: false, bypassRussia: false, bypassSanctions: false, bypassCountries: [], blockCategories: [],
 					monthlyCapGB: 0, speedLimitKBps: 0, blockQUIC: false,
@@ -2030,6 +2146,11 @@ export default {
 									warpMode: ['warp', 'chain', 'wow'].includes(settings.warpMode) ? settings.warpMode : 'warp',
 									warpEndpoint: typeof settings.warpEndpoint === 'string' ? settings.warpEndpoint.slice(0, 80) : '',
 									warpAmnezia: typeof settings.warpAmnezia === 'boolean' ? settings.warpAmnezia : false,
+									warpCleanIp: typeof settings.warpCleanIp === 'boolean' ? settings.warpCleanIp : false,
+									warpAmneziaLevel: ['light', 'medium', 'heavy', 'custom'].includes(settings.warpAmneziaLevel) ? settings.warpAmneziaLevel : 'medium',
+									warpAmneziaJc: Math.min(Math.max(parseInt(settings.warpAmneziaJc, 10) || 4, 0), 128),
+									warpAmneziaJmin: Math.min(Math.max(parseInt(settings.warpAmneziaJmin, 10) || 40, 0), 1280),
+									warpAmneziaJmax: Math.min(Math.max(parseInt(settings.warpAmneziaJmax, 10) || 70, 0), 1280),
 								customRules: typeof settings.customRules === 'string' ? settings.customRules.slice(0, 4000) : '',
 								warpNoise: (settings.warpNoise && typeof settings.warpNoise === 'object') ? {
 									mode: ['', 'quic', 'random'].includes(settings.warpNoise.mode) ? settings.warpNoise.mode : '',
@@ -2485,7 +2606,7 @@ export default {
 								const repo = (ns.githubRepo || 'IRNova/Nova-Proxy').replace(/https?:\/\/github\.com\//, '').trim();
 								let remoteVer = null;
 								try { const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/version.json`, { headers: { 'User-Agent': 'NovaProxy' }, cf: { cacheTtl: 0 } }); if (res.ok) { const j = await res.json(); if (j && j.version) remoteVer = String(j.version).replace(/^[vV]/, ''); } } catch (e) {}
-								const current = String(Version).replace(/^[vV]/, '').replace(/\D+/g, '');
+								const current = String(Version).replace(/^[vV]/, '');
 								return new Response(JSON.stringify({ success: true, current, latest: remoteVer || '', updateAvailable: remoteVer ? cmpVersions(current, remoteVer) < 0 : false, cfConfigured: !!(ns.cfAccountId && ns.cfApiToken && ns.cfWorkerName) }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 							}
 							if (body.action === 'update') {
@@ -2497,6 +2618,46 @@ export default {
 							return new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
 						}
 						return new Response(JSON.stringify({ success: false, error: 'Invalid request' }), { status: 400, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
+					} else if (nativGisha === 'admin/relay-generate') {
+						// One-click: generate a strong relay key and store it in D1 (relay_config.auth_key).
+						// If a RELAY_AUTH_KEY env var/secret is set, that wins, so hand it back instead.
+						const _rj = (o, st) => new Response(JSON.stringify(o), { status: st || 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+						if (request.method !== 'POST') return _rj({ error: 'method_not_allowed' }, 405);
+						const _rHost = (config_JSON && Array.isArray(config_JSON.HOSTS) && config_JSON.HOSTS[0]) || (config_JSON && config_JSON.HOST) || (hagdarotReshet && Array.isArray(hagdarotReshet.HOSTS) && hagdarotReshet.HOSTS[0]) || new URL(request.url).hostname;
+						const _rWorkerUrl = 'https://' + _rHost + '/';
+						const _rEnvKey = (env && String(env.RELAY_AUTH_KEY || env.RELAYKEY || '').trim()) || '';
+						if (_rEnvKey) return _rj({ success: true, key: _rEnvKey, workerUrl: _rWorkerUrl, source: 'env' });
+						if (!env.DB) return _rj({ error: 'no_db', message: 'Bind a D1 database named DB to the Worker, then retry.' });
+						const _rKey = genRelayKey();
+						const _rOk = await relayConfigSet(env, 'auth_key', _rKey);
+						if (!_rOk) return _rj({ error: 'db_write_failed', message: 'Could not write to the D1 database.' });
+						await relayConfigSet(env, 'verified', '');
+						_relayKeyCache = _rKey; _relayKeyCacheAt = Date.now();
+						return _rj({ success: true, key: _rKey, workerUrl: _rWorkerUrl, source: 'db' });
+					} else if (nativGisha === 'admin/relay-verify') {
+						// Save the Google Apps Script /exec URL and test the whole chain server-side.
+						const _rj = (o, st) => new Response(JSON.stringify(o), { status: st || 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+						if (request.method !== 'POST') return _rj({ error: 'method_not_allowed' }, 405);
+						let _vBody = {}; try { _vBody = await request.json(); } catch (e) {}
+						const _vGas = String((_vBody && _vBody.gasUrl) || '').trim();
+						if (!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec\/?$/.test(_vGas)) return _rj({ error: 'bad_url', message: 'Paste the Web app URL that ends in /exec.' });
+						const _vKey = await getRelayAuthKey(env);
+						if (!_vKey) return _rj({ error: 'no_key', message: 'Generate a relay key first.' });
+						const _vRes = await verifyRelayGas(_vGas, _vKey);
+						await relayConfigSet(env, 'gas_url', _vGas);
+						await relayConfigSet(env, 'verified', JSON.stringify({ ok: !!_vRes.verified, at: Date.now() }));
+						return _rj({ success: true, verified: !!_vRes.verified, detail: _vRes.detail || '', gasUrl: _vGas });
+					} else if (nativGisha === 'admin/relay-disable') {
+						// Turn the relay off: blank the key (empty reads as "no key" -> 503) and drop the
+						// saved script URL / verified flag. D1 is strongly consistent, so this is immediate.
+						const _rj = (o, st) => new Response(JSON.stringify(o), { status: st || 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+						if (request.method !== 'POST') return _rj({ error: 'method_not_allowed' }, 405);
+						await relayConfigSet(env, 'auth_key', '');
+						await relayConfigSet(env, 'gas_url', '');
+						await relayConfigSet(env, 'verified', '');
+						_relayKeyCache = ''; _relayKeyCacheAt = Date.now();
+						const _dEnvKey = (env && String(env.RELAY_AUTH_KEY || env.RELAYKEY || '').trim()) || '';
+						return _rj({ success: true, envOverride: !!_dEnvKey });
 					} else return new Response(JSON.stringify({ error: 'Unsupported request path / مسیر درخواست پشتیبانی نمی‌شود' }), { status: 404, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
 					} else if (nativGisha === 'admin/config.json') {// Handle admin/config.json request, return JSON
 						const _subTok = await MD5MD5(host + userID);
@@ -2539,7 +2700,7 @@ export default {
 							enableLocalDNS: false, localDNSIP: '8.8.8.8', localDNSPort: '53',
 							enableAntiSanctionDNS: false, antiSanctionDNSProvider: 'cloudflare', antiSanctionCustomDNS: '',
 							enableFakeDNS: false, fakeDNSIP: '198.51.100.1',
-						enableIPv6: true, allowLAN: false, logLevel: 'error', enableWarp: false, warpCalls: false, warpMode: 'warp', warpEndpoint: '', warpAmnezia: false, customRules: '',
+						enableIPv6: true, allowLAN: false, logLevel: 'error', enableWarp: false, warpCalls: false, warpMode: 'warp', warpEndpoint: '', warpAmnezia: false, warpAmneziaLevel: 'medium', warpAmneziaJc: 4, warpAmneziaJmin: 40, warpAmneziaJmax: 70, warpCleanIp: false, customRules: '',
 						enableMalwareBlock: true, enablePhishingBlock: true,
 						bypassChina: false, bypassRussia: false, bypassSanctions: false, bypassCountries: [], blockCategories: [],
 						monthlyCapGB: 0, speedLimitKBps: 0, blockQUIC: false,
@@ -3105,7 +3266,7 @@ export default {
 							if (objMishtameshMinuy && objMishtameshMinuy.fragLen && objMishtameshMinuy.fragInt) {
 								_userFrag = `&fragment=${encodeURIComponent(objMishtameshMinuy.fragLen + ',' + objMishtameshMinuy.fragInt)}`;
 							}
-							const paramPitzulTls = _userFrag || (config_JSON.pilugTLS == 'Shadowrocket' ? `&fragment=${encodeURIComponent('1,40-60,30-50,tlshello')}` : config_JSON.pilugTLS == 'Happ' ? `&fragment=${encodeURIComponent('3,1,tlshello')}` : '');
+							const paramPitzulTls = _userFrag || (config_JSON.pilugTLS == 'Shadowrocket' ? `&fragment=${encodeURIComponent('1,40-60,30-50,tlshello')}` : config_JSON.pilugTLS == 'Happ' ? `&fragment=${encodeURIComponent('3,1,tlshello')}` : (config_JSON.pilugTLS == 'custom' && config_JSON.fragmentParams && String(config_JSON.fragmentParams.length || '').trim() && String(config_JSON.fragmentParams.interval || '').trim()) ? `&fragment=${encodeURIComponent((String(config_JSON.fragmentParams.packets || '1').trim() || '1') + ',' + String(config_JSON.fragmentParams.length).trim() + ',' + String(config_JSON.fragmentParams.interval).trim() + ',tlshello')}` : '');
 							let ipNivcharMale = [], linkTzmatimAcherim = '', breichatIpMetavech = [];
 							// If sub is only used for user auth (?sub=<username>&key=<key>), don't treat it as a sub-generator host
 							// _subParamIsGenerator hoisted to the sub-handler scope above (visible to both the local and subconverter branches).
@@ -7527,6 +7688,34 @@ function buildWarpNekoRayLink(ipPort, group, mtu) {
 	return 'nekoray://custom#' + base64Utf8(JSON.stringify(cfg));
 }
 function warpValidEndpoint(ep) { return typeof ep === 'string' && /^[A-Za-z0-9.\-\[\]:]+:\d{1,5}$/.test(ep.trim()); }
+// Pick the WARP endpoint for an injected node. Priority: a valid manual override,
+// then a random clean Cloudflare edge IP from the pool (when warpCleanIp is on),
+// then the registered account endpoint, then the default. WARP's anycast means the
+// registered keypair works on any edge IP, so swapping in a clean one just dodges
+// the commonly-blocked default endpoint without touching the account.
+function warpPickEndpoint(manual, accountEp, useClean) {
+	if (manual && warpValidEndpoint(manual)) return String(manual).trim();
+	if (useClean) { const r = warpRandomEndpoints(1); if (r && r[0]) return r[0]; }
+	return String(accountEp || 'engage.cloudflareclient.com:2408');
+}
+// AmneziaWG junk-packet options for the WARP node (mihomo `amnezia-wg-option`).
+// Only Jc/Jmin/Jmax are emitted: these are standalone junk packets sent before
+// the handshake, which plain WireGuard (Cloudflare WARP) safely ignores while DPI
+// can no longer fingerprint the flow. S1/S2/H1-H4 would alter the handshake itself
+// and require an AmneziaWG server on the far end, so they are NOT used for WARP.
+const WARP_AMNEZIA_PRESETS = {
+	light: { jc: 2, jmin: 20, jmax: 40 },
+	medium: { jc: 4, jmin: 40, jmax: 70 },
+	heavy: { jc: 8, jmin: 100, jmax: 200 },
+};
+function warpAmneziaOpts(net) {
+	if (!net || !net.warpAmnezia) return null;
+	const level = ['light', 'medium', 'heavy', 'custom'].includes(net.warpAmneziaLevel) ? net.warpAmneziaLevel : 'medium';
+	if (level !== 'custom') return WARP_AMNEZIA_PRESETS[level] || WARP_AMNEZIA_PRESETS.medium;
+	const cl = (v, lo, hi, d) => { const n = parseInt(v, 10); return Number.isFinite(n) ? Math.min(Math.max(n, lo), hi) : d; };
+	const jmin = cl(net.warpAmneziaJmin, 0, 1280, 40);
+	return { jc: cl(net.warpAmneziaJc, 0, 128, 4), jmin, jmax: cl(net.warpAmneziaJmax, jmin, 1280, Math.max(jmin, 70)) };
+}
 async function tipulBakashatWarp(request) {
 	const url = new URL(request.url);
 	const target = (url.searchParams.get('target') || _D_._wg_).toLowerCase();
@@ -7545,8 +7734,11 @@ async function tipulBakashatWarp(request) {
 async function buildRegisteredWarpNode(env) {
 	let w; try { w = JSON.parse(await env.KV.get('warp-account.json') || 'null'); } catch (e) { return ''; }
 	if (!w || !w.registered || !w.privateKey || !w.peerPublicKey) return '';
-	const epOv = (hagdarotReshet && hagdarotReshet.warpEndpoint && warpValidEndpoint(hagdarotReshet.warpEndpoint)) ? hagdarotReshet.warpEndpoint.trim() : '';
-	const ep = String(epOv || w.endpoint || 'engage.cloudflareclient.com:2408');
+	const ep = warpPickEndpoint(
+		hagdarotReshet && hagdarotReshet.warpEndpoint ? hagdarotReshet.warpEndpoint : '',
+		w.endpoint,
+		Boolean(hagdarotReshet && hagdarotReshet.warpCleanIp)
+	);
 	const encPriv = encodeURIComponent(w.privateKey), encPub = encodeURIComponent(w.peerPublicKey);
 	const addr = encodeURIComponent('172.16.0.2/32' + (w.addressV6 ? ',' + w.addressV6 : ''));
 	const reservedStr = (Array.isArray(w.reservedDec) && w.reservedDec.length) ? '&reserved=' + encodeURIComponent(w.reservedDec.join(',')) : '';
@@ -7710,8 +7902,9 @@ function tikunChamClashMinuy(Clash_tochenMinuyGolmi, config_JSON = {}, hagdarotR
 	// WARP / WG proxy - اضافه کردن پراکسی wg به Clash
 	if (hagdarotReshet && hagdarotReshet.enableWarp && warpAccount && warpAccount.registered && warpAccount.privateKey && !clash_yaml.includes('name: "Nova-WARP"')) {
 		try {
-			const epOverride = (hagdarotReshet.warpEndpoint && String(hagdarotReshet.warpEndpoint).trim()) || null;
-			const amneziaLine = hagdarotReshet.warpAmnezia ? `\n    amnezia-wg-option: {jc: 4, jmin: 40, jmax: 70}` : '';
+			const epOverride = warpPickEndpoint(hagdarotReshet.warpEndpoint || '', warpAccount.endpoint, Boolean(hagdarotReshet.warpCleanIp));
+			const _amz = warpAmneziaOpts(hagdarotReshet);
+			const amneziaLine = _amz ? `\n    amnezia-wg-option: {jc: ${_amz.jc}, jmin: ${_amz.jmin}, jmax: ${_amz.jmax}}` : '';
 			const splitEp = (e) => { const i = String(e).lastIndexOf(':'); return i > 0 ? { s: String(e).slice(0, i), p: Number(String(e).slice(i + 1)) || 2408 } : { s: String(e), p: 2408 }; };
 			const wgProxy = (acc, name, endpoint, dialer) => {
 				const { s, p } = splitEp(endpoint);
@@ -8252,7 +8445,7 @@ async function tikunChamSingboxMinuy(SingBox_tochenMinuyGolmi, config_JSON = {},
 		if (hagdarotReshet && hagdarotReshet.enableWarp && warpAccount && warpAccount.registered && warpAccount.privateKey) {
 			config.outbounds = Array.isArray(config.outbounds) ? config.outbounds : [];
 			const warpTag = 'Nova-WARP';
-			const epOverride = (hagdarotReshet.warpEndpoint && String(hagdarotReshet.warpEndpoint).trim()) || null;
+			const epOverride = warpPickEndpoint(hagdarotReshet.warpEndpoint || '', warpAccount.endpoint, Boolean(hagdarotReshet.warpCleanIp));
 			if (!config.outbounds.some(o => o && o.tag === warpTag)) {
 				const vadeRoute = () => config.route = config.route && typeof config.route === 'object' ? config.route : {};
 				if (hagdarotReshet.warpMode === 'wow' && warpAccount.wow && warpAccount.wow.privateKey) {
@@ -8813,7 +9006,7 @@ async function keriatConfigJson(env, hostname, userID, UA = "Mozilla/5.0", ipusT
 	config_JSON.nativTzometMale = (chelekNativ || '/') + (chelekNativ && paramNativMetavech ? '/' : '') + paramNativMetavech + chelekSheiltaSofi + (config_JSON.efsher0RTT ? (chelekSheiltaSofi ? '&' : '?') + 'ed=2560' : '');
 
 	if (!config_JSON.pilugTLS && config_JSON.pilugTLS !== null) config_JSON.pilugTLS = null;
-	const paramPitzulTls = (config_JSON.pilugTLS == 'Shadowrocket' ? `&fragment=${encodeURIComponent('1,40-60,30-50,tlshello')}` : config_JSON.pilugTLS == 'Happ' ? `&fragment=${encodeURIComponent('3,1,tlshello')}` : '');
+	const paramPitzulTls = (config_JSON.pilugTLS == 'Shadowrocket' ? `&fragment=${encodeURIComponent('1,40-60,30-50,tlshello')}` : config_JSON.pilugTLS == 'Happ' ? `&fragment=${encodeURIComponent('3,1,tlshello')}` : (config_JSON.pilugTLS == 'custom' && config_JSON.fragmentParams && String(config_JSON.fragmentParams.length || '').trim() && String(config_JSON.fragmentParams.interval || '').trim()) ? `&fragment=${encodeURIComponent((String(config_JSON.fragmentParams.packets || '1').trim() || '1') + ',' + String(config_JSON.fragmentParams.length).trim() + ',' + String(config_JSON.fragmentParams.interval).trim() + ',tlshello')}` : '');
 	if (!config_JSON.Fingerprint) config_JSON.Fingerprint = "chrome";
 	if (!config_JSON.ECH) config_JSON.ECH = false;
 	if (!config_JSON.ECHConfig) config_JSON.ECHConfig = { DNS: Ali_DoH, SNI: ECH_SNI };

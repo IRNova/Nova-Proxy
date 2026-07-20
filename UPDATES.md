@@ -9,7 +9,68 @@ public record of what changed in each version.
 
 ---
 
-## Latest build - V4.1.0
+## Latest build - V4.1.3
+
+**Status:** deployable. Drop-in replacement for the previous `worker.js`, no `wrangler`
+or binding changes (the D1 table it uses is created automatically). Ships with matching
+panel updates. If you used the relay before, see the relay upgrade note.
+
+### What's in this version
+
+- **Per-ISP client optimization (new).** The worker now serves a public `GET /isp-profile`
+  that the Nova clients fetch to auto-apply the best fingerprint and fragmentation for
+  whichever carrier the user is on, matched by SIM MCC-MNC and network ASN. Tuned defaults
+  ship per Iranian ISP (Irancell, MCI, Rightel, Shatel, MobinNet), and admins can override
+  them from the panel.
+- **Relay (Tunnel): secure by default, one-click setup.** The built-in default relay key
+  was removed, so a fresh deploy is no longer an open relay: it stays off until you set
+  your own key. It also refuses private, loopback, link-local, and cloud-metadata addresses
+  (SSRF protection). A new Relay page generates the key, hands you a ready-to-paste Google
+  Apps Script (pre-filled with your key and worker address), and verifies the whole path in
+  one click, in English, Farsi, and Russian. The key lives in D1, so enabling, disabling, or
+  rotating it takes effect within seconds.
+- **Fixes.** Setting a specific clean-IP pool port (for example 443) now applies and sticks
+  (it used to silently revert to random). The 0-RTT toggle now actually applies and reflects
+  its real state. Custom TLS fragmentation now works. Auto-update now reliably detects new
+  releases (the version check was comparing versions incorrectly and always reported
+  "up to date").
+- **Self-hosting: Nova VPS Server.** The self-hosted Nova node gains a configurable
+  Hysteria2 UDP port (default 443, movable for UDP port-hopping when 443/udp is throttled)
+  and a per-ISP profile editor.
+
+**Relay upgrade note:** if you used the relay on an earlier build, open the panel's Relay
+page, click Generate, then redeploy your Google Apps Script with the code it shows (the new
+code is required).
+
+### فارسی: در این نسخه چه چیزی هست
+
+- **بهینه‌سازی خودکار بر اساس اپراتور (تازه).** ورکر حالا یک مسیر عمومی `GET /isp-profile`
+  ارائه می‌دهد که کلاینت‌های Nova آن را می‌گیرند تا بهترین fingerprint و fragmentation را برای
+  اپراتور فعلی کاربر خودکار اعمال کنند، بر اساس MCC-MNC سیم‌کارت و ASN شبکه. مقادیر پیش‌فرض برای
+  اپراتورهای ایران تنظیم شده (ایرانسل، همراه اول، رایتل، شاتل، موبین‌نت) و ادمین می‌تواند از پنل
+  آن‌ها را تغییر دهد.
+- **رله (تانل): امن به‌صورت پیش‌فرض، راه‌اندازی با یک کلیک.** کلید پیش‌فرض توکار رله حذف شد، پس یک
+  استقرار تازه دیگر رلهٔ باز نیست: خاموش می‌ماند تا وقتی خودت کلید تنظیم کنی. همچنین آدرس‌های
+  خصوصی، لوکال، link-local و متادیتای ابری را رد می‌کند (محافظت SSRF). صفحهٔ «رله» تازه کلید را
+  می‌سازد، اسکریپت آمادهٔ Google Apps Script را (که از قبل با کلید و آدرس ورکر تو پر شده) می‌دهد و
+  کل مسیر را با یک کلیک تأیید می‌کند، به انگلیسی، فارسی و روسی. کلید در D1 ذخیره می‌شود، پس روشن،
+  خاموش یا تعویض آن ظرف چند ثانیه اعمال می‌شود.
+- **رفع اشکال.** تنظیم یک پورت مشخص برای استخر آی‌پی تمیز (مثلاً ۴۴۳) حالا اعمال می‌شود و می‌ماند
+  (قبلاً بی‌صدا به حالت تصادفی برمی‌گشت). کلید 0-RTT حالا واقعاً اعمال می‌شود و وضعیت درستش را نشان
+  می‌دهد. فرگمنت TLS سفارشی حالا کار می‌کند. به‌روزرسانی خودکار حالا نسخه‌های جدید را درست تشخیص
+  می‌دهد (مقایسهٔ نسخه اشتباه بود و همیشه «به‌روز هستید» نشان می‌داد).
+- **میزبانی شخصی: Nova VPS Server.** نود خودمیزبان Nova حالا یک پورت UDP قابل‌تنظیم برای
+  Hysteria2 دارد (پیش‌فرض ۴۴۳، برای جابه‌جایی پورت UDP وقتی ۴۴۳/udp محدود شده) و یک ویرایشگر
+  پروفایل هر اپراتور.
+
+**نکتهٔ ارتقای رله:** اگر در نسخهٔ قبلی از رله استفاده می‌کردی، صفحهٔ «رله» را باز کن، «تولید کلید»
+را بزن و بعد Google Apps Script را با کدی که نشان می‌دهد دوباره مستقر کن (کد جدید لازم است).
+
+### Build end
+
+---
+
+## V4.1.0
 
 **Status:** deployable. Drop-in replacement for the previous `worker.js`. No config
 or KV/D1 changes needed to upgrade. Just redeploy.
