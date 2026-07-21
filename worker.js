@@ -1,5 +1,5 @@
 const _D_={_vl_:atob('dmxlc3M='),_tr_:atob('dHJvamFu'),_vm_:atob('dm1lc3M='),_ss_:atob('c2hhZG93c29ja3M='),_wg_:atob('d2lyZWd1YXJk'),_cl_:atob('Y2xhc2g='),_sb_:atob('c2luZ2JveA=='),_sb2_:atob('c2luZy1ib3g='),_mh_:atob('bWlob21v'),_hd_:atob('aGlkZGlmeQ=='),_sg_:atob('c3VyZ2U='),_qx_:atob('cXVhbng='),_ln_:atob('bG9vbg=='),_np_:atob('Tm92YVByb3h5'),_np2_:atob('Tm92YS1Qcm94eQ=='),_np3_:atob('Tm92YQ=='),_cf_:atob('Y2xvdWRmbGFyZQ=='),_xr_:atob('eHJheQ=='),_cr_:atob('Q21saXVzcw=='),_pr_:atob('UFJPWFlJUA=='),_sp_:atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='),_wr_:atob('Tm92YS1XQVJQ'),_ws_:atob('d3M='),_grpc_:atob('Z3JwYw=='),_xhttp_:atob('eHR0cA=='),_aes128_:atob('YWVzLTEyOC1nY20='),_aes256_:atob('YWVzLTI1Ni1nY20='),_chrome_:atob('Y2hyb21l'),_mixed_:atob('bWl4ZWQ=')};
-const Version = 'V4.1.3';
+const Version = 'V4.1.4';
 let config_JSON, metavechIP = '', hafelSocks5Metavech = null, hafelSocks5Klali = false, cheshbonSocks5Sheli = '', parsedSocks5Address = {};
 let mitmonReshimaLevanaSocks5 = null, mitmonIpMetavech, mitmonNituachMetavech, indeksMaarachMetavechMitmon = 0, hafelGibuiMetavech = true, hadpasatYomanNipui = false;
 let connClientIp = '';
@@ -35,6 +35,9 @@ const NOVA_FREE_NOTICE = '🎁 نوا رایگان است، برای آن به �
 // subscription and is NOT overridable from the panel, env, or KV, so a reseller can
 // never point the "channel" line anywhere but Nova's own channel.
 const NOVA_TG_CHANNEL = 'https://t.me/irnova_proxy';
+// Public @handle derived from the channel, woven into every node name so a buyer of a
+// resold config can find the free source. Locked like the channel line above.
+const NOVA_TG_HANDLE = '@' + (String(NOVA_TG_CHANNEL).split('/').filter(Boolean).pop() || 'irnova_proxy');
 // Build stamp: bump this whenever worker.js changes so a deploy can be verified at a
 // glance (GET /install/status returns it). If the panel/status still shows an old build
 // after a deploy, the upload didn't take.
@@ -3520,7 +3523,7 @@ export default {
 										const _rawRemark = String(match[3] || '').replace(/ ·S\d+$/, '').replace(/\$(socks5|http|https|turn|sstp):\/\/[^#\s]+/i, '').trim();
 										const _flagMatch = _rawRemark.match(/^(?:\uD83C[\uDDE6-\uDDFF]){2}/);
 										const _flag = _flagMatch ? _flagMatch[0] + ' ' : '';
-										hearatTzomet = `${_flag}سرویس رایگان نوا ${ktovetTzomet}:${portTzomet} [${_np.toUpperCase()}]${_chainMark}`;
+										hearatTzomet = `${_flag}سرویس رایگان نوا ${NOVA_TG_HANDLE} ${ktovetTzomet}:${portTzomet} [${_np.toUpperCase()}]${_chainMark}`;
 									}
 									if (_np === 'ss' && !keGenNivchar) {
 									if (!config_JSON.SS.TLS) {

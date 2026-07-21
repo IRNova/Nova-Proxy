@@ -241,9 +241,22 @@ Built with ❤️ for a free and open internet.
 
 ---
 
+## 📜 Terms: free, and not for resale
+
+Nova's **code** is open source under MIT: you are free to self-host, study, and modify it. Nova is a **free service**, so the following terms apply to the Nova name and the configs it generates:
+
+- **Do not resell.** Do not sell Nova configs, subscriptions, or access as a paid product. Nova is free for everyone.
+- **Do not strip the free-service mark.** Every generated node carries a locked `سرویس رایگان نوا @irnova_proxy` mark. Removing it to pass configs off as your own paid service is not permitted.
+- **Keep attribution.** If you fork or redistribute, keep credit to Nova Proxy and a link back to this repo.
+- **Do not impersonate.** Do not use the Nova name, logo, or channel to present a rebranded copy as the official Nova.
+
+The MIT license covers the code. The Nova name, brand, and the "it stays free" promise belong to the project.
+
+---
+
 ## License
 
-MIT — see the [LICENSE](LICENSE) file.
+MIT — see the [LICENSE](LICENSE) file. The MIT grant applies to the source code; the brand terms above apply to the Nova name and service.
 
 ---
 

@@ -9,7 +9,32 @@ public record of what changed in each version.
 
 ---
 
-## Latest build - V4.1.3
+## Latest build - V4.1.4
+
+**Status:** deployable. Drop-in replacement for the previous `worker.js`, no `wrangler` or
+binding changes. Pure string change.
+
+### What's in this version
+
+- **Anti-resell branding.** Every generated node now carries a locked free-service mark plus
+  the channel handle in its name: `سرویس رایگان نوا @irnova_proxy <ip>:<port> [<PROTO>]`. So
+  anyone who receives a resold config can see at a glance that it is free and where to get it.
+  The mark is hardcoded in the worker and cannot be turned off, renamed, or prefixed/suffixed
+  from the panel, a name template, or a fork's config, only a source edit can remove it (which
+  is inherent to any open-source project). See the repo README "Terms: free, and not for resale".
+
+### فارسی: در این نسخه چه چیزی هست
+
+- **برندینگ ضدفروش.** هر نودِ ساخته‌شده حالا یک نشان قفل‌شدهٔ سرویس رایگان به‌همراه هندل کانال را
+  در نامش دارد: `سرویس رایگان نوا @irnova_proxy <ip>:<port> [<PROTO>]`. پس هر کسی که یک کانفیگِ
+  فروخته‌شده بگیرد، یک‌نگاه می‌فهمد که رایگان است و از کجا می‌تواند تهیه‌اش کند. این نشان در ورکر
+  هاردکد شده و از پنل، قالب نام یا پیشوند/پسوند قابل خاموش‌کردن یا تغییر نیست.
+
+### Build end
+
+---
+
+## V4.1.3
 
 **Status:** deployable. Drop-in replacement for the previous `worker.js`, no `wrangler`
 or binding changes (the D1 table it uses is created automatically). Ships with matching
