@@ -1,6 +1,6 @@
 <div align="center" dir="rtl">
 
-<img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-gradient.svg" width="70" alt="نوا پروکسی">
+<img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-badge-round.png" width="70" alt="نوا پروکسی">
 
 <div align="left">
   <a href="README.md">🇬🇧 English</a>
