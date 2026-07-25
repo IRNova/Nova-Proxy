@@ -1,6 +1,6 @@
 {
-  "version": "4.1.4",
-  "released": "2026-07-20",
-  "notes": "Version 4.1.4. Anti-resell branding: every generated node now carries a locked free-service mark plus the channel handle (سرویس رایگان نوا @irnova_proxy) in its name, so anyone who receives a resold config can see it is free and where to get it. The mark is hardcoded in the worker and cannot be turned off or renamed from the panel, a template, or a prefix/suffix. Pure string change, no wrangler or binding changes.",
+  "version": "4.1.5",
+  "released": "2026-07-25",
+  "notes": "Version 4.1.5. Security hardening. The install-only recovery routes /install/recover-password and /install/recover-disguise are now closed once a panel is configured (they return 409), so nobody can reset the admin password or wipe the stealth paths on a live panel without authentication. Post-install recovery is unchanged: the ADMIN secret in Cloudflare plus the authenticated one-click Telegram login. Auto-update is now pinned to the official IRNova/Nova-Proxy repo and can no longer be redirected from panel settings, so tampered settings cannot deploy code from another source. No wrangler or binding changes. Existing client configs and connections are unaffected.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js"
 }
