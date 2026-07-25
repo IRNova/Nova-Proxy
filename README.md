@@ -67,6 +67,13 @@ Visit the official site and follow the step-by-step guide:
 
 [**→ novaproxy.online/install**](https://novaproxy.online/install)
 
+**Transparency:** the web installer is fully open source. It runs in your browser and talks to Cloudflare's API. Because Cloudflare's API sends no CORS headers and `workers.dev` is filtered in Iran, requests are relayed through a same-origin passthrough on the site's own domain. That passthrough forwards requests to Cloudflare unchanged and **never stores or logs your token**. You can read every line of it:
+
+- Installer page: [`public/install.html`](https://github.com/iiviirv/irnova-site/blob/main/public/install.html)
+- The `/cf` passthrough: [`functions/cf.js`](https://github.com/iiviirv/irnova-site/blob/main/functions/cf.js)
+
+Prefer zero trust? Skip the web installer entirely and deploy this repo yourself with `wrangler`. After any install you can revoke the token in the Cloudflare dashboard; your panel keeps working.
+
 ---
 
 ### 📱 Mobile

@@ -1886,8 +1886,12 @@ export default {
 						respCP.headers.set('Set-Cookie', `auth=${await makeSessionToken(UA, mafteachHatzpana, neu)}; Path=/; HttpOnly; Secure; SameSite=Lax`);
 						return respCP;
 					} else if (nativGisha === 'admin/security/reveal') {
+						// Disabled by design. The panel password is never returned to the client, not
+						// even to an authenticated session: a stolen session or a panel bug must not be
+						// able to escalate into full, permanent credential disclosure. Use change-password
+						// to rotate it instead. The `source` field is safe to keep for the UI.
 						let src = 'none'; try { src = envPass ? 'env' : ((await env.KV.get('admin_pass')) ? 'kv' : 'none'); } catch (e) { src = envPass ? 'env' : 'none'; }
-						return new Response(JSON.stringify({ password: adminPassword || '', source: src }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+						return new Response(JSON.stringify({ disabled: true, source: src }), { status: 410, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/security/2fa-setup') {
 						const secret = randomBase32(32);
 						const label = encodeURIComponent('Nova Proxy (' + url.host + ')');
