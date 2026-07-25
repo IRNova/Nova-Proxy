@@ -10,12 +10,12 @@
 
 **A personal, censorship-resistant proxy + dashboard on a single Cloudflare Worker.**
 
-VLESS · Trojan · Shadowsocks · gRPC · XHTTP over WebSocket + TLS — with a self-contained
+VLESS, Trojan, Shadowsocks, gRPC, XHTTP over WebSocket + TLS, with a self-contained
 bilingual (English + فارسی) dashboard, per-ISP clean-IP optimization, multi-user
 accounts, a Telegram bot, WARP, proxy chaining, and backend mode. Runs on Cloudflare's **free** tier.
 
 [![License](https://img.shields.io/badge/license-MIT-purple?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/version-4.0.0-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
+[![Version](https://img.shields.io/badge/version-4.1.4-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
 [![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
 
 </div>
@@ -42,16 +42,16 @@ accounts, a Telegram bot, WARP, proxy chaining, and backend mode. Runs on Cloudf
   <img src="./assets/readme/section-what-is.svg" width="100%" alt="What is Nova Proxy? The serverless, all-in-one circumvention proxy.">
 </p>
 
-Nova Proxy is a **personal, all-in-one censorship-circumvention proxy** that runs entirely on Cloudflare Workers — the **free tier**. It combines a powerful proxy (VLESS, Trojan, Shadowsocks over WebSocket/gRPC/XHTTP) with a **full bilingual admin dashboard**, all in a single deployable Worker.
+Nova Proxy is a **personal, all-in-one censorship-circumvention proxy** that runs entirely on Cloudflare Workers, the **free tier**. It combines a powerful proxy (VLESS, Trojan, Shadowsocks over WebSocket/gRPC/XHTTP) with a **full bilingual admin dashboard**, all in a single deployable Worker.
 
 **What makes Nova different:**
-- ⚡ **Zero infrastructure** — no VPS, no domain needed to start
-- 🌍 **Per-ISP clean-IP** — auto-optimized for each Iranian ISP
-- 👥 **Multi-user** — per-user links with quota, expiry, and on/off control
-- 🤖 **Telegram bot** — full management from Telegram
-- 🔗 **Proxy chaining** — SOCKS5, HTTP, HTTPS, TURN, SSTP
-- 🛡️ **Advanced evasion** — ECH, TLS fragment, 0-RTT, fingerprint
-- 🧩 **Backend mode** — connect to your own Xray/sing-box VPS for VLESS + UDP calls
+- ⚡ **Zero infrastructure**, no VPS, no domain needed to start
+- 🌍 **Per-ISP clean-IP**, auto-optimized for each Iranian ISP
+- 👥 **Multi-user**, per-user links with quota, expiry, and on/off control
+- 🤖 **Telegram bot**, full management from Telegram
+- 🔗 **Proxy chaining**, SOCKS5, HTTP, HTTPS, TURN, SSTP
+- 🛡️ **Advanced evasion**, ECH, TLS fragment, 0-RTT, fingerprint
+- 🧩 **Backend mode**, connect to your own Xray/sing-box VPS for VLESS + UDP calls
 
 ---
 
@@ -65,7 +65,7 @@ Choose your preferred method:
 
 ### 🖥️ Nova Wizard (Desktop)
 
-The official desktop installer with a graphical interface — no technical knowledge required.
+The official desktop installer with a graphical interface, no technical knowledge required.
 
 [**→ Download Nova Wizard for Windows & Linux**](https://github.com/IRNova/Nova-Wizard)
 
@@ -86,7 +86,7 @@ Prefer zero trust? Skip the web installer entirely and deploy this repo yourself
 
 ### 📱 Mobile
 
-- **Android:** **Radar** — an Android app with a built-in wizard for one-click Nova Proxy installation on Cloudflare. Coming soon.
+- **Android:** **Radar**, an Android app with a built-in wizard for one-click Nova Proxy installation on Cloudflare. Coming soon.
 - **iOS:** Currently in development.
 
 ---
@@ -97,7 +97,7 @@ Prefer zero trust? Skip the web installer entirely and deploy this repo yourself
   <img src="./assets/readme/section-backend-mode.svg" width="100%" alt="Backend Mode: VLESS plus voice and video calls via your VPS.">
 </p>
 
-Cloudflare Workers cannot run native TCP proxy or handle UDP traffic directly. To enable these features, Nova supports **Backend Mode** — forward traffic to your own Xray or sing-box VPS.
+Cloudflare Workers cannot run native TCP proxy or handle UDP traffic directly. To enable these features, Nova supports **Backend Mode**, forward traffic to your own Xray or sing-box VPS.
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/IRNova/Tools/main/nova-backend.sh)
@@ -242,7 +242,7 @@ After running the installer, enable Backend Mode in the Nova panel (Network Sett
   <img src="./assets/readme/section-support.svg" width="100%" alt="Support: star the repo and keep Nova free.">
 </p>
 
-If Nova helps you, please **⭐ star the repo** and consider a small donation — it keeps the project alive and free for everyone.
+If Nova helps you, please **⭐ star the repo** and consider a small donation, it keeps the project alive and free for everyone.
 
 <div align="center">
 
@@ -262,7 +262,7 @@ If Nova helps you, please **⭐ star the repo** and consider a small donation �
 
 Built with ❤️ for a free and open internet.
 
-- [@iiviirv](https://github.com/iiviirv) — contributor
+- [@iiviirv](https://github.com/iiviirv), contributor
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [Xray-core](https://github.com/XTLS/xray-core)
 
@@ -283,13 +283,13 @@ The MIT license covers the code. The Nova name, brand, and the "it stays free" p
 
 ## License
 
-MIT — see the [LICENSE](LICENSE) file. The MIT grant applies to the source code; the brand terms above apply to the Nova name and service.
+MIT, see the [LICENSE](LICENSE) file. The MIT grant applies to the source code; the brand terms above apply to the Nova name and service.
 
 ---
 
 <div align="center">
 
-Made for Iran <img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" /> — and anyone who needs a free, open internet.
+Made for Iran <img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" />, and anyone who needs a free, open internet.
 **Nothing about your traffic is logged. The proxy is yours.**
 
 📖 [Persian version](README.fa.md)
