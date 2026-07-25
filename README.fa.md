@@ -277,13 +277,7 @@ MIT، فایل [LICENSE](LICENSE) را ببینید. مجوز MIT برای سو�
 📖 [نسخه انگلیسی / English version](README.md)
 
 ---
-<a href="https://www.star-history.com/?repos=IRNova%2FNova-Proxy&type=date&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=IRNova/Nova-Proxy&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=IRNova/Nova-Proxy&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=IRNova/Nova-Proxy&type=date&legend=top-left" />
- </picture>
-</a>
+<a href="https://star-history.com/#IRNova/Nova-Proxy&Date">تاریخچهٔ ستاره‌ها</a>
 </div>
 
 ---

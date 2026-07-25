@@ -45,7 +45,7 @@
 
     <!-- wordmark -->
     <text x="176" y="150" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="66" font-weight="800" fill="#f4f7fb" letter-spacing="-1">Nova Proxy</text>
-    <text x="178" y="185" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" letter-spacing="1" fill="#6f7c90">v4.0.0, MIT, single Cloudflare Worker</text>
+    <text x="178" y="185" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" letter-spacing="1" fill="#6f7c90">v4.1.4, MIT, single Cloudflare Worker</text>
 
     <!-- value proposition -->
     <text x="66" y="248" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="23" font-weight="600" fill="#d7deea">A personal, censorship-resistant proxy + dashboard</text>
@@ -129,7 +129,7 @@
       <rect x="1054" y="180" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
       <rect x="1054" y="200" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
       <rect x="1054" y="220" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
-      <path d="M1046 250 L1108 170" stroke="#e0567a" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M1046 250 L1108 170" stroke="#9d4efb" stroke-width="2.4" stroke-linecap="round"/>
       <text x="1077" y="288" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a94a6">no server</text>
     </g>
 
