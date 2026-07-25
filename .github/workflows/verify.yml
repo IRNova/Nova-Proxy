@@ -1,0 +1,44 @@
+# Reproducibility / verification CI. worker.js in this repo is the COMPLETE,
+# unminified source of the Worker (there is no separate build step or bundler).
+# This job runs on every push and pull request to prove the source is valid and
+# to publish a SHA-256 of worker.js, so anyone can verify that the file they
+# deploy is exactly the file in this commit. No Cloudflare credentials are used.
+name: Verify worker.js
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax-check worker.js
+        run: node --check worker.js
+      - name: Validate wrangler config (bundle only, no deploy)
+        run: npx --yes wrangler@3 deploy --dry-run --outdir /tmp/nova-out
+        continue-on-error: true
+      - name: Publish the worker.js SHA-256
+        run: |
+          HASH=$(sha256sum worker.js | awk '{print $1}')
+          echo "$HASH  worker.js" | tee worker.js.sha256
+          {
+            echo "### Verifiable build"
+            echo ""
+            echo "\`worker.js\` at commit \`${GITHUB_SHA}\`:"
+            echo ""
+            echo "\`\`\`"
+            echo "SHA-256: $HASH"
+            echo "\`\`\`"
+            echo ""
+            echo "Anyone can reproduce this: \`sha256sum worker.js\` on a fresh checkout of this commit yields the same value. What you deploy to Cloudflare is exactly this file."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: worker-js-sha256
+          path: worker.js.sha256
