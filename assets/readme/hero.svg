@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="424" viewBox="0 0 1200 424" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">Nova Proxy</title>
+  <desc id="heroDesc">Nova Proxy: a personal, censorship-resistant proxy and dashboard running on a single Cloudflare Worker on the free tier. Protocols VLESS, Trojan, Shadowsocks, gRPC and XHTTP over WebSocket and TLS. The diagram shows users connecting to one Worker at Cloudflare's edge, with no origin server to rent.</desc>
+
+  <defs>
+    <linearGradient id="novaGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <linearGradient id="novaGradH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <radialGradient id="glowTR" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowV" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9d4efb" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#9d4efb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="boardClip"><rect x="704" y="48" width="432" height="328" rx="20"/></clipPath>
+  </defs>
+
+  <!-- backdrop -->
+  <rect x="1" y="1" width="1198" height="422" rx="24" fill="#070a10"/>
+  <rect x="1" y="1" width="1198" height="422" rx="24" fill="none" stroke="#1b2434" stroke-width="1.5"/>
+  <circle cx="1040" cy="70" r="300" fill="url(#glowTR)"/>
+  <circle cx="150" cy="420" r="280" fill="url(#glowV)"/>
+
+  <!-- ===================== LEFT: identity ===================== -->
+  <g>
+    <!-- eyebrow -->
+    <text x="66" y="80" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="19" letter-spacing="2.5" fill="#22d3ee">CENSORSHIP-RESISTANT PROXY + DASHBOARD</text>
+
+    <!-- N mark tile -->
+    <rect x="66" y="102" width="92" height="92" rx="22" fill="#0b111c"/>
+    <rect x="66.75" y="102.75" width="90.5" height="90.5" rx="21.25" fill="none" stroke="url(#novaGrad)" stroke-width="2.5"/>
+    <text x="112" y="171" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="62" font-weight="800" fill="url(#novaGrad)">N</text>
+
+    <!-- wordmark -->
+    <text x="176" y="150" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="66" font-weight="800" fill="#f4f7fb" letter-spacing="-1">Nova Proxy</text>
+    <text x="178" y="185" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" letter-spacing="1" fill="#6f7c90">v4.0.0, MIT, single Cloudflare Worker</text>
+
+    <!-- value proposition -->
+    <text x="66" y="248" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="23" font-weight="600" fill="#d7deea">A personal, censorship-resistant proxy + dashboard</text>
+    <text x="66" y="282" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="23" font-weight="600" fill="#d7deea">on a single Cloudflare Worker.</text>
+
+    <!-- protocol chips -->
+    <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18">
+      <g>
+        <rect x="66" y="316" width="78" height="34" rx="9" fill="#0d1420" stroke="#243247" stroke-width="1"/>
+        <text x="105" y="339" text-anchor="middle" fill="#cdd6e4">VLESS</text>
+      </g>
+      <g>
+        <rect x="152" y="316" width="82" height="34" rx="9" fill="#0d1420" stroke="#243247" stroke-width="1"/>
+        <text x="193" y="339" text-anchor="middle" fill="#cdd6e4">Trojan</text>
+      </g>
+      <g>
+        <rect x="242" y="316" width="140" height="34" rx="9" fill="#0d1420" stroke="#243247" stroke-width="1"/>
+        <text x="312" y="339" text-anchor="middle" fill="#cdd6e4">Shadowsocks</text>
+      </g>
+      <g>
+        <rect x="390" y="316" width="66" height="34" rx="9" fill="#0d1420" stroke="#243247" stroke-width="1"/>
+        <text x="423" y="339" text-anchor="middle" fill="#cdd6e4">gRPC</text>
+      </g>
+      <g>
+        <rect x="464" y="316" width="78" height="34" rx="9" fill="#0d1420" stroke="#243247" stroke-width="1"/>
+        <text x="503" y="339" text-anchor="middle" fill="#cdd6e4">XHTTP</text>
+      </g>
+    </g>
+    <text x="66" y="378" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" fill="#6f7c90">over WebSocket + TLS, bilingual EN + FA dashboard</text>
+  </g>
+
+  <!-- ===================== RIGHT: edge board ===================== -->
+  <g>
+    <rect x="704" y="48" width="432" height="328" rx="20" fill="#0a0f18"/>
+    <rect x="704.75" y="48.75" width="430.5" height="326.5" rx="19.25" fill="none" stroke="#1e2a3d" stroke-width="1.5"/>
+
+    <g clip-path="url(#boardClip)">
+      <circle cx="920" cy="212" r="150" fill="url(#nodeGlow)" opacity="0.5"/>
+      <!-- edge arc (globe horizon) -->
+      <path d="M676 352 Q920 250 1164 352" fill="none" stroke="url(#novaGradH)" stroke-width="2" opacity="0.65"/>
+      <path d="M676 372 Q920 274 1164 372" fill="none" stroke="#1c2740" stroke-width="1.5"/>
+      <!-- longitude hints -->
+      <path d="M812 356 Q828 232 812 150" fill="none" stroke="#17223a" stroke-width="1.2"/>
+      <path d="M1028 356 Q1012 232 1028 150" fill="none" stroke="#17223a" stroke-width="1.2"/>
+    </g>
+
+    <!-- header label -->
+    <text x="728" y="86" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" letter-spacing="2" fill="#7f8ba0">AT CLOUDFLARE'S EDGE</text>
+
+    <!-- users (left) -->
+    <g>
+      <rect x="734" y="150" width="30" height="48" rx="6" fill="#0f1826" stroke="#2b3a52" stroke-width="1.4"/>
+      <rect x="722" y="186" width="30" height="48" rx="6" fill="#0f1826" stroke="#2b3a52" stroke-width="1.4"/>
+      <rect x="740" y="214" width="30" height="48" rx="6" fill="#0f1826" stroke="#2b3a52" stroke-width="1.4"/>
+      <circle cx="737" cy="252" r="1.6" fill="#22d3ee"/>
+      <text x="748" y="288" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a94a6">you + users</text>
+    </g>
+
+    <!-- connection: users -> worker -->
+    <path d="M776 206 H864" fill="none" stroke="url(#novaGradH)" stroke-width="2.4"/>
+    <path d="M858 200 l10 6 l-10 6" fill="none" stroke="#7c7bf5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- worker node (single) -->
+    <rect x="872" y="164" width="92" height="92" rx="20" fill="#0c1422"/>
+    <rect x="873" y="165" width="90" height="90" rx="19" fill="none" stroke="url(#novaGrad)" stroke-width="2.5"/>
+    <!-- worker glyph: brackets + spark -->
+    <text x="918" y="222" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="34" font-weight="700" fill="url(#novaGrad)">{ }</text>
+    <text x="918" y="284" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="19" font-weight="700" fill="#e7ecf4">1 Worker</text>
+    <!-- free tier pill -->
+    <g>
+      <rect x="866" y="298" width="104" height="30" rx="15" fill="#0c2330" stroke="#22d3ee" stroke-width="1.3"/>
+      <text x="918" y="318" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" font-weight="700" fill="#5fe3f6">FREE TIER, $0</text>
+    </g>
+
+    <!-- connection: worker -> (no server) -->
+    <path d="M972 210 H1036" fill="none" stroke="#33405a" stroke-width="2.2" stroke-dasharray="5 5"/>
+
+    <!-- no server (struck) -->
+    <g>
+      <rect x="1044" y="168" width="66" height="84" rx="10" fill="#0b1018" stroke="#37435a" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <rect x="1054" y="180" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
+      <rect x="1054" y="200" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
+      <rect x="1054" y="220" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
+      <path d="M1046 250 L1108 170" stroke="#e0567a" stroke-width="2.4" stroke-linecap="round"/>
+      <text x="1077" y="288" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" fill="#8a94a6">no server</text>
+    </g>
+
+    <!-- caption -->
+    <text x="728" y="356" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="17" font-weight="600" fill="#aeb8c8">One free Worker at the edge. No VPS to rent or manage.</text>
+  </g>
+</svg>

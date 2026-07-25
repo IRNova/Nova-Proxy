@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="424" viewBox="0 0 1200 424" role="img" aria-labelledby="ht hd" lang="fa">
+  <title id="ht">نوا پروکسی (Nova Proxy)</title>
+  <desc id="hd">نوا پروکسی: یک پروکسی شخصی و ضدسانسور به‌همراه پنل مدیریت، روی یک Cloudflare Worker و پلن رایگان. کاربران به یک Worker روی لبهٔ کلادفلر وصل می‌شوند، بدون هیچ سرور مبدأ.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="0.55" stop-color="#6366f1"/><stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <linearGradient id="gh" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <radialGradient id="nglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.5"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="corner" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9d4efb" stop-opacity="0.16"/><stop offset="1" stop-color="#9d4efb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowTR" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.20"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowV" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9d4efb" stop-opacity="0.22"/><stop offset="1" stop-color="#9d4efb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.55"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="boardClip"><rect x="64" y="48" width="432" height="328" rx="20"/></clipPath>
+  </defs>
+  <rect x="1" y="1" width="1198" height="422" rx="24" fill="#070a10"/>
+  <rect x="1" y="1" width="1198" height="422" rx="24" fill="none" stroke="#1b2434" stroke-width="1.5"/>
+  <circle cx="160" cy="70" r="300" fill="url(#glowTR)"/>
+  <circle cx="1050" cy="420" r="280" fill="url(#glowV)"/>
+
+  <!-- ===================== RIGHT: identity ===================== -->
+  <g>
+    <text x="1134" y="80" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="19" letter-spacing="1" fill="#22d3ee">پروکسی ضدسانسور + پنل مدیریت</text>
+
+    <rect x="1042" y="102" width="92" height="92" rx="22" fill="#0b111c"/>
+    <rect x="1042.75" y="102.75" width="90.5" height="90.5" rx="21.25" fill="none" stroke="url(#g)" stroke-width="2.5"/>
+    <text x="1088" y="171" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="62" font-weight="800" fill="url(#g)">N</text>
+
+    <text x="1022" y="150" text-anchor="end" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="62" font-weight="800" fill="#f4f7fb">نوا پروکسی</text>
+    <text x="1022" y="185" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" letter-spacing="0.5" fill="#6f7c90">⁦Nova Proxy⁩ ، ⁦v4.0.0⁩ ، ⁦MIT⁩</text>
+
+    <text x="1134" y="248" text-anchor="end" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="23" font-weight="600" fill="#d7deea">یک پروکسی شخصی و ضدسانسور به‌همراه پنل مدیریت،</text>
+    <text x="1134" y="282" text-anchor="end" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="23" font-weight="600" fill="#d7deea">روی یک ⁦Cloudflare Worker⁩.</text>
+
+    <!-- protocol chips (right-aligned row) -->
+    <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18">
+      <g><rect x="1056" y="316" width="78" height="34" rx="9" fill="#0d1420" stroke="#243247"/><text x="1095" y="339" text-anchor="middle" fill="#cdd6e4">VLESS</text></g>
+      <g><rect x="964" y="316" width="82" height="34" rx="9" fill="#0d1420" stroke="#243247"/><text x="1005" y="339" text-anchor="middle" fill="#cdd6e4">Trojan</text></g>
+      <g><rect x="812" y="316" width="140" height="34" rx="9" fill="#0d1420" stroke="#243247"/><text x="882" y="339" text-anchor="middle" fill="#cdd6e4">Shadowsocks</text></g>
+      <g><rect x="734" y="316" width="66" height="34" rx="9" fill="#0d1420" stroke="#243247"/><text x="767" y="339" text-anchor="middle" fill="#cdd6e4">gRPC</text></g>
+      <g><rect x="644" y="316" width="78" height="34" rx="9" fill="#0d1420" stroke="#243247"/><text x="683" y="339" text-anchor="middle" fill="#cdd6e4">XHTTP</text></g>
+    </g>
+    <text x="1134" y="378" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" fill="#6f7c90">روی ⁦WebSocket + TLS⁩، پنل دوزبانهٔ ⁦EN + FA⁩</text>
+  </g>
+
+  <!-- ===================== LEFT: edge board (RTL flow) ===================== -->
+  <g>
+    <rect x="64" y="48" width="432" height="328" rx="20" fill="#0a0f18"/>
+    <rect x="64.75" y="48.75" width="430.5" height="326.5" rx="19.25" fill="none" stroke="#1e2a3d" stroke-width="1.5"/>
+    <g clip-path="url(#boardClip)">
+      <circle cx="280" cy="212" r="150" fill="url(#nodeGlow)" opacity="0.5"/>
+      <path d="M36 352 Q280 250 524 352" fill="none" stroke="url(#gh)" stroke-width="2" opacity="0.65"/>
+      <path d="M36 372 Q280 274 524 372" fill="none" stroke="#1c2740" stroke-width="1.5"/>
+      <path d="M172 356 Q188 232 172 150" fill="none" stroke="#17223a" stroke-width="1.2"/>
+      <path d="M388 356 Q372 232 388 150" fill="none" stroke="#17223a" stroke-width="1.2"/>
+    </g>
+
+    <text x="472" y="86" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" letter-spacing="1" fill="#7f8ba0">روی لبهٔ ⁦Cloudflare⁩</text>
+
+    <!-- users (right side of board) -->
+    <g>
+      <rect x="436" y="150" width="30" height="48" rx="6" fill="#0f1826" stroke="#2b3a52" stroke-width="1.4"/>
+      <rect x="448" y="186" width="30" height="48" rx="6" fill="#0f1826" stroke="#2b3a52" stroke-width="1.4"/>
+      <rect x="430" y="214" width="30" height="48" rx="6" fill="#0f1826" stroke="#2b3a52" stroke-width="1.4"/>
+      <text x="452" y="288" text-anchor="middle" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="16" fill="#8a94a6">شما + کاربران</text>
+    </g>
+
+    <!-- users -> worker (arrow pointing left) -->
+    <path d="M424 206 H336" fill="none" stroke="url(#gh)" stroke-width="2.4"/>
+    <path d="M342 200 l-10 6 l10 6" fill="none" stroke="#37c6e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- worker node -->
+    <rect x="236" y="164" width="92" height="92" rx="20" fill="#0c1422"/>
+    <rect x="237" y="165" width="90" height="90" rx="19" fill="none" stroke="url(#g)" stroke-width="2.5"/>
+    <text x="282" y="222" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="34" font-weight="700" fill="url(#g)">{ }</text>
+    <text x="282" y="284" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="19" font-weight="700" fill="#e7ecf4">۱ Worker</text>
+    <g>
+      <rect x="230" y="298" width="104" height="30" rx="15" fill="#0c2330" stroke="#22d3ee" stroke-width="1.3"/>
+      <text x="282" y="318" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" font-weight="700" fill="#5fe3f6">رایگان، ⁦$0⁩</text>
+    </g>
+
+    <!-- worker -> no server -->
+    <path d="M228 210 H164" fill="none" stroke="#33405a" stroke-width="2.2" stroke-dasharray="5 5"/>
+
+    <!-- no server (struck) -->
+    <g>
+      <rect x="90" y="168" width="66" height="84" rx="10" fill="#0b1018" stroke="#37435a" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <rect x="100" y="180" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
+      <rect x="100" y="200" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
+      <rect x="100" y="220" width="46" height="12" rx="3" fill="none" stroke="#37435a" stroke-width="1.3"/>
+      <path d="M92 250 L154 170" stroke="#e0567a" stroke-width="2.4" stroke-linecap="round"/>
+      <text x="123" y="288" text-anchor="middle" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="16" fill="#8a94a6">بدون سرور</text>
+    </g>
+
+    <text x="472" y="356" text-anchor="end" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="17" font-weight="600" fill="#aeb8c8">یک ⁦Worker⁩ رایگان روی لبه. بدون ⁦VPS⁩ برای اجاره.</text>
+  </g>
+</svg>

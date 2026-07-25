@@ -1,12 +1,12 @@
-<div align="center" dir="rtl">
-
-<img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-badge-round.png" width="70" alt="نوا پروکسی">
-
 <div align="left">
   <a href="README.md">🇬🇧 English</a>
 </div>
 
-# 🌟 نوا پروکسی (Nova Proxy)
+<p align="center">
+  <img src="./assets/readme/hero.fa.svg" width="100%" alt="نوا پروکسی: یک پروکسی شخصی و ضدسانسور به‌همراه پنل مدیریت روی یک Cloudflare Worker و پلن رایگان. کاربران به یک Worker روی لبهٔ کلادفلر وصل می‌شوند، بدون هیچ سرور مبدأ.">
+</p>
+
+<div align="center" dir="rtl">
 
 **یک پروکسی شخصی و ضدسانسور به‌همراه پنل مدیریت، روی یک Cloudflare Worker.**
 
@@ -15,7 +15,7 @@ VLESS · Trojan · Shadowsocks · gRPC · XHTTP روی WebSocket + TLS — با 
 WARP، زنجیره پروکسی و حالت Backend. اجرا روی **پلن رایگان** Cloudflare.
 
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/نسخه-3.6.3-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
+[![Version](https://img.shields.io/badge/نسخه-4.0.0-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
 [![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
 
 </div>
@@ -37,7 +37,9 @@ WARP، زنجیره پروکسی و حالت Backend. اجرا روی **پلن �
 
 ---
 
-## 📖 نوا پروکسی چیست؟
+<p align="center">
+  <img src="./assets/readme/section-what-is.fa.svg" width="100%" alt="نوا پروکسی چیست؟ پروکسی همه‌کارهٔ ضدسانسور و بدون‌سرور.">
+</p>
 
 نوا پروکسی یک **پروکسی شخصی و همه‌کاره برای دور زدن سانسور** است که کاملاً روی Cloudflare Workers — **پلن رایگان** — اجرا می‌شود. این پروژه یک پروکسی قدرتمند (VLESS، Trojan، Shadowsocks روی WebSocket/gRPC/XHTTP) را با **پنل مدیریت کامل دوم‌زبانه** در یک Worker واحد ترکیب کرده است.
 
@@ -52,7 +54,9 @@ WARP، زنجیره پروکسی و حالت Backend. اجرا روی **پلن �
 
 ---
 
-## ⚡ نصب سریع
+<p align="center">
+  <img src="./assets/readme/section-quick-install.fa.svg" width="100%" alt="نصب سریع: سه راه برای نصب در چند دقیقه.">
+</p>
 
 روش مورد نظر خود را انتخاب کنید:
 
@@ -77,7 +81,9 @@ WARP، زنجیره پروکسی و حالت Backend. اجرا روی **پلن �
 
 ---
 
-## 🛰 حالت Backend (VLESS + تماس تصویری/صوتی)
+<p align="center">
+  <img src="./assets/readme/section-backend-mode.fa.svg" width="100%" alt="حالت Backend: VLESS به‌همراه تماس تصویری و صوتی از طریق VPS شما.">
+</p>
 
 Cloudflare Workers نمی‌تواند پروکسی TCP بومی اجرا کند یا ترافیک UDP را مستقیماً مدیریت کند. برای فعال‌سازی این قابلیت‌ها، نوا از **حالت Backend** پشتیبانی می‌کند — ارسال ترافیک به VPS شخصی Xray یا sing-box.
 
@@ -97,7 +103,9 @@ bash <(curl -fsSL https://raw.githubusercontent.com/IRNova/Tools/main/nova-backe
 
 ---
 
-## 🧬 تفاوت نسخه‌ها (v1 → v2 → v3)
+<p align="center">
+  <img src="./assets/readme/section-feature-evolution.fa.svg" width="100%" alt="تفاوت نسخه‌ها: رشد نوا در نسخه‌های v1 تا v3.">
+</p>
 
 | قابلیت / Feature | v1 | v2 | v3 |
 |------------------|:--:|:--:|:--:|
@@ -214,7 +222,9 @@ bash <(curl -fsSL https://raw.githubusercontent.com/IRNova/Tools/main/nova-backe
 
 ---
 
-## 💜 حمایت از پروژه
+<p align="center">
+  <img src="./assets/readme/section-support.fa.svg" width="100%" alt="حمایت از پروژه: به ریپو ستاره بده و نوا را رایگان نگه دار.">
+</p>
 
 اگر نوا برایتان مفید بود، لطفاً با یک **⭐ ستاره** و یک دونیت کوچک از ادامه‌ی کار حمایت کنید.
 

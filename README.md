@@ -1,12 +1,12 @@
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/iiviirv/irnova-site/main/brand/nova-logo-badge-round.png" width="70" alt="Nova">
-
 <div align="right">
   <a href="README.fa.md"><img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" /> فارسی</a>
 </div>
 
-# Nova Proxy
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="Nova Proxy: a personal, censorship-resistant proxy and dashboard that runs on a single Cloudflare Worker on the free tier. Protocols VLESS, Trojan, Shadowsocks, gRPC and XHTTP over WebSocket and TLS. Users connect to one Worker at Cloudflare's edge with no origin server to rent.">
+</p>
+
+<div align="center">
 
 **A personal, censorship-resistant proxy + dashboard on a single Cloudflare Worker.**
 
@@ -36,7 +36,11 @@ accounts, a Telegram bot, WARP, proxy chaining, and backend mode. Runs on Cloudf
 
 ---
 
-## 📖 What is Nova Proxy?
+<a id="-what-is-nova-proxy"></a>
+
+<p align="center">
+  <img src="./assets/readme/section-what-is.svg" width="100%" alt="What is Nova Proxy? The serverless, all-in-one circumvention proxy.">
+</p>
 
 Nova Proxy is a **personal, all-in-one censorship-circumvention proxy** that runs entirely on Cloudflare Workers — the **free tier**. It combines a powerful proxy (VLESS, Trojan, Shadowsocks over WebSocket/gRPC/XHTTP) with a **full bilingual admin dashboard**, all in a single deployable Worker.
 
@@ -51,7 +55,11 @@ Nova Proxy is a **personal, all-in-one censorship-circumvention proxy** that run
 
 ---
 
-## ⚡ Quick Install
+<a id="-quick-install"></a>
+
+<p align="center">
+  <img src="./assets/readme/section-quick-install.svg" width="100%" alt="Quick Install: three ways to deploy in minutes.">
+</p>
 
 Choose your preferred method:
 
@@ -83,7 +91,11 @@ Prefer zero trust? Skip the web installer entirely and deploy this repo yourself
 
 ---
 
-## 🛰 Backend Mode (VLESS + Voice/Video Calls)
+<a id="-backend-mode-vless--voicevideo-calls"></a>
+
+<p align="center">
+  <img src="./assets/readme/section-backend-mode.svg" width="100%" alt="Backend Mode: VLESS plus voice and video calls via your VPS.">
+</p>
 
 Cloudflare Workers cannot run native TCP proxy or handle UDP traffic directly. To enable these features, Nova supports **Backend Mode** — forward traffic to your own Xray or sing-box VPS.
 
@@ -103,7 +115,11 @@ After running the installer, enable Backend Mode in the Nova panel (Network Sett
 
 ---
 
-## 🧬 Feature Evolution (v1 → v2 → v3)
+<a id="-feature-evolution-v1--v2--v3"></a>
+
+<p align="center">
+  <img src="./assets/readme/section-feature-evolution.svg" width="100%" alt="Feature Evolution: how Nova grew across v1, v2 and v3.">
+</p>
 
 | Feature | v1 | v2 | v3 |
 |---------|:--:|:--:|:--:|
@@ -220,7 +236,11 @@ After running the installer, enable Backend Mode in the Nova panel (Network Sett
 
 ---
 
-## 💜 Support
+<a id="-support"></a>
+
+<p align="center">
+  <img src="./assets/readme/section-support.svg" width="100%" alt="Support: star the repo and keep Nova free.">
+</p>
 
 If Nova helps you, please **⭐ star the repo** and consider a small donation — it keeps the project alive and free for everyone.
 

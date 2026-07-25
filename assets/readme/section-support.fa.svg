@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="130" viewBox="0 0 1200 130" role="img" aria-labelledby="t d" lang="fa">
+  <title id="t">حمایت از پروژه</title>
+  <desc id="d">حمایت از پروژه: به ریپو ستاره بده و نوا را رایگان نگه دار</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="0.55" stop-color="#6366f1"/><stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <linearGradient id="gh" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <radialGradient id="nglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.5"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="corner" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9d4efb" stop-opacity="0.16"/><stop offset="1" stop-color="#9d4efb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowTR" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.20"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowV" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9d4efb" stop-opacity="0.22"/><stop offset="1" stop-color="#9d4efb" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nodeGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.55"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="boardClip"><rect x="64" y="48" width="432" height="328" rx="20"/></clipPath>
+  </defs>
+  <rect x="1" y="1" width="1198" height="128" rx="20" fill="#070a10"/>
+  <rect x="1" y="1" width="1198" height="128" rx="20" fill="none" stroke="#1b2434" stroke-width="1.5"/>
+  <circle cx="80" cy="30" r="150" fill="url(#corner)"/>
+
+  <rect x="1090" y="28" width="74" height="74" rx="18" fill="#0b111c"/>
+  <rect x="1090.75" y="28.75" width="72.5" height="72.5" rx="17.25" fill="none" stroke="url(#g)" stroke-width="2"/>
+  <g transform="translate(1127 65)">
+        <path d="M0 -20 L6 -6 L21 -5 L9 4 L13 19 L0 10 L-13 19 L-9 4 L-21 -5 L-6 -6 Z" fill="url(#g)"/>
+      </g>
+
+  <text x="1060" y="62" text-anchor="end" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="46" font-weight="800" fill="#f4f7fb">حمایت از پروژه</text>
+  <text x="1058" y="95" text-anchor="end" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="19" fill="#8a94a6">به ریپو ستاره بده و نوا را رایگان نگه دار</text>
+
+  <!-- recurring edge-node motif (left) -->
+  <path d="M334 96 Q194 52 44 90" fill="none" stroke="#1f2b40" stroke-width="1.5"/>
+  <path d="M334 88 Q194 44 44 82" fill="none" stroke="url(#gh)" stroke-width="2" opacity="0.55"/>
+  <circle cx="194" cy="52" r="22" fill="url(#nglow)"/>
+  <circle cx="194" cy="52" r="7" fill="#0a0f18" stroke="url(#g)" stroke-width="2.4"/>
+  <circle cx="194" cy="52" r="2.4" fill="#5fe3f6"/>
+  <g>
+    <rect x="50" y="80" width="150" height="30" rx="15" fill="#0c1622" stroke="#243247" stroke-width="1"/>
+    <text x="125" y="100" text-anchor="middle" font-family="Vazirmatn,'Vazir','IRANSans','Noto Naskh Arabic',-apple-system,'Segoe UI','Tahoma',sans-serif" font-size="16" font-weight="700" fill="#7fd8ec">رایگان بماند</text>
+  </g>
+</svg>

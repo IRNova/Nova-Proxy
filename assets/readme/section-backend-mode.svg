@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="130" viewBox="0 0 1200 130" role="img" aria-labelledby="t d">
+  <title id="t">Backend Mode</title>
+  <desc id="d">Backend Mode: VLESS plus voice and video calls via your VPS</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="0.55" stop-color="#6366f1"/><stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <linearGradient id="gh" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#9d4efb"/>
+    </linearGradient>
+    <radialGradient id="nglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.5"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="corner" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9d4efb" stop-opacity="0.16"/><stop offset="1" stop-color="#9d4efb" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="1" y="1" width="1198" height="128" rx="20" fill="#070a10"/>
+  <rect x="1" y="1" width="1198" height="128" rx="20" fill="none" stroke="#1b2434" stroke-width="1.5"/>
+  <circle cx="1120" cy="30" r="150" fill="url(#corner)"/>
+
+  <!-- icon tile -->
+  <rect x="36" y="28" width="74" height="74" rx="18" fill="#0b111c"/>
+  <rect x="36.75" y="28.75" width="72.5" height="72.5" rx="17.25" fill="none" stroke="url(#g)" stroke-width="2"/>
+  <g transform="translate(73 65)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-22" y="-14" width="20" height="28" rx="5" stroke="url(#g)" stroke-width="3"/>
+        <rect x="4" y="-14" width="20" height="28" rx="5" stroke="url(#g)" stroke-width="3"/>
+        <path d="M-2 0 H4" stroke="url(#g)" stroke-width="3"/>
+        <circle cx="-12" cy="0" r="2.4" fill="#22d3ee"/><circle cx="14" cy="0" r="2.4" fill="#9d4efb"/>
+      </g>
+
+  <!-- title + subtitle -->
+  <text x="140" y="62" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="44" font-weight="800" fill="#f4f7fb" letter-spacing="-0.5">Backend Mode</text>
+  <text x="142" y="95" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="19" fill="#8a94a6">VLESS plus voice and video calls via your VPS</text>
+
+  <!-- recurring edge-node motif -->
+  <path d="M866 96 Q1006 52 1156 90" fill="none" stroke="#1f2b40" stroke-width="1.5"/>
+  <path d="M866 88 Q1006 44 1156 82" fill="none" stroke="url(#gh)" stroke-width="2" opacity="0.55"/>
+  <circle cx="1006" cy="52" r="22" fill="url(#nglow)"/>
+  <circle cx="1006" cy="52" r="7" fill="#0a0f18" stroke="url(#g)" stroke-width="2.4"/>
+  <circle cx="1006" cy="52" r="2.4" fill="#5fe3f6"/>
+  <g>
+    <rect x="1008" y="80" width="142" height="30" rx="15" fill="#0c1622" stroke="#243247" stroke-width="1"/>
+    <text x="1079" y="100" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16" font-weight="700" fill="#7fd8ec">VLESS + UDP</text>
+  </g>
+</svg>
