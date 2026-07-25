@@ -168,7 +168,7 @@ function isPanelApiKey(key) {
 	} catch (e) { return false; }
 }
 function isPanelApiKeyOrMaster(key, masterKey) {
-	return key === masterKey || isPanelApiKey(key);
+	return timingSafeStrEqual(key, masterKey) || isPanelApiKey(key);
 }
 let cachedPanelApiKeys = null;
 let cachedPanelApiKeysTime = 0;
@@ -196,7 +196,7 @@ function updateApiKeyLastUsed(key) {
 function isApiAuthenticated(request, adminPassword, body) {
 	const key = extractAuthKey(request, body);
 	if (!key) return false;
-	if (key === adminPassword) return true;
+	if (timingSafeStrEqual(key, adminPassword)) return true;
 	if (isPanelApiKey(key)) { updateApiKeyLastUsed(key); return true; }
 	return false;
 }
@@ -228,7 +228,7 @@ async function resolveProxyIpGeo(proxyIp) {
 		if (resp.ok) {
 			const data = await resp.json();
 			const cc = (data.country || '').toUpperCase();
-			const flags = { US: '🇺🇸', GB: '🇬🇧', DE: '🇩🇪', FR: '🇫🇷', NL: '🇳🇱', JP: '🇯🇵', SG: '🇸🇬', HK: '🇭🇰', KR: '🇰🇷', CA: '🇨🇦', AU: '🇦🇺', IN: '🇮🇳', TR: '🇹🇷', RU: '🇷🇺', BR: '🇧🇷', IT: '🇮🇹', ES: '🇪🇸', SE: '🇸🇪', CH: '🇨🇭', PL: '🇵🇱', AT: '🇦🇹', BE: '🇧🇪', NO: '🇳🇴', FI: '🇫🇮', DK: '🇩🇰', CZ: '🇨🇿', RO: '🇷🇴', UA: '🇺🇦', IL: '🇮🇱', AE: '🇦🇪', SA: '🇦🇪', TH: '🇹🇭', VN: '🇻🇳', MY: '🇲🇾', ID: '🇮🇩', PH: '🇵🇭', TW: '🇹🇼', CN: '🇨🇳', MX: '🇲🇽', AR: '🇦🇷', CL: '🇨🇱', CO: '🇨🇴', ZA: '🇿🇦', EG: '🇪🇬', NG: '🇳🇬', KE: '🇰🇪' };
+			const flags = { US: '🇺🇸', GB: '🇬🇧', DE: '🇩🇪', FR: '🇫🇷', NL: '🇳🇱', JP: '🇯🇵', SG: '🇸🇬', HK: '🇭🇰', KR: '🇰🇷', CA: '🇨🇦', AU: '🇦🇺', IN: '🇮🇳', TR: '🇹🇷', RU: '🇷🇺', BR: '🇧🇷', IT: '🇮🇹', ES: '🇪🇸', SE: '🇸🇪', CH: '🇨🇭', PL: '🇵🇱', AT: '🇦🇹', BE: '🇧🇪', NO: '🇳🇴', FI: '🇫🇮', DK: '🇩🇰', CZ: '🇨🇿', RO: '🇷🇴', UA: '🇺🇦', IL: '🇮🇱', AE: '🇦🇪', SA: '🇸🇦', TH: '🇹🇭', VN: '🇻🇳', MY: '🇲🇾', ID: '🇮🇩', PH: '🇵🇭', TW: '🇹🇼', CN: '🇨🇳', MX: '🇲🇽', AR: '🇦🇷', CL: '🇨🇱', CO: '🇨🇴', ZA: '🇿🇦', EG: '🇪🇬', NG: '🇳🇬', KE: '🇰🇪' };
 			return { flag: flags[cc] || '🌐', country: data.country || 'Unknown', countryCode: cc, city: data.city || '', isp: data.org || data.isp || '' };
 		}
 	} catch (e) {}
@@ -2552,7 +2552,7 @@ export default {
 						// Accept: a registered panel API key, the admin password, OR this child's own
 						// "Sync API key" (hagdarotReshet.syncApiKey) - the field the hub UI tells you to match.
 						const _childSyncKey = (hagdarotReshet && hagdarotReshet.syncApiKey) ? String(hagdarotReshet.syncApiKey).trim() : '';
-						if (!isPanelApiKey(authKey) && authKey !== adminPassword && !(_childSyncKey && authKey === _childSyncKey)) return _sj({ success: false, error: 'Unauthorized' }, 403);
+						if (!isPanelApiKey(authKey) && !timingSafeStrEqual(authKey, adminPassword) && !(_childSyncKey && timingSafeStrEqual(authKey, _childSyncKey))) return _sj({ success: false, error: 'Unauthorized' }, 403);
 							// Only apply data that actually looks complete. A master pushing an empty or partial
 							// object (a mistaken/partial sync) must NEVER overwrite a working child, which would
 							// brick every admin route on the child. Require the core objects before writing.
