@@ -20,6 +20,11 @@ what you run, and how to report a problem.
   sha256sum worker.js   # compare with the hash in the matching CI run
   ```
 
+- The organization also keeps a central, credential-free verifier at
+  [`IRNova/reproducible-builds`](https://github.com/IRNova/reproducible-builds),
+  which cross-checks the hashes of Nova's public artifacts (this Worker and the
+  installer site) from source.
+
 ## Panel version pinning
 
 The panel reports its version from `version.json`. A self-hosted instance only
