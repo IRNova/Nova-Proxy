@@ -1951,6 +1951,9 @@ export default {
 					} else if (nativGisha === 'admin/security/audit-log') {// خواندن رکوردهای audit log
 						const _lim = parseInt(url.searchParams.get('limit') || '200') || 200;
 						return new Response(JSON.stringify(await auditLogReadAll(env, _lim)), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+					} else if (nativGisha === 'admin/guide-md') {// Live panel guide markdown, fetched from the pinned repo's GUIDE.md (cached, edge-fetched)
+						const _g = await getGuideMarkdown(env, url.searchParams.get('refresh') === '1');
+						return new Response(JSON.stringify({ ok: !!_g.md, md: _g.md || '', fetchedAt: _g.fetchedAt || 0, source: _g.source, repo: UPDATE_REPO }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/log.json') {// Read log content (D1-backed)
 						const kriatTochenYoman = JSON.stringify(await logReadAll(env));
 						return new Response(kriatTochenYoman, { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
@@ -7624,6 +7627,40 @@ async function getWarpEndpoints(env) {
 // Default WARP endpoint: prefer a clean pool endpoint over the Iran-blocked engage default.
 function warpDefaultEndpoint() {
 	return (_warpEpCache && _warpEpCache.find(e => !/engage\.cloudflareclient/i.test(e))) || '8.6.112.104:4233';
+}
+// Live panel guide: fetch GUIDE.md from the pinned repo server-side (Cloudflare's edge can
+// reach GitHub even when the operator's ISP filters raw.githubusercontent.com), cache in
+// memory + KV, and fall back to the last good copy so the panel guide never goes blank.
+const GUIDE_MD_URL = 'https://raw.githubusercontent.com/' + UPDATE_REPO + '/main/GUIDE.md';
+const GUIDE_MD_TTL = 21600000; // 6h
+let _guideMdCache = null, _guideMdCacheAt = 0;
+async function getGuideMarkdown(env, force) {
+	const now = Date.now();
+	if (!force && _guideMdCache && (now - _guideMdCacheAt) < GUIDE_MD_TTL) return { md: _guideMdCache, fetchedAt: _guideMdCacheAt, source: 'mem' };
+	if (!force) {
+		try {
+			const cached = JSON.parse(await env.KV.get('guide-md-cache.json') || 'null');
+			if (cached && cached.md && (now - (cached.fetchedAt || 0)) < GUIDE_MD_TTL) { _guideMdCache = cached.md; _guideMdCacheAt = cached.fetchedAt || now; return { md: cached.md, fetchedAt: _guideMdCacheAt, source: 'kv' }; }
+		} catch (e) {}
+	}
+	try {
+		const r = await fetch(GUIDE_MD_URL, { headers: { 'User-Agent': 'NovaProxy' }, cf: { cacheTtl: force ? 0 : 3600, cacheEverything: true } });
+		if (r.ok) {
+			const md = await r.text();
+			if (md && md.trim().length > 100) {
+				_guideMdCache = md; _guideMdCacheAt = now;
+				try { await env.KV.put('guide-md-cache.json', JSON.stringify({ md, fetchedAt: now })); } catch (e) {}
+				return { md, fetchedAt: now, source: 'github' };
+			}
+		}
+	} catch (e) {}
+	// GitHub unreachable: serve the last good copy (mem or KV) if we have one.
+	if (_guideMdCache) return { md: _guideMdCache, fetchedAt: _guideMdCacheAt, source: 'stale' };
+	try {
+		const cached = JSON.parse(await env.KV.get('guide-md-cache.json') || 'null');
+		if (cached && cached.md) { _guideMdCache = cached.md; _guideMdCacheAt = cached.fetchedAt || 0; return { md: cached.md, fetchedAt: _guideMdCacheAt, source: 'kv-stale' }; }
+	} catch (e) {}
+	return { md: null, fetchedAt: 0, source: 'none' };
 }
 function _warpPublicView(a, epOverride) {
 	if (!a) return { registered: false };
