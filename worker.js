@@ -2279,7 +2279,8 @@ export default {
 						let _wAcct = String(_wBody.accountId || '').trim();
 						if (!_wAcct) { let _accs = []; try { _accs = await cfListAccounts(_wTok); } catch (e) {} if (!_accs.length) return _wErr('no_accounts'); if (_accs.length === 1) _wAcct = _accs[0].id; else return _wErr('multiple_accounts', { accounts: _accs }); }
 						let _workers = []; try { _workers = await cfListWorkers(_wTok, _wAcct); } catch (e) {}
-						return new Response(JSON.stringify({ ok: true, workers: _workers, accountId: _wAcct }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+						let _detected = ''; try { _detected = await cfDetectWorkerForHost(_wTok, _wAcct, url.host); } catch (e) {}
+						return new Response(JSON.stringify({ ok: true, workers: _workers, accountId: _wAcct, detected: _detected }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/warp.json') { // WARP: ثبت / ثبت WoW / فعال‌سازی لایسنس WARP+ / fromCentral
 						let stored = null; try { stored = JSON.parse(await env.KV.get('warp-account.json') || 'null'); } catch (e) { }
 						if (request.method === 'POST') {
@@ -2485,6 +2486,8 @@ export default {
 						}
 						// On a custom domain the host does not carry the script name; reuse the one saved from a previous update so it stays one-click.
 						if (!shemScript) { try { shemScript = String((await env.KV.get('updScriptName')) || '').trim(); } catch (e) {} }
+						// Auto-detect: match this panel's own hostname to the worker serving it (custom-domain case).
+						if (!shemScript) { try { shemScript = await cfDetectWorkerForHost(idkunToken, idkunCheshbonId, url.host); } catch (e) {} }
 						if (!shemScript) return _idkunTguvatShgia('need_script_name');
 						if (!/^[a-z0-9][a-z0-9-]{0,62}$/i.test(shemScript)) return _idkunTguvatShgia('need_script_name');
 						// Safety gate: confirm we can read the script's current settings (hence its bindings) before overwriting, so self-update never drops D1/KV bindings.
@@ -10929,6 +10932,19 @@ async function cfJson(resp) { let j = null; try { j = await resp.json(); } catch
 async function cfVerifyToken(token) { const r = await fetch(CF_API + '/user/tokens/verify', { headers: cfHeaders(token) }); const j = await cfJson(r); return { ok: !!(j && j.success && j.result && j.result.status === 'active'), raw: j }; }
 async function cfListAccounts(token) { const r = await fetch(CF_API + '/accounts', { headers: cfHeaders(token) }); const j = await cfJson(r); if (!j || !j.success || !Array.isArray(j.result)) return []; return j.result.map(a => ({ id: a.id, name: a.name })); }
 async function cfListWorkers(token, accountId) { const r = await fetch(CF_API + '/accounts/' + accountId + '/workers/scripts', { headers: cfHeaders(token) }); const j = await cfJson(r); if (!j || !j.success || !Array.isArray(j.result)) return []; return j.result.map(s => s && s.id).filter(Boolean); }
+// Identify THIS worker among the account's scripts: the Workers Custom-Domains API maps each hostname to
+// the worker serving it, so a custom-domain panel can find its own script name without the operator knowing it.
+async function cfDetectWorkerForHost(token, accountId, host) {
+	try {
+		const r = await fetch(CF_API + '/accounts/' + accountId + '/workers/domains', { headers: cfHeaders(token) });
+		const j = await cfJson(r);
+		if (j && j.success && Array.isArray(j.result)) {
+			const m = j.result.find(d => d && String(d.hostname || '').toLowerCase() === String(host || '').toLowerCase());
+			if (m && m.service) return String(m.service).trim();
+		}
+	} catch (e) {}
+	return '';
+}
 
 const _cfInstallState = new Map();
 function cfInstallGet(chatId) { const v = _cfInstallState.get(String(chatId)); if (v && Date.now() - v.at > 600000) { _cfInstallState.delete(String(chatId)); return null; } return v; }
