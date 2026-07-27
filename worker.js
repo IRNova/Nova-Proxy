@@ -1439,6 +1439,8 @@ async function sherutMerkazMishtamesh(objMishtameshMinuy, env) {
 				expiry: objMishtameshMinuy.expiry || '', quotaBytes: Number(objMishtameshMinuy.quotaBytes) || 0,
 				dailyQuotaBytes: Number(objMishtameshMinuy.dailyQuotaBytes) || 0,
 				limitDailyReq: limitDailyReq, dailyReqCount: dailyReqCount,
+				proxyIata: objMishtameshMinuy.userProxyIata || '',
+				locationOn: !!(hagdarotReshet && hagdarotReshet.userLocationEnabled),
 				status: status
 			};
 			const usageData = { up: upBytes, down: downBytes, total: totalBytes, dailyUp: dailyUp, dailyDown: dailyDown, dailyTotal: dailyTotal };
@@ -1677,7 +1679,7 @@ export default {
 		}
 		// --- Kill Switch: غیرفعال‌سازی موقت سرویس ---
 		{
-			const _isProxyConn = (upgradeHeader === 'websocket') || (!nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'sub-setip' && request.method === 'POST');
+			const _isProxyConn = (upgradeHeader === 'websocket') || (!nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'sub-setip' && nativGisha !== 'sub' && request.method === 'POST');
 			const _isSub = nativGisha === 'sub' || nativGisha.startsWith('sub/');
 			if (_isProxyConn || _isSub) {
 				let _pausedNow = config_JSON && config_JSON.paused === true;
@@ -1743,7 +1745,7 @@ export default {
 		if (_bm.on && !haimNativMenutakBackend(nativGisha, url.pathname)) { if (sibatDchiyatChibur) return new Response('Forbidden (' + sibatDchiyatChibur + ')', { status: 403 }); return await haavaratWSlaBackend(request, url, env, ctx, _bm.url, chiburMishtameshId); } }
 		log(`[WebSocket] matched request: ${url.pathname}${url.search}`);
 		return await tipulBakashatWS(request, userID, url, ctx);
-		} else if (adminPassword && !nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'recover' && nativGisha !== 'recover-telegram' && nativGisha !== 'sub-setip' && request.method === 'POST') {// gRPC/XHTTP proxy
+		} else if (adminPassword && !nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'recover' && nativGisha !== 'recover-telegram' && nativGisha !== 'sub-setip' && nativGisha !== 'sub' && request.method === 'POST') {// gRPC/XHTTP proxy
 			// DoH (RFC 8484) sent via POST to /dns-query; must be handled here or DNS clients get a 400 error
 			if (nativGisha === 'dns-query' || url.pathname === '/dns-query' || nativGisha === 'doh' || url.pathname === '/doh') {
 				return tipulBakashatDoH(request);
@@ -2160,6 +2162,7 @@ export default {
 								const settings = await request.json();
 								const hagdarotTkefot = {
 									silentAlerts: typeof settings.silentAlerts === 'boolean' ? settings.silentAlerts : false,
+									userLocationEnabled: typeof settings.userLocationEnabled === 'boolean' ? settings.userLocationEnabled : false,
 									decoyUrl: typeof settings.decoyUrl === 'string' ? settings.decoyUrl.trim().slice(0, 120) : '',
 									enableRouting: typeof settings.enableRouting === 'boolean' ? settings.enableRouting : true,
 									enableGeoIP: typeof settings.enableGeoIP === 'boolean' ? settings.enableGeoIP : true,
@@ -3232,6 +3235,31 @@ export default {
 						}
 					}
 				log(`[Sub] token=${tokenBakasha ? 'yes' : 'no'} sub=${subBakasha || '-'} key=${keyBakasha ? 'yes' : 'no'} resolvedUser=${objMishtameshMinuy ? (objMishtameshMinuy.username || objMishtameshMinuy.tag || objMishtameshMinuy.id) : 'none'} subKeyAuth=${imutViaSubKey}`);
+				// Self-serve exit location (Proxy IATA): a user sets their OWN exit region. Auth is the same
+				// sub token/key that reached this route; gated by the operator's userLocationEnabled setting;
+				// the IATA is strictly whitelisted so it can never inject an arbitrary proxy host.
+				if (request.method === 'POST' && url.searchParams.has('setlocation')) {
+					if (!objMishtameshMinuy) return new Response(JSON.stringify({ ok: false, error: 'auth' }), { status: 403, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+					if (!(hagdarotReshet && hagdarotReshet.userLocationEnabled)) return new Response(JSON.stringify({ ok: false, error: 'disabled' }), { status: 403, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+					const _want = (url.searchParams.get('setlocation') || '').toLowerCase().trim();
+					const _ALLOWED = ['', 'fra', 'ams', 'cdg', 'lhr', 'arn', 'waw', 'sof', 'zrh', 'mad', 'sjc', 'iad', 'ord', 'sea', 'lax', 'sin', 'nrt', 'hkg', 'icn', 'bom', 'dxb'];
+					if (!_ALLOWED.includes(_want)) return new Response(JSON.stringify({ ok: false, error: 'bad_location' }), { status: 400, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
+					let _ns; try { _ns = JSON.parse(await env.KV.get('network-settings.json') || 'null'); } catch (e) { _ns = null; }
+					if (!_ns || !Array.isArray(_ns.users)) return new Response(JSON.stringify({ ok: false, error: 'nostate' }), { status: 500, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
+					const _usr = _ns.users.find(x => x && x.id === objMishtameshMinuy.id);
+					if (!_usr) return new Response(JSON.stringify({ ok: false, error: 'nouser' }), { status: 404, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
+					// No-op: don't rewrite the whole settings blob when nothing changed.
+					if (_want === (_usr.userProxyIata || '')) return new Response(JSON.stringify({ ok: true, location: _want }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+					// Per-user cooldown: bound write-amplification abuse from a spammed sub link.
+					if (!globalThis.__novaLocRate) globalThis.__novaLocRate = {};
+					const _lrNow = Date.now(), _lrId = objMishtameshMinuy.id;
+					if (globalThis.__novaLocRate[_lrId] && (_lrNow - globalThis.__novaLocRate[_lrId]) < 10000) return new Response(JSON.stringify({ ok: false, error: 'too_frequent' }), { status: 429, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+					globalThis.__novaLocRate[_lrId] = _lrNow;
+					_usr.userProxyIata = _want;
+					await env.KV.put('network-settings.json', JSON.stringify(_ns, null, 2));
+					hagdarotReshet = _ns; savedUsersAuth = null;
+					return new Response(JSON.stringify({ ok: true, location: _want }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+				}
 				// subUserAgent: فیلتر درخواست اشتراک بر اساس User-Agent
 				if (hagdarotReshet && hagdarotReshet.subUserAgent && hagdarotReshet.subUserAgent.trim()) {
 					const _allowedUa = hagdarotReshet.subUserAgent.trim().toLowerCase();
