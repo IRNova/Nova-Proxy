@@ -5923,7 +5923,7 @@ async function connectStreams(remoteSocket, webSocket, headerData, retryFunc, us
 				if (done) break;
 				if (!value || value.byteLength === 0) continue;
 				hasData = true;
-				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, usageStats.up + usageStats.down)) throw new Error('quota exceeded'); commitUsage(_globalEnv, usageStats, null, false); }
+				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, (usageStats.up - (usageStats._cUp || 0)) + (usageStats.down - (usageStats._cDown || 0)))) throw new Error('quota exceeded'); commitUsage(_globalEnv, usageStats, null, false); }
 				if (magbilYerida && magbilYerida.enabled) await magbilYerida.take(value.byteLength);
 				await sholeachYerida.shlicha(value);
 			}
@@ -5934,7 +5934,7 @@ async function connectStreams(remoteSocket, webSocket, headerData, retryFunc, us
 				if (done) break;
 				if (!value || value.byteLength === 0) continue;
 				hasData = true;
-				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, usageStats.up + usageStats.down)) throw new Error('quota exceeded'); commitUsage(_globalEnv, usageStats, null, false); }
+				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, (usageStats.up - (usageStats._cUp || 0)) + (usageStats.down - (usageStats._cDown || 0)))) throw new Error('quota exceeded'); commitUsage(_globalEnv, usageStats, null, false); }
 				if (value.byteLength >= bytesGrainYerida) {
 					await sholeachYerida.flush();
 					if (magbilYerida && magbilYerida.enabled) await magbilYerida.take(value.byteLength);
