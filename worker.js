@@ -8191,25 +8191,18 @@ function tikunChamClashMinuy(Clash_tochenMinuyGolmi, config_JSON = {}, hagdarotR
 	if (hagdarotReshet && hagdarotReshet.bypassSanctions) {
 		const sanctionTag = '# SANCTION BYPASS RULES';
 		if (!clash_yaml.includes(sanctionTag)) {
-			clash_yaml = clash_yaml.replace(/^(\s*)rules:\s*$/m, '$&' + '\n' + sanctionTag + '\n' + '$1  - GEOSITE,category-sanctioned,DIRECT\n' + '$1  - DOMAIN-SUFFIX,intel.com,DIRECT\n' + '$1  - DOMAIN-SUFFIX,oracle.com,DIRECT\n' + '$1  - DOMAIN-SUFFIX,docker.com,DIRECT\n' + '$1  - DOMAIN-SUFFIX,android.com,DIRECT');
+			// GEOSITE,category-sanctioned is not in mihomo/FlClash's bundled dat and would fail the whole
+			// config, so we keep only the explicit sanctioned domains (which always load).
+			clash_yaml = clash_yaml.replace(/^(\s*)rules:\s*$/m, '$&' + '\n' + sanctionTag + '\n' + '$1  - DOMAIN-SUFFIX,intel.com,DIRECT\n' + '$1  - DOMAIN-SUFFIX,oracle.com,DIRECT\n' + '$1  - DOMAIN-SUFFIX,docker.com,DIRECT\n' + '$1  - DOMAIN-SUFFIX,android.com,DIRECT');
 		}
 	}
 
-	// --- Malware Block: مسدود کردن بدافزار ---
-	if (hagdarotReshet && hagdarotReshet.enableMalwareBlock) {
-		const malwareTag = '# MALWARE BLOCK RULES';
-		if (!clash_yaml.includes(malwareTag)) {
-			clash_yaml = clash_yaml.replace(/^(\s*)rules:\s*$/m, '$&' + '\n' + malwareTag + '\n' + '$1  - GEOSITE,category-malware,REJECT\n' + '$1  - GEOSITE,malware,REJECT');
-		}
-	}
-
-	// --- Phishing Block: مسدود کردن فیشینگ ---
-	if (hagdarotReshet && hagdarotReshet.enablePhishingBlock) {
-		const phishingTag = '# PHISHING BLOCK RULES';
-		if (!clash_yaml.includes(phishingTag)) {
-			clash_yaml = clash_yaml.replace(/^(\s*)rules:\s*$/m, '$&' + '\n' + phishingTag + '\n' + '$1  - GEOSITE,category-phishing,REJECT\n' + '$1  - GEOSITE,phishing,REJECT');
-		}
-	}
+	// --- Malware / Phishing Block ---
+	// NOTE: mihomo/FlClash's bundled GEOSITE.dat has no `category-malware`/`category-phishing`
+	// categories, and mihomo ERRORS the whole config on a missing GEOSITE category (it does not
+	// skip the rule), so emitting these here broke the entire Clash subscription. Malware/phishing
+	// blocking is applied at Nova's DNS layer instead, so we intentionally do NOT add GEOSITE
+	// category rules to the Clash output.
 
 	if (!tzarichLetapelECH && !tzarichLetapelGRPC) return clash_yaml;
 
