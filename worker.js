@@ -1440,7 +1440,7 @@ async function sherutMerkazMishtamesh(objMishtameshMinuy, env) {
 				dailyQuotaBytes: Number(objMishtameshMinuy.dailyQuotaBytes) || 0,
 				limitDailyReq: limitDailyReq, dailyReqCount: dailyReqCount,
 				proxyIata: objMishtameshMinuy.userProxyIata || '',
-				locationOn: !!(hagdarotReshet && hagdarotReshet.userLocationEnabled),
+				locationOn: !(hagdarotReshet && hagdarotReshet.userLocationEnabled === false),
 				status: status
 			};
 			const usageData = { up: upBytes, down: downBytes, total: totalBytes, dailyUp: dailyUp, dailyDown: dailyDown, dailyTotal: dailyTotal };
@@ -2162,7 +2162,7 @@ export default {
 								const settings = await request.json();
 								const hagdarotTkefot = {
 									silentAlerts: typeof settings.silentAlerts === 'boolean' ? settings.silentAlerts : false,
-									userLocationEnabled: typeof settings.userLocationEnabled === 'boolean' ? settings.userLocationEnabled : false,
+									userLocationEnabled: typeof settings.userLocationEnabled === 'boolean' ? settings.userLocationEnabled : true,
 									decoyUrl: typeof settings.decoyUrl === 'string' ? settings.decoyUrl.trim().slice(0, 120) : '',
 									enableRouting: typeof settings.enableRouting === 'boolean' ? settings.enableRouting : true,
 									enableGeoIP: typeof settings.enableGeoIP === 'boolean' ? settings.enableGeoIP : true,
@@ -3259,7 +3259,7 @@ export default {
 				// the IATA is strictly whitelisted so it can never inject an arbitrary proxy host.
 				if (request.method === 'POST' && url.searchParams.has('setlocation')) {
 					if (!objMishtameshMinuy) return new Response(JSON.stringify({ ok: false, error: 'auth' }), { status: 403, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
-					if (!(hagdarotReshet && hagdarotReshet.userLocationEnabled)) return new Response(JSON.stringify({ ok: false, error: 'disabled' }), { status: 403, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+					if (hagdarotReshet && hagdarotReshet.userLocationEnabled === false) return new Response(JSON.stringify({ ok: false, error: 'disabled' }), { status: 403, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					const _want = (url.searchParams.get('setlocation') || '').toLowerCase().trim();
 					const _ALLOWED = ['', 'fra', 'ams', 'cdg', 'lhr', 'arn', 'waw', 'sof', 'zrh', 'mad', 'sjc', 'iad', 'ord', 'sea', 'lax', 'sin', 'nrt', 'hkg', 'icn', 'bom', 'dxb'];
 					if (!_ALLOWED.includes(_want)) return new Response(JSON.stringify({ ok: false, error: 'bad_location' }), { status: 400, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
