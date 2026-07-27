@@ -15,7 +15,7 @@ bilingual (English + فارسی) dashboard, per-ISP clean-IP optimization, multi
 accounts, a Telegram bot, WARP, proxy chaining, and backend mode. Runs on Cloudflare's **free** tier.
 
 [![License](https://img.shields.io/badge/license-MIT-purple?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/version-4.1.4-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
+[![Version](https://img.shields.io/badge/version-4.1.6-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
 [![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
 
 </div>
@@ -32,6 +32,7 @@ accounts, a Telegram bot, WARP, proxy chaining, and backend mode. Runs on Cloudf
 [![YouTube](https://img.shields.io/badge/▶️%20YouTube-@novaproxyir-ff0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/@novaproxyir)
 [![X (Twitter)](https://img.shields.io/badge/𝕏%20X-@irNovaProxy-000000?style=for-the-badge&logo=x)](https://x.com/irNovaProxy)
 [![Instagram](https://img.shields.io/badge/📸%20Instagram-@irnova__proxy-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/irnova_proxy)
+[![Panel Guide](https://img.shields.io/badge/📘%20Panel%20Guide-فارسی-7c3aed?style=for-the-badge)](GUIDE.md)
 </div>
 
 ---
