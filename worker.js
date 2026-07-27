@@ -2268,6 +2268,18 @@ export default {
 							console.error('Save custom IP failed:', error);
 							return new Response(JSON.stringify({ error: 'Failed to save custom IP / ذخیره آی‌پی سفارشی ناموفق بود: ' + error.message }), { status: 500, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
 						}
+										} else if (nativGisha === 'admin/cf-workers.json') { // List the account's Worker scripts so the update card can offer a picker (no need to know the script name)
+						const _wErr = (e, ex) => new Response(JSON.stringify(Object.assign({ ok: false, error: e }, ex || {})), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+						let _wBody = {}; if (request.method === 'POST') { try { _wBody = await request.json(); } catch (e) {} }
+						let _wTok = String(_wBody.token || '').trim();
+						if (!_wTok) { try { const _cft = JSON.parse(await env.KV.get('cf.json') || 'null'); if (_cft && _cft.APIToken) { _wTok = String(_cft.APIToken).trim(); if (!_wBody.accountId && _cft.AccountID) _wBody.accountId = _cft.AccountID; } } catch (e) {} }
+						if (!_wTok) return _wErr('no_token');
+						let _wVer; try { _wVer = await cfVerifyToken(_wTok); } catch (e) { _wVer = { ok: false }; }
+						if (!_wVer || !_wVer.ok) return _wErr('token_invalid');
+						let _wAcct = String(_wBody.accountId || '').trim();
+						if (!_wAcct) { let _accs = []; try { _accs = await cfListAccounts(_wTok); } catch (e) {} if (!_accs.length) return _wErr('no_accounts'); if (_accs.length === 1) _wAcct = _accs[0].id; else return _wErr('multiple_accounts', { accounts: _accs }); }
+						let _workers = []; try { _workers = await cfListWorkers(_wTok, _wAcct); } catch (e) {}
+						return new Response(JSON.stringify({ ok: true, workers: _workers, accountId: _wAcct }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/warp.json') { // WARP: ثبت / ثبت WoW / فعال‌سازی لایسنس WARP+ / fromCentral
 						let stored = null; try { stored = JSON.parse(await env.KV.get('warp-account.json') || 'null'); } catch (e) { }
 						if (request.method === 'POST') {
@@ -10916,6 +10928,7 @@ function cfHeaders(token, extra) { return Object.assign({ 'Authorization': 'Bear
 async function cfJson(resp) { let j = null; try { j = await resp.json(); } catch (e) {} return j; }
 async function cfVerifyToken(token) { const r = await fetch(CF_API + '/user/tokens/verify', { headers: cfHeaders(token) }); const j = await cfJson(r); return { ok: !!(j && j.success && j.result && j.result.status === 'active'), raw: j }; }
 async function cfListAccounts(token) { const r = await fetch(CF_API + '/accounts', { headers: cfHeaders(token) }); const j = await cfJson(r); if (!j || !j.success || !Array.isArray(j.result)) return []; return j.result.map(a => ({ id: a.id, name: a.name })); }
+async function cfListWorkers(token, accountId) { const r = await fetch(CF_API + '/accounts/' + accountId + '/workers/scripts', { headers: cfHeaders(token) }); const j = await cfJson(r); if (!j || !j.success || !Array.isArray(j.result)) return []; return j.result.map(s => s && s.id).filter(Boolean); }
 
 const _cfInstallState = new Map();
 function cfInstallGet(chatId) { const v = _cfInstallState.get(String(chatId)); if (v && Date.now() - v.at > 600000) { _cfInstallState.delete(String(chatId)); return null; } return v; }
