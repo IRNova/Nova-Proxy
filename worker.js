@@ -1,5 +1,5 @@
 const _D_={_vl_:atob('dmxlc3M='),_tr_:atob('dHJvamFu'),_vm_:atob('dm1lc3M='),_ss_:atob('c2hhZG93c29ja3M='),_wg_:atob('d2lyZWd1YXJk'),_cl_:atob('Y2xhc2g='),_sb_:atob('c2luZ2JveA=='),_sb2_:atob('c2luZy1ib3g='),_mh_:atob('bWlob21v'),_hd_:atob('aGlkZGlmeQ=='),_sg_:atob('c3VyZ2U='),_qx_:atob('cXVhbng='),_ln_:atob('bG9vbg=='),_np_:atob('Tm92YVByb3h5'),_np2_:atob('Tm92YS1Qcm94eQ=='),_np3_:atob('Tm92YQ=='),_cf_:atob('Y2xvdWRmbGFyZQ=='),_xr_:atob('eHJheQ=='),_cr_:atob('Q21saXVzcw=='),_pr_:atob('UFJPWFlJUA=='),_sp_:atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='),_wr_:atob('Tm92YS1XQVJQ'),_ws_:atob('d3M='),_grpc_:atob('Z3JwYw=='),_xhttp_:atob('eHR0cA=='),_aes128_:atob('YWVzLTEyOC1nY20='),_aes256_:atob('YWVzLTI1Ni1nY20='),_chrome_:atob('Y2hyb21l'),_mixed_:atob('bWl4ZWQ=')};
-const Version = 'V4.1.5';
+const Version = 'V4.1.6';
 let config_JSON, metavechIP = '', hafelSocks5Metavech = null, hafelSocks5Klali = false, cheshbonSocks5Sheli = '', parsedSocks5Address = {};
 let mitmonReshimaLevanaSocks5 = null, mitmonIpMetavech, mitmonNituachMetavech, indeksMaarachMetavechMitmon = 0, hafelGibuiMetavech = true, hadpasatYomanNipui = false;
 let connClientIp = '';
@@ -41,7 +41,7 @@ const NOVA_TG_HANDLE = '@' + (String(NOVA_TG_CHANNEL).split('/').filter(Boolean)
 // Build stamp: bump this whenever worker.js changes so a deploy can be verified at a
 // glance (GET /install/status returns it). If the panel/status still shows an old build
 // after a deploy, the upload didn't take.
-const NOVA_BUILD = '2026-07-25.1';
+const NOVA_BUILD = '2026-07-26.1';
 globalThis.__workerStart = Date.now();
 // --- Config JSON cache: avoids repeated KV reads on every request ---
 const _CFG_KEY = 'config.json';
@@ -1128,34 +1128,54 @@ let usagePending = { up: 0, down: 0 };
 let usagePendingUser = {}; // id -> { up, down }: per-user pending-write cache
 let usageLastFlush = 0;
 let usageFlushing = false;
+let usageFlushQueued = false; // set when a flush is requested while one is already running
 const USAGE_FLUSH_MS = 5 * 60 * 1000, USAGE_FLUSH_BYTES = 200 * 1024 * 1024;
 async function flushUsage(env) {
-	if (usageFlushing) return;
-	const up = usagePending.up, down = usagePending.down;
-	if (up + down <= 0) return;
+	// A flush is already running: don't drop this request. Mark it so the running flush
+	// drains the newly-accumulated bytes before it exits. This is what kept a forced
+	// teardown flush from being silently discarded by the old `if (usageFlushing) return`.
+	if (usageFlushing) { usageFlushQueued = true; return; }
 	usageFlushing = true;
-	usagePending = { up: 0, down: 0 };
-	const _mishtameshLiktiva = usagePendingUser; usagePendingUser = {};
 	try {
-		const now = new Date();
-		await usageAdd(env, 'usage:' + getDateKey(now), up, down);
-		await usageAdd(env, 'usage-m:' + getMonthKey(now), up, down);
-		for (const id of Object.keys(_mishtameshLiktiva)) {
-			const u = _mishtameshLiktiva[id];
-			if ((u.up || 0) + (u.down || 0) > 0) await tiudNefachMishtamesh(env, id, u.up, u.down, null);
-		}
-	} catch (e) {
-		usagePending.up += up; usagePending.down += down;
-		for (const id of Object.keys(_mishtameshLiktiva)) { const u = _mishtameshLiktiva[id]; if (!usagePendingUser[id]) usagePendingUser[id] = { up: 0, down: 0 }; usagePendingUser[id].up += u.up; usagePendingUser[id].down += u.down; }
-		console.error('flushUsage failed: ' + (e.message || e));
+		let guard = 0;
+		do {
+			usageFlushQueued = false;
+			const up = usagePending.up, down = usagePending.down;
+			const _mishtameshLiktiva = usagePendingUser;
+			if (up + down <= 0 && Object.keys(_mishtameshLiktiva).length === 0) break;
+			usagePending = { up: 0, down: 0 };
+			usagePendingUser = {};
+			try {
+				const now = new Date();
+				if (up + down > 0) {
+					await usageAdd(env, 'usage:' + getDateKey(now), up, down);
+					await usageAdd(env, 'usage-m:' + getMonthKey(now), up, down);
+				}
+				for (const id of Object.keys(_mishtameshLiktiva)) {
+					const u = _mishtameshLiktiva[id];
+					if ((u.up || 0) + (u.down || 0) > 0) await tiudNefachMishtamesh(env, id, u.up, u.down, null);
+				}
+			} catch (e) {
+				// Put the bytes back so a later flush retries them, then stop looping to avoid
+				// hammering a persistently-failing store.
+				usagePending.up += up; usagePending.down += down;
+				for (const id of Object.keys(_mishtameshLiktiva)) { const u = _mishtameshLiktiva[id]; if (!usagePendingUser[id]) usagePendingUser[id] = { up: 0, down: 0 }; usagePendingUser[id].up += u.up; usagePendingUser[id].down += u.down; }
+				console.error('flushUsage failed: ' + (e.message || e));
+				break;
+			}
+		} while ((usageFlushQueued || usagePending.up + usagePending.down > 0 || Object.keys(usagePendingUser).length > 0) && ++guard < 8);
 	} finally {
 		usageFlushing = false;
 	}
 }
-function recordUsage(env, bytesUp, bytesDown, ctx, force) {
+function recordUsage(env, bytesUp, bytesDown, ctx, force, userId) {
 	usagePending.up += (bytesUp || 0);
 	usagePending.down += (bytesDown || 0);
-	if (chiburMishtameshId) { if (!usagePendingUser[chiburMishtameshId]) usagePendingUser[chiburMishtameshId] = { up: 0, down: 0 }; usagePendingUser[chiburMishtameshId].up += (bytesUp || 0); usagePendingUser[chiburMishtameshId].down += (bytesDown || 0); }
+	// Attribute to the per-connection userId (captured safely at setup, e.g. usageStats.userId).
+	// The chiburMishtameshId global is only a setup-time fallback: by teardown it has usually been
+	// clobbered by other fetches on the same isolate, which is why per-user usage read 0.
+	const _uid = userId || chiburMishtameshId;
+	if (_uid) { if (!usagePendingUser[_uid]) usagePendingUser[_uid] = { up: 0, down: 0 }; usagePendingUser[_uid].up += (bytesUp || 0); usagePendingUser[_uid].down += (bytesDown || 0); }
 	const pending = usagePending.up + usagePending.down;
 	if (pending <= 0) return;
 	const now = Date.now();
@@ -1385,7 +1405,7 @@ async function tiudNefachMishtamesh(env, id, up, down, ctx) {
 			}
 		} catch (e) { console.error('record per-user usage failed: ' + (e.message || e)); }
 	};
-	if (ctx && ctx.waitUntil) ctx.waitUntil(_ktv()); else _ktv().catch(() => {});
+	if (ctx && ctx.waitUntil) ctx.waitUntil(_ktv()); else await _ktv();  // ctx=null (flushUsage path): await so the caller's waitUntil covers the write; fire-and-forget here dropped per-user bytes on eviction
 }
 // User hub (serveUserHub): returns a friendly per-user HTML panel when a browser opens the subscription link.
 async function sherutMerkazMishtamesh(objMishtameshMinuy, env) {
@@ -1657,7 +1677,7 @@ export default {
 		}
 		// --- Kill Switch: غیرفعال‌سازی موقت سرویس ---
 		{
-			const _isProxyConn = (upgradeHeader === 'websocket') || (!nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && request.method === 'POST');
+			const _isProxyConn = (upgradeHeader === 'websocket') || (!nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'sub-setip' && request.method === 'POST');
 			const _isSub = nativGisha === 'sub' || nativGisha.startsWith('sub/');
 			if (_isProxyConn || _isSub) {
 				let _pausedNow = config_JSON && config_JSON.paused === true;
@@ -1723,7 +1743,7 @@ export default {
 		if (_bm.on && !haimNativMenutakBackend(nativGisha, url.pathname)) { if (sibatDchiyatChibur) return new Response('Forbidden (' + sibatDchiyatChibur + ')', { status: 403 }); return await haavaratWSlaBackend(request, url, env, ctx, _bm.url, chiburMishtameshId); } }
 		log(`[WebSocket] matched request: ${url.pathname}${url.search}`);
 		return await tipulBakashatWS(request, userID, url, ctx);
-		} else if (adminPassword && !nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'recover' && nativGisha !== 'recover-telegram' && request.method === 'POST') {// gRPC/XHTTP proxy
+		} else if (adminPassword && !nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'recover' && nativGisha !== 'recover-telegram' && nativGisha !== 'sub-setip' && request.method === 'POST') {// gRPC/XHTTP proxy
 			// DoH (RFC 8484) sent via POST to /dns-query; must be handled here or DNS clients get a 400 error
 			if (nativGisha === 'dns-query' || url.pathname === '/dns-query' || nativGisha === 'doh' || url.pathname === '/doh') {
 				return tipulBakashatDoH(request);
@@ -1822,7 +1842,9 @@ export default {
 						ctx.waitUntil(notifyHubPanel(env, host, ctx));
 						// Login notification to Telegram
 						try {
-							const _tgTxt = await env.KV.get('tg.json');
+							let _silent = false;
+								try { _silent = !!(JSON.parse(await env.KV.get('network-settings.json') || '{}').silentAlerts); } catch (e) {}
+								const _tgTxt = _silent ? null : await env.KV.get('tg.json');
 							if (_tgTxt) { const _tgJ = JSON.parse(_tgTxt); if (_tgJ.BotToken && _tgJ.ChatID) {
 								const _loc = request.cf ? `${request.cf.city || '?'}, ${request.cf.country || '?'}` : '?';
 								const _asn = request.cf?.asn || '?';
@@ -2134,6 +2156,8 @@ export default {
 							try {
 								const settings = await request.json();
 								const hagdarotTkefot = {
+									silentAlerts: typeof settings.silentAlerts === 'boolean' ? settings.silentAlerts : false,
+									decoyUrl: typeof settings.decoyUrl === 'string' ? settings.decoyUrl.trim().slice(0, 120) : '',
 									enableRouting: typeof settings.enableRouting === 'boolean' ? settings.enableRouting : true,
 									enableGeoIP: typeof settings.enableGeoIP === 'boolean' ? settings.enableGeoIP : true,
 									enableGeoSite: typeof settings.enableGeoSite === 'boolean' ? settings.enableGeoSite : true,
@@ -2274,6 +2298,7 @@ export default {
 							}
 						}
 						// GET: نمایش وضعیت حساب WARP
+						await getWarpEndpoints(env); // refresh clean-endpoint pool so the dropdown stays fresh
 						const view = stored ? _warpPublicView(stored, hagdarotReshet && hagdarotReshet.warpEndpoint) : { registered: false };
 						const wraw2 = await env.KV.get('warp-account-wow.json');
 						view.wow = wraw2 ? _warpPublicView(JSON.parse(wraw2)) : null;
@@ -2425,34 +2450,34 @@ export default {
 						// One-time Cloudflare auth: if no token is provided, reuse the saved Cloudflare token (cf.json, set via the usage card).
 						// That token needs both Account Analytics:Read and Workers Scripts:Edit; one grant covers both usage queries and updates.
 						if (!idkunToken) { try { const _tokenCf = JSON.parse(await env.KV.get('cf.json') || 'null'); if (_tokenCf && _tokenCf.APIToken) { idkunToken = String(_tokenCf.APIToken).trim(); if (!gufBakashatIdkun.accountId && _tokenCf.AccountID) gufBakashatIdkun.accountId = _tokenCf.AccountID; } } catch (e) {} }
-						if (!idkunToken) return _idkunTguvatShgia('No token provided');
+						if (!idkunToken) return _idkunTguvatShgia('no_token');
 						let totzaatImutToken; try { totzaatImutToken = await cfVerifyToken(idkunToken); } catch (e) { totzaatImutToken = { ok: false }; }
-						if (!totzaatImutToken || !totzaatImutToken.ok) return _idkunTguvatShgia('Invalid token');
+						if (!totzaatImutToken || !totzaatImutToken.ok) return _idkunTguvatShgia('token_invalid');
 						let idkunCheshbonId = String(gufBakashatIdkun.accountId || '').trim();
 						if (!idkunCheshbonId) {
 							let reshimatCheshbonot = []; try { reshimatCheshbonot = await cfListAccounts(idkunToken); } catch (e) {}
-							if (!reshimatCheshbonot.length) return _idkunTguvatShgia('Account not found');
+							if (!reshimatCheshbonot.length) return _idkunTguvatShgia('no_accounts');
 							if (reshimatCheshbonot.length === 1) idkunCheshbonId = reshimatCheshbonot[0].id;
-							else return _idkunTguvatShgia('Multiple accounts found', { accounts: reshimatCheshbonot });
+							else return _idkunTguvatShgia('multiple_accounts', { accounts: reshimatCheshbonot });
 						}
 						let shemScript = String(gufBakashatIdkun.scriptName || '').trim();
 						if (!shemScript) {
 							const hatamatSkript = /^([a-z0-9][a-z0-9-]*)\.[a-z0-9-]+\.workers\.dev$/i.exec(url.host);
 							if (hatamatSkript) shemScript = hatamatSkript[1];
-							else return _idkunTguvatShgia('Script name required');
+							else return _idkunTguvatShgia('need_script_name');
 						}
 						// Safety gate: confirm we can read the script's current settings (hence its bindings) before overwriting, so self-update never drops D1/KV bindings.
 						try {
 							const teguvatHagdaraResp = await fetch(CF_API + '/accounts/' + idkunCheshbonId + '/workers/scripts/' + shemScript + '/settings', { headers: cfHeaders(idkunToken) });
 							const totzaatHagdara = await cfJson(teguvatHagdaraResp);
-							if (!totzaatHagdara || !totzaatHagdara.success) return _idkunTguvatShgia('Cannot read binding info');
-						} catch (e) { return _idkunTguvatShgia('Cannot read binding info'); }
+							if (!totzaatHagdara || !totzaatHagdara.success) return _idkunTguvatShgia('cannot_read_bindings');
+						} catch (e) { return _idkunTguvatShgia('cannot_read_bindings'); }
 						// Resolve the canonical Worker source from the version manifest (version.json worker_url, else repo default).
 						let ktovetKodMakor = NOVAWorkerSrcFallback, girsaAchrona = '';
 						{ const meidaGirsa = await kabelGirsatNova(); if (meidaGirsa) { if (meidaGirsa.worker_url) ktovetKodMakor = meidaGirsa.worker_url; girsaAchrona = String(meidaGirsa.version || '').replace(/^[vV]/, ''); } }
 						let textScript = '';
-						try { const r = await fetch(ktovetKodMakor, { headers: { 'User-Agent': 'NovaProxy' } }); if (!r.ok) throw new Error('HTTP ' + r.status); textScript = await r.text(); } catch (e) { return _idkunTguvatShgia('Failed to download Worker source', { detail: (e && e.message) || String(e) }); }
-						if (textScript.length < 1000 || !/export\s+default|addEventListener\s*\(/.test(textScript)) return _idkunTguvatShgia('Invalid Worker source');
+						try { const r = await fetch(ktovetKodMakor, { headers: { 'User-Agent': 'NovaProxy' } }); if (!r.ok) throw new Error('HTTP ' + r.status); textScript = await r.text(); } catch (e) { return _idkunTguvatShgia('fetch_worker_failed', { detail: (e && e.message) || String(e) }); }
+						if (textScript.length < 1000 || !/export\s+default|addEventListener\s*\(/.test(textScript)) return _idkunTguvatShgia('bad_worker_source');
 						// Content-only replace: swap the code, keep bindings/secrets/vars/D1/KV intact.
 						try {
 							const netuneiTofes = new FormData();
@@ -2460,8 +2485,8 @@ export default {
 							netuneiTofes.append('worker.js', new Blob([textScript], { type: 'application/javascript+module' }), 'worker.js');
 							const teguvatHaalaa = await fetch(CF_API + '/accounts/' + idkunCheshbonId + '/workers/scripts/' + shemScript + '/content', { method: 'PUT', headers: cfHeaders(idkunToken), body: netuneiTofes });
 							const totzaatHaalaa = await cfJson(teguvatHaalaa);
-							if (!totzaatHaalaa || !totzaatHaalaa.success) { const hodaatShgia = (totzaatHaalaa && totzaatHaalaa.errors && totzaatHaalaa.errors[0] && totzaatHaalaa.errors[0].message) || ('HTTP ' + teguvatHaalaa.status); return _idkunTguvatShgia('Upload failed', { detail: hodaatShgia }); }
-						} catch (e) { return _idkunTguvatShgia('Upload failed', { detail: (e && e.message) || String(e) }); }
+							if (!totzaatHaalaa || !totzaatHaalaa.success) { const hodaatShgia = (totzaatHaalaa && totzaatHaalaa.errors && totzaatHaalaa.errors[0] && totzaatHaalaa.errors[0].message) || ('HTTP ' + teguvatHaalaa.status); return _idkunTguvatShgia('upload_failed', { detail: hodaatShgia }); }
+						} catch (e) { return _idkunTguvatShgia('upload_failed', { detail: (e && e.message) || String(e) }); }
 						ctx.waitUntil(rishumYomanBakasha(env, request, gishaIP, 'Self-update', config_JSON));
 						if (textScript.length > 1000) { ctx.waitUntil(propagateUpdateToLinkedPanels(env, girsaAchrona, textScript, ctx)); }
 						return new Response(JSON.stringify({ success: true, version: girsaAchrona || undefined }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
@@ -2912,6 +2937,7 @@ export default {
 						return new Response(JSON.stringify({ current, latest, updateAvailable, notes, worker_url: srcUrl, reachable: !!vj, hasCfToken }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/warp.json') { // WARP status (GET); POST register/license/wow/fromCentral handled in the POST branch above
 						let stored = null; try { stored = JSON.parse(await env.KV.get('warp-account.json') || 'null'); } catch (e) { }
+						await getWarpEndpoints(env); // refresh clean-endpoint pool so the dropdown stays fresh
 						const view = stored ? _warpPublicView(stored, hagdarotReshet && hagdarotReshet.warpEndpoint) : { registered: false };
 						const wraw2 = await env.KV.get('warp-account-wow.json');
 						view.wow = wraw2 ? _warpPublicView(JSON.parse(wraw2)) : null;
@@ -3022,6 +3048,18 @@ export default {
 						const _rmerged = [], _rmseen = new Set();
 						for (const _v of [..._radd, ..._rcur]) { if (_rmseen.has(_v)) continue; _rmseen.add(_v); _rmerged.push(_v); if (_rmerged.length >= 30) break; } // newest first, pool capped at 30
 						await env.KV.put('radar-shared.txt', _rmerged.join('\n'));
+						// This apply is authenticated with the panel sub token (the operator applying to the whole
+						// worker via Nova Radar). Also persist into the panel's clean-IP field (ADD.txt) so the applied
+						// IPs actually show in the panel and are used by local/custom-list subscriptions — the previous
+						// behavior only wrote radar-shared.txt, which the panel never reads (Radar "Apply" looked like a no-op).
+						try {
+							let _addCur = String(await env.KV.get('ADD.txt') || '').split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+							const _addSeen = new Set(), _addMerged = [];
+							// Prepend the newly-applied IPs, keep the operator's existing list (dedup). High cap so a
+							// large existing ADD.txt is never truncated; dedup keeps growth bounded by unique IPs.
+							for (const _v of [..._radd, ..._addCur]) { if (_addSeen.has(_v)) continue; _addSeen.add(_v); _addMerged.push(_v); if (_addMerged.length >= 2000) break; }
+							await env.KV.put('ADD.txt', _addMerged.join('\n'));
+						} catch (e) {}
 						ctx.waitUntil(publishSubMirror(env, `${url.protocol}//${url.host}`, userID).catch(() => {}));
 						return _sj({ success: true, shared: true, count: _radd.length }, 200);
 					}
@@ -3692,7 +3730,9 @@ export default {
 			if (staticResponse && staticResponse.ok) return staticResponse;
 		}
 
-		let urlHasvaa = env.URL || 'https://speed.cloudflare.com';
+		// Decoy / speed-test target: panel setting first (so it can be changed without a redeploy,
+		// e.g. point the root at a nearby .ir site), then the deploy-time URL var, then the default.
+		let urlHasvaa = (hagdarotReshet && hagdarotReshet.decoyUrl) || env.URL || 'https://speed.cloudflare.com';
 		if (urlHasvaa && urlHasvaa !== 'nginx' && urlHasvaa !== '1101') {
 			urlHasvaa = urlHasvaa.trim().replace(/\/$/, '');
 			if (!urlHasvaa.match(/^https?:\/\//i)) urlHasvaa = 'https://' + urlHasvaa;
@@ -3934,7 +3974,7 @@ async function tipulBakashatXHTTP(request, yourUUID, ctx) {
 				torKtivaAlia.rikun();
 				shachrerKotevMerchak();
 				try { reader.releaseLock() } catch (e) { }
-				try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true); } catch (e) {}
+				try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
 			}
 		},
 		cancel() {
@@ -4360,7 +4400,7 @@ async function tipulBakashatGRPC(request, yourUUID, ctx) {
 				torKtivaAlia.rikun();
 				shachrerKotevMerchak();
 				sgiratChibur();
-				try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true); } catch (e) {}
+				try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
 			}
 		},
 		cancel() {
@@ -4777,7 +4817,7 @@ async function tipulBakashatWS(request, yourUUID, url, ctx) {
 		atziratKabalaHaavaraMeforeshetWS = true;
 		bytesTorWsMforash = 0;
 		pritTorWsMforash = 0;
-		try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true); } catch (e) {}
+		try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
 		const msg = err?.message || `${err}`;
 		if (msg.includes('Network connection lost') || msg.includes('ReadableStream is closed')) {
 			log(`[WS forward] connection ended: ${msg}`);
@@ -4830,7 +4870,7 @@ async function tipulBakashatWS(request, yourUUID, url, ctx) {
 	serverSock.addEventListener('close', () => {
 		closeSocketQuietly(serverSock);
 		siyumHaavaraMeforeshetWS2();
-		try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true); } catch (e) {}
+		try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
 	});
 	serverSock.addEventListener('error', (err) => {
 		tipulShgiatHaavaraWsMforash(err);
@@ -7563,13 +7603,35 @@ async function applyWarpLicense(env, license, slot = 'warp-account.json') {
 	if (env.KV && typeof env.KV.put === 'function') await env.KV.put(slot, JSON.stringify(account, null, 2));
 	return account;
 }
+// Maintained clean-endpoint pool (IRNova/Tools). Fetched + cached (1h in-memory, edge-cached too) so
+// the WireGuard dropdown and the default endpoint stay fresh without a worker redeploy. Falls back to
+// the built-in WARP_SUGGESTED_ENDPOINTS list if the fetch fails.
+const WARP_ENDPOINTS_URL = 'https://raw.githubusercontent.com/IRNova/Tools/main/warp-endpoints.txt';
+let _warpEpCache = null, _warpEpCacheAt = 0;
+async function getWarpEndpoints(env) {
+	const now = Date.now();
+	if (_warpEpCache && (now - _warpEpCacheAt) < 3600000) return _warpEpCache;
+	try {
+		const r = await fetch(WARP_ENDPOINTS_URL, { headers: { 'User-Agent': 'NovaProxy' }, cf: { cacheTtl: 3600, cacheEverything: true } });
+		if (r.ok) {
+			const eps = (await r.text()).split(/\r?\n/).map(s => s.trim()).filter(s => s && !s.startsWith('#') && /^[a-z0-9.-]+:\d{1,5}$/i.test(s));
+			if (eps.length >= 5) { _warpEpCache = [...new Set([...eps, ...WARP_SUGGESTED_ENDPOINTS])]; _warpEpCacheAt = now; return _warpEpCache; }
+		}
+	} catch (e) {}
+	_warpEpCache = WARP_SUGGESTED_ENDPOINTS; _warpEpCacheAt = now;
+	return _warpEpCache;
+}
+// Default WARP endpoint: prefer a clean pool endpoint over the Iran-blocked engage default.
+function warpDefaultEndpoint() {
+	return (_warpEpCache && _warpEpCache.find(e => !/engage\.cloudflareclient/i.test(e))) || '8.6.112.104:4233';
+}
 function _warpPublicView(a, epOverride) {
 	if (!a) return { registered: false };
 	const { token, ...rest } = a;
-	const v = { ...rest, registered: true, hasToken: !!token, suggestedEndpoints: WARP_SUGGESTED_ENDPOINTS };
+	const v = { ...rest, registered: true, hasToken: !!token, suggestedEndpoints: (_warpEpCache || WARP_SUGGESTED_ENDPOINTS) };
 	// اگر کلید خصوصی موجود باشد، لینک اتصال و فایل conf تولید می‌شود
 	if (a.privateKey && a.peerPublicKey) {
-		const baseEp = String((epOverride && warpValidEndpoint(epOverride)) ? epOverride.trim() : (a.endpoint || 'engage.cloudflareclient.com:2408'));
+		const baseEp = String((epOverride && warpValidEndpoint(epOverride)) ? epOverride.trim() : ((a.endpoint && !/engage\.cloudflareclient/i.test(a.endpoint)) ? a.endpoint : warpDefaultEndpoint()));
 		const epFull = baseEp.includes(':') ? baseEp : baseEp + ':2408';
 		v.endpoint = epFull; v.endpointOverridden = !!(epOverride && warpValidEndpoint(epOverride));
 		const addr = '172.16.0.2/32' + (a.addressV6 ? ',' + a.addressV6 : '');
@@ -7654,10 +7716,34 @@ const warpPublicKey = "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=";
 const warpCidrs = ["162.159.192.0/24", "162.159.193.0/24", "162.159.195.0/24", "188.114.96.0/24", "188.114.97.0/24", "188.114.98.0/24", "188.114.99.0/24"];
 const warpPorts = [854, 859, 864, 878, 880, 890, 891, 894, 903, 908, 928, 934, 939, 942, 943, 945, 946, 955, 968, 987, 988, 1002, 1010, 1014, 1018, 1070, 1074, 1180, 1387, 1843, 2371, 2506, 3138, 3476, 3581, 3854, 4177, 4198, 4233, 5279, 5956, 7103, 7152, 7156, 7281, 7559, 8319, 8742, 8854, 8886, 2408, 500, 4500, 1701];
 const WARP_SUGGESTED_ENDPOINTS = [
-	'engage.cloudflareclient.com:2408',
+	// Community clean-WARP pool (works on many Iranian ISPs where engage/162/188 are filtered).
+	// Full list from the AmneziaWG community project (github.com/x4gKing/Amnezia-VPN-Config).
+	// Snapshot — refresh periodically; a maintained dynamic pool is the follow-up.
+	'188.114.97.6:7281', '188.114.97.6:859', '8.6.112.104:4233', '8.6.112.106:3138',
+	'8.6.112.107:3138', '8.6.112.121:1180', '8.6.112.121:500', '8.6.112.122:4177',
+	'8.6.112.122:894', '8.6.112.127:4198', '8.6.112.133:968', '8.6.112.136:4177',
+	'8.6.112.139:7281', '8.6.112.154:7281', '8.6.112.154:891', '8.6.112.159:878',
+	'8.6.112.160:3854', '8.6.112.163:7281', '8.6.112.165:7281', '8.6.112.165:928',
+	'8.6.112.170:1180', '8.6.112.171:946', '8.6.112.172:878', '8.6.112.174:1014',
+	'8.6.112.174:939', '8.6.112.176:8319', '8.6.112.178:942', '8.6.112.180:928',
+	'8.6.112.181:7152', '8.6.112.182:891', '8.6.112.182:945', '8.6.112.184:7281',
+	'8.6.112.19:908', '8.6.112.190:5279', '8.6.112.191:908', '8.6.112.200:1010',
+	'8.6.112.200:4198', '8.6.112.202:878', '8.6.112.205:3581', '8.6.112.205:891',
+	'8.6.112.212:880', '8.6.112.221:500', '8.6.112.223:7559', '8.6.112.224:854',
+	'8.6.112.224:8886', '8.6.112.228:1843', '8.6.112.230:1843', '8.6.112.230:878',
+	'8.6.112.233:7152', '8.6.112.233:880', '8.6.112.234:3854', '8.6.112.235:1070',
+	'8.6.112.237:946', '8.6.112.246:859', '8.6.112.246:894', '8.6.112.248:903',
+	'8.6.112.249:891', '8.6.112.251:1387', '8.6.112.253:854', '8.6.112.29:3581',
+	'8.6.112.29:7152', '8.6.112.4:4233', '8.6.112.4:859', '8.6.112.46:4198',
+	'8.6.112.51:2506', '8.6.112.52:928', '8.6.112.53:7156', '8.6.112.60:8854',
+	'8.6.112.61:3581', '8.6.112.65:2506', '8.6.112.67:7103', '8.6.112.7:1180',
+	'8.6.112.70:945', '8.6.112.77:1070', '8.6.112.78:859', '8.6.112.79:8854',
+	'8.6.112.8:1014', '8.6.112.82:891', '8.6.112.86:1387', '8.6.112.93:942',
+	'8.6.112.93:945', '8.6.112.96:903',
+	// Standard Cloudflare WARP endpoints (kept as fallbacks; engage is often blocked in Iran).
 	'162.159.192.1:2408', '162.159.193.10:2408', '162.159.195.1:2408',
 	'188.114.96.1:2408', '188.114.97.1:2408', '188.114.98.1:2408', '188.114.99.1:2408',
-	'162.159.192.1:894', '188.114.96.1:1701', '162.159.195.1:928', '188.114.98.1:955',
+	'engage.cloudflareclient.com:2408',
 ];
 function warpRandomIPv4InCidr(cidr) {
 	const [base, maskStr] = cidr.split('/');
@@ -10112,7 +10198,7 @@ async function tipulBakashatDoH(request) {
 	if (!['GET', 'POST'].includes(request.method)) {
 		return new Response('Method not allowed. Use GET or POST.', { status: 405 });
 	}
-	if (request.method === 'GET' && !url.searchParams.has('dns')) {
+	if (request.method === 'GET' && !url.searchParams.has('dns') && !url.searchParams.has('name')) {
 		const dohUrl = url.protocol + '//' + url.host + url.pathname;
 		const html = `<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DoH Proxy</title><style>:root{--primary:#0ea5e9;--bg:#f8fafc;--card:#fff;--text:#1e293b;--border:#e2e8f0}body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:20px;display:flex;justify-content:center;align-items:center;min-height:100vh}.card{background:var(--card);border-radius:16px;padding:32px;max-width:560px;width:100%;box-shadow:0 4px 24px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}.badge{display:inline-block;background:linear-gradient(135deg,#0ea5e9,#667eea);color:#fff;padding:6px 16px;border-radius:20px;font-weight:700;font-size:14px;margin-bottom:16px}h2{margin:0 0 8px;font-size:22px;font-weight:800;background:linear-gradient(135deg,#0ea5e9,#667eea);-webkit-background-clip:text;-webkit-text-fill-color:transparent}p{color:#64748b;font-size:14px;line-height:1.7;margin:8px 0}.url-box{background:#f0f9ff;border:2px solid #0ea5e9;border-radius:12px;padding:14px 18px;margin:16px 0;direction:ltr;text-align:left;font-family:monospace;font-size:15px;font-weight:700;color:#0369a1;word-break:break-all;cursor:pointer;transition:all .2s}.url-box:hover{background:#e0f2fe}.btn{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0ea5e9,#667eea);color:#fff;border:none;border-radius:10px;padding:10px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s;margin-top:8px;text-decoration:none}.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,165,233,.3)}.features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;text-align:right}.feature{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;font-weight:500;color:#475569;display:flex;align-items:center;gap:6px}.feature i{color:#10b981}</style></head><body><div class="card"><div class="badge">DoH</div><h2>DNS-over-HTTPS Proxy</h2><p>Copy this URL and use it as your DoH server:</p><div class="url-box" onclick="navigator.clipboard.writeText(this.textContent);this.style.background='#dcfce7';this.style.borderColor='#10b981';this.style.color='#065f46';setTimeout(()=>{this.style.background='#f0f9ff';this.style.borderColor='#0ea5e9';this.style.color='#0369a1'},1500)">${dohUrl}</div><p style="font-size:12px;opacity:0.6">Click to copy</p><div class="features"><div class="feature">&#x2705; Cloudflare DNS</div><div class="feature">&#x2705; Google DNS</div><div class="feature">&#x2705; Quad9 DNS</div><div class="feature">&#x2705; AdGuard DNS</div></div><a class="btn" href="?dns=test" target="_blank">Test DoH &#x2192;</a></div></body></html>`;
 		return new Response(html, { status: 200, headers: { 'Content-Type': 'text/html;charset=utf-8', 'Cache-Control': 'no-store' } });
@@ -10126,13 +10212,21 @@ async function tipulBakashatDoH(request) {
 		{ name: 'Mullvad', url: 'https://adblock.dns.mullvad.net/dns-query' },
 		{ name: 'NextDNS', url: 'https://dns.nextdns.io/dns-query' },
 	];
-	const provider = providers[Math.floor(Math.random() * providers.length)];
+	// JSON DoH (?name=...) — e.g. the panel's Secure-DNS self-test and browsers using the JSON API.
+	// Route these to a provider that speaks application/dns-json and ask for JSON, instead of
+	// forcing wireformat (which made the test get an unparseable response).
+	const isJsonQuery = request.method === 'GET' && url.searchParams.has('name');
+	const provider = isJsonQuery
+		? { name: 'Cloudflare', url: 'https://cloudflare-dns.com/dns-query' }
+		: providers[Math.floor(Math.random() * providers.length)];
 	const requestBody = request.method === 'POST' ? await request.arrayBuffer().catch(() => null) : null;
 	try {
 		const headers = new Headers(request.headers);
 		headers.set('User-Agent', 'DoH-Proxy/1.0');
 		if (request.method === 'POST') {
 			headers.set('Content-Type', 'application/dns-message');
+		} else if (isJsonQuery) {
+			headers.set('Accept', 'application/dns-json');
 		} else {
 			headers.set('Accept', 'application/dns-message');
 		}
@@ -11143,7 +11237,7 @@ function novaInjectFakeClash(yaml, lines, uuid, host) {
 		if (!lines.length || !/^proxies:\s*$/m.test(yaml)) return yaml;
 		const names = lines.map(n => JSON.stringify(n)); // safe YAML double-quote
 		const nodeLines = names.map(nm =>
-			`  - {name: ${nm}, server: 192.0.2.1, port: 443, type: ${_D_._vm_}, uuid: ${uuid}, alterId: 0, cipher: auto, tls: true, servername: ${host}, network: ws, ws-opts: {path: /?fake=1, headers: {Host: ${host}}}, udp: false}`).join('\n');
+			`  - {name: ${nm}, server: 192.0.2.1, port: 443, type: ${_D_._vm_}, uuid: ${uuid}, alterId: 0, cipher: auto, tls: true, servername: "${host}", network: ws, ws-opts: {path: "/?fake=1", headers: {Host: "${host}"}}, udp: false}`).join('\n');
 		let out = yaml.replace(/^proxies:\s*$/m, 'proxies:\n' + nodeLines);
 		// Add names only to `select` groups (the manual picker); never url-test/fallback,
 		// so a dead info-node cannot enter speed-testing / auto-selection.
