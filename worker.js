@@ -2963,6 +2963,20 @@ export default {
 						const isWorkersDev = /^([a-z0-9][a-z0-9-]*)\.[a-z0-9-]+\.workers\.dev$/i.test(url.host);
 						let savedScriptName = ''; try { savedScriptName = String((await env.KV.get('updScriptName')) || '').trim(); } catch (e) {}
 						return new Response(JSON.stringify({ current, latest, updateAvailable, notes, worker_url: srcUrl, reachable: !!vj, hasCfToken, isWorkersDev, savedScriptName }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+										} else if (nativGisha === 'admin/checkup.json') { // Worker self-check: health report + latest version so the panel can offer a one-click repair (reinstall latest, no version bump needed)
+						const _cur = String(Version).replace(/^[vV]/, '');
+						const _vj = await kabelGirsatNova();
+						const _latest = _vj ? String(_vj.version || '').replace(/^[vV]/, '') : '';
+						const _behind = !!_latest && versionGreater(_latest, _cur);
+						const _issues = [];
+						let _kvOk = false; try { await env.KV.get('config.json'); _kvOk = true; } catch (e) { _issues.push('kv'); }
+						let _cleanIpCount = 0; try { const _add = await env.KV.get('ADD.txt'); _cleanIpCount = _add ? _add.split(/\r?\n/).filter(x => x.trim()).length : 0; } catch (e) {}
+						let _warpReg = false; try { _warpReg = !!JSON.parse(await env.KV.get('warp-account.json') || 'null'); } catch (e) {}
+						let _userCount = 0; try { _userCount = (hagdarotReshet && Array.isArray(hagdarotReshet.users)) ? hagdarotReshet.users.length : 0; } catch (e) {}
+						let _hasCfToken = false; try { const _cft = JSON.parse(await env.KV.get('cf.json') || 'null'); _hasCfToken = !!(_cft && _cft.APIToken); } catch (e) {}
+						const _isWorkersDev = /^([a-z0-9][a-z0-9-]*)\.[a-z0-9-]+\.workers\.dev$/i.test(url.host);
+						if (_behind) _issues.push('outdated');
+						return new Response(JSON.stringify({ ok: true, version: _cur, latest: _latest, behind: _behind, issues: _issues, kvOk: _kvOk, cleanIpCount: _cleanIpCount, warpRegistered: _warpReg, userCount: _userCount, hasCfToken: _hasCfToken, isWorkersDev: _isWorkersDev, canRepair: _hasCfToken }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/warp.json') { // WARP status (GET); POST register/license/wow/fromCentral handled in the POST branch above
 						let stored = null; try { stored = JSON.parse(await env.KV.get('warp-account.json') || 'null'); } catch (e) { }
 						await getWarpEndpoints(env); // refresh clean-endpoint pool so the dropdown stays fresh
