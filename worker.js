@@ -2470,14 +2470,19 @@ export default {
 						if (!shemScript) {
 							const hatamatSkript = /^([a-z0-9][a-z0-9-]*)\.[a-z0-9-]+\.workers\.dev$/i.exec(url.host);
 							if (hatamatSkript) shemScript = hatamatSkript[1];
-							else return _idkunTguvatShgia('need_script_name');
 						}
+						// On a custom domain the host does not carry the script name; reuse the one saved from a previous update so it stays one-click.
+						if (!shemScript) { try { shemScript = String((await env.KV.get('updScriptName')) || '').trim(); } catch (e) {} }
+						if (!shemScript) return _idkunTguvatShgia('need_script_name');
+						if (!/^[a-z0-9][a-z0-9-]{0,62}$/i.test(shemScript)) return _idkunTguvatShgia('need_script_name');
 						// Safety gate: confirm we can read the script's current settings (hence its bindings) before overwriting, so self-update never drops D1/KV bindings.
 						try {
 							const teguvatHagdaraResp = await fetch(CF_API + '/accounts/' + idkunCheshbonId + '/workers/scripts/' + shemScript + '/settings', { headers: cfHeaders(idkunToken) });
 							const totzaatHagdara = await cfJson(teguvatHagdaraResp);
 							if (!totzaatHagdara || !totzaatHagdara.success) return _idkunTguvatShgia('cannot_read_bindings');
 						} catch (e) { return _idkunTguvatShgia('cannot_read_bindings'); }
+						// Script confirmed readable, remember its name so future custom-domain updates are one-click.
+						try { await env.KV.put('updScriptName', shemScript); } catch (e) {}
 						// Resolve the canonical Worker source from the version manifest (version.json worker_url, else repo default).
 						let ktovetKodMakor = NOVAWorkerSrcFallback, girsaAchrona = '';
 						{ const meidaGirsa = await kabelGirsatNova(); if (meidaGirsa) { if (meidaGirsa.worker_url) ktovetKodMakor = meidaGirsa.worker_url; girsaAchrona = String(meidaGirsa.version || '').replace(/^[vV]/, ''); } }
@@ -2940,7 +2945,9 @@ export default {
 						const srcUrl = vj ? (vj.worker_url || '') : '';
 						const updateAvailable = !!latest && versionGreater(latest, current);
 						let hasCfToken = false; try { const _cft = JSON.parse(await env.KV.get('cf.json') || 'null'); hasCfToken = !!(_cft && _cft.APIToken); } catch (e) {}
-						return new Response(JSON.stringify({ current, latest, updateAvailable, notes, worker_url: srcUrl, reachable: !!vj, hasCfToken }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
+						const isWorkersDev = /^([a-z0-9][a-z0-9-]*)\.[a-z0-9-]+\.workers\.dev$/i.test(url.host);
+						let savedScriptName = ''; try { savedScriptName = String((await env.KV.get('updScriptName')) || '').trim(); } catch (e) {}
+						return new Response(JSON.stringify({ current, latest, updateAvailable, notes, worker_url: srcUrl, reachable: !!vj, hasCfToken, isWorkersDev, savedScriptName }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/warp.json') { // WARP status (GET); POST register/license/wow/fromCentral handled in the POST branch above
 						let stored = null; try { stored = JSON.parse(await env.KV.get('warp-account.json') || 'null'); } catch (e) { }
 						await getWarpEndpoints(env); // refresh clean-endpoint pool so the dropdown stays fresh
