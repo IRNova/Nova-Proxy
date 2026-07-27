@@ -1186,6 +1186,25 @@ function recordUsage(env, bytesUp, bytesDown, ctx, force, userId) {
 	const _c = (ctx && ctx.waitUntil) ? ctx : ((_globalCtx && _globalCtx.waitUntil) ? _globalCtx : null);
 	if (_c) _c.waitUntil(flushUsage(env)); else flushUsage(env).catch(() => {});
 }
+// Incremental usage commit: push the delta accumulated on a per-connection usageStats object
+// into the durable pending buffer DURING a live stream, not only at teardown. On serverless the
+// isolate can be evicted mid-stream before the teardown flush runs, which lost the whole
+// connection's bytes; committing every ~15s / 4MB caps the loss to one interval. usageStats carries
+// its own committed markers (_cUp/_cDown/_cAt) so the forced teardown commit records only the
+// remaining delta and never double-counts what a live commit already banked.
+const USAGE_COMMIT_MS = 15 * 1000, USAGE_COMMIT_BYTES = 4 * 1024 * 1024;
+function commitUsage(env, usageStats, ctx, force) {
+	if (!usageStats) return;
+	const du = (usageStats.up || 0) - (usageStats._cUp || 0);
+	const dd = (usageStats.down || 0) - (usageStats._cDown || 0);
+	if (du + dd <= 0) return;
+	const now = Date.now();
+	if (!force && (now - (usageStats._cAt || 0)) < USAGE_COMMIT_MS && (du + dd) < USAGE_COMMIT_BYTES) return;
+	usageStats._cUp = usageStats.up || 0;
+	usageStats._cDown = usageStats.down || 0;
+	usageStats._cAt = now;
+	recordUsage(env, du, dd, ctx, force, usageStats.userId);
+}
 let _monthUsedCache = -1, _monthUsedAt = 0;
 async function monthlyUsedBytes(env) {
 	if (_monthUsedCache >= 0 && (Date.now() - _monthUsedAt) < 60000) return _monthUsedCache;
@@ -4051,7 +4070,7 @@ async function tipulBakashatXHTTP(request, yourUUID, ctx) {
 				torKtivaAlia.rikun();
 				shachrerKotevMerchak();
 				try { reader.releaseLock() } catch (e) { }
-				try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
+				try { commitUsage(_globalEnv, usageStats, ctx, true); } catch (e) {}
 			}
 		},
 		cancel() {
@@ -4477,7 +4496,7 @@ async function tipulBakashatGRPC(request, yourUUID, ctx) {
 				torKtivaAlia.rikun();
 				shachrerKotevMerchak();
 				sgiratChibur();
-				try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
+				try { commitUsage(_globalEnv, usageStats, ctx, true); } catch (e) {}
 			}
 		},
 		cancel() {
@@ -4894,7 +4913,7 @@ async function tipulBakashatWS(request, yourUUID, url, ctx) {
 		atziratKabalaHaavaraMeforeshetWS = true;
 		bytesTorWsMforash = 0;
 		pritTorWsMforash = 0;
-		try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
+		try { commitUsage(_globalEnv, usageStats, ctx, true); } catch (e) {}
 		const msg = err?.message || `${err}`;
 		if (msg.includes('Network connection lost') || msg.includes('ReadableStream is closed')) {
 			log(`[WS forward] connection ended: ${msg}`);
@@ -4947,7 +4966,7 @@ async function tipulBakashatWS(request, yourUUID, url, ctx) {
 	serverSock.addEventListener('close', () => {
 		closeSocketQuietly(serverSock);
 		siyumHaavaraMeforeshetWS2();
-		try { recordUsage(_globalEnv, usageStats.up, usageStats.down, ctx, true, usageStats.userId); } catch (e) {}
+		try { commitUsage(_globalEnv, usageStats, ctx, true); } catch (e) {}
 	});
 	serverSock.addEventListener('error', (err) => {
 		tipulShgiatHaavaraWsMforash(err);
@@ -5904,7 +5923,7 @@ async function connectStreams(remoteSocket, webSocket, headerData, retryFunc, us
 				if (done) break;
 				if (!value || value.byteLength === 0) continue;
 				hasData = true;
-				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, usageStats.up + usageStats.down)) throw new Error('quota exceeded'); }
+				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, usageStats.up + usageStats.down)) throw new Error('quota exceeded'); commitUsage(_globalEnv, usageStats, null, false); }
 				if (magbilYerida && magbilYerida.enabled) await magbilYerida.take(value.byteLength);
 				await sholeachYerida.shlicha(value);
 			}
@@ -5915,7 +5934,7 @@ async function connectStreams(remoteSocket, webSocket, headerData, retryFunc, us
 				if (done) break;
 				if (!value || value.byteLength === 0) continue;
 				hasData = true;
-				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, usageStats.up + usageStats.down)) throw new Error('quota exceeded'); }
+				if (usageStats) { usageStats.down += value.byteLength; if (usageStats.userId && haimMishtameshChiburCharag(usageStats.userId, usageStats.up + usageStats.down)) throw new Error('quota exceeded'); commitUsage(_globalEnv, usageStats, null, false); }
 				if (value.byteLength >= bytesGrainYerida) {
 					await sholeachYerida.flush();
 					if (magbilYerida && magbilYerida.enabled) await magbilYerida.take(value.byteLength);
@@ -11736,7 +11755,7 @@ async function haavaratWSlaBackend(request, url, env, ctx, urlBackend, mishtames
 	try { backendSocket.accept(); } catch (e) {}
 
 	let bridgeClosed = false;
-	const usageStats = { up: 0, down: 0 };
+	const usageStats = { up: 0, down: 0, userId: mishtameshID };
 	const byteLen = (d) => { try { return d && d.byteLength != null ? d.byteLength : (d && d.size != null ? d.size : (d && d.length) || 0); } catch (e) { return 0; } };
 	const closeBoth = (code, reason) => {
 		if (bridgeClosed) return; bridgeClosed = true;
@@ -11744,16 +11763,16 @@ async function haavaratWSlaBackend(request, url, env, ctx, urlBackend, mishtames
 		try { backendSocket.close(code || 1000, reason || 'done'); } catch (e) {}
 		// Count the relayed bytes exactly once, attributed to this user (was double-counting: recordUsage
 		// via the global id PLUS a second direct tiudNefachMishtamesh write, inflating per-user usage 2x).
-		try { recordUsage(env, usageStats.up, usageStats.down, ctx, true, mishtameshID); } catch (e) {}
+		try { commitUsage(env, usageStats, ctx, true); } catch (e) {}
 	};
 	const fwd = (dest, data, isUp) => {
 		if (bridgeClosed) return;
 		if (data instanceof Blob) {
-			data.arrayBuffer().then((ab) => { if (bridgeClosed) return; try { dest.send(ab); if (isUp) usageStats.up += byteLen(ab); else usageStats.down += byteLen(ab); } catch (e) { closeBoth(1011, 'relay'); } }).catch(() => closeBoth(1011, 'relay'));
+			data.arrayBuffer().then((ab) => { if (bridgeClosed) return; try { dest.send(ab); if (isUp) usageStats.up += byteLen(ab); else usageStats.down += byteLen(ab); commitUsage(env, usageStats, null, false); } catch (e) { closeBoth(1011, 'relay'); } }).catch(() => closeBoth(1011, 'relay'));
 			return;
 		}
 		if (dest.readyState !== 1) return;
-		try { dest.send(data); if (isUp) usageStats.up += byteLen(data); else usageStats.down += byteLen(data); } catch (e) { closeBoth(1011, 'relay'); }
+		try { dest.send(data); if (isUp) usageStats.up += byteLen(data); else usageStats.down += byteLen(data); commitUsage(env, usageStats, null, false); } catch (e) { closeBoth(1011, 'relay'); }
 	};
 	workerSocket.addEventListener('message', (ev) => fwd(backendSocket, ev.data, true));
 	backendSocket.addEventListener('message', (ev) => fwd(workerSocket, ev.data, false));
