@@ -68,7 +68,7 @@ const regexKtovetTzomet = /^(\[[\da-fA-F:]+\]|[\d.]+|[a-zA-Z0-9](?:[a-zA-Z0-9-]*
 const novaMachsanRaw = 'https://raw.githubusercontent.com/IRNova/Nova-Proxy/main';
 const urlGirsatNOVA = novaMachsanRaw + '/version.json';
 const NOVAWorkerSrcFallback = novaMachsanRaw + '/worker.js';
-const tikraTzometLecholMishtamesh = 40;
+const tikraTzometLecholMishtamesh = 150; // per-user node cap default (was 40, which truncated a large curated clean-IP list); override via network setting maxNodesPerUser
 ///////////////////////////////////////////////////////امنیت: توابع کمکی///////////////////////////////////////////////
 function timingSafeStrEqual(a, b) {
 	if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
@@ -3472,7 +3472,7 @@ export default {
 							usernat64Takef = objMishtameshMinuy.usernat64 || null;
 							log(`[Sub.UserOverride] user=${objMishtameshMinuy.username || objMishtameshMinuy.tag || objMishtameshMinuy.id} cleanIp=${_uClean.length} proxyIp=${_uProxy.length} ports=${_uPorts.length || 'default'} mode=${userModeTakef || 'default'} maxCfg=${maxConfigsTakef || 'unlimited'}`);
 							if (_uClean.length) {
-								const _ports = _uPorts.length ? _uPorts : ['443'];
+								const _ports = _uPorts.length ? _uPorts : ['443', '8443', '2053', '2083', '2087', '2096']; // full TLS port set: a Radar apply was collapsing ~20 configs to just the scanned-IP count
 								const _expanded = [];
 								for (const _entry of _uClean) {
 									const _h = _entry.indexOf('#');
@@ -3522,8 +3522,9 @@ export default {
 							{
 								const _perUserSeed = String(subBakasha || tagMishtameshMinuy || '');
 								const _hasOwnCleanIp = objMishtameshMinuy && String(objMishtameshMinuy.cleanIp || '').trim().length > 0;
-								log(`[Sub.NodeLimit] seed=${_perUserSeed || '(none)'} hasOwnCleanIp=${_hasOwnCleanIp} beforeLimit=${ipNivcharMale.length} cap=${tikraTzometLecholMishtamesh}`);
-								if (_perUserSeed && !_hasOwnCleanIp && ipNivcharMale.length > tikraTzometLecholMishtamesh) {
+																const _nodeCap = (hagdarotReshet && Number(hagdarotReshet.maxNodesPerUser) > 0) ? Number(hagdarotReshet.maxNodesPerUser) : tikraTzometLecholMishtamesh;
+log(`[Sub.NodeLimit] seed=${_perUserSeed || '(none)'} hasOwnCleanIp=${_hasOwnCleanIp} beforeLimit=${ipNivcharMale.length} cap=${_nodeCap}`);
+								if (_perUserSeed && !_hasOwnCleanIp && ipNivcharMale.length > _nodeCap) {
 									let _seed = 2166136261;
 									for (let i = 0; i < _perUserSeed.length; i++) { _seed ^= _perUserSeed.charCodeAt(i); _seed = (_seed * 16777619) >>> 0; }
 									const _rand = () => { _seed = (_seed * 1103515245 + 12345) & 0x7fffffff; return _seed / 0x7fffffff; };
@@ -3532,7 +3533,7 @@ export default {
 									for (const _e of ipNivcharMale) { const _ip = _addrOf(_e); if (_ip && !_byIp.has(_ip)) _byIp.set(_ip, _e); }
 									const _pool = [..._byIp.values()];
 									for (let i = _pool.length - 1; i > 0; i--) { const j = Math.floor(_rand() * (i + 1)); const _t = _pool[i]; _pool[i] = _pool[j]; _pool[j] = _t; }
-									ipNivcharMale = _pool.slice(0, tikraTzometLecholMishtamesh);
+									ipNivcharMale = _pool.slice(0, _nodeCap);
 									log(`[Sub.NodeLimit] applied shuffle/dedup; uniqueIps=${_pool.length} afterLimit=${ipNivcharMale.length}`);
 								}
 							}
@@ -11366,7 +11367,11 @@ function novaInjectFakeClash(yaml, lines, uuid, host) {
 			if (inGroups && /^\s+type:\s*\S+/.test(ln)) curType = t.replace(/^type:\s*/, '');
 			res.push(ln);
 			if (inGroups && /^\s+proxies:\s*$/.test(ln) && curType === 'select') {
-				const itemIndent = ln.slice(0, ln.search(/\S/)) + '  ';
+				// Match the indent of the group's EXISTING items (some subconverters indent list items at
+				// the same column as the key, not key+2); mixed indent makes strict go-yaml/mihomo reject.
+				let itemIndent = ln.slice(0, ln.search(/\S/)) + '  ';
+				const _next = src[k + 1];
+				if (_next && /^\s*-\s+/.test(_next)) itemIndent = _next.slice(0, _next.search(/\S/));
 				for (const nm of names) res.push(itemIndent + '- ' + nm);
 			}
 		}
@@ -11735,8 +11740,9 @@ async function haavaratWSlaBackend(request, url, env, ctx, urlBackend, mishtames
 		if (bridgeClosed) return; bridgeClosed = true;
 		try { workerSocket.close(code || 1000, reason || 'done'); } catch (e) {}
 		try { backendSocket.close(code || 1000, reason || 'done'); } catch (e) {}
-		try { recordUsage(env, usageStats.up, usageStats.down, ctx, true); } catch (e) {}
-		if (mishtameshID) { try { tiudNefachMishtamesh(env, mishtameshID, usageStats.up, usageStats.down, ctx); } catch (e) {} }
+		// Count the relayed bytes exactly once, attributed to this user (was double-counting: recordUsage
+		// via the global id PLUS a second direct tiudNefachMishtamesh write, inflating per-user usage 2x).
+		try { recordUsage(env, usageStats.up, usageStats.down, ctx, true, mishtameshID); } catch (e) {}
 	};
 	const fwd = (dest, data, isUp) => {
 		if (bridgeClosed) return;
