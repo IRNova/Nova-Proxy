@@ -2187,6 +2187,7 @@ export default {
 									warpCalls: typeof settings.warpCalls === 'boolean' ? settings.warpCalls : false,
 									warpMode: ['warp', 'chain', 'wow'].includes(settings.warpMode) ? settings.warpMode : 'warp',
 									warpEndpoint: typeof settings.warpEndpoint === 'string' ? settings.warpEndpoint.slice(0, 80) : '',
+										warpCustomEndpoints: typeof settings.warpCustomEndpoints === 'string' ? settings.warpCustomEndpoints.slice(0, 4000) : '',
 									warpAmnezia: typeof settings.warpAmnezia === 'boolean' ? settings.warpAmnezia : false,
 									warpCleanIp: typeof settings.warpCleanIp === 'boolean' ? settings.warpCleanIp : false,
 									warpAmneziaLevel: ['light', 'medium', 'heavy', 'custom'].includes(settings.warpAmneziaLevel) ? settings.warpAmneziaLevel : 'medium',
@@ -3590,6 +3591,8 @@ log(`[Sub.NodeLimit] seed=${_perUserSeed || '(none)'} hasOwnCleanIp=${_hasOwnCle
 									return null;
 								}
 
+								// Self-hosted bare-IP node (no domain, self-signed TLS): opt-in via a $self marker in the remark.
+								const _selfHosted = /(?:^|\s)\$self\b/i.test(String(match[3] || ''));
 								let nativTzometMale = config_JSON.nativTzometMale;
 
 								const hatamaProxySharsheret = hearatTzomet.match(/\$(socks5|http|https|turn|sstp):\/\/([^#\s]+)/i);
@@ -3624,9 +3627,11 @@ log(`[Sub.NodeLimit] seed=${_perUserSeed || '(none)'} hasOwnCleanIp=${_hasOwnCle
 								if (tagMishtameshMinuy) nativTzometMale += (nativTzometMale.includes('?') ? '&' : '?') + 'u=' + tagMishtameshMinuy;
 								if (isLoonOrSurge) nativTzometMale = nativTzometMale.replace(/,/g, '%2C');
 
-								const _np = (config_JSON.sugProtokol === 'mixed' && !keGenNivchar)
-									? [_D_._vl_,_D_._tr_,'ss'][_idx % 3]
-									: sugProtokol;
+								const _np = _selfHosted
+									? _D_._vl_
+									: (config_JSON.sugProtokol === 'mixed' && !keGenNivchar)
+										? [_D_._vl_,_D_._tr_,'ss'][_idx % 3]
+										: sugProtokol;
 
 								// Node remark: LOCKED Nova branding, NOT overridable by the panel, a template,
 									// or a reseller. Format = <flag> سرویس رایگان نوا <ip>:<port> [<PROTO>]. The custom
@@ -3635,7 +3640,7 @@ log(`[Sub.NodeLimit] seed=${_perUserSeed || '(none)'} hasOwnCleanIp=${_hasOwnCle
 									{
 										const _chainMark = (hearatTzomet.match(/ ·S\d+$/) || [''])[0];
 										// Keep a leading country flag from the source remark if present (per requirement).
-										const _rawRemark = String(match[3] || '').replace(/ ·S\d+$/, '').replace(/\$(socks5|http|https|turn|sstp):\/\/[^#\s]+/i, '').trim();
+										const _rawRemark = String(match[3] || '').replace(/ ·S\d+$/, '').replace(/\$(socks5|http|https|turn|sstp):\/\/[^#\s]+/i, '').replace(/(?:^|\s)\$self\b/i, '').trim();
 										const _flagMatch = _rawRemark.match(/^(?:\uD83C[\uDDE6-\uDDFF]){2}/);
 										const _flag = _flagMatch ? _flagMatch[0] + ' ' : '';
 										hearatTzomet = `${_flag}سرویس رایگان نوا ${NOVA_TG_HANDLE} ${ktovetTzomet}:${portTzomet} [${_np.toUpperCase()}]${_chainMark}`;
@@ -3651,6 +3656,10 @@ log(`[Sub.NodeLimit] seed=${_perUserSeed || '(none)'} hasOwnCleanIp=${_hasOwnCle
 									return `${_np}://${btoa(config_JSON.SS.shitatHatzpana + ':' + config_JSON.UUID)}@${ktovetTzomet}:${portTzomet}?plugin=v2${encodeURIComponent('ray-plugin;mode=websocket;host=example.com;path=' + (config_JSON.nativAckrai ? nativAkrai(nativTzometMale) : nativTzometMale) + (config_JSON.SS.TLS ? ';tls' : '')) + paramEchLink + paramPitzulTls}#${encodeURIComponent(hearatTzomet)}`;
 								} else {
 									const erechParamNativHaavara = hasagatErechParametrNativHaavara(config_JSON, nativTzometMale, keGenNivchar);
+									if (_selfHosted) {
+										const _selfAddr = ktovetTzomet.replace(/^\[|\]$/g, ''); // node's own bare address for SNI/Host
+										return `${_np}://00000000-0000-4000-8000-000000000000@${ktovetTzomet}:${portTzomet}?security=tls&type=${protokolHaavara}&${shemSdehDomain}=${_selfAddr}&fp=${fingerprintMinuy}&sni=${_selfAddr}&${shemSdehNativ}=${encodeURIComponent(erechParamNativHaavara)}&encryption=none&insecure=1&allowInsecure=1#${encodeURIComponent(hearatTzomet)}`;
+									}
 									if (config_JSON.enableTLS === false) {
 										const _TLSp = [443, 2053, 2083, 2087, 2096, 8443], _NOp = [80, 2052, 2082, 2086, 2095, 8080];
 										const _ntPort = String(_NOp[_TLSp.indexOf(Number(portTzomet))] ?? portTzomet);
