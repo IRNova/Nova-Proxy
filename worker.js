@@ -1,7 +1,7 @@
 const _D_={_vl_:atob('dmxlc3M='),_tr_:atob('dHJvamFu'),_vm_:atob('dm1lc3M='),_ss_:atob('c2hhZG93c29ja3M='),_wg_:atob('d2lyZWd1YXJk'),_cl_:atob('Y2xhc2g='),_sb_:atob('c2luZ2JveA=='),_sb2_:atob('c2luZy1ib3g='),_mh_:atob('bWlob21v'),_hd_:atob('aGlkZGlmeQ=='),_sg_:atob('c3VyZ2U='),_qx_:atob('cXVhbng='),_ln_:atob('bG9vbg=='),_np_:atob('Tm92YVByb3h5'),_np2_:atob('Tm92YS1Qcm94eQ=='),_np3_:atob('Tm92YQ=='),_cf_:atob('Y2xvdWRmbGFyZQ=='),_xr_:atob('eHJheQ=='),_cr_:atob('Q21saXVzcw=='),_pr_:atob('UFJPWFlJUA=='),_sp_:atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='),_wr_:atob('Tm92YS1XQVJQ'),_ws_:atob('d3M='),_grpc_:atob('Z3JwYw=='),_xhttp_:atob('eHR0cA=='),_aes128_:atob('YWVzLTEyOC1nY20='),_aes256_:atob('YWVzLTI1Ni1nY20='),_chrome_:atob('Y2hyb21l'),_mixed_:atob('bWl4ZWQ=')};
 const Version = 'V4.1.6';
 let config_JSON, metavechIP = '', hafelSocks5Metavech = null, hafelSocks5Klali = false, cheshbonSocks5Sheli = '', parsedSocks5Address = {};
-let mitmonReshimaLevanaSocks5 = null, mitmonIpMetavech, mitmonNituachMetavech, indeksMaarachMetavechMitmon = 0, hafelGibuiMetavech = true, hadpasatYomanNipui = false;
+let mitmonReshimaLevanaSocks5 = null, mitmonIpMetavech, mitmonNituachMetavech, indeksMaarachMetavechMitmon = 0, hafelGibuiMetavech = true, hafelMetavechIataGlobali = false, hadpasatYomanNipui = false;
 let connClientIp = '';
 let connRejectReason = null;
 let connProxyWhitelist = [];
@@ -5523,7 +5523,7 @@ async function forwardataTCP(host, portNum, rawData, ws, respHeader, remoteConnW
 	}
 	remoteConnWrapper.retryConnect = async () => connecttoPry(!chavilaRishonaNishlechaViaProxy);
 
-	if (hafelSocks5Metavech && (hafelSocks5Klali || reshimaLevanaSocks5.some(p => new RegExp(`^${p.replace(/\*/g, '.*')}$`, 'i').test(host)))) {
+	if ((hafelSocks5Metavech && (hafelSocks5Klali || reshimaLevanaSocks5.some(p => new RegExp(`^${p.replace(/\*/g, '.*')}$`, 'i').test(host)))) || hafelMetavechIataGlobali) {
 		log(`[TCP forward] enabling SOCKS5/HTTP/HTTPS/TURN/SSTP global proxy`);
 		try {
 			await connecttoPry();
@@ -9886,6 +9886,7 @@ async function bakashatAPImuvchar(urls, portBereira = '443', zmanTimeout = 3000)
 
 async function hasagatParametrMetavech(url, uuid) {
 	nituachMishtameshChibur(url);
+	hafelMetavechIataGlobali = false;
 	// Apply per-user proxy settings (userSocks5 / userProxyIp / userProxyIata)
 	if (chiburMishtameshId) {
 		const _cu = hagdarotReshet && Array.isArray(hagdarotReshet.users) ? hagdarotReshet.users.find(u => u && u.id === chiburMishtameshId) : null;
@@ -9903,6 +9904,7 @@ async function hasagatParametrMetavech(url, uuid) {
 			}
 			if (_cu.userProxyIata && !_cu.userSocks5 && !_cu.userProxyIp) {
 				metavechIP = (_cu.userProxyIata.toLowerCase() + '.' + milonChatimot[0].toLowerCase() + '.' + milonChatimot[1] + 'ssss.net');
+				hafelMetavechIataGlobali = true; // strict: route ALL of this user's traffic via the chosen country
 				hafelGibuiMetavech = false;
 			}
 		}
