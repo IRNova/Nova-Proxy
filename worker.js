@@ -1809,9 +1809,7 @@ export default {
 				const TG_JSON = JSON.parse(TG_TXT);
 				if (!TG_JSON.BotToken) return new Response('BotToken not found', { status: 400 });
 				const webhookUrl = `${url.protocol}//${url.host}/bot`;
-				const apiUrl = `https://api.telegram.org/bot${TG_JSON.BotToken}/setWebhook?url=${encodeURIComponent(webhookUrl)}&drop_pending_updates=true`;
-				const res = await fetch(apiUrl);
-				const data = await res.json();
+				const data = await novaSetTelegramWebhook(env, TG_JSON, webhookUrl);
 				ctx.waitUntil(tgSetMyCommands(TG_JSON.BotToken));
 				return new Response(JSON.stringify(data, null, 2), { status: 200, headers: { 'Content-Type': 'application/json' } });
 			}
@@ -2162,8 +2160,7 @@ export default {
 									const webhookUrl = `${url.protocol}//${url.host}/bot`;
 									ctx.waitUntil((async () => {
 										try {
-											const whRes = await fetch(`https://api.telegram.org/bot${newConfig.BotToken}/setWebhook?url=${encodeURIComponent(webhookUrl)}&drop_pending_updates=true`);
-											const whData = await whRes.json().catch(() => ({}));
+											const whData = await novaSetTelegramWebhook(env, newConfig, webhookUrl);
 											if (!whData.ok) console.error('[TG.Webhook] failed:', whData);
 											else console.log('[TG.Webhook] set:', webhookUrl);
 										} catch (e) { console.error('[TG.Webhook] error:', e); }
@@ -10567,12 +10564,34 @@ function tgLogsList(logs, page, lang) {
 	return { text, kb: { inline_keyboard: kb } };
 }
 
+let __novaWhHealAt = 0;
+// Register the Telegram webhook with a rotating secret_token so a forged POST to /bot
+// (a route only Telegram should ever call) cannot drive bot admin actions. The secret is stored in
+// tg.json and verified on every /bot update; the previous check was a spoofable admin chat id.
+async function novaSetTelegramWebhook(env, TG_JSON, webhookUrl) {
+	const secret = Array.from(crypto.getRandomValues(new Uint8Array(24)), b => b.toString(16).padStart(2, '0')).join('');
+	TG_JSON.WebhookSecret = secret;
+	try { await env.KV.put('tg.json', JSON.stringify(TG_JSON, null, 2)); } catch (e) {}
+	const apiUrl = `https://api.telegram.org/bot${TG_JSON.BotToken}/setWebhook?url=${encodeURIComponent(webhookUrl)}&drop_pending_updates=true&secret_token=${secret}`;
+	try { const res = await fetch(apiUrl); return await res.json(); } catch (e) { return { ok: false, error: String(e) }; }
+}
+
 async function tipulTelegramWebhook(request, env, userID, host, encryptionKey = null) {
 	try {
 		const TG_TXT = await env.KV.get('tg.json');
 		if (!TG_TXT) return new Response('Bot not configured', { status: 200 });
 		const TG_JSON = JSON.parse(TG_TXT);
 		if (!TG_JSON.BotToken || !TG_JSON.ChatID) return new Response('Bot not configured', { status: 200 });
+		// Authenticate the caller with the Telegram secret_token: only Telegram knows it, so this rejects forged
+		// POSTs to /bot (the prior chat-id-only check was spoofable). Legacy webhooks have no stored secret:
+		// self-heal by registering one (throttled per isolate), then reject this still-unauthenticated update.
+		const _whHdr = request.headers.get('X-Telegram-Bot-Api-Secret-Token') || '';
+		if (!TG_JSON.WebhookSecret) {
+			const _now = Date.now();
+			if (_now - __novaWhHealAt > 30000) { __novaWhHealAt = _now; try { await novaSetTelegramWebhook(env, TG_JSON, `${request.url.split('://')[0]}://${host}/bot`); } catch (e) {} }
+			return new Response('forbidden', { status: 403 });
+		}
+		if (!timingSafeStrEqual(_whHdr, TG_JSON.WebhookSecret)) return new Response('forbidden', { status: 403 });
 		const allowedChatId = String(TG_JSON.ChatID).trim();
 
 		const update = await request.json();
@@ -10833,9 +10852,7 @@ async function tipulTelegramWebhook(request, env, userID, host, encryptionKey = 
 			}
 			case '/setwebhook': {
 				const baseUrl = `${request.url.split('://')[0]}://${request.url.split('/')[2]}`;
-				const apiUrl = `https://api.telegram.org/bot${TG_JSON.BotToken}/setWebhook?url=${encodeURIComponent(baseUrl + '/bot')}&drop_pending_updates=true`;
-				const res = await fetch(apiUrl);
-				const data = await res.json();
+				const data = await novaSetTelegramWebhook(env, TG_JSON, baseUrl + '/bot');
 				if (data.ok) await tgSetMyCommands(TG_JSON.BotToken);
 				const msg = data.ok
 					? _btl(_cmdLang, {
