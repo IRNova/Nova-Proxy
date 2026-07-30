@@ -1,23 +1,30 @@
 {
-  // ───────────────────────────────────────────────────────────────────────────
-  //  Nova Proxy — Cloudflare Worker config (Deploy-to-Cloudflare ready)
-  //  Cloudflare reads this, auto-creates the D1 database, binds it, and deploys
-  //  the Worker — no terminal. The Worker creates its own D1 tables on first run.
-  //  After deploy, open the Worker URL → the /install wizard sets the admin password.
-  // ───────────────────────────────────────────────────────────────────────────
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "nova-proxy",
   "main": "worker.js",
-  "compatibility_date": "2024-09-23",
+  "compatibility_date": "2026-07-30",
   "compatibility_flags": ["nodejs_compat"],
   "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "nova-proxy-db",
-      "database_id": "placeholder-cloudflare-will-replace-this"
-    }
+    { "binding": "DB" }
+  ],
+  "kv_namespaces": [
+    { "binding": "KV" }
   ],
   "vars": {
-    "ENABLE_CRON": "false",
     "PAGES_URL": "https://nova-panel.github.io"
+  },
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01
+    }
   }
 }

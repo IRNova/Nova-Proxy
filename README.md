@@ -1,310 +1,218 @@
-<div align="right">
-  <a href="README.fa.md"><img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" /> فارسی</a>
-</div>
-
-<p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="Nova Proxy: a personal, censorship-resistant proxy and dashboard that runs on a single Cloudflare Worker on the free tier. Protocols VLESS, Trojan, Shadowsocks, gRPC and XHTTP over WebSocket and TLS. Users connect to one Worker at Cloudflare's edge with no origin server to rent.">
-</p>
-
 <div align="center">
 
-**A personal, censorship-resistant proxy + dashboard on a single Cloudflare Worker.**
+# Nova Proxy
 
-VLESS, Trojan, Shadowsocks, gRPC, XHTTP over WebSocket + TLS, with a self-contained
-bilingual (English + فارسی) dashboard, per-ISP clean-IP optimization, multi-user
-accounts, a Telegram bot, WARP, proxy chaining, and backend mode. Runs on Cloudflare's **free** tier.
+**A free, self-hosted proxy panel built to stay online where the internet is filtered.**
 
-[![License](https://img.shields.io/badge/license-MIT-purple?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/version-4.1.6-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
-[![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
+Deploy your own private panel to a free Cloudflare account in minutes. Multi-user, quota and expiry control, per-user links, and routing tuned for high-censorship networks like Iran.
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/IRNova/Nova-Proxy)
+
+[Telegram](https://t.me/irnova_proxy) · [Instagram](https://instagram.com/irnova_proxy) · [X](https://x.com/irNovaProxy) · [YouTube](https://youtube.com/@novaproxyir) · [Client app](https://github.com/IRNova/Nova-Client)
+
+English | [فارسی](#فارسی)
 
 </div>
 
 ---
 
-## 🌐 Links
+## What it is
 
-<div align="center">
+Nova Proxy is a control panel and edge worker that runs on Cloudflare Workers. You deploy it to **your own** free Cloudflare account, so the bandwidth, the domain, and the data are all yours. There is no shared server and no middleman. It is built to be a free, high-quality tool, not a reseller platform.
 
-[![Website](https://img.shields.io/badge/🌐%20Website-novaproxy.online-0ea5e9?style=for-the-badge)](https://novaproxy.online/)
-[![Telegram Channel](https://img.shields.io/badge/✈️%20Telegram%20Channel-@irnova__proxy-0ea5e9?style=for-the-badge&logo=telegram)](https://t.me/irnova_proxy)
-[![Telegram Group](https://img.shields.io/badge/👥%20Telegram%20Group-@irnovaproxy__group-0ea5e9?style=for-the-badge&logo=telegram)](https://t.me/irnovaproxy_group)
-[![YouTube](https://img.shields.io/badge/▶️%20YouTube-@novaproxyir-ff0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/@novaproxyir)
-[![X (Twitter)](https://img.shields.io/badge/𝕏%20X-@irNovaProxy-000000?style=for-the-badge&logo=x)](https://x.com/irNovaProxy)
-[![Instagram](https://img.shields.io/badge/📸%20Instagram-@irnova__proxy-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/irnova_proxy)
-[![Panel Guide](https://img.shields.io/badge/📘%20Panel%20Guide-فارسی-7c3aed?style=for-the-badge)](GUIDE.md)
-</div>
+The panel gives you a clean dashboard (English, فارسی, and Русский) to create users, hand each person their own subscription link, and keep everyone connected on networks that actively filter traffic.
 
----
+## Features
 
-<a id="-what-is-nova-proxy"></a>
+- **Multi-user management** with per-user quota, expiry, daily limits, and one private link each.
+- **Resistance Policy** presets: routing tuned for Iran and other high-censorship networks (port spread, domestic bypass, ad and tracker blocking, and more), each with a plain-language on/off.
+- **Nova Radar**: an in-browser scanner that finds the fastest clean Cloudflare IPs for the current network and applies them in one click, per user.
+- **Universal config formats**: every user link works as Auto, Base64, or Clash, so it imports into almost any client.
+- **Calls support**: optional WARP node for FaceTime, WhatsApp, and Telegram calls (UDP), plus a backend mode for full-quality routing through your own server.
+- **Mixed protocol**: hand out one link that carries both VLESS and Trojan, so if a filter blocks one, the app keeps working on the other.
+- **GitHub mirror failover**: publishes your subscription to a GitHub repo so users keep a permanent `raw.githubusercontent.com` link even if your domain gets filtered.
+- **Multi-Panel Hub**: run several panels and push your settings to all of them from one place.
+- **Telegram bot control**: manage users (add, edit, quota, expiry, extend, delete) straight from a bot, in EN, FA, or RU.
+- **Node name templates**: brand every node name with a template ({FLAG} {COUNTRY} {CITY} {NAME} {DATE} and more).
+- **Self-healing links**: if your worker domain changes or a host goes down, configs fall back to a working address on their own.
 
-<p align="center">
-  <img src="./assets/readme/section-what-is.svg" width="100%" alt="What is Nova Proxy? The serverless, all-in-one circumvention proxy.">
-</p>
+## Quick start
 
-Nova Proxy is a **personal, all-in-one censorship-circumvention proxy** that runs entirely on Cloudflare Workers, the **free tier**. It combines a powerful proxy (VLESS, Trojan, Shadowsocks over WebSocket/gRPC/XHTTP) with a **full bilingual admin dashboard**, all in a single deployable Worker.
+You need a free [Cloudflare](https://dash.cloudflare.com/sign-up) account.
 
-**What makes Nova different:**
-- ⚡ **Zero infrastructure**, no VPS, no domain needed to start
-- 🌍 **Per-ISP clean-IP**, auto-optimized for each Iranian ISP
-- 👥 **Multi-user**, per-user links with quota, expiry, and on/off control
-- 🤖 **Telegram bot**, full management from Telegram
-- 🔗 **Proxy chaining**, SOCKS5, HTTP, HTTPS, TURN, SSTP
-- 🛡️ **Advanced evasion**, ECH, TLS fragment, 0-RTT, fingerprint
-- 🧩 **Backend mode**, connect to your own Xray/sing-box VPS for VLESS + UDP calls
+**Option A, one-click:** use the Deploy to Cloudflare button in the repo and follow the prompts. Cloudflare's supported deployment flow creates the Worker, the KV namespace, and the D1 database, then connects Workers Builds. You do not create or paste a Cloudflare API token into Nova.
 
----
+### Easy, reviewable updates
 
-<a id="-quick-install"></a>
+Repositories created from this project include a daily **Check for Nova updates** GitHub Action. When a release is available, it opens a pull request containing only `worker.js` and `version.json`. Review the diff and Cloudflare preview, then merge to deploy through Workers Builds. Nontechnical users can optionally enable validated hands-off updates with one repository variable. See [UPDATES.md](UPDATES.md) for review mode, automatic mode, and rollback instructions.
 
-<p align="center">
-  <img src="./assets/readme/section-quick-install.svg" width="100%" alt="Quick Install: three ways to deploy in minutes.">
-</p>
-
-Choose your preferred method:
-
-### 🖥️ Nova Wizard (Desktop)
-
-The official desktop installer with a graphical interface, no technical knowledge required.
-
-[**→ Download Nova Wizard for Windows & Linux**](https://github.com/IRNova/Nova-Wizard)
-
-### 🌐 Web Installer
-
-Visit the official site and follow the step-by-step guide:
-
-[**→ novaproxy.online/install**](https://novaproxy.online/install)
-
-**Transparency:** the web installer is fully open source. It runs in your browser and talks to Cloudflare's API. Because Cloudflare's API sends no CORS headers and `workers.dev` is filtered in Iran, requests are relayed through a same-origin passthrough on the site's own domain. That passthrough forwards requests to Cloudflare unchanged and **never stores or logs your token**. You can read every line of it:
-
-- Installer page: [`public/install.html`](https://github.com/iiviirv/irnova-site/blob/main/public/install.html)
-- The `/cf` passthrough: [`functions/cf.js`](https://github.com/iiviirv/irnova-site/blob/main/functions/cf.js)
-
-Prefer zero trust? Skip the web installer entirely and deploy this repo yourself with `wrangler`. After any install you can revoke the token in the Cloudflare dashboard; your panel keeps working.
-
----
-
-### 📱 Mobile
-
-- **Android:** **Radar**, an Android app with a built-in wizard for one-click Nova Proxy installation on Cloudflare. Coming soon.
-- **iOS:** Currently in development.
-
----
-
-<a id="-backend-mode-vless--voicevideo-calls"></a>
-
-<p align="center">
-  <img src="./assets/readme/section-backend-mode.svg" width="100%" alt="Backend Mode: VLESS plus voice and video calls via your VPS.">
-</p>
-
-Cloudflare Workers cannot run native TCP proxy or handle UDP traffic directly. To enable these features, Nova supports **Backend Mode**, forward traffic to your own Xray or sing-box VPS.
+**Option B, Wrangler (CLI):**
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/IRNova/Tools/main/nova-backend.sh)
+# 1. install the Cloudflare CLI
+npm install -g wrangler
+wrangler login
+
+# 2. install dependencies and deploy
+# Wrangler provisions and binds KV and D1 automatically.
+npm ci
+npm run deploy
 ```
 
-After running the installer, enable Backend Mode in the Nova panel (Network Settings → Backend Mode) and enter your VPS URL.
+After it deploys, open `https://<your-worker>.workers.dev/`, finish the short setup, and set your admin login. That is your panel.
 
----
+## Using it
 
-## 📋 Prerequisites
+1. Open the panel and turn on multi-user.
+2. Create a user (name, quota, expiry). The panel generates their private link.
+3. Copy that user's link and send it to them.
+4. They open it on their phone, pick **Auto**, **Base64**, or **Clash**, and import it into their app.
 
-- A **Cloudflare account** (free) with Workers enabled
-- A **KV namespace** (created automatically by the one-click deploy, or manually via Wrangler)
-- (Optional) Node.js v18+ and Wrangler CLI for local testing
+The recommended client is **[Nova Client](https://github.com/IRNova/Nova-Client)** (iOS, Android, and desktop). Any standard client that reads Base64 or Clash also works.
 
----
+## Clients
 
-<a id="-feature-evolution-v1--v2--v3"></a>
+| Format | Works with |
+| --- | --- |
+| Auto | Most apps, picks the right format automatically |
+| Base64 | v2rayNG and classic apps |
+| Clash | Clash Meta, FlClash, Karing |
 
-<p align="center">
-  <img src="./assets/readme/section-feature-evolution.svg" width="100%" alt="Feature Evolution: how Nova grew across v1, v2 and v3.">
-</p>
+## Links
 
-| Feature | v1 | v2 | v3 |
-|---------|:--:|:--:|:--:|
-| Auto subscription link | ✅ | ✅ | ✅ |
-| Base64 format | ✅ | ✅ | ✅ |
-| Clash / Mihomo | ✅ | ✅ | ✅ |
-| sing-box | ✅ | ✅ | ✅ |
-| Loon | ✅ | ✅ | ✅ |
-| Surge | ✅ | ✅ | ✅ |
-| Load Balancing | ✅ | ✅ | ✅ |
-| Health Check | ✅ | ✅ | ✅ |
-| Ping test | ✅ | ✅ | ✅ |
-| Best config selector | ✅ | ✅ | ✅ |
-| QR Code | ✅ | ✅ | ✅ |
-| Display config list | ✅ | ✅ | ✅ |
-| DoH proxy | ✅ | ✅ | ✅ |
-| DNS encryption | ✅ | ✅ | ✅ |
-| DNS Load Balance / Failover / Caching | ✅ | ✅ | ✅ |
-| Local DNS | ✅ | ✅ | ✅ |
-| Anti Sanction DNS | ✅ | ✅ | ✅ |
-| Fake DNS | ✅ | ✅ | ✅ |
-| Routing / GeoIP / GeoSite | ✅ | ✅ | ✅ |
-| Domestic Bypass | ✅ | ✅ | ✅ |
-| IPv6 support | ✅ | ✅ | ✅ |
-| AdBlock / PornBlock | ✅ | ✅ | ✅ |
-| Cloudflare ports | ✅ | ✅ | ✅ |
-| Trojan direct link | ✅ | ✅ | ✅ |
-| Clash direct link | ✅ | ✅ | ✅ |
-| Global SOCKS5 mode | ✅ | ✅ | ✅ |
-| Global HTTP mode | ✅ | ✅ | ✅ |
-| Clean Cloudflare IP scanner | ✅ | ✅ | ✅ |
-| Telegram notifications | ✅ | ✅ | ✅ |
-| Telegram bot management | ✅ | ✅ | ✅ |
-| Quantumult X | ➖ | ✅ | ✅ |
-| Mixed Auto (client detection) | ➖ | ✅ | ✅ |
-| Random Path / Wildcard Host | ➖ | ✅ | ✅ |
-| Admin dashboard (RTL Persian) | ➖ | ✅ | ✅ |
-| Simple / Advanced mode | ➖ | ✅ | ✅ |
-| Dark mode | ➖ | ✅ | ✅ |
-| JSON Config Editor | ➖ | ✅ | ✅ |
-| Log Viewer | ➖ | ✅ | ✅ |
-| Reset config | ➖ | ✅ | ✅ |
-| VLESS / Trojan / Shadowsocks | ➖ | ✅ | ✅ |
-| gRPC / XHTTP transport | ➖ | ✅ | ✅ |
-| WebSocket Early Data | ➖ | ✅ | ✅ |
-| mux=0 for Shadowsocks | ➖ | ✅ | ✅ |
-| SOCKS5 chain | ➖ | ✅ | ✅ |
-| HTTP/HTTPS CONNECT chain | ➖ | ✅ | ✅ |
-| TURN / SSTP chain | ➖ | ✅ | ✅ |
-| Global HTTPS / TURN / SSTP mode | ➖ | ✅ | ✅ |
-| Whitelist domains | ➖ | ✅ | ✅ |
-| Chain in subscription link | ➖ | ✅ | ✅ |
-| TLS 1.3 / 1.2 | ➖ | ✅ | ✅ |
-| ChaCha20-Poly1305 / AES-GCM | ➖ | ✅ | ✅ |
-| Custom ClientHello / ALPN | ➖ | ✅ | ✅ |
-| SNI fragment / TLS fragment | ➖ | ✅ | ✅ |
-| Fallback to ChaCha20 | ➖ | ✅ | ✅ |
-| AES-128/256-GCM (Shadowsocks) | ➖ | ✅ | ✅ |
-| Auto detection / Dynamic session key | ➖ | ✅ | ✅ |
-| Online / API optimize, Custom IP list | ➖ | ✅ | ✅ |
-| Random IP generator / Result tabs | ➖ | ✅ | ✅ |
-| Save/Override results | ➖ | ✅ | ✅ |
-| Per-ISP clean-IP optimization | ➖ | ✅ | ✅ |
-| Telegram Webhook / Bot config in panel | ➖ | ✅ | ✅ |
-| Cloudflare Usage Query / API Token | ➖ | ✅ | ✅ |
-| Custom Usage API | ➖ | ✅ | ✅ |
-| VLESS / Shadowsocks direct link | ➖ | ✅ | ✅ |
-| Subscription with token | ➖ | ✅ | ✅ |
-| Full clipboard copy | ➖ | ✅ | ✅ |
-| KV storage (Config, CF, TG, IPs, Logs) | ➖ | ✅ | ✅ |
-| Password login / Auth Cookie | ➖ | ✅ | ✅ |
-| UUID validation / Token auth (MD5) | ➖ | ✅ | ✅ |
-| Speed test block | ➖ | ✅ | ✅ |
-| Environment variables | ➖ | ✅ | ✅ |
-| Persian RTL / Responsive panel | ➖ | ✅ | ✅ |
-| Leaflet map / Toast / Modal | ➖ | ✅ | ✅ |
-| Collapse modules / SVG icons | ➖ | ✅ | ✅ |
-| Copy to clipboard | ➖ | ✅ | ✅ |
-| Concurrent TCP dial / 0-RTT | ➖ | ✅ | ✅ |
-| Uplink coalescing / Downlink grain | ➖ | ✅ | ✅ |
-| Upload queue limit | ➖ | ✅ | ✅ |
-| IP Load Balance / Proxy Fallback | ➖ | ✅ | ✅ |
-| Tokenless format-named sub links | ➖ | ➖ | ✅ |
-| Permanent GitHub sub-mirror | ➖ | ➖ | ✅ |
-| Bundled dashboard (Static Assets) | ➖ | ➖ | ✅ |
-| Bilingual EN + FA UI + guided tour | ➖ | ➖ | ✅ |
-| Malware / Phishing / Cryptominers blocking | ➖ | ➖ | ✅ |
-| QUIC blocking | ➖ | ➖ | ✅ |
-| Backend mode (VLESS + UDP / voice-video calls) | ➖ | ➖ | ✅ |
-| ECH (Encrypted Client Hello) | ➖ | ➖ | ✅ |
-| Port-spread / Multi-transport | ➖ | ➖ | ✅ |
-| Telegram auto-announce domain updates | ➖ | ➖ | ✅ |
-| Daily traffic chart + upload/download split | ➖ | ➖ | ✅ |
-| Per-user link + total/daily quota + expiry + on/off + auto-disable | ➖ | ➖ | ✅ |
-| Per-user sub link with username + secret key authentication | ➖ | ➖ | ✅ |
-| Read-after-write KV cache for instant user config propagation | ➖ | ➖ | ✅ |
-| NAT64 / IPv6 transition support | ➖ | ➖ | ✅ |
-| Panel password change + 2FA (TOTP) + recovery | ➖ | ➖ | ✅ |
-| Login rate limiting + session management | ➖ | ➖ | ✅ |
-| WARP account register + WARP+ license + WoW | ➖ | ➖ | ✅ |
-| WARP endpoint switcher + Iran-friendly endpoints | ➖ | ➖ | ✅ |
-| WARP Amnezia mode + WARP Noise | ➖ | ➖ | ✅ |
-| One-tap Iran mode + live config report | ➖ | ➖ | ✅ |
-| Backup & Restore (export/import all settings) | ➖ | ➖ | ✅ |
-| Cross-infra fallback (non-CF nodes) | ➖ | ➖ | ✅ |
-| Self-healing domain pool + health checking | ➖ | ➖ | ✅ |
-| Bypass countries (China, Russia, sanctions) | ➖ | ➖ | ✅ |
-| Custom routing rules | ➖ | ➖ | ✅ |
-| Central management API + fleet stats + broadcast | ➖ | ➖ | ✅ |
-| Kill switch (global pause/resume) | ➖ | ➖ | ✅ |
-| Instance heartbeat + announcement system | ➖ | ➖ | ✅ |
-| D1 database support (KV migration) | ➖ | ➖ | ✅ |
-| /install wizard + one-click Deploy to Cloudflare | ➖ | ➖ | ✅ |
+- Telegram: https://t.me/irnova_proxy
+- Instagram: https://instagram.com/irnova_proxy
+- X: https://x.com/irNovaProxy
+- YouTube: https://youtube.com/@novaproxyir
+- Client app: https://github.com/IRNova/Nova-Client
+- Organization: https://github.com/IRNova
 
----
+## Release notes
 
-<a id="-support"></a>
+**Build 2026-07-14**
 
-<p align="center">
-  <img src="./assets/readme/section-support.svg" width="100%" alt="Support: star the repo and keep Nova free.">
-</p>
+- Fixed a data-loss bug where saving Network Settings could clear the user list. Users, multi-user state, and the host pool are now preserved on every save.
+- Simplified config sharing to three universal formats: Auto, Base64, and Clash. One link now imports into almost any client.
+- Added a Quick actions panel to the dashboard and cleaned up the mobile Users screen.
+- Hardened the GitHub mirror: the access token is trimmed before use, so a token pasted with extra whitespace no longer fails.
 
-If Nova helps you, please **⭐ star the repo** and consider a small donation, it keeps the project alive and free for everyone.
+## Notes
 
-<div align="center">
-
-### ⭐ [Star Nova on GitHub](https://github.com/IRNova/Nova-Proxy) ⭐
-
-[![Star on GitHub](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&logo=github&label=Star%20Nova&color=8957e5)](https://github.com/IRNova/Nova-Proxy)
-
-| Coin | Address |
-|------|---------|
-| **TON** | `UQD51lGC35rP_SbVYgbFA7CEEii4GVMFgqj4N8fiGi6m425w` |
-
-</div>
-
----
-
-## 🙏 Credits
-
-Built with ❤️ for a free and open internet.
-
-- [@iiviirv](https://github.com/iiviirv), contributor
-- [Cloudflare Workers](https://workers.cloudflare.com/)
-- [Xray-core](https://github.com/XTLS/xray-core)
-
----
-
-## 📜 Terms: free, and not for resale
-
-Nova's **code** is open source under MIT: you are free to self-host, study, and modify it. Nova is a **free service**, so the following terms apply to the Nova name and the configs it generates:
-
-- **Do not resell.** Do not sell Nova configs, subscriptions, or access as a paid product. Nova is free for everyone.
-- **Do not strip the free-service mark.** Every generated node carries a locked `سرویس رایگان نوا @irnova_proxy` mark. Removing it to pass configs off as your own paid service is not permitted.
-- **Keep attribution.** If you fork or redistribute, keep credit to Nova Proxy and a link back to this repo.
-- **Do not impersonate.** Do not use the Nova name, logo, or channel to present a rebranded copy as the official Nova.
-
-The MIT license covers the code. The Nova name, brand, and the "it stays free" promise belong to the project.
-
----
+- **This is self-hosted.** Each person runs their own panel on their own free Cloudflare account, so it scales without any shared cost.
+- **Free Cloudflare limits apply.** Calls use UDP, which a plain free Worker cannot carry. Enable the WARP node or a backend server for voice and video calls.
+- **Keep the panel private.** Do not share your admin login. User subscription links are credentials, treat them like passwords.
+- Nova Proxy is a free tool for open access to the internet. Use it responsibly and in line with the laws that apply to you.
 
 ## License
 
-MIT, see the [LICENSE](LICENSE) file. The MIT grant applies to the source code; the brand terms above apply to the Nova name and service.
+See the [LICENSE](LICENSE) file in this repository.
 
 ---
 
-<div align="center">
+<a name="فارسی"></a>
+<div dir="rtl" align="right">
 
-Made for Iran <img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" />, and anyone who needs a free, open internet.
-**Nothing about your traffic is logged. The proxy is yours.**
+# نُوا پروکسی (Nova Proxy)
 
-📖 [Persian version](README.fa.md)
+**یک پنل پروکسی رایگان و خودمیزبان که ساخته شده تا جایی که اینترنت فیلتر است، آنلاین بماند.**
 
----
-<a href="https://star-history.com/#IRNova/Nova-Proxy&Date">Star history</a>
+پنل خصوصی خودتان را در چند دقیقه روی یک حساب رایگان Cloudflare راه‌اندازی کنید. چندکاربره، با کنترل حجم و انقضا، لینک اختصاصی برای هر کاربر، و مسیریابی تنظیم‌شده برای شبکه‌های پرفیلتر مثل ایران.
 
-</div>
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/IRNova/Nova-Proxy)
 
+[تلگرام](https://t.me/irnova_proxy) · [اینستاگرام](https://instagram.com/irnova_proxy) · [ایکس](https://x.com/irNovaProxy) · [یوتیوب](https://youtube.com/@novaproxyir) · [اپلیکیشن کلاینت](https://github.com/IRNova/Nova-Client)
 
----
+[English](#nova-proxy) | فارسی
 
-<div align="center">
+## این چیست
 
-Built by <a href="https://github.com/iiviirv"><b>@iiviirv</b></a> for the Nova Proxy Group.
+نُوا پروکسی یک پنل مدیریت و یک ورکر لبه است که روی Cloudflare Workers اجرا می‌شود. آن را روی حساب رایگان **خودتان** در Cloudflare نصب می‌کنید، پس پهنای باند، دامنه و داده‌ها همه مال شماست. نه سرور مشترکی در کار است و نه واسطه‌ای. این ابزار برای رایگان و باکیفیت‌بودن ساخته شده، نه برای فروش اشتراک.
+
+پنل یک داشبورد تمیز (به انگلیسی، فارسی و روسی) در اختیارتان می‌گذارد تا کاربر بسازید، به هر نفر لینک اشتراک اختصاصی بدهید، و همه را روی شبکه‌هایی که ترافیک را فعالانه فیلتر می‌کنند، متصل نگه دارید.
+
+## امکانات
+
+- **مدیریت چندکاربره** با حجم، انقضا و محدودیت روزانهٔ اختصاصی برای هر کاربر و یک لینک خصوصی برای هر نفر.
+- **سیاست مقاومت (Resistance Policy)**: تنظیمات آمادهٔ مسیریابی برای ایران و شبکه‌های پرفیلتر (پخش پورت، عبور مستقیم سایت‌های داخلی، مسدودسازی تبلیغ و ردیاب و بیشتر)، هرکدام با یک کلید روشن/خاموش ساده.
+- **نُوا رادار**: اسکنری داخل مرورگر که سریع‌ترین آی‌پی‌های تمیز Cloudflare را برای شبکهٔ فعلی پیدا می‌کند و با یک کلیک برای هر کاربر اعمال می‌کند.
+- **فرمت‌های همگانی کانفیگ**: لینک هر کاربر به‌صورت Auto، Base64 یا Clash کار می‌کند و تقریباً در هر اپلیکیشنی وارد می‌شود.
+- **پشتیبانی از تماس**: نود اختیاری WARP برای تماس‌های فیس‌تایم، واتساپ و تلگرام (UDP)، به‌همراه حالت بک‌اند برای مسیریابی باکیفیت کامل از طریق سرور خودتان.
+- **پروتکل ترکیبی**: یک لینک بدهید که هم VLESS و هم Trojan را حمل کند، تا اگر فیلتر یکی را بست، اپ روی دیگری کار کند.
+- **پشتیبان گیت‌هاب (Mirror)**: اشتراک شما را در یک ریپازیتوری گیت‌هاب منتشر می‌کند تا کاربران یک لینک دائمی `raw.githubusercontent.com` داشته باشند، حتی اگر دامنهٔ شما فیلتر شود.
+- **هاب چندپنلی**: چند پنل را اجرا کنید و تنظیماتتان را از یک جا به همه بفرستید.
+- **کنترل با ربات تلگرام**: کاربران را (افزودن، ویرایش، حجم، انقضا، تمدید، حذف) مستقیم از داخل ربات مدیریت کنید، به انگلیسی، فارسی یا روسی.
+- **قالب نام نودها**: نام هر نود را با یک قالب برندسازی کنید ({FLAG} {COUNTRY} {CITY} {NAME} {DATE} و بیشتر).
+- **لینک‌های خودترمیم**: اگر دامنهٔ ورکر عوض شود یا میزبانی از کار بیفتد، کانفیگ‌ها خودشان به یک آدرس سالم برمی‌گردند.
+
+## شروع سریع
+
+به یک حساب رایگان [Cloudflare](https://dash.cloudflare.com/sign-up) نیاز دارید.
+
+**روش الف، تک‌کلیک:** از دکمهٔ Deploy to Cloudflare در ریپازیتوری استفاده کنید و مراحل را دنبال کنید. مسیر رسمی استقرار Cloudflare خودش ورکر، فضای KV و پایگاه‌دادهٔ D1 را می‌سازد و Workers Builds را وصل می‌کند. لازم نیست توکن API کلادفلر را داخل Nova وارد کنید.
+
+### به‌روزرسانی آسان و قابل بررسی
+
+ریپازیتوری‌های ساخته‌شده از این پروژه شامل GitHub Action روزانهٔ **Check for Nova updates** هستند. وقتی نسخهٔ جدیدی موجود باشد، یک Pull Request فقط برای `worker.js` و `version.json` باز می‌شود. تغییرات و پیش‌نمایش Cloudflare را بررسی کنید و سپس برای استقرار از طریق Workers Builds آن را ادغام کنید. کاربران غیر فنی می‌توانند به‌صورت اختیاری به‌روزرسانی خودکارِ اعتبارسنجی‌شده را با یک متغیر مخزن فعال کنند. راهنمای حالت بررسی، حالت خودکار و بازگشت نسخه در [UPDATES.md](UPDATES.md) است.
+
+**روش ب، Wrangler (خط فرمان):**
+
+```bash
+# ۱. نصب ابزار خط فرمان Cloudflare
+npm install -g wrangler
+wrangler login
+
+# ۲. نصب وابستگی‌ها و انتشار
+# Wrangler فضای KV و D1 را خودکار می‌سازد و متصل می‌کند.
+npm ci
+npm run deploy
+```
+
+پس از انتشار، آدرس `https://<your-worker>.workers.dev/` را باز کنید، راه‌اندازی کوتاه را کامل کنید و ورود مدیر را تنظیم کنید. همین، این پنل شماست.
+
+## نحوهٔ استفاده
+
+۱. پنل را باز کنید و حالت چندکاربره را روشن کنید.
+۲. یک کاربر بسازید (نام، حجم، انقضا). پنل لینک خصوصی او را می‌سازد.
+۳. لینک همان کاربر را کپی کنید و برایش بفرستید.
+۴. او روی گوشی‌اش بازش می‌کند، یکی از **Auto**، **Base64** یا **Clash** را انتخاب می‌کند و در اپش وارد می‌کند.
+
+کلاینت پیشنهادی **[نُوا کلاینت](https://github.com/IRNova/Nova-Client)** است (iOS، اندروید و دسکتاپ). هر کلاینت استانداردی که Base64 یا Clash را بخواند هم کار می‌کند.
+
+## کلاینت‌ها
+
+| فرمت | مناسب برای |
+| --- | --- |
+| Auto | بیشتر اپ‌ها، خودش فرمت درست را انتخاب می‌کند |
+| Base64 | v2rayNG و اپ‌های کلاسیک |
+| Clash | Clash Meta، FlClash، Karing |
+
+## لینک‌ها
+
+- تلگرام: https://t.me/irnova_proxy
+- اینستاگرام: https://instagram.com/irnova_proxy
+- ایکس: https://x.com/irNovaProxy
+- یوتیوب: https://youtube.com/@novaproxyir
+- اپلیکیشن کلاینت: https://github.com/IRNova/Nova-Client
+- سازمان: https://github.com/IRNova
+
+## یادداشت‌های نسخه
+
+**نسخهٔ ۲۰۲۶-۰۷-۱۴**
+
+- رفع یک باگ ازدست‌رفتن داده که در آن ذخیرهٔ تنظیمات شبکه می‌توانست فهرست کاربران را پاک کند. حالا کاربران، وضعیت چندکاربره و مجموعهٔ میزبان‌ها در هر ذخیره حفظ می‌شوند.
+- ساده‌سازی اشتراک‌گذاری کانفیگ به سه فرمت همگانی: Auto، Base64 و Clash. یک لینک حالا تقریباً در هر کلاینتی وارد می‌شود.
+- افزودن پنل «دسترسی سریع» به داشبورد و مرتب‌سازی صفحهٔ کاربران در موبایل.
+- مقاوم‌سازی پشتیبان گیت‌هاب: توکن دسترسی پیش از استفاده پیرایش می‌شود، پس توکنی که با فاصلهٔ اضافی چسبانده شده دیگر خطا نمی‌دهد.
+
+## نکات
+
+- **این ابزار خودمیزبان است.** هر نفر پنل خودش را روی حساب رایگان Cloudflare خودش اجرا می‌کند، پس بدون هیچ هزینهٔ مشترکی مقیاس می‌گیرد.
+- **محدودیت‌های رایگان Cloudflare اعمال می‌شود.** تماس‌ها از UDP استفاده می‌کنند که یک ورکر رایگان ساده نمی‌تواند حملش کند. برای تماس صوتی و تصویری نود WARP یا یک سرور بک‌اند را فعال کنید.
+- **پنل را خصوصی نگه دارید.** ورود مدیر را با کسی به اشتراک نگذارید. لینک اشتراک کاربران یک اعتبارنامه است، مثل رمز عبور با آن رفتار کنید.
+- نُوا پروکسی ابزاری رایگان برای دسترسی آزاد به اینترنت است. مسئولانه و مطابق قوانینی که بر شما اعمال می‌شود از آن استفاده کنید.
+
+## مجوز
+
+فایل [LICENSE](LICENSE) در همین ریپازیتوری را ببینید.
 
 </div>

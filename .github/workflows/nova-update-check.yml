@@ -1,0 +1,172 @@
+name: Check for Nova updates
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Review opens a pull request; automatic deploys after validation"
+        required: true
+        default: review
+        type: choice
+        options:
+          - review
+          - automatic
+  schedule:
+    - cron: "17 4 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: nova-upstream-update
+  cancel-in-progress: false
+
+jobs:
+  create-update-pr:
+    if: github.repository != 'IRNova/Nova-Proxy'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the user-owned repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch the reviewed upstream release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags https://github.com/IRNova/Nova-Proxy.git main
+          git show FETCH_HEAD:worker.js >/dev/null
+          git show FETCH_HEAD:version.json >/dev/null
+
+      - name: Prepare the update branch
+        id: update
+        shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          upstream_version="$(git show FETCH_HEAD:version.json | sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -n 1)"
+          current_version="$(sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' version.json | head -n 1)"
+          test -n "${upstream_version}"
+          test -n "${current_version}"
+
+          if ! node - "${upstream_version}" "${current_version}" <<'NODE'
+          const next = process.argv[2];
+          const current = process.argv[3];
+          const parse = (value) => {
+            const [core, prerelease = ""] = value.replace(/^v/i, "").split("-", 2);
+            return {
+              core: core.split(".").map((part) => Number.parseInt(part, 10) || 0),
+              pre: prerelease ? prerelease.split(".") : [],
+            };
+          };
+          const compare = (left, right) => {
+            const a = parse(left);
+            const b = parse(right);
+            const width = Math.max(a.core.length, b.core.length);
+            for (let index = 0; index < width; index += 1) {
+              const delta = (a.core[index] || 0) - (b.core[index] || 0);
+              if (delta) return Math.sign(delta);
+            }
+            if (!a.pre.length && b.pre.length) return 1;
+            if (a.pre.length && !b.pre.length) return -1;
+            for (let index = 0; index < Math.max(a.pre.length, b.pre.length); index += 1) {
+              if (a.pre[index] === undefined) return -1;
+              if (b.pre[index] === undefined) return 1;
+              const aNumber = /^\d+$/.test(a.pre[index]);
+              const bNumber = /^\d+$/.test(b.pre[index]);
+              if (aNumber && bNumber && Number(a.pre[index]) !== Number(b.pre[index])) {
+                return Math.sign(Number(a.pre[index]) - Number(b.pre[index]));
+              }
+              if (aNumber !== bNumber) return aNumber ? -1 : 1;
+              const delta = a.pre[index].localeCompare(b.pre[index]);
+              if (delta) return Math.sign(delta);
+            }
+            return 0;
+          };
+          process.exit(compare(next, current) > 0 ? 0 : 1);
+          NODE
+          then
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            echo "Upstream ${upstream_version} is not newer than installed ${current_version}."
+            exit 0
+          fi
+
+          safe_version="$(printf '%s' "${upstream_version}" | tr -c 'A-Za-z0-9._-' '-')"
+          update_branch="nova-update-${safe_version}"
+
+          git switch "${DEFAULT_BRANCH}"
+          git switch --force-create "${update_branch}"
+          git checkout FETCH_HEAD -- worker.js version.json
+
+          if git diff --quiet; then
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+
+          git config user.name "Nova Update Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add worker.js version.json
+          git commit -m "Update Nova to ${upstream_version}"
+
+          echo "changed=true" >> "${GITHUB_OUTPUT}"
+          echo "version=${upstream_version}" >> "${GITHUB_OUTPUT}"
+          echo "branch=${update_branch}" >> "${GITHUB_OUTPUT}"
+
+      - name: Validate the candidate release
+        if: steps.update.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run check
+          npx wrangler deploy --dry-run --outdir .wrangler/nova-update-validation
+
+      - name: Publish the validated update
+        if: steps.update.outputs.changed == 'true'
+        id: publish
+        shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          UPDATE_BRANCH: ${{ steps.update.outputs.branch }}
+          DISPATCH_MODE: ${{ inputs.mode }}
+          SCHEDULE_MODE: ${{ vars.NOVA_UPDATE_MODE }}
+        run: |
+          set -euo pipefail
+          mode="review"
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ] && [ "${DISPATCH_MODE}" = "automatic" ]; then
+            mode="automatic"
+          elif [ "${GITHUB_EVENT_NAME}" = "schedule" ] && [ "${SCHEDULE_MODE}" = "automatic" ]; then
+            mode="automatic"
+          fi
+
+          if [ "${mode}" = "automatic" ]; then
+            git push origin "HEAD:${DEFAULT_BRANCH}"
+          else
+            git push --force-with-lease origin "${UPDATE_BRANCH}"
+          fi
+          echo "mode=${mode}" >> "${GITHUB_OUTPUT}"
+
+      - name: Open a reviewable update pull request
+        if: steps.update.outputs.changed == 'true' && steps.publish.outputs.mode == 'review'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          UPDATE_BRANCH: ${{ steps.update.outputs.branch }}
+          UPDATE_VERSION: ${{ steps.update.outputs.version }}
+        run: |
+          set -euo pipefail
+          if gh pr list --head "${UPDATE_BRANCH}" --state open --json number --jq 'length' | grep -qx '1'; then
+            exit 0
+          fi
+          printf -v pr_body '%s\n\n%s' \
+            'Automated upstream update containing only `worker.js` and `version.json`.' \
+            'Review the diff and the Cloudflare preview build before merging. Merging lets Cloudflare Workers Builds deploy the reviewed version. Existing Wrangler bindings and account-specific configuration are not replaced.'
+          gh pr create \
+            --base "${DEFAULT_BRANCH}" \
+            --head "${UPDATE_BRANCH}" \
+            --title "Update Nova to ${UPDATE_VERSION}" \
+            --body "${pr_body}"

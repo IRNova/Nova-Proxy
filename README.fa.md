@@ -66,11 +66,11 @@ WARP، زنجیره پروکسی و حالت Backend. اجرا روی **پلن �
 
 [**→ دانلود Nova Wizard برای ویندوز و لینوکس**](https://github.com/IRNova/Nova-Wizard)
 
-### 🌐 نصب از طریق سایت
+### 🌐 راهنمای امن نصب
 
-به سایت رسمی مراجعه کرده و مراحل گام‌به‌گام را دنبال کنید:
+صفحهٔ رسمی Nova هیچ رمز Cloudflare یا API Token دریافت نمی‌کند و شما را به مسیر امن نصب هدایت می‌کند:
 
-[**→ novaproxy.online/install**](https://novaproxy.online/install)
+[**→ novaproxy.online/setup/**](https://novaproxy.online/setup/)
 
 ---
 

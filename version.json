@@ -1,6 +1,6 @@
 {
-  "version": "4.1.6",
-  "released": "2026-07-26",
-  "notes": "Version 4.1.6. Bug fixes and improvements: per-user traffic usage now counts correctly (attribution fix); Clash/mihomo/FlClash subscription import no longer errors (YAML quoting); Nova Radar 'Apply' now saves scanned clean IPs into the panel; WireGuard now uses a maintained clean-endpoint pool (IRNova/Tools/warp-endpoints.txt) with a working default instead of the Iran-blocked engage; custom-domain self-update error codes fixed; Secure DNS (DoH) self-test fixed; Silent Alerts now persist and gate the login notification; a Decoy/speed-test target is configurable from the panel. Plus earlier security hardening (closed the unauthenticated install-recovery routes, pinned auto-update, constant-time secret compares) and a new in-panel Guide + FAQ. No wrangler/binding changes; existing configs and connections are unaffected.",
+  "version": "4.1.7-preview.6",
+  "released": "2026-07-30",
+  "notes": "Hardening preview with bounded relay access, health-only diagnostics, reviewed repository updates, and panel compatibility updates.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js"
 }

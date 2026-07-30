@@ -17,12 +17,21 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Syntax-check worker.js
-        run: node --check worker.js
-      - name: Validate wrangler config (bundle only, no deploy)
-        run: npx --yes wrangler@3 deploy --dry-run --outdir /tmp/nova-out
-        continue-on-error: true
+          node-version: '22'
+          cache: npm
+      - name: Install the locked toolchain
+        run: npm ci
+      - name: Validate the release artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(wc -c < worker.js)" -ge 100000
+          grep -Fq "export default" worker.js
+          grep -Fq "const Version =" worker.js
+          grep -Fq "NOVA_BUILD" worker.js
+          npm run check
+      - name: Validate Wrangler config and bundle
+        run: npx wrangler deploy --dry-run --outdir /tmp/nova-out
       - name: Publish the worker.js SHA-256
         run: |
           HASH=$(sha256sum worker.js | awk '{print $1}')
