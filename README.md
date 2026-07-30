@@ -31,7 +31,6 @@ The panel gives you a clean dashboard (English, فارسی, and Русский) 
 - **Calls support**: optional WARP node for FaceTime, WhatsApp, and Telegram calls (UDP), plus a backend mode for full-quality routing through your own server.
 - **Mixed protocol**: hand out one link that carries both VLESS and Trojan, so if a filter blocks one, the app keeps working on the other.
 - **GitHub mirror failover**: publishes your subscription to a GitHub repo so users keep a permanent `raw.githubusercontent.com` link even if your domain gets filtered.
-- **Multi-Panel Hub**: run several panels and push your settings to all of them from one place.
 - **Telegram bot control**: manage users (add, edit, quota, expiry, extend, delete) straight from a bot, in EN, FA, or RU.
 - **Node name templates**: brand every node name with a template ({FLAG} {COUNTRY} {CITY} {NAME} {DATE} and more).
 - **Self-healing links**: if your worker domain changes or a host goes down, configs fall back to a working address on their own.

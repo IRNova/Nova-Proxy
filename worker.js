@@ -33,7 +33,7 @@ function novaState() {
 	return state;
 }
 
-const Version = 'V4.1.7-preview.6';
+const Version = 'V4.1.7';
 let mitmonReshimaLevanaSocks5 = null, mitmonIpMetavech, mitmonNituachMetavech, indeksMaarachMetavechMitmon = 0;
 let mitmonHagdarotReshet = null, zmanMitmonHagdarotReshet = 0;
 let mitmonKidometNat64 = null, zmanMitmonNat64 = 0, makorMitmonNat64 = '';
@@ -66,7 +66,7 @@ const NOVA_TG_HANDLE = '@' + (String(NOVA_TG_CHANNEL).split('/').filter(Boolean)
 // Build stamp: bump this whenever worker.js changes so a deploy can be verified at a
 // glance (GET /install/status returns it). If the panel/status still shows an old build
 // after a deploy, the upload didn't take.
-const NOVA_BUILD = '2026-07-30.hardening-preview.6';
+const NOVA_BUILD = '2026-07-30.google-direct';
 globalThis.__workerStart = Date.now();
 function guardExecutionContext(ctx, scope) {
 	if (!ctx || typeof ctx.waitUntil !== 'function') return ctx;
@@ -249,9 +249,7 @@ function isApiAuthenticated(request, adminPassword, body) {
 	return false;
 }
 function apiJson(data, status = 200) {
-	// ACAO so an admin's browser on one panel can read this panel's API response cross-origin
-	// (Multi-Panel Hub: creating a user on a linked panel). Endpoints stay auth-gated regardless.
-	return new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store', 'Access-Control-Allow-Origin': '*' } });
+	return new Response(JSON.stringify(data), { status, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 }
 function extractAuthKey(request, body) {
 	const authHeader = request.headers.get('Authorization') || '';
@@ -262,7 +260,7 @@ function extractAuthKey(request, body) {
 }
 function protectFields(config, isApiKeyAuth) {
 	if (!isApiKeyAuth) return config;
-	const sensitive = ['masterKey', 'panelApiKeys', 'cfApiToken', 'cfAccountId', 'cfWorkerName', 'tgToken', 'tgChatId', 'tgAdminId', 'syncApiKey', 'hubPanelUrl'];
+	const sensitive = ['masterKey', 'panelApiKeys', 'cfApiToken', 'cfAccountId', 'cfWorkerName', 'tgToken', 'tgChatId', 'tgAdminId'];
 	const protectedConfig = { ...config };
 	for (const f of sensitive) { if (protectedConfig[f] !== undefined) protectedConfig[f] = '[PROTECTED]'; }
 	return protectedConfig;
@@ -281,17 +279,6 @@ async function resolveProxyIpGeo(proxyIp) {
 		}
 	} catch (e) {}
 	return { flag: '🌐', country: 'Unknown', countryCode: '', city: '', isp: '' };
-}
-async function notifyHubPanel(env, hostName, ctx) {
-	try {
-		if (!novaState().hagdarotReshet) { try { novaState().hagdarotReshet = JSON.parse((await env.KV.get('network-settings.json')) || '{}'); } catch (e) { novaState().hagdarotReshet = {}; } }
-		const hubUrl = (novaState().hagdarotReshet.hubPanelUrl || '').trim();
-		if (!hubUrl || !novaState().hagdarotReshet.tgAdminId) return;
-		let fullUrl = hubUrl;
-		if (!fullUrl.startsWith('http')) fullUrl = 'https://' + fullUrl;
-		const payload = { signal: 'panel_login', panelName: novaState().hagdarotReshet.name || hostName, panelHost: hostName, tgAdminId: novaState().hagdarotReshet.tgAdminId, ts: Date.now() };
-		ctx.waitUntil(fetch(fullUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => {}));
-	} catch (e) {}
 }
 async function handleApiUsers(request, env, adminPassword) {
 	const method = request.method;
@@ -366,7 +353,6 @@ async function handleApiUsers(request, env, adminPassword) {
 			userNodes: reqBody.userNodes || null,
 			userMode: reqBody.userMode || null,
 			usernat64: reqBody.usernat64 || null,
-			userPanelUrl: reqBody.userPanelUrl || null,
 			ipLimit: Number(reqBody.ipLimit) || 0,
 			activeIps: '{}',
 			blockPorn: reqBody.blockPorn ? 1 : 0,
@@ -417,7 +403,6 @@ async function handleApiUsers(request, env, adminPassword) {
 		if (reqBody.userMode !== undefined) u.userMode = reqBody.userMode || null;
 		if (reqBody.usernat64 !== undefined) u.usernat64 = reqBody.usernat64 || null;
 		if (reqBody.limitDailyReq !== undefined) u.limitDailyReq = Number(reqBody.limitDailyReq) || 0;
-		if (reqBody.userPanelUrl !== undefined) u.userPanelUrl = reqBody.userPanelUrl || null;
 		if (reqBody.ipLimit !== undefined) u.ipLimit = Number(reqBody.ipLimit) || 0;
 		if (reqBody.blockPorn !== undefined) u.blockPorn = reqBody.blockPorn ? 1 : 0;
 		if (reqBody.blockAds !== undefined) u.blockAds = reqBody.blockAds ? 1 : 0;
@@ -530,87 +515,22 @@ async function handleApiLogs(request, env, adminPassword) {
 ///////////////////////////////////////////////////////Relay Status API (Tunnel page)///////////////////////////////////////////////
 async function handleApiRelayStatus(request, env, adminPassword, alreadyAuthed) {
 	if (!alreadyAuthed && !isApiAuthenticated(request, adminPassword)) return apiJson({ success: false, error: 'Unauthorized' }, 401);
-	const requestHost = new URL(request.url).hostname;
-	// Get the best host: first try config_JSON.HOSTS, then request host
-	let bestHost = requestHost;
-	try {
-		if (novaState().config_JSON && Array.isArray(novaState().config_JSON.HOSTS) && novaState().config_JSON.HOSTS.length) {
-			bestHost = novaState().config_JSON.HOSTS[0];
-		} else if (novaState().config_JSON && novaState().config_JSON.HOST) {
-			bestHost = novaState().config_JSON.HOST;
-		} else if (novaState().hagdarotReshet && Array.isArray(novaState().hagdarotReshet.HOSTS) && novaState().hagdarotReshet.HOSTS.length) {
-			bestHost = novaState().hagdarotReshet.HOSTS[0];
-		}
-	} catch (e) {}
-	// If bestHost still looks like a raw workers.dev subdomain, prefer it anyway (user may not have custom domain)
-	// Relay lives on the main endpoint and is distinguished by method and content type.
-	const relayUrl = 'https://' + bestHost + '/';
 	const relayAuthKey = await getRelayAuthKey(env);
+	const relayRequestUrl = new URL(request.url);
 	let gasUrl = '', verified = false, verifiedAt = 0;
 	try { gasUrl = (await relayConfigGet(env, 'gas_url')) || ''; } catch (e) {}
 	try { const vr = await relayConfigGet(env, 'verified'); if (vr) { const p = JSON.parse(vr); verified = !!(p && p.ok); verifiedAt = (p && p.at) || 0; } } catch (e) {}
 	return apiJson({
 		success: true,
 		relay: {
-			enabled: !!relayAuthKey && getRelayAllowedPatterns(env).length > 0,
-			allowedHostsConfigured: getRelayAllowedPatterns(env).length > 0,
-			workerUrl: relayUrl,
-			bestHost: bestHost,
-			requestHost: requestHost,
+			enabled: !!relayAuthKey,
 			authKey: relayAuthKey || '',
+			controlUrl: relayRequestUrl.protocol + '//' + relayRequestUrl.host + '/relay-auth',
 			gasUrl: gasUrl,
 			verified: verified,
 			verifiedAt: verifiedAt
 		}
 	});
-}
-///////////////////////////////////////////////////////Relay Handler (from worker (4).js)///////////////////////////////////////////////
-const RELAY_BLOCKED_HOSTS = ['localhost', '127.0.0.1', '::1'];
-function getRelayAllowedPatterns(env) {
-	return String((env && env.RELAY_ALLOWED_HOSTS) || '')
-		.split(/[\s,;]+/)
-		.map(value => value.trim().toLowerCase().replace(/^\.+|\.+$/g, ''))
-		.filter(value => value && value !== '*');
-}
-function relayHostMatches(host, pattern) {
-	if (pattern.startsWith('*.')) {
-		const suffix = pattern.slice(2);
-		return host !== suffix && host.endsWith('.' + suffix);
-	}
-	return host === pattern;
-}
-function isRelayAllowed(targetUrl, env) {
-	try {
-		const u = new URL(targetUrl);
-		// Only allow real web traffic; block file:, gopher:, ftp:, data:, etc.
-		if (u.protocol !== 'http:' && u.protocol !== 'https:') return false;
-		const host = (u.hostname || '').toLowerCase().replace(/^\[|\]$/g, '');
-		if (!host) return false;
-		if (host === 'localhost' || host.endsWith('.localhost')) return false;
-		if (RELAY_BLOCKED_HOSTS.includes(host)) return false;
-		// Literal IPv4: block loopback, private, link-local (incl. 169.254.169.254 cloud metadata), CGNAT, multicast.
-		const v4 = host.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
-		if (v4) {
-			const a = parseInt(v4[1], 10), b = parseInt(v4[2], 10);
-			if (a === 0 || a === 10 || a === 127) return false;
-			if (a === 169 && b === 254) return false;
-			if (a === 172 && b >= 16 && b <= 31) return false;
-			if (a === 192 && b === 168) return false;
-			if (a === 100 && b >= 64 && b <= 127) return false;
-			if (a >= 224) return false;
-		}
-		// Literal IPv6: block loopback, ULA (fc00::/7), link-local (fe80::/10), IPv4-mapped.
-		if (host.includes(':')) {
-			if (host === '::1' || host === '::') return false;
-			if (/^f[cd][0-9a-f]{2}:/.test(host)) return false;
-			if (/^fe[89ab][0-9a-f]:/.test(host)) return false;
-			if (host.startsWith('::ffff:')) return false;
-		}
-		if (host === new URL('http://example.com').hostname && u.port === '') return false;
-		const allowedPatterns = getRelayAllowedPatterns(env);
-		if (!allowedPatterns.length) return false;
-		return allowedPatterns.some(pattern => relayHostMatches(host, pattern));
-	} catch (e) { return false; }
 }
 // --- Relay config store: D1 (strongly consistent), so enable / disable / rotate take effect
 // within seconds. KV was too eventually-consistent for a value that gets toggled (a rotated or
@@ -645,128 +565,38 @@ async function getRelayAuthKey(env) {
 	}
 	return _relayKeyCache || null;
 }
+async function handleRelayAuth(request, env) {
+	const headers = { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' };
+	if (request.method !== 'POST') return new Response(JSON.stringify({ ok: false }), { status: 405, headers });
+	const contentLength = Number(request.headers.get('content-length') || 0);
+	if (contentLength > 1024) return new Response(JSON.stringify({ ok: false }), { status: 413, headers });
+	let body = {};
+	try { body = await request.json(); } catch (e) {}
+	const supplied = String(body.k || '');
+	const active = await getRelayAuthKey(env);
+	if (!active || !supplied || !timingSafeStrEqual(supplied, String(active))) {
+		return new Response(JSON.stringify({ ok: false }), { status: 401, headers });
+	}
+	return new Response(JSON.stringify({ ok: true, version: 1 }), { status: 200, headers });
+}
 function genRelayKey() {
 	const bytes = crypto.getRandomValues(new Uint8Array(24));
 	let hex = ''; for (const b of bytes) hex += b.toString(16).padStart(2, '0');
 	return 'nova_' + hex;
 }
-// Server-side check that a deployed Google Apps Script relay actually reaches this worker.
-// The GAS 302-redirects its doPost output, so follow the redirect manually for reliability.
+// Server-side check that a deployed Google Apps Script relay can fetch a public URL directly.
+// The Worker only performs this control-plane check; user relay traffic never passes through it.
 async function verifyRelayGas(gasUrl, key) {
 	try {
-		const target = 'https://api.ipify.org?format=json';
+		const target = 'https://www.gstatic.com/generate_204';
 		let resp = await fetch(gasUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ k: key, u: target, m: 'GET' }), redirect: 'manual' });
 		if (resp.status >= 300 && resp.status < 400) { const loc = resp.headers.get('location'); if (loc) resp = await fetch(loc, { redirect: 'follow' }); }
 		const txt = await resp.text();
 		let j; try { j = JSON.parse(txt); } catch (e) { return { verified: false, detail: 'Relay did not return JSON (check the Web app URL and that access is set to Anyone).' }; }
-		if (j.s && Number(j.s) >= 200 && Number(j.s) < 500) return { verified: true, detail: 'Relay reached the worker (status ' + j.s + ').' };
+		if (Number(j.s) >= 200 && Number(j.s) < 500) return { verified: true, detail: 'Google relay fetched the test URL directly (status ' + j.s + ').' };
 		if (j.e) return { verified: false, detail: 'Relay replied: ' + j.e + (j.e === 'unauthorized' ? ' (the script AUTH_KEY does not match this panel key).' : '') };
 		return { verified: false, detail: 'Unexpected reply: ' + txt.slice(0, 100) };
 	} catch (e) { return { verified: false, detail: String((e && e.message) || e) }; }
-}
-async function handleRelayRequest(request, env) {
-	if (request.method === 'GET') {
-		const host = new URL(request.url).hostname;
-		return new Response(getRelayHTML(host), { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
-	}
-	if (request.method !== 'POST') return relayJson({ e: 'Method not allowed.' }, 405);
-	const relayMaxBytes = Math.max(65536, Math.min(8 * 1024 * 1024, Number(env.RELAY_MAX_RESPONSE_BYTES) || 2 * 1024 * 1024));
-	const requestLength = Number(request.headers.get('content-length') || 0);
-	if (requestLength > Math.ceil(relayMaxBytes * 1.5)) return relayJson({ e: 'request too large' }, 413);
-	let reqBody;
-	try { reqBody = await request.json(); } catch (e) { return relayJson({ e: 'Invalid JSON' }, 400); }
-	if (!reqBody.k) return relayJson({ e: 'missing auth key' }, 401);
-	const relayAuthKey = await getRelayAuthKey(env);
-	if (!relayAuthKey) return relayJson({ e: 'relay not configured' }, 503);
-	if (!timingSafeStrEqual(String(reqBody.k), String(relayAuthKey))) return relayJson({ e: 'unauthorized' }, 401);
-	if (!reqBody.u) return relayJson({ e: 'missing url' }, 400);
-	if (!isRelayAllowed(reqBody.u, env)) return relayJson({ e: 'target not allowed' }, 403);
-	const targetUrl = new URL(reqBody.u);
-	if (targetUrl.hostname === new URL(request.url).hostname) return relayJson({ e: 'self-fetch blocked' }, 400);
-	const headers = new Headers();
-	if (reqBody.h && typeof reqBody.h === 'object') {
-		const SKIP = { host: 1, connection: 1, 'content-length': 1, 'transfer-encoding': 1, 'proxy-connection': 1, 'proxy-authorization': 1 };
-		for (const [k, v] of Object.entries(reqBody.h)) { if (!SKIP[k.toLowerCase()]) headers.set(k, v); }
-	}
-	headers.set('x-relay-hop', '1');
-	const fetchOptions = {
-		method: (reqBody.m || 'GET').toUpperCase(),
-		headers,
-		redirect: reqBody.r === false ? 'manual' : 'follow'
-	};
-	if (reqBody.b) {
-		if (String(reqBody.b).length > Math.ceil(relayMaxBytes * 4 / 3) + 4) return relayJson({ e: 'request body too large' }, 413);
-		try { fetchOptions.body = Uint8Array.from(atob(reqBody.b), c => c.charCodeAt(0)); } catch (e) {}
-	}
-	try {
-		const resp = await fetch(targetUrl.toString(), fetchOptions);
-		const upstreamLength = Number(resp.headers.get('content-length') || 0);
-		if (upstreamLength > relayMaxBytes) {
-			try { await resp.body?.cancel(); } catch (e) {}
-			return relayJson({ e: 'upstream response too large' }, 413);
-		}
-		const chunks = [];
-		let totalBytes = 0;
-		if (resp.body) {
-			const reader = resp.body.getReader();
-			try {
-				while (true) {
-					const { done, value } = await reader.read();
-					if (done) break;
-					if (!value?.byteLength) continue;
-					totalBytes += value.byteLength;
-					if (totalBytes > relayMaxBytes) {
-						try { await reader.cancel('relay response limit exceeded'); } catch (e) {}
-						return relayJson({ e: 'upstream response too large' }, 413);
-					}
-					chunks.push(value);
-				}
-			} finally {
-				try { reader.releaseLock(); } catch (e) {}
-			}
-		}
-		const uint8 = new Uint8Array(totalBytes);
-		let offset = 0;
-		for (const chunk of chunks) { uint8.set(chunk, offset); offset += chunk.byteLength; }
-		let binary = '';
-		const chunkSize = 0x8000;
-		for (let i = 0; i < uint8.length; i += chunkSize) { binary += String.fromCharCode.apply(null, uint8.subarray(i, i + chunkSize)); }
-		const responseHeaders = {};
-		resp.headers.forEach((v, k) => { responseHeaders[k] = v; });
-		return relayJson({ s: resp.status, h: responseHeaders, b: btoa(binary) });
-	} catch (err) {
-		return relayJson({ e: String(err) }, 500);
-	}
-}
-function relayJson(obj, status = 200) {
-	return new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json' } });
-}
-function getRelayHTML(actualHost) {
-	const logoUrl = 'https://raw.githubusercontent.com/IRNova/Nova-Proxy-App/main/logo.svg';
-	return `<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Nova Proxy Relay</title><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Vazirmatn',sans-serif;background:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}.logo{width:120px;height:120px;border-radius:50%;object-fit:cover;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 0 0 rgba(231,76,60,.4)}@keyframes pulse{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(231,76,60,.4)}50%{transform:scale(1.05);box-shadow:0 0 0 15px rgba(231,76,60,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(231,76,60,0)}}h1{font-size:36px;font-weight:900;color:#2c3e50;margin-top:20px}.status{font-size:20px;color:#27ae60;font-weight:700;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}.status-dot{width:10px;height:10px;background:#27ae60;border-radius:50%;display:inline-block;animation:blink 1.4s ease-in-out infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}.subtitle{font-size:14px;color:#95a5a6;margin-top:6px}</style></head><body><img class="logo" src="${logoUrl}" alt="Nova Proxy Relay"><h1>نوا پروکسی</h1><div class="status"><span class="status-dot"></span>رله نوا فعال است</div><div class="subtitle">Nova Proxy Relay</div></body></html>`;
-}
-///////////////////////////////////////////////////////Linked Panels & Auto-Update///////////////////////////////////////////////
-async function syncToLinkedPanels(env, config, ctx) {
-	try {
-		const ns = novaState().hagdarotReshet || JSON.parse((await env.KV.get('network-settings.json')) || '{}');
-		const panels = Array.isArray(ns.linkedPanels) ? ns.linkedPanels : [];
-		for (const p of panels) {
-			if (!p || !p.url || !p.apiKey) continue;
-			let cleanUrl = p.url.trim();
-			if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) cleanUrl = 'https://' + cleanUrl;
-			try {
-				const parsed = new URL(cleanUrl);
-				const payload = JSON.stringify({ config, fromMaster: true });
-				const doFetch = () => fetch(`${parsed.protocol}//${parsed.host}/admin/api/sync`, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + p.apiKey },
-					body: payload,
-					signal: AbortSignal.timeout(15000)
-				}).then(async r => { log(`[LinkedPanels] sync to ${p.url}: ${r.status}`); }).catch(e => { log(`[LinkedPanels] sync to ${p.url} failed: ${e.message}`); });
-				if (ctx && typeof ctx.waitUntil === 'function') ctx.waitUntil(doFetch()); else doFetch();
-			} catch (e) { log(`[LinkedPanels] URL parse error for ${p.url}: ${e.message}`); }
-		}
-	} catch (e) { log(`[LinkedPanels] syncToLinkedPanels error: ${e.message}`); }
 }
 function cmpVersions(a, b) {
 	const pa = String(a || '').replace(/^v/, '').split('.').map(Number);
@@ -930,10 +760,7 @@ async function panelHtml(env, path, opts = {}) {
 	h.set('Content-Type', 'text/html;charset=utf-8');
 	h.set('Cache-Control', 'no-store');
 	// --- CSP سخت‌گیرانه برای پنل ادمین/لاگین: جلوگیری از تزریق اسکریپت خارجی و کلیک‌جکینگ ---
-	// connect-src allows https: so the Multi-Panel Hub can reach admin-entered child panel URLs
-	// (browser-driven Test/Sync). Scripts/styles stay 'self'; this only widens fetch/XHR targets to
-	// HTTPS origins, which is safe on an authenticated admin page where the URLs are operator-supplied.
-	h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; manifest-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'");
+	h.set('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; manifest-src 'self' data:; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'");
 	h.set('X-Frame-Options', 'DENY');
 	h.set('X-Content-Type-Options', 'nosniff');
 	h.set('Referrer-Policy', 'no-referrer');
@@ -1545,7 +1372,6 @@ async function sherutMerkazMishtamesh(objMishtameshMinuy, env) {
 				id: objMishtameshMinuy.id, name: objMishtameshMinuy.name || '', tag: objMishtameshMinuy.tag || '',
 				username: objMishtameshMinuy.username || '', notes: objMishtameshMinuy.notes || '',
 				maxConfigs: Number(objMishtameshMinuy.maxConfigs) || 0,
-				userPanelUrl: objMishtameshMinuy.userPanelUrl || '',
 				expiry: objMishtameshMinuy.expiry || '', quotaBytes: Number(objMishtameshMinuy.quotaBytes) || 0,
 				dailyQuotaBytes: Number(objMishtameshMinuy.dailyQuotaBytes) || 0,
 				limitDailyReq: limitDailyReq, dailyReqCount: dailyReqCount,
@@ -1734,7 +1560,6 @@ export default {
 					bypassChina: false, bypassRussia: false, bypassSanctions: false, bypassCountries: [], blockCategories: [],
 					monthlyCapGB: 0, speedLimitKBps: 0, blockQUIC: false,
 					warpNoise: { mode: '', count: '', size: '', delay: '' },
-					linkedPanels: [], hubPanelUrl: '', syncApiKey: '',
 					autoUpdate: false, autoUpdateFormat: 'normal', autoUpdateInterval: 3600000, githubRepo: 'IRNova/Nova-Proxy',
 					telegramChannel: 'https://t.me/irnova_proxy',
 					fakeConfigs: [
@@ -1789,11 +1614,16 @@ export default {
 			}
 		}
 		// --- Serve bundled dashboard assets (logo, js, css) from ASSETS binding (one-click deploy) ---
-		if (panelHasAssets(env) && /\.\w{2,5}$/.test(url.pathname) && upgradeHeader !== 'websocket') {
-			const asset = await panelFetch(env, url.pathname).catch(() => null);
-			if (asset && asset.ok) return asset;
-		}
-		// --- Kill Switch: غیرفعال‌سازی موقت سرویس ---
+			if (panelHasAssets(env) && /\.\w{2,5}$/.test(url.pathname) && upgradeHeader !== 'websocket') {
+				const asset = await panelFetch(env, url.pathname).catch(() => null);
+				if (asset && asset.ok) return asset;
+			}
+			// Google-direct relay control plane. This endpoint only validates the current
+			// high-entropy key; it never receives a destination URL, headers, or user data.
+			if (nativGisha === 'relay-auth' && upgradeHeader !== 'websocket') {
+				return await handleRelayAuth(request, env);
+			}
+			// --- Kill Switch: غیرفعال‌سازی موقت سرویس ---
 		{
 			const _isProxyConn = (upgradeHeader === 'websocket') || (!nativGisha.startsWith('admin/') && nativGisha !== 'login' && nativGisha !== 'bot' && nativGisha !== 'sub-setip' && nativGisha !== 'sub' && request.method === 'POST');
 			const _isSub = nativGisha === 'sub' || nativGisha.startsWith('sub/');
@@ -1805,11 +1635,6 @@ export default {
 				const _capGB = Number((novaState().hagdarotReshet && novaState().hagdarotReshet.monthlyCapGB) || env.MONTHLY_CAP_GB || env.MONTHLY_CAP || 0);
 				if (_capGB > 0 && (await monthlyUsedBytes(env)) >= _capGB * 1073741824) return new Response('Monthly data cap reached', { status: 503, headers: { 'Content-Type': 'text/plain;charset=utf-8', 'Cache-Control': 'no-store' } });
 			}
-		}
-		// Relay on the main endpoint (/): only an authenticated JSON POST is handled as a relay hop.
-		// WebSocket upgrades and gRPC/XHTTP (application/grpc) are unaffected.
-		if (nativGisha === '' && request.method === 'POST' && (request.headers.get('Content-Type') || '').toLowerCase().includes('application/json')) {
-			return await handleRelayRequest(request, env);
 		}
 		if (nativGisha === 'version') {// Version info endpoint
 			const uuidBakasha = (url.searchParams.get('uuid') || '').toLowerCase();
@@ -1824,12 +1649,7 @@ export default {
 				}
 				if (schum8RishonimBakasha === schum8RishonimYaad && uuidBakasha.slice(-12) === uuidYaad.slice(-12)) return new Response(JSON.stringify({ Version: Number(String(Version).replace(/\D+/g, '')) }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
 			}
-		} else if (nativGisha === 'relay') {// Relay endpoint: Google Apps Script connects here
-			return await handleRelayRequest(request, env);
 		} else if (nativGisha.startsWith('api/')) {
-		// CORS preflight for cross-panel calls (Multi-Panel Hub creating a user on a linked panel from
-		// the admin's browser). No auth on OPTIONS; the real request is still password-gated below.
-		if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'authorization, content-type', 'Access-Control-Max-Age': '86400' } });
 		if (!adminPassword) return apiJson({ success: false, error: 'Panel password not set' }, 403);
 		const apiPath = nativGisha.slice(4);
 		if (apiPath === 'users' || apiPath.startsWith('users/')) return await handleApiUsers(request, env, adminPassword);
@@ -1881,10 +1701,7 @@ export default {
 			if (nativGisha === 'backend-test') {
 				return await ivchunBackend(env, url);
 			}
-			if (nativGisha === 'relay') {
-				return await handleRelayRequest(request, env);
-			}
-			if (nativGisha === 'scan' || nativGisha === 'radar') {
+				if (nativGisha === 'scan' || nativGisha === 'radar') {
 				return novaScanPage();
 			}
 			if (nativGisha === 'nova-block') {
@@ -1949,7 +1766,6 @@ export default {
 						const tguva = new Response(JSON.stringify({ success: true }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
 						loginRecordSuccess(__ip);
 						tguva.headers.set('Set-Cookie', `auth=${await makeSessionToken(UA, mafteachHatzpana, adminPassword)}; Path=/; HttpOnly; Secure; SameSite=Lax`);
-						ctx.waitUntil(notifyHubPanel(env, host, ctx));
 						// Login notification to Telegram
 						try {
 							let _silent = false;
@@ -1979,20 +1795,7 @@ export default {
 				} else if (nativGisha === 'admin' || nativGisha.startsWith('admin/')) {// Serve the admin page after validating the cookie
 					const cookies = request.headers.get('Cookie') || '';
 					const authCookie = cookies.split(';').find(c => c.trim().startsWith('auth='))?.split('=')[1];
-				// Multi-Panel Hub: a master pushes config to a child via /admin/api/sync using ONLY a Bearer
-				// key (no browser cookie). Let that one endpoint past the cookie gate so it can run its own
-				// key check; otherwise the "!authCookie" short-circuit redirected every sync and the hub
-				// silently never worked.
-				if (nativGisha !== 'admin/api/sync' && (!authCookie || !(await isAuthed(request, UA, mafteachHatzpana, adminPassword)))) return new Response('Redirecting...', { status: 302, headers: { 'Location': _dg.pubLogin } });
-				// Multi-Panel Hub, browser-driven: the hub panel's BROWSER reaches a child directly (a worker
-				// cannot fetch a same-account worker). Handle the CORS preflight and the no-auth reachability
-				// probe here, before the POST/GET method chains (which never run for OPTIONS, and whose GET
-				// chain has no api/sync route). The real config-applying POST is handled in the POST chain.
-				if (nativGisha === 'admin/api/sync' && request.method !== 'POST') {
-					const _cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'authorization, content-type', 'Access-Control-Max-Age': '86400' };
-					if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: _cors });
-					if (request.method === 'GET') return new Response(JSON.stringify({ ok: true, build: NOVA_BUILD, version: Version }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', ..._cors } });
-				}
+				if (!authCookie || !(await isAuthed(request, UA, mafteachHatzpana, adminPassword))) return new Response('Redirecting...', { status: 302, headers: { 'Location': _dg.pubLogin } });
 				// --- Central sync: on panel access, heartbeat + fetch notifications (once every 10 minutes) ---
 				ctx.waitUntil(flushUsage(env));
 				if (Date.now() - zmanSinchronMerkaziAcharon > 600000) { zmanSinchronMerkaziAcharon = Date.now(); ctx.waitUntil(peimatLevMerkazit(env)); ctx.waitUntil(riaanunHodaot(env)); }
@@ -2323,13 +2126,6 @@ export default {
 									subPath: String(settings.subPath || '').trim().toLowerCase().replace(/^\/+|\/+$/g, '').replace(/[^a-z0-9_-]/g, '').slice(0, 40),
 									backendMode: typeof settings.backendMode === 'boolean' ? settings.backendMode : false,
 									backendUrl: (typeof settings.backendUrl === 'string' && /^https?:\/\//i.test(settings.backendUrl.trim())) ? settings.backendUrl.trim().slice(0, 300) : '',
-									linkedPanels: Array.isArray(settings.linkedPanels) ? settings.linkedPanels.map(p => ({
-										url: String(p.url || '').trim().slice(0, 200),
-										apiKey: String(p.apiKey || '').trim().slice(0, 100),
-										name: String(p.name || '').trim().slice(0, 50)
-									})).filter(p => p.url && p.apiKey) : [],
-								hubPanelUrl: String(settings.hubPanelUrl || '').trim().slice(0, 200),
-								syncApiKey: String(settings.syncApiKey || '').trim().slice(0, 100),
 								telegramChannel: String(settings.telegramChannel || '').trim().slice(0, 200) || 'https://t.me/irnova_proxy',
 								fakeConfigs: Array.isArray(settings.fakeConfigs) ? settings.fakeConfigs.map(f => ({
 									name: String(f.name || '').slice(0, 100),
@@ -2450,7 +2246,6 @@ export default {
 							userNodes: u.userNodes || null,
 							userMode: u.userMode || null,
 							usernat64: u.usernat64 || null,
-							userPanelUrl: u.userPanelUrl || null,
 							ipLimit: Number(u.ipLimit) || 0,
 							activeIps: u.activeIps || '{}',
 							blockPorn: u.blockPorn ? 1 : 0,
@@ -2590,100 +2385,6 @@ export default {
 							}
 						}
 						return new Response(JSON.stringify({ success: false, error: 'Invalid request' }), { status: 400, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-					} else if (nativGisha === 'admin/linked-panels' || nativGisha === 'admin/linked-panels.json') {// Multi-Panel Hub: linked child panels
-						if (request.method === 'GET') {
-							let ns = {}; try { ns = JSON.parse((await env.KV.get('network-settings.json')) || '{}'); } catch (e) {}
-							const panels = Array.isArray(ns.linkedPanels) ? ns.linkedPanels : [];
-							return new Response(JSON.stringify({ success: true, panels, linkedPanels: panels, hubPanelUrl: ns.hubPanelUrl || '', panelName: ns.panelName || '', syncApiKey: ns.syncApiKey || '' }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
-						}
-						if (request.method === 'POST') {
-							let body = {}; try { body = await request.json(); } catch (e) {}
-							let ns = {}; try { ns = JSON.parse((await env.KV.get('network-settings.json')) || '{}'); } catch (e) {}
-							ns.linkedPanels = (Array.isArray(body.linkedPanels) ? body.linkedPanels : []).map(p => ({ url: String(p.url || '').trim().slice(0, 200), apiKey: String(p.apiKey || '').trim().slice(0, 100), name: String(p.name || '').trim().slice(0, 50) })).filter(p => p.url && p.apiKey);
-							ns.hubPanelUrl = String(body.hubPanelUrl || '').trim().slice(0, 200);
-							if (body.panelName !== undefined) ns.panelName = String(body.panelName || '').trim().slice(0, 50);
-							if (body.syncApiKey !== undefined) ns.syncApiKey = String(body.syncApiKey || '').trim().slice(0, 100);
-							await env.KV.put('network-settings.json', JSON.stringify(ns, null, 2));
-							mitmonHagdarotReshet = null;
-							ctx.waitUntil(rishumYomanBakasha(env, request, gishaIP, 'Save_LinkedPanels', novaState().config_JSON));
-							return new Response(JSON.stringify({ success: true, count: ns.linkedPanels.length }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-						}
-						return new Response(JSON.stringify({ success: false, error: 'Invalid request' }), { status: 400, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-					} else if (nativGisha === 'admin/linked-panels-test') {// Hub: test reachability of one child panel
-						if (request.method !== 'POST') return new Response(JSON.stringify({ error: 'POST only' }), { status: 405, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-						let body = {}; try { body = await request.json(); } catch (e) {}
-						let cleanUrl = String(body.url || '').trim();
-						if (!cleanUrl) return new Response(JSON.stringify({ success: false, error: 'No URL' }), { status: 400, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-						if (!/^https?:\/\//i.test(cleanUrl)) cleanUrl = 'https://' + cleanUrl;
-						try {
-							const parsed = new URL(cleanUrl);
-							const r = await fetch(`${parsed.protocol}//${parsed.host}/version`, { headers: { 'User-Agent': 'NovaProxy' }, signal: AbortSignal.timeout(12000) });
-							let version = '?'; try { const j = await r.json(); version = j.version || j.Version || '?'; } catch (e) {}
-							return new Response(JSON.stringify({ success: r.ok, version, status: r.status }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-						} catch (e) { return new Response(JSON.stringify({ success: false, error: e.message }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } }); }
-					} else if (nativGisha === 'admin/linked-panels-sync' || nativGisha === 'admin/linked-panels/sync') {// Hub: sync config to one child panel (or all)
-						if (request.method !== 'POST') return new Response(JSON.stringify({ error: 'POST only' }), { status: 405, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-						let body = {}; try { body = await request.json(); } catch (e) {}
-						novaState().config_JSON = await keriatConfigJson(env, host, userID, UA);
-						if (body.url && body.apiKey) {
-							let cleanUrl = String(body.url).trim(); if (!/^https?:\/\//i.test(cleanUrl)) cleanUrl = 'https://' + cleanUrl;
-							try {
-								const parsed = new URL(cleanUrl);
-								const r = await fetch(`${parsed.protocol}//${parsed.host}/admin/api/sync`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + body.apiKey }, body: JSON.stringify({ config: { config_JSON: novaState().config_JSON, networkSettings: novaState().hagdarotReshet }, fromMaster: true }), signal: AbortSignal.timeout(15000) });
-								let err = ''; if (!r.ok) { try { err = (await r.json()).error || ('HTTP ' + r.status); } catch (e) { err = 'HTTP ' + r.status; } }
-								log(`[LinkedPanels] single sync to ${parsed.host}: ${r.status}`);
-								return new Response(JSON.stringify({ success: r.ok, error: err, status: r.status }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-							} catch (e) { return new Response(JSON.stringify({ success: false, error: e.message }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } }); }
-						}
-						await syncToLinkedPanels(env, { config_JSON: novaState().config_JSON, networkSettings: novaState().hagdarotReshet }, ctx);
-						return new Response(JSON.stringify({ success: true, message: 'Sync triggered' }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
-					} else if (nativGisha === 'admin/api/sync') {// Receive config sync from master panel (browser-driven cross-origin POST)
-						// CORS so the hub panel's BROWSER (different origin) can read this response. The OPTIONS
-						// preflight + the GET reachability probe are handled earlier, before the method chains,
-						// because this POST-only chain is never entered for OPTIONS/GET requests.
-						const _cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'authorization, content-type' };
-						const _sj = (obj, status) => new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json;charset=utf-8', ..._cors } });
-						let body = {}; try { body = await request.json(); } catch (e) {}
-						const authKey = (request.headers.get('Authorization') || '').replace('Bearer ', '').trim() || body.key || '';
-						// Accept: a registered panel API key, the admin password, OR this child's own
-						// "Sync API key" (hagdarotReshet.syncApiKey) - the field the hub UI tells you to match.
-						const _childSyncKey = (novaState().hagdarotReshet && novaState().hagdarotReshet.syncApiKey) ? String(novaState().hagdarotReshet.syncApiKey).trim() : '';
-						if (!isPanelApiKey(authKey) && !timingSafeStrEqual(authKey, adminPassword) && !(_childSyncKey && timingSafeStrEqual(authKey, _childSyncKey))) return _sj({ success: false, error: 'Unauthorized' }, 403);
-							// Only apply data that actually looks complete. A master pushing an empty or partial
-							// object (a mistaken/partial sync) must NEVER overwrite a working child, which would
-							// brick every admin route on the child. Require the core objects before writing.
-							const _ns = body.config && body.config.networkSettings;
-							const _cfg = body.config && body.config.config_JSON;
-							const _applied = { networkSettings: false, config: false };
-							if (_ns && typeof _ns === 'object' && Object.keys(_ns).length > 3) {
-								// PER-PANEL DATA IS NEVER OVERWRITTEN BY A HUB. A hub propagates routing/blocking/DNS
-								// settings, NOT accounts or identity. Users (and this panel's own hub links) live in
-								// network-settings.json, so a naive wholesale overwrite would wipe the child's users
-								// (they'd "vanish" on the next sync). Merge: take the master's settings but keep this
-								// panel's own users + hub identity.
-								let _childNs = {}; try { _childNs = JSON.parse((await env.KV.get('network-settings.json')) || '{}'); } catch (e) {}
-								const _merged = Object.assign({}, _ns);
-								if (Array.isArray(_childNs.users)) _merged.users = _childNs.users; // keep THIS panel's users
-								if (_childNs.multiUser !== undefined) _merged.multiUser = _childNs.multiUser;
-								for (const _k of ['linkedPanels', 'hubPanelUrl', 'panelName', 'syncApiKey']) {
-									if (_childNs[_k] !== undefined) _merged[_k] = _childNs[_k];
-								}
-								await env.KV.put('network-settings.json', JSON.stringify(_merged, null, 2));
-								mitmonHagdarotReshet = null;
-								_applied.networkSettings = true;
-							}
-							if (_cfg && typeof _cfg === 'object' && _cfg.tetzuratHamaratMinuy && _cfg.muvcharMinuyMecholel && _cfg.UUID) {
-								// Keep this panel's OWN UUID so its subscription tokens (MD5MD5(host+UUID)) and node
-								// identity stay stable, otherwise every existing user's link on the child would break.
-								let _childCfg = {}; try { _childCfg = JSON.parse((await env.KV.get('config.json')) || '{}'); } catch (e) {}
-								const _mergedCfg = Object.assign({}, _cfg);
-								if (_childCfg.UUID) _mergedCfg.UUID = _childCfg.UUID;
-								await putConfig(env, JSON.stringify(_mergedCfg, null, 2));
-								_applied.config = true;
-							}
-							log('[LinkedPanels] received sync from master; applied=' + JSON.stringify(_applied));
-							if (!_applied.networkSettings && !_applied.config) return _sj({ success: false, error: 'incomplete config, nothing applied', applied: _applied }, 400);
-							return _sj({ success: true, applied: _applied }, 200);
 					} else if (nativGisha === 'admin/auto-update') { // Tombstone for removed runtime deployment configuration.
 						return new Response(JSON.stringify({
 							success: false,
@@ -2695,18 +2396,17 @@ export default {
 						// If a RELAY_AUTH_KEY env var/secret is set, that wins, so hand it back instead.
 						const _rj = (o, st) => new Response(JSON.stringify(o), { status: st || 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 							if (request.method !== 'POST') return _rj({ error: 'method_not_allowed' }, 405);
-							if (!getRelayAllowedPatterns(env).length) return _rj({ error: 'allowlist_required', message: 'Set RELAY_ALLOWED_HOSTS to explicit hostnames before enabling relay.' }, 409);
-						const _rHost = (novaState().config_JSON && Array.isArray(novaState().config_JSON.HOSTS) && novaState().config_JSON.HOSTS[0]) || (novaState().config_JSON && novaState().config_JSON.HOST) || (novaState().hagdarotReshet && Array.isArray(novaState().hagdarotReshet.HOSTS) && novaState().hagdarotReshet.HOSTS[0]) || new URL(request.url).hostname;
-						const _rWorkerUrl = 'https://' + _rHost + '/';
 						const _rEnvKey = (env && String(env.RELAY_AUTH_KEY || env.RELAYKEY || '').trim()) || '';
-						if (_rEnvKey) return _rj({ success: true, key: _rEnvKey, workerUrl: _rWorkerUrl, source: 'env' });
+						const _rRequestUrl = new URL(request.url);
+						const _rControlUrl = _rRequestUrl.protocol + '//' + _rRequestUrl.host + '/relay-auth';
+						if (_rEnvKey) return _rj({ success: true, key: _rEnvKey, controlUrl: _rControlUrl, source: 'env' });
 						if (!env.DB) return _rj({ error: 'no_db', message: 'Bind a D1 database named DB to the Worker, then retry.' });
 						const _rKey = genRelayKey();
 						const _rOk = await relayConfigSet(env, 'auth_key', _rKey);
 						if (!_rOk) return _rj({ error: 'db_write_failed', message: 'Could not write to the D1 database.' });
 						await relayConfigSet(env, 'verified', '');
 						_relayKeyCache = _rKey; _relayKeyCacheAt = Date.now();
-						return _rj({ success: true, key: _rKey, workerUrl: _rWorkerUrl, source: 'db' });
+						return _rj({ success: true, key: _rKey, controlUrl: _rControlUrl, source: 'db' });
 					} else if (nativGisha === 'admin/relay-verify') {
 						// Save the Google Apps Script /exec URL and test the whole chain server-side.
 						const _rj = (o, st) => new Response(JSON.stringify(o), { status: st || 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
@@ -2786,7 +2486,6 @@ export default {
 						warpNoise: { mode: '', count: '', size: '', delay: '' },
 						disguise: false, adminPath: '', loginPath: '', subPath: '',
 						backendMode: false, backendUrl: '',
-					linkedPanels: [], hubPanelUrl: '', syncApiKey: '',
 					autoUpdate: false, autoUpdateFormat: 'normal', autoUpdateInterval: 3600000, githubRepo: 'IRNova/Nova-Proxy',
 					telegramChannel: 'https://t.me/irnova_proxy',
 					fakeConfigs: [
@@ -2800,21 +2499,6 @@ export default {
 						} catch (error) {
 							return new Response(JSON.stringify({ error: error.message }), { status: 500, headers: { 'Content-Type': 'application/json;charset=utf-8' } });
 						}
-					} else if (nativGisha === 'admin/linked-panels' || nativGisha === 'admin/linked-panels.json') {// Multi-Panel Hub: read linked child panels (GET)
-						let ns = {}; try { ns = JSON.parse((await env.KV.get('network-settings.json')) || '{}'); } catch (e) {}
-						const panels = Array.isArray(ns.linkedPanels) ? ns.linkedPanels : [];
-						return new Response(JSON.stringify({ success: true, panels, linkedPanels: panels, hubPanelUrl: ns.hubPanelUrl || '', panelName: ns.panelName || '', syncApiKey: ns.syncApiKey || '' }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
-					} else if (nativGisha === 'admin/linked-panels-payload') {// Multi-Panel Hub: build the exact config the browser relays to children (browser-driven sync)
-						// The hub worker CANNOT fetch a same-account child (workers.dev same-account fetch 404s),
-						// so the hub browser fetches this payload and POSTs it to each child itself.
-						const _cfgJson = await keriatConfigJson(env, host, userID, UA);
-						let _net = {}; try { _net = JSON.parse((await env.KV.get('network-settings.json')) || '{}'); } catch (e) {}
-						// Strip per-panel data from what the hub sends: accounts (users) and the hub's own links
-						// are NOT propagated. The receiver also preserves the child's copies, but not transmitting
-						// them keeps every user's key on its own panel (privacy + correctness).
-						const _netToSend = Object.assign({}, _net);
-						delete _netToSend.users; delete _netToSend.linkedPanels; delete _netToSend.hubPanelUrl; delete _netToSend.panelName; delete _netToSend.syncApiKey;
-						return new Response(JSON.stringify({ success: true, config: { config_JSON: _cfgJson, networkSettings: _netToSend } }), { status: 200, headers: { 'Content-Type': 'application/json;charset=utf-8', 'Cache-Control': 'no-store' } });
 					} else if (nativGisha === 'admin/system.json') {// اطلاعات سیستم
 						const kvConnected = !!(env.KV && typeof env.KV.get === 'function');
 						let kvOk = false;

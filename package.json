@@ -1,6 +1,6 @@
 {
   "name": "nova-proxy",
-  "version": "4.1.7-preview.6",
+  "version": "4.1.7",
   "private": true,
   "scripts": {
     "check": "node --check worker.js",

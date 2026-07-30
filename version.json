@@ -1,6 +1,6 @@
 {
-  "version": "4.1.7-preview.6",
+  "version": "4.1.7",
   "released": "2026-07-30",
-  "notes": "Hardening preview with bounded relay access, health-only diagnostics, reviewed repository updates, and panel compatibility updates.",
+  "notes": "Removes Multi-Panel and Worker relay routes, adds Google-direct relay setup, and fixes Cloudflare-compatible fetch redirects.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js"
 }
