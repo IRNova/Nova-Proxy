@@ -1,4 +1,5 @@
 import { AsyncLocalStorage } from 'node:async_hooks';
+import { connect } from 'cloudflare:sockets';
 
 const novaRequestState = new AsyncLocalStorage();
 function createNovaRequestState(env = null, ctx = null) {
@@ -33,7 +34,7 @@ function novaState() {
 	return state;
 }
 
-const Version = 'V4.1.7';
+const Version = 'V4.1.10';
 let mitmonReshimaLevanaSocks5 = null, mitmonIpMetavech, mitmonNituachMetavech, indeksMaarachMetavechMitmon = 0;
 let mitmonHagdarotReshet = null, zmanMitmonHagdarotReshet = 0;
 let mitmonKidometNat64 = null, zmanMitmonNat64 = 0, makorMitmonNat64 = '';
@@ -66,7 +67,7 @@ const NOVA_TG_HANDLE = '@' + (String(NOVA_TG_CHANNEL).split('/').filter(Boolean)
 // Build stamp: bump this whenever worker.js changes so a deploy can be verified at a
 // glance (GET /install/status returns it). If the panel/status still shows an old build
 // after a deploy, the upload didn't take.
-const NOVA_BUILD = '2026-07-30.google-direct';
+const NOVA_BUILD = '2026-07-30.download-zero-copy';
 globalThis.__workerStart = Date.now();
 function guardExecutionContext(ctx, scope) {
 	if (!ctx || typeof ctx.waitUntil !== 'function') return ctx;
@@ -3072,6 +3073,11 @@ export default {
 						} catch (e) {}
 						const isSubConverterRequest = url.searchParams.has('b64') || url.searchParams.has('base64') || request.headers.get('subconverter-request') || request.headers.get('subconverter-version') || ua.includes('subconverter') || ua.includes(('CF-Workers-SUB').toLowerCase()) || keGenNivchar;
 						const _forceConvert = url.searchParams.has('subconvert'); // escape hatch: real Clash/sing-box YAML/JSON via the external converter
+						// Hiddify advertises both "ClashMeta" and "sing-box" in one User-Agent.
+						// Treating that as Clash sends the full converter template, which Hiddify
+						// iOS rejects as an empty profile. Its native parser accepts the compact
+						// mixed/base64 subscription directly.
+						const _isHiddify = ua.includes('hiddify');
 						const sugMinuy = isSubConverterRequest
 							? 'mixed'
 							: url.searchParams.has('target')
@@ -3080,6 +3086,8 @@ export default {
 									? 'clash'
 									: _forceConvert && (url.searchParams.has('sb') || url.searchParams.has('singbox') || ua.includes('singbox') || ua.includes('sing-box'))
 										? 'singbox'
+										: _isHiddify
+											? 'mixed'
 										: url.searchParams.has('clash') || ua.includes('clash') || ua.includes('meta') || ua.includes('mihomo')
 											? 'clash'
 									: url.searchParams.has('sb') || url.searchParams.has('singbox') || ua.includes('singbox') || ua.includes('sing-box')
@@ -4258,6 +4266,8 @@ function pianuchNetunimMukdamimWS(header, token) {
 
 // ===== WS transport data =====
 async function tipulBakashatWS(request, yourUUID, url, ctx, connectionSlot = null) {
+	const matzavBakashaWS = novaState();
+	const haretsImMatzavBakashaWS = (callback) => novaRequestState.run(matzavBakashaWS, callback);
 	const zugSocketWS = new WebSocketPair();
 	const [clientSock, serverSock] = Object.values(zugSocketWS);
 	try { (/** @type {any} */ (serverSock)).accept({ allowHalfOpen: true }) }
@@ -4276,7 +4286,6 @@ async function tipulBakashatWS(request, yourUUID, url, ctx, connectionSlot = nul
 	let zihuySugProtokol = null, socketKtivaNochachi = null, kotevMerchak = null;
 	let heksherSs = null, mesimatIticholSs = null;
 	const usageStats = { up: 0, down: 0 };
-	const moridMugbalMehirut = getSpeedLimiter('down');
 
 	const shachrerKotevMerchak = () => {
 		if (kotevMerchak) {
@@ -4670,17 +4679,21 @@ async function tipulBakashatWS(request, yourUUID, url, ctx, connectionSlot = nul
 	};
 
 	serverSock.addEventListener('message', (event) => {
-		runConnectionSlotAction(connectionSlot, 'touch', ctx);
-		hachnasatTorHaavaraMeforeshetWS(event.data);
+		haretsImMatzavBakashaWS(() => {
+			runConnectionSlotAction(connectionSlot, 'touch', ctx);
+			hachnasatTorHaavaraMeforeshetWS(event.data);
+		});
 	});
 	serverSock.addEventListener('close', () => {
-		closeSocketQuietly(serverSock);
-		siyumHaavaraMeforeshetWS2();
-		try { commitUsage(novaState()._globalEnv, usageStats, ctx, true); } catch (e) {}
-		runConnectionSlotAction(connectionSlot, 'release', ctx);
+		haretsImMatzavBakashaWS(() => {
+			closeSocketQuietly(serverSock);
+			siyumHaavaraMeforeshetWS2();
+			try { commitUsage(novaState()._globalEnv, usageStats, ctx, true); } catch (e) {}
+			runConnectionSlotAction(connectionSlot, 'release', ctx);
+		});
 	});
 	serverSock.addEventListener('error', (err) => {
-		tipulShgiatHaavaraWsMforash(err);
+		haretsImMatzavBakashaWS(() => tipulShgiatHaavaraWsMforash(err));
 	});
 
 	// In SS mode, disable sec-websocket-protocol early-data to avoid injecting the subprotocol value (e.g. "binary") as base64 into the first packet, which would break AEAD decryption.
@@ -5547,7 +5560,9 @@ function yetziratMeshaderGrainMorad(webSocket, headerData = null) {
 		flushTimer = null;
 		microtaskQueued = false;
 		if (!pendingBytes) return;
-		const output = pendingBuffer.subarray(0, pendingBytes).slice();
+		// Swap buffers before sending so this view remains immutable without copying
+		// every download frame.
+		const output = pendingBuffer.subarray(0, pendingBytes);
 		pendingBuffer = new Uint8Array(packetCap);
 		pendingBytes = 0;
 		waitRounds = 0;
@@ -5876,10 +5891,7 @@ async function httpsConnect(targetHost, targetPort, initialData, chiburTCP) {
 }
 
 function yatzerMchubarTcpBakasha(request) {
-	const objBakasha = /** @type {any} */ (request);
-	const fetcher = objBakasha?.fetcher;
-	if (!fetcher || typeof fetcher.connect !== 'function') throw new Error('request.fetcher.connect unavailable');
-	return (options, init) => init === undefined ? fetcher.connect(options) : fetcher.connect(options, init);
+	return (options, init) => init === undefined ? connect(options) : connect(options, init);
 }
 ////////////////////////////////////////////TLSClient by: @Alexandre_Kojeve////////////////////////////////////////////////
 const TLS_VERSION_10 = 769, TLS_VERSION_12 = 771, TLS_VERSION_13 = 772;
