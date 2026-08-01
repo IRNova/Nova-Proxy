@@ -102,9 +102,13 @@ The recommended client is **[Nova Client](https://github.com/IRNova/Nova-Client)
 - **Keep the panel private.** Do not share your admin login. User subscription links are credentials, treat them like passwords.
 - Nova Proxy is a free tool for open access to the internet. Use it responsibly and in line with the laws that apply to you.
 
-## License
+## Source and license
 
-See the [LICENSE](LICENSE) file in this repository.
+Nova ships as a protected release. The public repository holds a minified and obfuscated `worker.js` deployment artifact plus its deployment metadata. The maintainable panel source is kept private. This is the "protected panel, open tools" model: the panel itself is protected, while the tools around it (the client apps, Nova Radar, and the verified helpers) stay open.
+
+The protection is there to deter copying and resale. To be honest about what it does and does not do: it does not make the code impossible to recover. You deploy the Worker to your own Cloudflare account, and a Cloudflare account owner can always inspect a Worker running in their own account. We do not claim it is unrecoverable or "100% secure".
+
+On licensing: Nova releases through 4.2.0 were published under the MIT license, and that historical grant still stands for those versions. Starting with 4.3.0, Nova-authored changes are under PolyForm Noncommercial. You can self-host, study, and modify Nova for noncommercial use, but reselling access or running paid hosting is not permitted without written permission. So the panel is no longer MIT or fully open source. See the [LICENSE](LICENSE) file for the exact terms.
 
 ---
 
@@ -210,8 +214,12 @@ npm run deploy
 - **پنل را خصوصی نگه دارید.** ورود مدیر را با کسی به اشتراک نگذارید. لینک اشتراک کاربران یک اعتبارنامه است، مثل رمز عبور با آن رفتار کنید.
 - نُوا پروکسی ابزاری رایگان برای دسترسی آزاد به اینترنت است. مسئولانه و مطابق قوانینی که بر شما اعمال می‌شود از آن استفاده کنید.
 
-## مجوز
+## سرچشمه و مجوز
 
-فایل [LICENSE](LICENSE) در همین ریپازیتوری را ببینید.
+نوا به‌صورت نسخهٔ محافظت‌شده منتشر می‌شود. مخزن عمومی فقط فایل استقرار ⁦`worker.js`⁩ (کوچک‌سازی و مبهم‌سازی‌شده) و دادهٔ استقرار آن را دارد و سورس قابل‌نگهداری پنل خصوصی می‌ماند. این همان مدل «پنل محافظت‌شده، ابزارها باز» است: پنل محافظت می‌شود، اما ابزارهای پیرامونی (کلاینت‌ها، ⁦Nova Radar⁩ و کمک‌ابزارهای تأییدشده) باز می‌مانند.
+
+مبهم‌سازی، کپی و فروش مجدد را دشوار می‌کند، اما صادقانه بگوییم کد را بازیابی‌ناپذیر نمی‌کند: شما ورکر را روی حساب ⁦Cloudflare⁩ خودتان مستقر می‌کنید و صاحب هر حساب همیشه می‌تواند ورکرِ درون حساب خودش را بررسی کند. ما ادعای «۱۰۰٪ امن» یا بازیابی‌ناپذیری نمی‌کنیم.
+
+نسخه‌های نوا تا ⁦4.2.0⁩ تحت ⁦MIT⁩ منتشر شدند و همان اجازهٔ تاریخی برای آن نسخه‌ها پابرجاست. از ⁦4.3.0⁩ به بعد، تغییرات نوا تحت ⁦PolyForm Noncommercial⁩ (غیرتجاری) است: میزبانی شخصی، مطالعه و تغییر برای مصارف غیرتجاری آزاد است، اما فروش دسترسی یا میزبانی پولی بدون اجازهٔ کتبی مجاز نیست. پس پنل دیگر «⁦MIT⁩» یا کاملاً متن‌باز نیست. فایل [LICENSE](LICENSE) را برای شرایط دقیق ببینید.
 
 </div>

@@ -1,15 +1,13 @@
-# Reproducibility / verification CI. worker.js in this repo is the COMPLETE,
-# unminified source of the Worker (there is no separate build step or bundler).
-# This job runs on every push and pull request to prove the source is valid and
-# to publish a SHA-256 of worker.js, so anyone can verify that the file they
-# deploy is exactly the file in this commit. No Cloudflare credentials are used.
-name: Verify worker.js
+name: Verify protected release
+
 on:
   push:
     branches: [main]
   pull_request:
+
 permissions:
   contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -19,35 +17,5 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - name: Install the locked toolchain
-        run: npm ci
-      - name: Validate the release artifact
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$(wc -c < worker.js)" -ge 100000
-          grep -Fq "export default" worker.js
-          grep -Fq "const Version =" worker.js
-          grep -Fq "NOVA_BUILD" worker.js
-          npm run check
-      - name: Validate Wrangler config and bundle
-        run: npx wrangler deploy --dry-run --outdir /tmp/nova-out
-      - name: Publish the worker.js SHA-256
-        run: |
-          HASH=$(sha256sum worker.js | awk '{print $1}')
-          echo "$HASH  worker.js" | tee worker.js.sha256
-          {
-            echo "### Verifiable build"
-            echo ""
-            echo "\`worker.js\` at commit \`${GITHUB_SHA}\`:"
-            echo ""
-            echo "\`\`\`"
-            echo "SHA-256: $HASH"
-            echo "\`\`\`"
-            echo ""
-            echo "Anyone can reproduce this: \`sha256sum worker.js\` on a fresh checkout of this commit yields the same value. What you deploy to Cloudflare is exactly this file."
-          } >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: worker-js-sha256
-          path: worker.js.sha256
+      - run: npm ci
+      - run: npm run check

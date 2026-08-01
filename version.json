@@ -1,6 +1,8 @@
 {
-  "version": "4.1.10",
-  "released": "2026-07-30",
-  "notes": "Improves Hiddify subscription compatibility and download forwarding while preserving the reliable queued upload path.",
-  "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js"
+  "version": "4.5.0",
+  "released": "2026-08-01",
+  "notes": "Connectivity fix: revert the per-connection DoH content filter to opt-in per-user only (the network-wide default was adding a DNS round-trip before every connection). Adult/ad blocking will move to client-side DNS. Includes 4.4.x.",
+  "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
+  "worker_sha256": "e530f20ea8e7683e820596d5887ba2c4510a0b91c1264f938756b23cb3aff231",
+  "protected": true
 }
