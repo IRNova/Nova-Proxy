@@ -1,3 +1,12 @@
+# Nova Proxy 4.5.1
+
+Nova Proxy 4.5.1 hardens the WebSocket handler so a malformed or scanner-probe connection closes cleanly instead of returning an internal error.
+
+## Cleaner handling of bad connections
+
+- A probe or malformed WebSocket connection now closes quietly instead of surfacing an internal error. This also removes a signal a scanner could use to fingerprint the worker as a proxy.
+- Real client connections are unaffected.
+
 # Nova Proxy 4.5.0
 
 Nova Proxy 4.5.0 fixes subscription links, gives every user a stable TLS fingerprint, trims the Resistance Policy down to the toggles that actually change behavior, and makes the release build prove the artifact boots before it ships.
