@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "nova-proxy",
+  "name": "web-app",
   "main": "worker.js",
   "compatibility_date": "2026-07-30",
   "compatibility_flags": ["nodejs_compat"],
