@@ -10,9 +10,6 @@
   "kv_namespaces": [
     { "binding": "KV" }
   ],
-  "vars": {
-    "PAGES_URL": "https://nova-panel.github.io"
-  },
   "workers_dev": true,
   "preview_urls": true,
   "observability": {
