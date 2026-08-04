@@ -1,8 +1,8 @@
 {
-  "version": "4.5.1",
+  "version": "4.5.2",
   "released": "2026-08-01",
   "notes": "Connectivity fix: revert the per-connection DoH content filter to opt-in per-user only (the network-wide default was adding a DNS round-trip before every connection). Adult/ad blocking will move to client-side DNS. Includes 4.4.x.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "055d7e7ac63ee93e335aa5a4d174d9b9e8b24fd48314b412a79ba87d6640262b",
+  "worker_sha256": "8bf70047abe8fe1d0e802a2cc6af951a53fe0f2188894c387dcade1477d7255c",
   "protected": true
 }

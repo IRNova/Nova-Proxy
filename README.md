@@ -13,7 +13,7 @@ VLESS, Trojan, Shadowsocks, gRPC, XHTTP over WebSocket + TLS, with a bilingual p
 WARP, proxy chaining, and a Backend mode. Runs on Cloudflare's **free plan**.
 
 [![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial-green?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/version-4.5.1-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
+[![Version](https://img.shields.io/badge/version-4.5.2-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
 [![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
 
 </div>
@@ -103,7 +103,7 @@ The recommended client is **[Nova Client](https://github.com/IRNova/Nova-Client)
 
 ## Release notes
 
-The latest release is **4.5.1**: token-based subscription links, a stable per-user TLS fingerprint, a Resistance Policy trimmed to the toggles that actually work (QUIC now drives the real block), Exit Location removed, lighter connection accounting, and a release build that boots the artifact before shipping.
+The latest release is **4.5.2**: token-based subscription links, a stable per-user TLS fingerprint, a Resistance Policy trimmed to the toggles that actually work (QUIC now drives the real block), Exit Location removed, lighter connection accounting, and a release build that boots the artifact before shipping.
 
 Full history is in [RELEASE_NOTES.md](RELEASE_NOTES.md).
 

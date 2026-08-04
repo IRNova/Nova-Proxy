@@ -15,7 +15,7 @@ VLESS، Trojan، Shadowsocks، gRPC، XHTTP روی WebSocket + TLS، با پنل
 WARP، زنجیره پروکسی و حالت Backend. اجرا روی **پلن رایگان** Cloudflare.
 
 [![License](https://img.shields.io/badge/مجوز-PolyForm%20Noncommercial-green?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/نسخه-4.5.1-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
+[![Version](https://img.shields.io/badge/نسخه-4.5.2-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
 [![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
 
 </div>

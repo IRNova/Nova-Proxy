@@ -1,3 +1,12 @@
+# Nova Proxy 4.5.2
+
+Nova Proxy 4.5.2 stops a dead or unresponsive proxy IP from hanging the worker.
+
+## A silent proxy IP fails fast instead of hanging
+
+- If a connection is routed through a proxy IP that accepts the connection but then never sends any data, the worker now closes it after a short wait instead of hanging until the runtime cancels the request.
+- Only the wait for the first byte is bounded. Active connections, and legitimately idle-but-alive connections, are untouched.
+
 # Nova Proxy 4.5.1
 
 Nova Proxy 4.5.1 hardens the WebSocket handler so a malformed or scanner-probe connection closes cleanly instead of returning an internal error.

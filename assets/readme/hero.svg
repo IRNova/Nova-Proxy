@@ -45,7 +45,7 @@
 
     <!-- wordmark -->
     <text x="176" y="150" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="66" font-weight="800" fill="#f4f7fb" letter-spacing="-1">Nova Proxy</text>
-    <text x="178" y="185" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" letter-spacing="1" fill="#6f7c90">v4.5.1, protected release, single Worker</text>
+    <text x="178" y="185" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="17" letter-spacing="1" fill="#6f7c90">v4.5.2, protected release, single Worker</text>
 
     <!-- value proposition -->
     <text x="66" y="248" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="23" font-weight="600" fill="#d7deea">A personal, censorship-resistant proxy + dashboard</text>
