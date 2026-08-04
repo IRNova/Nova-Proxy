@@ -1,3 +1,20 @@
+# Nova Proxy 4.5.4
+
+Nova Proxy 4.5.4 is a hardening release that lowers the deployed worker's static fingerprint. Runtime behavior is unchanged, so existing panels keep working exactly as before.
+
+## A smaller static fingerprint
+
+- A few internal constants that used to sit in the worker as plain text are now stored encoded and decoded at runtime, so a static scan of the deployed `worker.js` no longer surfaces them.
+- This is a code-shape change only. Configs, connections, and every panel feature behave exactly as in 4.5.2.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request after reviewing its diff and Cloudflare preview. Your users, settings, and data are preserved. Full deployment and update instructions are in [DEPLOY.md](DEPLOY.md).
+
+The public repository contains only the obfuscated `worker.js` deployment artifact, its deployment metadata, checksums, and documentation. The maintainable panel source stays private.
+
+---
+
 # Nova Proxy 4.5.2
 
 Nova Proxy 4.5.2 stops a dead or unresponsive proxy IP from hanging the worker.
