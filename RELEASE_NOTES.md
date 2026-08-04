@@ -1,3 +1,21 @@
+# Nova Proxy 4.5.5
+
+Nova Proxy 4.5.5 fixes the live Cloudflare usage box so the read-only token connects on the first try.
+
+## Usage stats connect reliably
+
+- The "Create read-only token" button now requests **Account Analytics: Read** and **Account Settings: Read** (both read-only). The analytics-only token it created before could read stats but could not list your account, so the panel could not auto-detect your Account ID and the usage box failed to connect.
+- If auto-detection still cannot find your account, the panel now points you to the Account ID field and asks you to paste it (you can copy it from your Cloudflare dashboard URL).
+- The token still cannot deploy or change Workers. It is read-only.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request after reviewing its diff and Cloudflare preview. Your users, settings, and data are preserved. Full deployment and update instructions are in [DEPLOY.md](DEPLOY.md).
+
+The public repository contains only the obfuscated `worker.js` deployment artifact, its deployment metadata, checksums, and documentation. The maintainable panel source stays private.
+
+---
+
 # Nova Proxy 4.5.4
 
 Nova Proxy 4.5.4 is a hardening release that lowers the deployed worker's static fingerprint. Runtime behavior is unchanged, so existing panels keep working exactly as before.
