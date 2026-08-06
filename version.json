@@ -1,8 +1,8 @@
 {
-  "version": "4.5.5",
-  "released": "2026-08-04",
-  "notes": "Fix: the usage-stats 'Create read-only token' link now also grants Account Settings: Read, so the panel can auto-detect your Account ID. An analytics-only token could not list accounts, which made the live usage box fail to connect. If auto-detect still fails, the panel now asks you to paste your Account ID. Includes 4.5.x and 4.4.x.",
+  "version": "4.5.6",
+  "released": "2026-08-06",
+  "notes": "Reliability: index the connection-tracking table on expiry so its periodic cleanup is a fast indexed delete instead of a full-table scan. On a busy panel the old scan grew slower over time and could eventually trip the Worker CPU limit (a 1101), most visibly under the heavier traffic that follows turning on a relay. Includes 4.5.x and 4.4.x.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "a95c401787e0be549f4372b37a16cbafe4503aeb1e9cce42c0f412b708fb7ed0",
+  "worker_sha256": "80a3e1a7130658e85bf4ec80e5acb5b719764f209f5510c28da871612d8a57a0",
   "protected": true
 }

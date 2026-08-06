@@ -1,3 +1,20 @@
+# Nova Proxy 4.5.6
+
+Nova Proxy 4.5.6 fixes a slow leak that could make a busy panel eventually return a 1101 error.
+
+## Connection cleanup no longer scans the whole table
+
+- The Worker keeps a small table of live connections and periodically deletes expired rows. That cleanup was scanning the entire table, so on a busy panel it got slower as the table grew and could eventually trip the Worker's CPU limit (a 1101), most visibly under the traffic spike that follows turning on a relay.
+- The table is now indexed on the expiry column, so the cleanup is a fast indexed delete regardless of size. Behavior is otherwise unchanged; the index is created automatically on the next start, and your users, settings, and data are untouched.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request after reviewing its diff and Cloudflare preview. Your users, settings, and data are preserved. Full deployment and update instructions are in [DEPLOY.md](DEPLOY.md).
+
+The public repository contains only the obfuscated `worker.js` deployment artifact, its deployment metadata, checksums, and documentation. The maintainable panel source stays private.
+
+---
+
 # Nova Proxy 4.5.5
 
 Nova Proxy 4.5.5 fixes the live Cloudflare usage box so the read-only token connects on the first try.
