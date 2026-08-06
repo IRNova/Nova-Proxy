@@ -1,8 +1,8 @@
 {
-  "version": "4.5.6",
+  "version": "4.5.7",
   "released": "2026-08-06",
-  "notes": "Reliability: index the connection-tracking table on expiry so its periodic cleanup is a fast indexed delete instead of a full-table scan. On a busy panel the old scan grew slower over time and could eventually trip the Worker CPU limit (a 1101), most visibly under the heavier traffic that follows turning on a relay. Includes 4.5.x and 4.4.x.",
+  "notes": "Stealth + UX: (1) stop leaking the product name and repo from /manifest.json and /version.json to an unauthenticated request; (2) the unmatched-path decoy is now stable per host and serves a real site inline instead of a random redirect, so a scanner sees a believable website; (3) config names now carry a real country flag for a fixed non-Cloudflare exit and a neutral globe for direct-Cloudflare, geolocated and cached in the background. Runtime/connections unchanged. Includes 4.5.x and 4.4.x.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "80a3e1a7130658e85bf4ec80e5acb5b719764f209f5510c28da871612d8a57a0",
+  "worker_sha256": "47df1ad80a476d9080be74388f360e18906e9d973d8e39cd277956038cdddb25",
   "protected": true
 }

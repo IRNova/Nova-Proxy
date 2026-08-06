@@ -1,3 +1,26 @@
+# Nova Proxy 4.5.7
+
+Nova Proxy 4.5.7 makes a deployed panel harder to fingerprint from the outside and adds a country flag to config names.
+
+## Harder to fingerprint
+
+- An unauthenticated request no longer gets the product name or the source repository back: `/manifest.json` is now generic and the old `/version.json` is gone.
+- A request that matches no route (a scanner or censor probing the bare URL) now sees a real, stable website served inline, chosen per host, instead of a redirect that changed on every request.
+
+## A country flag on every config
+
+- Config names now start with the exit country's flag when the config routes through a fixed, non-Cloudflare exit (a proxyIP or backend), and a neutral globe for a direct-Cloudflare connection (which is anycast and has no single country). The flag is geolocated once and cached, so it never slows a subscription.
+
+Connections, subscriptions, and ping behavior are unchanged.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request after reviewing its diff and Cloudflare preview. Your users, settings, and data are preserved. Full deployment and update instructions are in [DEPLOY.md](DEPLOY.md).
+
+The public repository contains only the obfuscated `worker.js` deployment artifact, its deployment metadata, checksums, and documentation. The maintainable panel source stays private.
+
+---
+
 # Nova Proxy 4.5.6
 
 Nova Proxy 4.5.6 fixes a slow leak that could make a busy panel eventually return a 1101 error.
