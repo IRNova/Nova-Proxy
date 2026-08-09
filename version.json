@@ -1,8 +1,8 @@
 {
-  "version": "4.5.7",
-  "released": "2026-08-06",
-  "notes": "Stealth + UX: (1) stop leaking the product name and repo from /manifest.json and /version.json to an unauthenticated request; (2) the unmatched-path decoy is now stable per host and serves a real site inline instead of a random redirect, so a scanner sees a believable website; (3) config names now carry a real country flag for a fixed non-Cloudflare exit and a neutral globe for direct-Cloudflare, geolocated and cached in the background. Runtime/connections unchanged. Includes 4.5.x and 4.4.x.",
+  "version": "4.6.0",
+  "released": "2026-08-09",
+  "notes": "Stability and clean IPs. Fixes the main causes of the 1101 error: a failed connection retry could escape as an unhandled error after the connection was established; the debug logger could throw during cleanup and leak a connection slot and socket on every failed probe; an accepted WebSocket that never sent data was held open indefinitely; and unauthenticated requests could stall the worker or trigger large outbound bursts (which also risks a Cloudflare abuse flag). Adds IRCF per-ISP clean IPs (validated as real Cloudflare edges), records connection-level errors in the panel diagnostics, adds missing database indexes, and explains why an over-quota user cannot be re-enabled. Includes 4.5.x and 4.4.x.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "47df1ad80a476d9080be74388f360e18906e9d973d8e39cd277956038cdddb25",
+  "worker_sha256": "dc68210810303e28a8561f0b309ce0f41c04cfdabbece79a59f92e8f800d9044",
   "protected": true
 }
