@@ -1,10 +1,14 @@
 {
   "name": "nova-proxy",
-  "version": "4.1.10",
+  "version": "4.6.1",
   "private": true,
+  "type": "module",
   "scripts": {
-    "check": "node --check worker.js",
-    "deploy": "wrangler deploy"
+    "build": "node scripts/build.mjs",
+    "build:debug": "NOVA_BUILD_MODE=debug node scripts/build.mjs",
+    "check": "npm run build && node --check worker.js && wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "test": "npm run build && node --test",
+    "deploy": "npm run build && wrangler deploy"
   },
   "cloudflare": {
     "bindings": {
@@ -13,14 +17,13 @@
       },
       "DB": {
         "description": "Nova's primary D1 database for settings, users, usage, logs, and authentication."
-      },
-      "PAGES_URL": {
-        "description": "Static Nova Panel origin. Keep the default unless you operate your own reviewed panel build."
       }
     }
   },
   "devDependencies": {
     "@types/node": "^26.1.2",
+    "esbuild": "^0.28.1",
+    "html-minifier-terser": "^7.2.0",
     "wrangler": "^4.116.0"
   }
 }

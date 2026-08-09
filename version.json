@@ -1,8 +1,8 @@
 {
-  "version": "4.6.0",
+  "version": "4.6.1",
   "released": "2026-08-09",
-  "notes": "Stability and clean IPs. Fixes the main causes of the 1101 error: a failed connection retry could escape as an unhandled error after the connection was established; the debug logger could throw during cleanup and leak a connection slot and socket on every failed probe; an accepted WebSocket that never sent data was held open indefinitely; and unauthenticated requests could stall the worker or trigger large outbound bursts (which also risks a Cloudflare abuse flag). Adds IRCF per-ISP clean IPs (validated as real Cloudflare edges), records connection-level errors in the panel diagnostics, adds missing database indexes, and explains why an over-quota user cannot be re-enabled. Includes 4.5.x and 4.4.x.",
+  "notes": "Stability: the built-in decoy page is now fully self-contained. Previously an unmatched request fetched and parsed a real website, so a scanner flood could exhaust the worker's CPU and cause 1101 errors. The page is now served straight from the worker with no network call, and it rotates automatically each week. Also includes the 4.6.0 fixes for the main causes of 1101, bounded unauthenticated requests, IRCF carrier-matched clean IPs, and panel diagnostics for connection errors.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "3708f7cca254893a8b2391e4572f4770b68dfa8df96b7372a9ecf9864fd0c3e2",
+  "worker_sha256": "47e7c9bc2a12f75fed19588db2699510e7fde8239bbd48dcdcd44328cbe85ff7",
   "protected": true
 }
