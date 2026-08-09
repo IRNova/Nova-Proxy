@@ -1,3 +1,23 @@
+# Nova Proxy 4.6.2
+
+Nova Proxy 4.6.2 adds real diagnostics and stops normal client behaviour from being treated as an error.
+
+## You can now see what is failing
+
+- Connection-level errors are recorded and shown in the panel's diagnostics. Previously these happened in a detached part of the worker and were not visible anywhere, which made problems very hard to trace. A small sample is now kept, rate limited so it can never slow the panel down.
+
+## Expected outcomes no longer run the error path
+
+- A client asking for UDP on a non-DNS port (which clients do constantly, for QUIC) and a request for a blocked host now close cleanly instead of raising an error. Neither was ever a real fault, and treating them as errors did unnecessary work on every occurrence.
+
+Includes all the 4.6.x fixes for the main causes of the 1101 error.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+---
+
 # Nova Proxy 4.5.7
 
 Nova Proxy 4.5.7 makes a deployed panel harder to fingerprint from the outside and adds a country flag to config names.

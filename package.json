@@ -1,6 +1,6 @@
 {
   "name": "nova-proxy",
-  "version": "4.6.1",
+  "version": "4.6.2",
   "private": true,
   "type": "module",
   "scripts": {
