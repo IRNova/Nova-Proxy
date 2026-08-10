@@ -1,0 +1,34 @@
+# Nova first-run claim token. Optional, and strongly recommended.
+#
+# Cloudflare reads this file during a "Deploy to Cloudflare" and asks you for each
+# value below, then stores what you type as an encrypted Worker secret.
+#
+# Why it matters: a freshly deployed panel has no admin password yet, and /install is
+# a public page, so whoever opens it first is the one who sets the password. If you
+# deploy now and finish setup later, anyone who finds the address in between can take
+# the panel. Setting NOVA_CLAIM_TOKEN closes that window: the panel then refuses to
+# accept a first password unless the caller presents this exact value.
+#
+# Generate one and keep a copy:
+#
+#     openssl rand -hex 16
+#
+# Then finish setup at:
+#
+#     https://<your-worker>.workers.dev/install?claim=<the value you generated>
+#
+# Leave it blank and the panel behaves exactly as it always has, first come first
+# served, so in that case open /install and set your password immediately after the
+# deploy finishes.
+#
+# You can never be locked out of your own panel. You own the Worker, so you can change
+# or delete this value at any time in the Cloudflare dashboard, under
+# Workers & Pages > your worker > Settings > Variables and Secrets. Removing it puts
+# the panel back to the first-come behaviour.
+#
+# Note for maintainers: this belongs here rather than in wrangler.jsonc "vars".
+# `wrangler deploy` reconciles the whole "vars" block from the config file on every
+# deploy, so a blank var there would overwrite a real token on the next Workers Builds
+# redeploy and quietly disarm the gate. Secrets are managed separately from the config
+# file and survive a redeploy untouched.
+NOVA_CLAIM_TOKEN=

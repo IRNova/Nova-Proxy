@@ -6,3 +6,8 @@
 node_modules/
 .DS_Store
 *.cpuprofile
+
+# The example file is published on purpose: Cloudflare reads it during a
+# Deploy to Cloudflare to decide which secrets to prompt for. Real secrets
+# still stay out via the .dev.vars rules above.
+!.dev.vars.example
