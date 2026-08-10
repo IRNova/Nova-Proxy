@@ -1,3 +1,20 @@
+# Nova Proxy 4.6.4
+
+Nova Proxy 4.6.4 is a small security follow-up to 4.6.3.
+
+## Every first-time setup route respects the claim gate
+
+- A newly deployed panel is claimed once, by its owner, using a one-time token. This release makes sure that check is applied consistently across all of the first-time setup routes, not just the main one, so a fresh, unclaimed panel cannot be set up by anyone else before its owner does.
+- This only affects a panel during its very first setup. Panels that are already configured are unaffected, and there is no change for your users.
+
+Includes the 4.6.3 Telegram-login fix and all the 4.6.x stability fixes for the 1101 error.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+---
+
 # Nova Proxy 4.6.3
 
 Nova Proxy 4.6.3 is a security fix and is recommended for everyone.
