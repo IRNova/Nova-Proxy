@@ -1,3 +1,22 @@
+# Nova Proxy 4.6.3
+
+Nova Proxy 4.6.3 is a security fix and is recommended for everyone.
+
+## Fixed: one-click Telegram login could be forged
+
+- The one-click "log in from Telegram" link could be forged by someone who only knew the panel's web address, which could give them admin access to the panel. The login link is now tied to the panel password and to the owner's Telegram account, and the endpoint is rate limited, so it can no longer be forged from the address alone.
+- Normal Telegram login is unaffected: your real login button keeps working exactly as before.
+
+If your panel has Telegram login configured, updating is strongly recommended. Setting an admin password (if you have not) and keeping it private also protects you.
+
+Includes all the 4.6.x stability fixes for the main causes of the 1101 error.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+---
+
 # Nova Proxy 4.6.2
 
 Nova Proxy 4.6.2 adds real diagnostics and stops normal client behaviour from being treated as an error.
