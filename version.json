@@ -1,8 +1,8 @@
 {
-  "version": "4.6.3",
+  "version": "4.6.4",
   "released": "2026-08-10",
-  "notes": "Security fix (recommended for everyone). Closes a vulnerability where the one-click Telegram login link could be forged by someone who only knew the panel's address, giving them admin access. The login link is now tied to the panel password and the owner's Telegram account, and the endpoint is rate limited. Normal Telegram login is unaffected. Includes all 4.6.x stability fixes.",
+  "notes": "Security fix (install this one). A panel installed by the Nova bot but never finished setting up could be claimed by someone else, because two setup routes did not check the one-time setup link. They do now, so panels from the bot are protected on every setup route. If your panel is already set up you were never exposed, and nothing about how you use it changes. If you deployed Nova manually instead of through the bot, set your admin password right after deploying: the setup page stays open until you do. Includes all 4.6.x fixes.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "15498eef9cc8833473338344679607fee4fa9c7efbea90468d5eff4847398b10",
+  "worker_sha256": "d1b158a9f7be96ac7c369e961dab48981a58adc646d4a5578d15462dfe0d4cf5",
   "protected": true
 }
