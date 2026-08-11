@@ -1,8 +1,8 @@
 {
-  "version": "4.6.4",
-  "released": "2026-08-10",
-  "notes": "Security fix (install this one). A panel installed by the Nova bot but never finished setting up could be claimed by someone else, because two setup routes did not check the one-time setup link. They do now, so panels from the bot are protected on every setup route. If your panel is already set up you were never exposed, and nothing about how you use it changes. If you deployed Nova manually instead of through the bot, set your admin password right after deploying: the setup page stays open until you do. Includes all 4.6.x fixes.",
+  "version": "4.6.5",
+  "released": "2026-08-11",
+  "notes": "Diagnostics and reliability. Adds a dependency-free /healthz liveness route (returns build/version only, no database or auth), so a 1101 there clearly means a platform/wedge issue rather than an app bug. Connection errors are now scrubbed of any secret-shaped text before they are stored or logged, and a structured, rate-limited log line is emitted for easier diagnosis. Includes all 4.6.x fixes.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "d1b158a9f7be96ac7c369e961dab48981a58adc646d4a5578d15462dfe0d4cf5",
+  "worker_sha256": "036f2dc8af3170db9e5839e663cff4ffcee2d8255e9955f353798d054943c523",
   "protected": true
 }

@@ -1,3 +1,25 @@
+# Nova Proxy 4.6.5
+
+Nova Proxy 4.6.5 improves diagnostics and makes the panel easier to monitor.
+
+## A simple health check
+
+- New `/healthz` route (and `/install/ping`) returns only the build and version, with no database, auth, or other work. Because it depends on nothing, a 1101 there means the worker is not running at all (a Cloudflare platform or wedged-slot issue), which cleanly separates a platform problem from an application bug.
+
+## Safer, more useful error logs
+
+- Connection errors recorded for the panel's diagnostics are now stripped of anything that looks like a secret (a UUID, password, token, or a proxy/subscription link) before they are stored or logged, as a safety measure.
+- A compact, structured log line is emitted for connection failures (rate limited so it can never flood), which makes real issues easier to find in Cloudflare's logs.
+
+Everything from the 4.6.x line (the 1101 fixes and the 4.6.3/4.6.4 security fixes) is included. Connections and subscriptions are unchanged.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+
+---
+
 # Nova Proxy 4.6.4
 
 Nova Proxy 4.6.4 is a small security follow-up to 4.6.3.
