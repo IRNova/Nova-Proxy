@@ -1,34 +1,23 @@
-# Nova first-run claim token. Optional, and strongly recommended.
+# Nova first-run setup.
 #
 # Cloudflare reads this file during a "Deploy to Cloudflare" and asks you for each
 # value below, then stores what you type as an encrypted Worker secret.
 #
-# Why it matters: a freshly deployed panel has no admin password yet, and /install is
-# a public page, so whoever opens it first is the one who sets the password. If you
-# deploy now and finish setup later, anyone who finds the address in between can take
-# the panel. Setting NOVA_CLAIM_TOKEN closes that window: the panel then refuses to
-# accept a first password unless the caller presents this exact value.
+# IMPORTANT: this release does NOT lock first-run setup behind a claim token. A freshly
+# deployed panel has no admin password yet, and /install is a public page, so whoever
+# opens it first is the one who sets the password. There is no server-side check that
+# stops someone else from claiming it during that window.
 #
-# Generate one and keep a copy:
+# So, to stay safe:
+#   - If you install with the Telegram bot, it claims the panel for you automatically the
+#     moment it deploys and hands you the password, so there is no open window.
+#   - If you deploy by hand, open /install and set your admin password IMMEDIATELY after
+#     the deploy finishes, before sharing the address with anyone.
 #
-#     openssl rand -hex 16
+# You can never be locked out of your own panel: you own the Worker, and the password
+# lives in your own D1/KV, which you control from the Cloudflare dashboard under
+# Workers & Pages > your worker > Settings > Variables and Secrets.
 #
-# Then finish setup at:
-#
-#     https://<your-worker>.workers.dev/install?claim=<the value you generated>
-#
-# Leave it blank and the panel behaves exactly as it always has, first come first
-# served, so in that case open /install and set your password immediately after the
-# deploy finishes.
-#
-# You can never be locked out of your own panel. You own the Worker, so you can change
-# or delete this value at any time in the Cloudflare dashboard, under
-# Workers & Pages > your worker > Settings > Variables and Secrets. Removing it puts
-# the panel back to the first-come behaviour.
-#
-# Note for maintainers: this belongs here rather than in wrangler.jsonc "vars".
-# `wrangler deploy` reconciles the whole "vars" block from the config file on every
-# deploy, so a blank var there would overwrite a real token on the next Workers Builds
-# redeploy and quietly disarm the gate. Secrets are managed separately from the config
-# file and survive a redeploy untouched.
+# NOVA_CLAIM_TOKEN is reserved for a future build that will enforce a first-run claim
+# gate. This build does not read it, so setting it has no effect yet.
 NOVA_CLAIM_TOKEN=

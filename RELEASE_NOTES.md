@@ -1,3 +1,41 @@
+# Nova Proxy 4.7.0
+
+Nova Proxy 4.7.0 is a rebuilt release that is simpler to run and adds several features for users on restrictive networks. The panel now ships inside the Worker, so there is no separate origin to set up. Your users, settings, and data are preserved on update.
+
+## Two front doors: Workers and Pages
+
+- The same panel can now run on a Workers address and a Pages address at the same time, sharing one database. `workers.dev` and `pages.dev` are filtered independently, so if one is blocked the other keeps working, and clients fail over automatically from a single subscription.
+
+## AmneziaWG subscriptions
+
+- Subscriptions can now include AmneziaWG, an obfuscated form of WireGuard, next to WARP and WireGuard. It is harder to detect on networks that block plain WireGuard.
+
+## Block ads and adult sites
+
+- A per-subscription toggle adds reject rules for ad and adult-content categories, applied to both sing-box and Clash outputs. Turn it on and those domains stop resolving for that user.
+
+## Works with the latest sing-box
+
+- Subscriptions use the newer sing-box 1.12 DNS format, so the latest clients import and connect without the "unknown field" error.
+
+## Install the panel as an app
+
+- The panel can be added to the home screen on iOS and Android and opens like a native app.
+
+## Backups and one-click updates
+
+- Export and restore your whole panel from the settings page, check for a new version in one click, and see a country flag on each node.
+
+## First-run setup
+
+- This build does not lock first-time setup behind a claim token: a freshly deployed panel is owned by whoever sets the admin password first. The installer bot claims your panel automatically the moment it deploys, so there is no open window. If you deploy by hand, open the panel and set your admin password immediately after the deploy finishes, before sharing the address.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+---
+
 # Nova Proxy 4.6.5
 
 Nova Proxy 4.6.5 improves diagnostics and makes the panel easier to monitor.
