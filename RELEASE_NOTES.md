@@ -1,3 +1,17 @@
+# Nova Proxy 4.7.2
+
+A follow-up to 4.7.1.
+
+## Broader client coverage for the boost
+
+- The opt-in connection-enhancement mode now also applies to the **sing-box subscription format**, so sing-box based apps get the same handshake protection that xray apps already had. Still on the user's own worker, and still off by default.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+---
+
 # Nova Proxy 4.7.1
 
 A small follow-up to 4.7.0.

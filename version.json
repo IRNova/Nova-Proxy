@@ -1,8 +1,8 @@
 {
-  "version": "4.7.1",
+  "version": "4.7.2",
   "released": "2026-08-15",
-  "notes": "4.7.1: recover and update now show your full panel address, plus an opt-in connection-enhancement mode for heavily filtered networks (off by default). Rebuilt, more reliable Nova Proxy. The panel now ships inside the Worker, so there is no separate origin to configure. Adds Workers + Pages dual front doors for automatic failover, AmneziaWG subscriptions, an ad and adult-content block toggle, sing-box 1.12+ support, an installable app (Add to Home Screen), panel backup and restore, and an in-panel update check. Your users, settings, and data are preserved on update.",
+  "notes": "4.7.2: the opt-in connection-enhancement mode now also applies to the sing-box subscription format, so sing-box based apps get the same protection as xray apps. Off by default. Recover and update show your full panel address.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "7a735d3bb52253ff72bfd6335ae6ec7c53d337dbc886d4bc372fcc5c0500a3eb",
+  "worker_sha256": "ba9bd1d19052c1ebbd30435cd7fa8ef6bd5254065592c478fc4bd2b2bcb33195",
   "protected": true
 }
