@@ -1,3 +1,21 @@
+# Nova Proxy 4.7.1
+
+A small follow-up to 4.7.0.
+
+## Get back in faster after a rebuild
+
+- Recover and update now show your panel's full address, including its unique login path, so you can open it and hand your subscription out again right away.
+
+## Better connectivity on heavily filtered networks
+
+- An opt-in connection-enhancement mode helps subscriptions keep working where common VPN handshakes are blocked. It is off by default and changes nothing for networks that already connect.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+---
+
 # Nova Proxy 4.7.0
 
 Nova Proxy 4.7.0 is a rebuilt release that is simpler to run and adds several features for users on restrictive networks. The panel now ships inside the Worker, so there is no separate origin to set up. Your users, settings, and data are preserved on update.
