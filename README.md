@@ -13,7 +13,7 @@ VLESS, Trojan, Shadowsocks, gRPC, XHTTP over WebSocket + TLS, with a bilingual p
 WARP, proxy chaining, and a Backend mode. Runs on Cloudflare's **free plan**.
 
 [![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial-green?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/version-4.7.3-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
+[![Version](https://img.shields.io/badge/version-4.7.4-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
 [![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
 
 </div>

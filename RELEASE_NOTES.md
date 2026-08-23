@@ -1,3 +1,33 @@
+# Nova Proxy 4.7.4
+
+A reliability release. It fixes the reason panels were going offline with a 1101 error and not coming back.
+
+## What was wrong
+
+A panel updates itself by downloading a new `worker.js` and deploying it. Two problems in that path could deploy code that Cloudflare cannot start, and a panel that cannot start returns 1101 on every address. Redeploying the same version does not clear it, because the deployed file itself is broken.
+
+**Downloads were not being checked.** The updater accepted the download if it was over 1000 bytes and contained a marker that sits in the first 200 bytes of a 1.3 MB file. A download cut short by a bad connection passed that check and was deployed. Nova has published a checksum for the file all along, and the panel was not using it.
+
+**The "Obfuscated" deploy format could not work.** It wrapped the panel in a form that Cloudflare Workers refuse to run. The setting was stored with the panel's data, so rebuilding a panel restored the setting and the panel broke itself again on its next update.
+
+## What changed
+
+- The panel now verifies every download against the published checksum and refuses to deploy anything that does not match. Skipping an update is recoverable; deploying a broken file is not.
+- The obfuscated format is gone, and any panel still carrying the setting drops it automatically on its next update. No action needed.
+- After updating, a panel checks whether it actually came back up. If it did not, it tells its owner instead of reporting success, and it will not pass the update on to linked panels.
+- On panels using secret paths, `/healthz`, `/install/status` and the sync endpoint no longer return the version number to unauthenticated visitors.
+- The proxy does less bookkeeping per chunk of traffic, which lowers CPU use on busy connections.
+
+## If your panel is already offline
+
+A panel that is already returning 1101 cannot update itself, because it cannot run any code. It needs to be rebuilt: use `/recover` in the Telegram bot. Your users, settings and password are stored separately from the code and are preserved.
+
+## Upgrade
+
+Deploy the update with the Deploy to Cloudflare button, or merge the daily **Check for Nova updates** pull request. Your users, settings, and data are preserved. See [DEPLOY.md](DEPLOY.md).
+
+---
+
 # Nova Proxy 4.7.3
 
 A small security and reliability release.

@@ -1,8 +1,8 @@
 {
-  "version": "4.7.3",
-  "released": "2026-08-16",
-  "notes": "4.7.3: new panels bind a random per-panel identifier so subscription links are unique to each panel, plus reliability fixes. Recover and update show your full panel address.",
+  "version": "4.7.4",
+  "released": "2026-08-22",
+  "notes": "Fixes the cause of panels wedging on 1101. The 'obfuscated' auto-update deploy format wrapped the Worker in new Function(...) and ran it at module scope; Cloudflare Workers refuse to compile code from strings, so the panel failed to evaluate and returned 1101 on every route, including /healthz. Redeploying could not clear it because the artifact itself was broken, and because the setting lives in D1 a rebuilt panel came back still set to it and bricked again on the next cron tick. The format is now removed and retired on read, so a panel that still carries the setting repairs itself on its next update. Auto-update also probes /healthz after deploying and, if the slot came back wedged, alerts the owner and refuses to propagate the build to linked panels instead of reporting success. Separately, the relay downlink no longer re-resolves the user record and the request store on every 64 KB chunk, which removes a linear scan and several AsyncLocalStorage lookups per chunk from the hot path.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "43b0a7c34c9fd1896170219ee4b6f317124ce16021b48698a685da91c58be0f5",
-  "protected": true
+  "protected": true,
+  "worker_sha256": "f96433d10c4d40fba7c24c741991fc6b1fe7e4f5093b6e24bed4d565a21e8deb"
 }
