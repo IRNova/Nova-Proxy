@@ -30,6 +30,10 @@ what you run, and how to report a problem.
 The panel reports its version from `version.json`. A self-hosted instance only
 runs the code you deployed; it does not fetch or execute remote code at runtime.
 
+## Admin password storage
+
+Your panel's admin password is stored in your own D1/KV (or as a Worker secret you set), in cleartext, because the login-session signature is derived from the password itself. No route ever returns it, the reveal endpoint is disabled, and reading it back requires access to your own Cloudflare account. Keep that account secured.
+
 ## Reporting a vulnerability
 
 Please report security issues privately first, so users are not exposed before a

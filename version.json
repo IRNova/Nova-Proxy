@@ -1,8 +1,8 @@
 {
-  "version": "4.5.7",
-  "released": "2026-08-06",
-  "notes": "Stealth + UX: (1) stop leaking the product name and repo from /manifest.json and /version.json to an unauthenticated request; (2) the unmatched-path decoy is now stable per host and serves a real site inline instead of a random redirect, so a scanner sees a believable website; (3) config names now carry a real country flag for a fixed non-Cloudflare exit and a neutral globe for direct-Cloudflare, geolocated and cached in the background. Runtime/connections unchanged. Includes 4.5.x and 4.4.x.",
+  "version": "4.7.4",
+  "released": "2026-08-22",
+  "notes": "Fixes the cause of panels wedging on 1101. The 'obfuscated' auto-update deploy format wrapped the Worker in new Function(...) and ran it at module scope; Cloudflare Workers refuse to compile code from strings, so the panel failed to evaluate and returned 1101 on every route, including /healthz. Redeploying could not clear it because the artifact itself was broken, and because the setting lives in D1 a rebuilt panel came back still set to it and bricked again on the next cron tick. The format is now removed and retired on read, so a panel that still carries the setting repairs itself on its next update. Auto-update also probes /healthz after deploying and, if the slot came back wedged, alerts the owner and refuses to propagate the build to linked panels instead of reporting success. Separately, the relay downlink no longer re-resolves the user record and the request store on every 64 KB chunk, which removes a linear scan and several AsyncLocalStorage lookups per chunk from the hot path.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
-  "worker_sha256": "47df1ad80a476d9080be74388f360e18906e9d973d8e39cd277956038cdddb25",
-  "protected": true
+  "protected": true,
+  "worker_sha256": "f96433d10c4d40fba7c24c741991fc6b1fe7e4f5093b6e24bed4d565a21e8deb"
 }

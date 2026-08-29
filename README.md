@@ -13,7 +13,7 @@ VLESS, Trojan, Shadowsocks, gRPC, XHTTP over WebSocket + TLS, with a bilingual p
 WARP, proxy chaining, and a Backend mode. Runs on Cloudflare's **free plan**.
 
 [![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial-green?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/version-4.5.2-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
+[![Version](https://img.shields.io/badge/version-4.7.4-blueviolet?style=for-the-badge)](https://github.com/IRNova/Nova-Proxy)
 [![Stars](https://img.shields.io/github/stars/IRNova/Nova-Proxy?style=for-the-badge&color=0ea5e9)](https://github.com/IRNova/Nova-Proxy)
 
 </div>
@@ -126,7 +126,7 @@ On licensing: Nova releases through 4.2.0 were published under the MIT license, 
 
 <div align="center">
 
-Built for Iran <img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" />, and everyone who needs an open internet.
+Built for ep Iran <img src="https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/flag-iran.svg" height="16" alt="Iran (Lion and Sun)" />, and everyone who needs an open internet.
 
 **None of your traffic is logged. The proxy is yours.**
 

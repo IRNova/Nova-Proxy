@@ -1,10 +1,14 @@
 {
   "name": "nova-proxy",
-  "version": "4.1.10",
+  "version": "4.7.4",
   "private": true,
+  "type": "module",
   "scripts": {
-    "check": "node --check worker.js",
-    "deploy": "wrangler deploy"
+    "build": "node scripts/build.mjs",
+    "build:debug": "NOVA_BUILD_MODE=debug node scripts/build.mjs",
+    "check": "npm run build && node --check worker.js && wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "test": "npm run build && node --test",
+    "deploy": "npm run build && wrangler deploy"
   },
   "cloudflare": {
     "bindings": {
@@ -14,13 +18,15 @@
       "DB": {
         "description": "Nova's primary D1 database for settings, users, usage, logs, and authentication."
       },
-      "PAGES_URL": {
-        "description": "Static Nova Panel origin. Keep the default unless you operate your own reviewed panel build."
+      "NOVA_CLAIM_TOKEN": {
+        "description": "Optional but recommended. A random string that ties first-time setup to you: with it set, the panel only accepts its first admin password at /install?claim=<value>, so nobody who finds the address before you can claim the panel. Generate one with `openssl rand -hex 16` and keep a copy. Leave blank to keep the old behaviour, where whoever opens /install first sets the password. You can change or remove it later in Settings, Variables and Secrets."
       }
     }
   },
   "devDependencies": {
     "@types/node": "^26.1.2",
+    "esbuild": "^0.28.1",
+    "html-minifier-terser": "^7.2.0",
     "wrangler": "^4.116.0"
   }
 }
