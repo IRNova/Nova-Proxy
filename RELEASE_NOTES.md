@@ -1,21 +1,32 @@
-# Nova Proxy 4.8.1
+# Nova Proxy 4.9.0
 
-A correction to 4.8.0. If your panel says it is on **V4.7.4** and keeps offering an update that never seems to apply, this is the release that fixes it.
+Two ways into your panel, and an AI switch that tells you what it needs.
 
-## What was wrong
+## A second address for your panel
 
-4.8.0 changed the version in every place except the one the panel reads to describe itself. So a panel that had updated correctly still reported the older number, compared that against the current release, decided it was behind, and showed **update available** permanently. Pressing update redeployed exactly the same build, so the notice came straight back.
+Cloudflare filters `workers.dev` and `pages.dev` separately in Iran, so a panel that can only be reached on one of them sits a single filtering decision away from being unreachable.
 
-**Nothing was actually wrong with 4.8.0.** Panels running it have the correct code and every 4.8.0 change is working, including the Google AI routing. Only the number on screen, and the update notice that followed from it, were wrong.
+Your panel can now also serve from a `pages.dev` address. Same build, same database, same login, same users. One panel with two doors, so if one address stops opening, the other still does.
 
-## What changed
+You turn it on from the panel using your own Cloudflare token. The second door is published only after the first copy is confirmed healthy, and it is refused unless it is bound to your panel's own storage, so a copy that cannot read your data never appears on a public address. Superseded copies are removed when you update, so an out-of-date build is not left serving on an address of its own.
 
-- The panel now reports the version it is actually running.
-- The update notice appears only when there is genuinely something newer.
-- Nova now refuses to build a release whose reported version disagrees with the release itself, so this cannot happen again.
+## The Google AI switch
+
+The AI route needs a SOCKS5 or HTTP proxy of your own. It cannot work through a ProxyIP, and Nova now says so before you turn it on rather than leaving you to work it out.
+
+A ProxyIP is built to reach Cloudflare's edge, and that is the only place it forwards to, so the Google hosts never arrived. The request then fell back to a direct connection, which comes from a Cloudflare address, and Google refuses those. The switch therefore made no difference at all: the same "not available in your region" with it on and with it off.
+
+If you have your own SOCKS5 or HTTP proxy, the route works as intended. A WARP address is refused for the same reason a ProxyIP is, because those are Cloudflare's own addresses.
+
+## Readable text
+
+Two colour problems, measured rather than guessed. The worse one was on the install and login screens in dark mode: white text on bright cyan, on the main button of the first two screens a new owner ever sees, including the one that creates your password. Both are fixed everywhere the design tokens are used, not only where they were first spotted.
+
+## Also in this release
+
+- The second door now runs under the same compatibility date as the panel itself. Without this, two addresses of one panel could behave differently, which is one way a panel comes up fine on one address and fails on the other.
+- Releases are now verified mechanically before publishing. The version a panel reports, the version in the release, and the file actually published all have to agree, or the release does not go out.
 
 ## Updating
 
-Panels do not update themselves, so use the update button in your panel or the Update option in the Telegram bot. After updating, the version shown should read **4.8.1** and the update notice should be gone.
-
-If your panel already shows 4.8.0 behaviour you like, nothing is broken by staying where you are. This release only corrects the reporting.
+Panels do not update themselves. Use the update button in your panel, or the Update option in the Telegram bot. After updating, your panel should report **4.9.0**.

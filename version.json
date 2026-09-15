@@ -1,8 +1,8 @@
 {
-  "version": "4.8.1",
-  "released": "2026-09-08",
-  "notes": "A one-line correction to 4.8.0. The panel reported version V4.7.4 even after updating, because the constant the panel reads was never bumped for 4.8.0 while version.json was. Every updated panel therefore compared its own reported version against the release, concluded it was out of date, and showed \"update available\" permanently; pressing update redeployed the identical build and the notice came back.\n\nNothing was wrong with 4.8.0 itself. Panels running it have the correct code and every 4.8.0 change is present. Only the number shown, and the update notice that followed from it, were wrong.\n\nThe build now refuses to produce a release whose reported version disagrees with the release version, so this cannot recur.",
+  "version": "4.9.0",
+  "released": "2026-09-15",
+  "notes": "Your panel can now also be reached at a pages.dev address. Cloudflare filters workers.dev and pages.dev separately in Iran, so a panel on only one of them is a single filtering decision away from being unreachable. Same build, same database, same login and users: one panel with two doors.\n\nThe Google AI route now requires a SOCKS5 or HTTP proxy of your own and says so before you switch it on. A ProxyIP cannot carry it, because a ProxyIP forwards only to Cloudflare's edge, so the Google hosts never arrived and the request fell back to a direct connection from a Cloudflare address, which Google refuses. The switch made no difference at all, on or off.\n\nTwo measured contrast failures are fixed, the worst of them white text on bright cyan on the install and login buttons in dark mode.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
   "protected": true,
-  "worker_sha256": "2088346c0b84df0d5302ac95119f0426ebd41ebf11e961e9526388ab6d3cd2cb"
+  "worker_sha256": "eb2f1ffee1566b2f23af99272538c0e7742fb099b31e7f5c13780176bb603659"
 }
