@@ -6,9 +6,11 @@ Two ways into your panel, and an AI switch that tells you what it needs.
 
 Cloudflare filters `workers.dev` and `pages.dev` separately in Iran, so a panel that can only be reached on one of them sits a single filtering decision away from being unreachable.
 
-Your panel can now also serve from a `pages.dev` address. Same build, same database, same login, same users. One panel with two doors, so if one address stops opening, the other still does.
+A panel can now also serve from a `pages.dev` address. Same build, same database, same login, same users. One panel with two doors, so if one address stops opening, the other still does.
 
-You turn it on from the panel using your own Cloudflare token. The second door is published only after the first copy is confirmed healthy, and it is refused unless it is bound to your panel's own storage, so a copy that cannot read your data never appears on a public address. Superseded copies are removed when you update, so an out-of-date build is not left serving on an address of its own.
+**In 4.9.0 this needs manual setup, and most people should wait.** There is no button for it yet. Turning it on means creating a Pages project yourself, binding it to your panel's own D1 database and KV namespace, and setting a `PAGES_PROJECT` variable on your Worker. A panel setting for all of this is coming in the next release, and that is the point to use it.
+
+What is already working is the safety around it. The second door is published only after the Worker copy is confirmed healthy, and it is refused outright unless it is bound to your panel's own storage, because a copy that cannot read your data would come up unclaimed on a public address and the first visitor could take it. Superseded copies are removed when you update, so an out-of-date build is not left serving on an address of its own.
 
 ## The Google AI switch
 
