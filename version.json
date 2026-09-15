@@ -1,8 +1,8 @@
 {
-  "version": "4.9.0",
+  "version": "4.9.1",
   "released": "2026-09-15",
-  "notes": "A panel can now also be reached at a pages.dev address. Cloudflare filters workers.dev and pages.dev separately in Iran, so a panel on only one of them is a single filtering decision away from being unreachable. Same build, same database, same login and users: one panel with two doors. In 4.9.0 this needs manual setup and has no panel control yet: you create the Pages project, bind it to the panel's own D1 and KV, and set PAGES_PROJECT on the Worker. A setting for it comes in the next release. The guards around it already work: the door is published only after the Worker copy is healthy, and is refused unless it is bound to this panel's own storage.\n\nThe Google AI route now requires a SOCKS5 or HTTP proxy of your own and says so before you switch it on. A ProxyIP cannot carry it, because a ProxyIP forwards only to Cloudflare's edge, so the Google hosts never arrived and the request fell back to a direct connection from a Cloudflare address, which Google refuses. The switch made no difference at all, on or off.\n\nTwo measured contrast failures are fixed, the worst of them white text on bright cyan on the install and login buttons in dark mode.",
+  "notes": "The second pages.dev address can now be switched on from the panel. 4.9.0 shipped that feature with no way to reach it: the setting was read from a Worker variable that was not in the panel, not documented, and not set by the installer bot. It is now a field in Settings under System extras, in English, Russian and Farsi, and findable from the panel search.\n\nOne thing still has to be done by hand, and the panel says so: create the Pages project yourself and bind it to this panel's own D1 database and KV namespace. Nova refuses to deploy to a project bound to anything else, because a copy that cannot read your data would come up unclaimed on a public address and the first visitor could take it.\n\nEverything else is unchanged from 4.9.0.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
   "protected": true,
-  "worker_sha256": "eb2f1ffee1566b2f23af99272538c0e7742fb099b31e7f5c13780176bb603659"
+  "worker_sha256": "7896ca29fd81b1d09b2a46a5ccf92c7ed5a72f18677484efea4bdb60e1ff9adc"
 }
