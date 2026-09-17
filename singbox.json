@@ -87,7 +87,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -99,7 +99,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -111,7 +111,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -122,7 +122,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -134,12 +134,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -150,7 +150,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -162,7 +162,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -174,7 +174,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -185,7 +185,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -197,12 +197,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -213,7 +213,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -225,7 +225,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -237,7 +237,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -248,7 +248,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -260,12 +260,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -276,7 +276,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -288,7 +288,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -300,7 +300,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -311,7 +311,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -323,12 +323,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -339,7 +339,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -351,7 +351,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -363,7 +363,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -374,7 +374,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -386,12 +386,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -402,7 +402,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -414,7 +414,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -426,7 +426,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -437,7 +437,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -449,12 +449,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -465,7 +465,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -477,7 +477,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -489,7 +489,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -500,7 +500,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -512,12 +512,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -528,7 +528,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -540,7 +540,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -552,7 +552,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -563,7 +563,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -575,12 +575,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -591,7 +591,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -603,7 +603,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -615,7 +615,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -626,7 +626,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -638,12 +638,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -654,7 +654,7 @@
       "server_port": 8443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -666,7 +666,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -678,7 +678,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -689,7 +689,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -701,12 +701,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -717,7 +717,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -729,7 +729,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -741,7 +741,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -752,7 +752,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -764,12 +764,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -780,7 +780,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -792,7 +792,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -804,7 +804,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -815,7 +815,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -827,12 +827,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -843,7 +843,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -855,7 +855,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -867,7 +867,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -878,7 +878,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -890,12 +890,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -906,7 +906,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -918,7 +918,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -930,7 +930,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -941,7 +941,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -953,12 +953,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -969,7 +969,7 @@
       "server_port": 8443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -981,7 +981,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -993,7 +993,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1004,7 +1004,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1016,12 +1016,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1032,7 +1032,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1044,7 +1044,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1056,7 +1056,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1067,7 +1067,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1079,12 +1079,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1095,7 +1095,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1107,7 +1107,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1119,7 +1119,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1130,7 +1130,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1142,12 +1142,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1158,7 +1158,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1170,7 +1170,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1182,7 +1182,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1193,7 +1193,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1205,12 +1205,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1221,7 +1221,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1233,7 +1233,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1245,7 +1245,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1256,7 +1256,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1268,12 +1268,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1284,7 +1284,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1296,7 +1296,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1308,7 +1308,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1319,7 +1319,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1331,12 +1331,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1347,7 +1347,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1359,7 +1359,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1371,7 +1371,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1382,7 +1382,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1394,12 +1394,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1410,7 +1410,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1422,7 +1422,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1434,7 +1434,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1445,7 +1445,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1457,12 +1457,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1473,7 +1473,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1485,7 +1485,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1497,7 +1497,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1508,7 +1508,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1520,12 +1520,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1536,7 +1536,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1548,7 +1548,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1560,7 +1560,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1571,7 +1571,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1583,12 +1583,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1599,7 +1599,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1611,7 +1611,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1623,7 +1623,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1634,7 +1634,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1646,12 +1646,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1662,7 +1662,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1674,7 +1674,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1686,7 +1686,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1697,7 +1697,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1709,12 +1709,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1725,7 +1725,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1737,7 +1737,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1749,7 +1749,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1760,7 +1760,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1772,12 +1772,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1788,7 +1788,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1800,7 +1800,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1812,7 +1812,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1823,7 +1823,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1835,12 +1835,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1851,7 +1851,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1863,7 +1863,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1875,7 +1875,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1886,7 +1886,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1898,12 +1898,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1914,7 +1914,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1926,7 +1926,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1938,7 +1938,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -1949,7 +1949,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1961,12 +1961,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -1977,7 +1977,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -1989,7 +1989,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2001,7 +2001,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2012,7 +2012,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2024,12 +2024,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2040,7 +2040,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2052,7 +2052,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2064,7 +2064,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2075,7 +2075,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2087,12 +2087,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2103,7 +2103,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2115,7 +2115,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2127,7 +2127,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2138,7 +2138,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2150,12 +2150,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2166,7 +2166,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2178,7 +2178,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2190,7 +2190,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2201,7 +2201,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2213,12 +2213,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2229,7 +2229,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2241,7 +2241,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2253,7 +2253,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2264,7 +2264,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2276,12 +2276,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2292,7 +2292,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2304,7 +2304,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2316,7 +2316,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2327,7 +2327,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2339,12 +2339,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2355,7 +2355,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2367,7 +2367,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2379,7 +2379,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2390,7 +2390,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2402,12 +2402,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2418,7 +2418,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2430,7 +2430,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2442,7 +2442,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2453,7 +2453,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2465,12 +2465,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2481,7 +2481,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2493,7 +2493,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2505,7 +2505,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2516,7 +2516,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2528,12 +2528,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2544,7 +2544,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2556,7 +2556,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2568,7 +2568,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2579,7 +2579,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2591,12 +2591,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2607,7 +2607,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2619,7 +2619,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2631,7 +2631,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2642,7 +2642,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2654,12 +2654,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2670,7 +2670,7 @@
       "server_port": 2053,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2682,7 +2682,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2694,7 +2694,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2705,7 +2705,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2717,12 +2717,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2733,7 +2733,7 @@
       "server_port": 8443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2745,7 +2745,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2757,7 +2757,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2768,7 +2768,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2780,12 +2780,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2796,7 +2796,7 @@
       "server_port": 2087,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2808,7 +2808,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2820,7 +2820,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2831,7 +2831,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2843,12 +2843,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2859,7 +2859,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2871,7 +2871,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2883,7 +2883,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2894,7 +2894,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2906,12 +2906,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2922,7 +2922,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2934,7 +2934,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2946,7 +2946,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -2957,7 +2957,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2969,12 +2969,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -2985,7 +2985,7 @@
       "server_port": 2096,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -2997,7 +2997,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3009,7 +3009,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3020,7 +3020,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3032,12 +3032,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3048,7 +3048,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3060,7 +3060,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3072,7 +3072,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3083,7 +3083,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3095,12 +3095,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3111,7 +3111,7 @@
       "server_port": 2087,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3123,7 +3123,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3135,7 +3135,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3146,7 +3146,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3158,12 +3158,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3174,7 +3174,7 @@
       "server_port": 8443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3186,7 +3186,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3198,7 +3198,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3209,7 +3209,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3221,12 +3221,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3237,7 +3237,7 @@
       "server_port": 2083,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3249,7 +3249,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3261,7 +3261,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3272,7 +3272,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3284,12 +3284,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3300,7 +3300,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3312,7 +3312,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3324,7 +3324,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3335,7 +3335,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3347,12 +3347,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3363,7 +3363,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3375,7 +3375,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3387,7 +3387,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3398,7 +3398,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3410,12 +3410,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3426,7 +3426,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3438,7 +3438,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3450,7 +3450,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3461,7 +3461,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3473,12 +3473,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3489,7 +3489,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3501,7 +3501,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3513,7 +3513,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3524,7 +3524,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3536,12 +3536,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3552,7 +3552,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3564,7 +3564,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3576,7 +3576,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3587,7 +3587,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3599,12 +3599,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3615,7 +3615,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3627,7 +3627,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3639,7 +3639,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3650,7 +3650,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3662,12 +3662,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3678,7 +3678,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3690,7 +3690,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3702,7 +3702,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3713,7 +3713,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3725,12 +3725,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3741,7 +3741,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3753,7 +3753,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3765,7 +3765,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3776,7 +3776,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3788,12 +3788,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3804,7 +3804,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3816,7 +3816,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3828,7 +3828,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3839,7 +3839,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3851,12 +3851,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3867,7 +3867,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3879,7 +3879,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3891,7 +3891,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3902,7 +3902,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3914,12 +3914,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3930,7 +3930,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -3942,7 +3942,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3954,7 +3954,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -3965,7 +3965,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3977,12 +3977,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -3993,7 +3993,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4005,7 +4005,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4017,7 +4017,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4028,7 +4028,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4040,12 +4040,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4056,7 +4056,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4068,7 +4068,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4080,7 +4080,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4091,7 +4091,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4103,12 +4103,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4119,7 +4119,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4131,7 +4131,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4143,7 +4143,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4154,7 +4154,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4166,12 +4166,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4182,7 +4182,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4194,7 +4194,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4206,7 +4206,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4217,7 +4217,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4229,12 +4229,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4245,7 +4245,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4257,7 +4257,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4269,7 +4269,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4280,7 +4280,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4292,12 +4292,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4308,7 +4308,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4320,7 +4320,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4332,7 +4332,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4343,7 +4343,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4355,12 +4355,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4371,7 +4371,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4383,7 +4383,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4395,7 +4395,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4406,7 +4406,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4418,12 +4418,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4434,7 +4434,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4446,7 +4446,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4458,7 +4458,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4469,7 +4469,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4481,12 +4481,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4497,7 +4497,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4509,7 +4509,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4521,7 +4521,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4532,7 +4532,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4544,12 +4544,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4560,7 +4560,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4572,7 +4572,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4584,7 +4584,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4595,7 +4595,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4607,12 +4607,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4623,7 +4623,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4635,7 +4635,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4647,7 +4647,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4658,7 +4658,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4670,12 +4670,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4686,7 +4686,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4698,7 +4698,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4710,7 +4710,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4721,7 +4721,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4733,12 +4733,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4749,7 +4749,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4761,7 +4761,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4773,7 +4773,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4784,7 +4784,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4796,12 +4796,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4812,7 +4812,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4824,7 +4824,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4836,7 +4836,7 @@
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
         "type": "ws",
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
         }
@@ -4847,7 +4847,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4859,12 +4859,12 @@
       "method": "aes-128-gcm",
       "password": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "plugin": "v2ray-plugin",
-      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg\\=?enc\\=aes-128-gcm;tls",
+      "plugin_opts": "mode=websocket;host=gentle-dusk-d5de.misty-finch-8d0b.workers.dev;path=/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP?enc\\=aes-128-gcm;tls",
       "tls": {
         "enabled": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
@@ -4875,7 +4875,7 @@
       "server_port": 443,
       "uuid": "397fa3f8-22f0-4f2b-a2c1-12915b52e264",
       "transport": {
-        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5AWBJXEV9MXFcbCxdRU0ECQEFdBxsbRBFSFUtaXUACEhcWEwpSQ1gFWkVUAkteExlAXV0WRlhVXlwVXEMAVxYaBBxfHhkWShASQhNGQQscCQMJBUg=",
+        "path": "/video/SBtDHxFWRAIPQV0FW14BRB5ARQ5BF19MXFcbCxdTBQpLAwEAHQgCVE8LVhoBEEIJQlkWXANSFVFP",
         "type": "ws",
         "headers": {
           "Host": "gentle-dusk-d5de.misty-finch-8d0b.workers.dev"
@@ -4887,7 +4887,7 @@
         "insecure": false,
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         }
       }
     },
