@@ -1,8 +1,8 @@
 {
-  "version": "4.8.1",
-  "released": "2026-09-08",
-  "notes": "A one-line correction to 4.8.0. The panel reported version V4.7.4 even after updating, because the constant the panel reads was never bumped for 4.8.0 while version.json was. Every updated panel therefore compared its own reported version against the release, concluded it was out of date, and showed \"update available\" permanently; pressing update redeployed the identical build and the notice came back.\n\nNothing was wrong with 4.8.0 itself. Panels running it have the correct code and every 4.8.0 change is present. Only the number shown, and the update notice that followed from it, were wrong.\n\nThe build now refuses to produce a release whose reported version disagrees with the release version, so this cannot recur.",
+  "version": "4.9.2",
+  "released": "2026-09-15",
+  "notes": "A Farsi wording fix in the panel. The help text under the new Second address setting was written in translated English rather than Persian: it addressed the reader as تو while the rest of the panel uses شما, and it transliterated two words Persian already has. Nothing else changed, and nothing behaves differently. If you are on 4.9.1 and do not read Farsi, this release makes no difference to you.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
   "protected": true,
-  "worker_sha256": "2088346c0b84df0d5302ac95119f0426ebd41ebf11e961e9526388ab6d3cd2cb"
+  "worker_sha256": "c69c9b05b670c09083f5dd9c18c1d482173ef13fe493d712e367eb3e9c5ae010"
 }
