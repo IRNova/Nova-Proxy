@@ -1,8 +1,8 @@
 {
-  "version": "4.9.2",
-  "released": "2026-09-15",
-  "notes": "A Farsi wording fix in the panel. The help text under the new Second address setting was written in translated English rather than Persian: it addressed the reader as تو while the rest of the panel uses شما, and it transliterated two words Persian already has. Nothing else changed, and nothing behaves differently. If you are on 4.9.1 and do not read Farsi, this release makes no difference to you.",
+  "version": "4.9.3",
+  "released": "2026-09-23",
+  "notes": "Fixes a bug every Cloudflare Worker tunnel descended from edgetunnel has carried since 2023: connections to IPv6 destinations never opened. Cloudflare's connect() joins the hostname and port as host:port, so a bare IPv6 address such as 2001:db8::1 became 2001:db8::1:443, which cannot be parsed. The original code had the fix commented out with a note saying brackets were not needed, and every project built on it kept that line. Nova now brackets IPv6 literals at the one place a socket is opened, which covers every protocol and the NAT64 path.\n\nMost people never hit this, because clients usually hand the panel a domain name rather than an address (SOCKS5 and HTTP inbounds pass the name through, and TUN mode with sniffing does the same). It shows up when a client resolves locally and forwards the IPv6 address, for example xray with targetStrategy ForceIPv6, or on networks that return only IPv6 for a site. Reported across the whole family by patterniha on 2026-09-22.",
   "worker_url": "https://raw.githubusercontent.com/IRNova/Nova-Proxy/main/worker.js",
   "protected": true,
-  "worker_sha256": "c69c9b05b670c09083f5dd9c18c1d482173ef13fe493d712e367eb3e9c5ae010"
+  "worker_sha256": "801f2d0c5b6b9ead5500eec4d950d3ba9dbbc057249d2310e56d8ec76af28c8b"
 }
