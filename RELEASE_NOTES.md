@@ -1,19 +1,17 @@
-# Nova Proxy 4.9.3
+# Nova Proxy 4.9.4
 
-Connections to IPv6 destinations now open. Nothing else changed.
+Two changes: a panel now holds at most five users, and a chain proxy over HTTPS connects even when the server asks for a client certificate.
 
-## What changed
+## A panel holds at most 5 users
 
-Every Cloudflare Worker tunnel descended from edgetunnel has carried the same defect since 2023, and Nova inherited it. Cloudflare's `connect()` joins the hostname and port as `host:port`, so a bare IPv6 address such as `2001:db8::1` became `2001:db8::1:443`, which cannot be parsed, and the connection never opened. The original code had the fix commented out with a note saying brackets were not needed, and every project built on it kept that line.
+Nova is a personal or small-circle proxy on a free Cloudflare account, not a reseller platform. From this release a panel accepts up to five users, and the cap applies everywhere a user can be created: the panel, the API and the Telegram bot. The User List shows how many of the five are in use, and the Add button switches off at the limit.
 
-Nova now writes IPv6 literals in brackets at the one place a socket is opened, which covers every protocol and the NAT64 path. IPv4 addresses and domain names are handled exactly as before.
+If your panel already has more than five users, nothing is removed and nothing stops working. You can still edit or delete any of them. You cannot add another until the list is under five.
 
-## Who this affects
+## HTTPS chain proxies that ask for a client certificate
 
-Most people never hit this, because clients usually hand the panel a domain name rather than an address: SOCKS5 and HTTP inbounds pass the name through, and TUN mode with sniffing does the same. It shows up when a client resolves locally and forwards the IPv6 address, for example xray with `targetStrategy` set to `ForceIPv6`, or on networks that answer with only an IPv6 address for a site. If you have ever seen a site fail through Nova while it worked elsewhere, this may have been why.
-
-The report covering the whole family of tunnels came from patterniha on 2026-09-22.
+When a chain proxy sits behind a server that asks for a client certificate without requiring one, the TLS client used to treat the request as fatal, so that proxy could never be reached. It now answers with an empty certificate, the way a browser does, and the handshake completes. Ported from cmliu/edgetunnel.
 
 ## Updating
 
-Panels do not update themselves. Use the update button in your panel, or the Update option in the Telegram bot. Your users, settings and data are kept. After updating, your panel should report **4.9.3**.
+Panels do not update themselves. Use the update button in your panel, or the Update option in the Telegram bot. Your users, settings and data are kept. After updating, your panel should report **4.9.4**.
