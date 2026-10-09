@@ -8,7 +8,7 @@
     "build:debug": "NOVA_BUILD_MODE=debug node scripts/build.mjs",
     "check": "npm run build && node --check worker.js && wrangler deploy --dry-run --outdir .wrangler/dry-run",
     "test": "npm run build && node --test",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "wrangler deploy"
   },
   "cloudflare": {
     "bindings": {
